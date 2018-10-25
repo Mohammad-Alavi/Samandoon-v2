@@ -4,12 +4,7 @@ namespace App\Containers\User\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
-/**
- * Class RegisterUserRequest.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class RegisterUserRequest extends Request
+class GeneratePasswordRequest extends Request
 {
 
     /**
@@ -38,7 +33,6 @@ class RegisterUserRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-
     ];
 
     /**
@@ -47,9 +41,7 @@ class RegisterUserRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'required|email|max:40|unique:users,email',
-            'password' => 'required|min:6|max:30',
-            'name'     => 'required|min:2|max:50',
+            'phone' => 'required|min:6|max:30',  //  TODO: correct the validation rules
         ];
     }
 

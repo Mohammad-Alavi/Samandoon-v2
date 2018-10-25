@@ -40,6 +40,7 @@ class UserTransformer extends Transformer
             'id'                   => $user->getHashedKey(),
             'name'                 => $user->name,
             'email'                => $user->email,
+            'phone'                => $user->phone,
             'confirmed'            => $user->confirmed,
             'nickname'             => $user->nickname,
             'gender'               => $user->gender,

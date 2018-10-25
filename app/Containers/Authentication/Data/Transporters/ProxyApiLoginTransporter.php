@@ -4,13 +4,7 @@ namespace App\Containers\Authentication\Data\Transporters;
 
 use App\Ship\Parents\Transporters\Transporter;
 
-/**
- * Class ProxyApiLoginTransporter
- *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
- */
-class ProxyApiLoginTransporter extends Transporter
-{
+class ProxyApiLoginTransporter extends Transporter {
 
     /**
      * @var array
@@ -20,7 +14,7 @@ class ProxyApiLoginTransporter extends Transporter
         'properties' => [
             'email',
             // 'name',
-            // 'phone',
+            'phone',
 
             'password',
             'client_id',

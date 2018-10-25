@@ -72,7 +72,7 @@ return [
         'allowed_login_attributes' => [
             'email' => ['email'],
             // 'name' => [],
-            // 'phone' => ['string', 'min:6', 'max:25'],
+            'phone' => ['string', 'min:6', 'max:25'],
         ],
     ],
 

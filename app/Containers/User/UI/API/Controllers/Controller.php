@@ -6,10 +6,11 @@ use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\UI\API\Requests\CreateAdminRequest;
 use App\Containers\User\UI\API\Requests\DeleteUserRequest;
 use App\Containers\User\UI\API\Requests\FindUserByIdRequest;
+use App\Containers\User\UI\API\Requests\GeneratePasswordRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
-use App\Containers\User\UI\API\Requests\RegisterUserRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
+use App\Containers\User\UI\API\Transformers\GeneratePasswordTransformer;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Controllers\ApiController;
@@ -22,6 +23,18 @@ use App\Ship\Transporters\DataTransporter;
  */
 class Controller extends ApiController
 {
+
+    /**
+     * @param \App\Containers\User\UI\API\Requests\GeneratePasswordRequest $request
+     *
+     * @return  mixed
+     */
+    public function generatePassword(GeneratePasswordRequest $request)
+    {
+        $password = Apiato::call('User@GeneratePasswordAction', [$request]);
+
+        return $this->accepted($password);  //  TODO: remove it after SMS system run
+    }
 
     /**
      * @param \App\Containers\User\UI\API\Requests\CreateAdminRequest $request
@@ -114,7 +127,7 @@ class Controller extends ApiController
      */
     public function getAuthenticatedUser(GetAuthenticatedUserRequest $request)
     {
-        $user = Apiato::call('User@GetAuthenticatedUserAction');
+        $user = Apiato::call('User@GetAuthenticatedUserSubAction');
 
         return $this->transform($user, UserPrivateProfileTransformer::class);
     }
