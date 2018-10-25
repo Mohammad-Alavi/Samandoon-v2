@@ -48,11 +48,13 @@ class ProxyApiLoginAction extends Action {
                 'username' => $loginUsername,
             ]
         );
-
+/*
+ *          TODO: this logic is in a wrong place, use it where is needed!
+ *
         //  Check if user's password is not expired.
         $user = Apiato::call('User@FindUserByPhoneTask', $requestData['username']);
         $isPasswordExpired = Apiato::call('Authentication@CheckIfPasswordIsExpiredTask', $user);
-        throw_if($isPasswordExpired, new PasswordExpiredException());
+        throw_if($isPasswordExpired, new PasswordExpiredException());*/
 
 
         $responseContent = Apiato::call('Authentication@CallOAuthServerTask', [$requestData]);
