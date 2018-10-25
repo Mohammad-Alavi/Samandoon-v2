@@ -10,7 +10,6 @@ use App\Containers\User\UI\API\Requests\GeneratePasswordRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
-use App\Containers\User\UI\API\Transformers\GeneratePasswordTransformer;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Controllers\ApiController;
@@ -31,9 +30,9 @@ class Controller extends ApiController
      */
     public function generatePassword(GeneratePasswordRequest $request)
     {
-        $password = Apiato::call('User@GeneratePasswordAction', [$request]);
+        $user = Apiato::call('User@GeneratePasswordAction', [$request]);
 
-        return $this->accepted($password);  //  TODO: remove it after SMS system run
+        return $this->noContent();
     }
 
     /**
