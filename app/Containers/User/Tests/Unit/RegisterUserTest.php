@@ -2,7 +2,7 @@
 
 namespace App\Containers\User\Tests\Unit;
 
-use App\Containers\User\Actions\RegisterUserAction;
+use App\Containers\User\Actions\RegisterUserSubAction;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
@@ -31,7 +31,7 @@ class RegisterUserTest extends TestCase
         ];
 
         $transporter = new DataTransporter($data);
-        $action = App::make(RegisterUserAction::class);
+        $action = App::make(RegisterUserSubAction::class);
         $user = $action->run($transporter);
 
         // asset the returned object is an instance of the User

@@ -4,11 +4,9 @@ namespace App\Containers\User\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
-/**
- * Class ResetPasswordRequest.
- */
-class ResetPasswordRequest extends Request
+class GeneratePasswordRequest extends Request
 {
+
     /**
      * Define which Roles and/or Permissions has access to this request.
      *
@@ -25,19 +23,16 @@ class ResetPasswordRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+
     ];
 
     /**
-     * Defining the URL parameters (e.g, `/user/{id}`) allows applying
+     * Defining the URL parameters (`/stores/999/items`) allows applying
      * validation rules on them and allows accessing them like request data.
      *
      * @var  array
      */
     protected $urlParameters = [
-         'token',
-         'email',
-         'password',
     ];
 
     /**
@@ -46,9 +41,7 @@ class ResetPasswordRequest extends Request
     public function rules()
     {
         return [
-            'token' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|max:255',
+            'phone' => 'required|min:6|max:30',  //  TODO: correct the validation rules
         ];
     }
 

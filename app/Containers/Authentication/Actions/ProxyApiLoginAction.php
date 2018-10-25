@@ -4,13 +4,10 @@ namespace App\Containers\Authentication\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter;
+use App\Containers\Authentication\Exceptions\PasswordExpiredException;
 use App\Ship\Parents\Actions\Action;
 
-/**
- * Class ProxyApiLoginAction.
- */
-class ProxyApiLoginAction extends Action
-{
+class ProxyApiLoginAction extends Action {
 
     /**
      * @param \App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter $data
@@ -51,6 +48,12 @@ class ProxyApiLoginAction extends Action
                 'username' => $loginUsername,
             ]
         );
+
+        //  Check if user's password is not expired.
+        $user = Apiato::call('User@FindUserByPhoneTask', $requestData['username']);
+        $isPasswordExpired = Apiato::call('Authentication@CheckIfPasswordIsExpiredTask', $user);
+        throw_if($isPasswordExpired, new PasswordExpiredException());
+
 
         $responseContent = Apiato::call('Authentication@CallOAuthServerTask', [$requestData]);
 

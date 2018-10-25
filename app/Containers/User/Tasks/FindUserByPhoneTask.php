@@ -8,31 +8,17 @@ use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-/**
- * Class FindUserByEmailTask
- *
- * @author  Sebastian Weckend
- */
-class FindUserByEmailTask extends Task
-{
+class FindUserByPhoneTask extends Task {
 
     protected $repository;
 
-    public function __construct(UserRepository $repository)
-    {
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return User
-     * @throws NotFoundException
-     */
-    public function run(string $email): User
-    {
+    public function run(string $phone): User {
         try {
-            return $this->repository->findByEmail($email);
+            return $this->repository->findByPhone($phone);
         } catch (Exception $e) {
             throw new NotFoundException();
         }

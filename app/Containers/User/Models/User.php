@@ -8,22 +8,11 @@ use App\Containers\Payment\Models\PaymentAccount;
 use App\Containers\Payment\Traits\ChargeableTrait;
 use App\Ship\Parents\Models\UserModel;
 
-/**
- * Class User.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class User extends UserModel implements ChargeableInterface
-{
+class User extends UserModel implements ChargeableInterface {
 
     use ChargeableTrait;
     use AuthorizationTrait;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'users';
 
     /**
@@ -32,9 +21,12 @@ class User extends UserModel implements ChargeableInterface
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'phone',
         'password',
+        'points',
         'device',
         'platform',
         'gender',
@@ -66,6 +58,8 @@ class User extends UserModel implements ChargeableInterface
         'created_at',
         'updated_at',
         'deleted_at',
+        'password_updated_at',
+        'expired_at',
     ];
 
     /**
@@ -78,8 +72,7 @@ class User extends UserModel implements ChargeableInterface
         'remember_token',
     ];
 
-    public function paymentAccounts()
-    {
+    public function paymentAccounts() {
         return $this->hasMany(PaymentAccount::class);
     }
 
