@@ -4,12 +4,12 @@
  * @apiGroup           OAuth2
  * @apiName            LoginPasswordGrant
  * @api                {post} /v1/oauth/token Login (Password Grant)
- * @apiDescription     Login Users using their valid username and passwords. (For First-Party Clients)
+ * @apiDescription     Login Users using their valid username and password. (For First-Party Clients)
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated User
  *
- * @apiParam           {String}  username user phone number or confirmed email address
+ * @apiParam           {String}  username user phone number or confirmed email address. example: `+989360000000`
  * @apiParam           {String}  password pin-code which is sent to phone or email
  * @apiParam           {String}  client_id
  * @apiParam           {String}  client_secret
