@@ -14,4 +14,10 @@ return [
           'password-reset',
     ],
 
+
+    /*
+     * Password Configurations
+     */
+    'password-length' => 5,
+
 ];
