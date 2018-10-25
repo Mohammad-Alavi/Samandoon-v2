@@ -41,7 +41,7 @@ class GeneratePasswordRequest extends Request
     public function rules()
     {
         return [
-            'phone' => 'required|min:6|max:30',  //  TODO: correct the validation rules
+            'phone' => 'required|size:13|regex:/(\+989)[0-9]/',
         ];
     }
 
