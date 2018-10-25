@@ -23,6 +23,16 @@ class PasswordGeneratedNotification extends Notification {
         ];
     }
 
+    /*
+     *
+     *                      IMPORTANT TO KNOW:
+     *
+     *                      SMS channel is not working and it might be a temporary bug!
+     *                      This is why we are using mail channel to send SMS
+     *                      and it makes no sense!
+     *
+     */
+
     public function via($notifiable) {
         return [
             'mail'
