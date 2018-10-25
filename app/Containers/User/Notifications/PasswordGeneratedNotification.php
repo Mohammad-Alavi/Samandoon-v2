@@ -4,6 +4,7 @@ namespace App\Containers\User\Notifications;
 
 use App\Ship\Parents\Notifications\Notification;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
 
 /**
  * Class PasswordGeneratedNotification
@@ -31,12 +32,13 @@ class PasswordGeneratedNotification extends Notification {
     public function toMail($notifiable) {
         $client = new Client();
         $params = [
-            'query' => ['template' => 'verify-ivisitor',
+            'query' => ['template' => Config::get('user-container.sms-template'),
                         'receptor' => $notifiable->phone,
                         'token'    => $this->password
             ]
         ];
-        $res = $client->get('https://api.kavenegar.com/v1/53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942/verify/lookup.json', $params);
+        $sms_api_key = Config::get('user-container.sms-api-key');
+        $res = $client->get('https://api.kavenegar.com/v1/' . $sms_api_key . '/verify/lookup.json', $params);
     }
 
 }
