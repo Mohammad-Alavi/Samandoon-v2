@@ -7,6 +7,7 @@ use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Config;
 
 class CheckIfPasswordIsExpiredTask extends Task
 {
@@ -14,7 +15,8 @@ class CheckIfPasswordIsExpiredTask extends Task
     public function run(User $user): bool
     {
         try {
-            return $user->password_updated_at->gt(Carbon::now()->addSeconds(10));  //  TODO: add it's value to config file
+            $password_expiration_age = Config::get('authentication-container.login.password_expiration_age');
+            return Carbon::now()->gt($user->password_updated_at->addSeconds($password_expiration_age));
         }
         catch (Exception $exception) {
             throw new NotFoundException();

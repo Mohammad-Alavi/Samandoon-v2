@@ -5,6 +5,7 @@ namespace App\Containers\Authentication\Actions;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter;
 use App\Containers\Authentication\Exceptions\PasswordExpiredException;
+use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Ship\Parents\Actions\Action;
 
 class ProxyApiLoginAction extends Action {
@@ -14,7 +15,7 @@ class ProxyApiLoginAction extends Action {
      *
      * @return array
      */
-    public function run(ProxyApiLoginTransporter $data): array
+    public function run(LoginRequest $data): array
     {
         $requestData = [
             'grant_type'    => $data->grant_type ?? 'password',
@@ -48,14 +49,11 @@ class ProxyApiLoginAction extends Action {
                 'username' => $loginUsername,
             ]
         );
-/*
- *          TODO: this logic is in a wrong place, use it where is needed!
- *
-        //  Check if user's password is not expired.
-        $user = Apiato::call('User@FindUserByPhoneTask', $requestData['username']);
-        $isPasswordExpired = Apiato::call('Authentication@CheckIfPasswordIsExpiredTask', $user);
-        throw_if($isPasswordExpired, new PasswordExpiredException());*/
 
+        //  Check if user's password is not expired.
+        $user = Apiato::call('User@FindUserByPhoneTask', [$requestData['username']]);
+        $isPasswordExpired = Apiato::call('Authentication@CheckIfPasswordIsExpiredTask', [$user]);
+        if($isPasswordExpired) throw new PasswordExpiredException();
 
         $responseContent = Apiato::call('Authentication@CallOAuthServerTask', [$requestData]);
 
@@ -64,6 +62,9 @@ class ProxyApiLoginAction extends Action {
             [['loginWithCredentials' => [$requestData['username'], $requestData['password'], $loginAttribute]]]);
 
         $refreshCookie = Apiato::call('Authentication@MakeRefreshCookieTask', [$responseContent['refresh_token']]);
+
+        //  Remove the password
+        Apiato::call('User@UpdateUserPasswordSubAction', [$user->id, null]);
 
         return [
             'response_content' => $responseContent,
