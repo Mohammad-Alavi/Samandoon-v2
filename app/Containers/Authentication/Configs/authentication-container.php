@@ -74,6 +74,14 @@ return [
             // 'name' => [],
             'phone' => ['string', 'min:6', 'max:25'],
         ],
+
+        /*
+         * Any password will expire after a while when it is generated.
+         *
+         * This value defines the life time of a password (in seconds) . e.g: 120 (which means 2 minutes)
+         *
+         */
+        'password_expiration_age' => 120,
     ],
 
 ];

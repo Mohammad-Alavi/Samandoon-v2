@@ -3,7 +3,6 @@
 namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\User\Models\User;
 use App\Containers\User\Notifications\PasswordGeneratedNotification;
 use App\Containers\User\Traits\RandomGeneratorTrait;
 use App\Ship\Parents\Actions\Action;

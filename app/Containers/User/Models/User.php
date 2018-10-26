@@ -42,6 +42,9 @@ class User extends UserModel implements ChargeableInterface {
         'social_nickname',
         'confirmed',
         'is_client',
+
+        'password_updated_at',
+        'expired_at',
     ];
 
     protected $casts = [
