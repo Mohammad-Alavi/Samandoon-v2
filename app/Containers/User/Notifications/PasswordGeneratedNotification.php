@@ -48,7 +48,7 @@ class PasswordGeneratedNotification extends Notification {
             ]
         ];
         $sms_api_key = Config::get('user-container.sms-api-key');
-        $res = $client->get('https://api.kavenegar.com/v1/' . $sms_api_key . '/verify/lookup.json', $params);
+        $res = $client->get('http://api.kavenegar.com/v1/' . $sms_api_key . '/verify/lookup.json', $params);
     }
 
 }
