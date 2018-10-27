@@ -3,6 +3,7 @@
 namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\User\Models\User;
 use App\Containers\User\Notifications\PasswordGeneratedNotification;
 use App\Containers\User\Traits\RandomGeneratorTrait;
 use App\Ship\Parents\Actions\Action;
@@ -15,7 +16,7 @@ class GeneratePasswordAction extends Action {
     use RandomGeneratorTrait;
     private $user;
 
-    public function run(DataTransporter $data) {
+    public function run(DataTransporter $data): User {
         //  Check if user had been registered before.
         $isPhoneExisting = Apiato::call('User@CheckIfPhoneIsExistingTask', [$data->phone]);
 
