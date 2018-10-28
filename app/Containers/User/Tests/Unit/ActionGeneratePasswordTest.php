@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 
 class ActionGeneratePasswordTest extends TestCase {
 
-    public function testRegisterNewUser() {
+    public function test_RegisterNewUser() {
         $data = [
             'phone' => '+989160000000',
         ];
@@ -26,7 +26,7 @@ class ActionGeneratePasswordTest extends TestCase {
         $this->assertEquals($user->password_updated_at, $user->created_at);
     }
 
-    public function testGeneratePasswordForExistingUser() {
+    public function test_GeneratePasswordForExistingUser() {
         $data = [
             'phone' => '+989160000000',
         ];
