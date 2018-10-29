@@ -2,16 +2,15 @@
 
 namespace App\Containers\User\Tests;
 
+use App\Containers\User\Actions\RegisterUserSubAction;
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
+use Illuminate\Support\Facades\App;
 
-/**
- * Class TestCase
- *
- * Container TestCase class. Use this class to put your container specific tests helper functions.
- *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
- */
-class TestCase extends ShipTestCase
-{
-    // ..
+class TestCase extends ShipTestCase {
+
+    public function getNewUser($phone = '+989160000000'): User {
+        return App::make(RegisterUserSubAction::class)->run($phone);
+    }
+
 }
