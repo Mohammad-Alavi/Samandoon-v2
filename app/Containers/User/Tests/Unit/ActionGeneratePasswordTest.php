@@ -20,7 +20,6 @@ class ActionGeneratePasswordTest extends TestCase {
         //  Check the result
         $this->assertInstanceOf(User::class, $user, 'The returned object is not an instance of the User.');
         $this->assertEquals($user->phone, $data['phone'], 'PHONE property is not set correctly.');
-        $this->assertEquals($user->password_updated_at, $user->created_at, 'Create and PasswordUpdate time of a new object should be same.');
     }
 
     public function test_GeneratePasswordForExistingUser() {
