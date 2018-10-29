@@ -5,6 +5,7 @@ namespace App\Containers\User\Actions;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Events\UserRegisteredEvent;
 use App\Containers\User\Mails\UserRegisteredMail;
+use App\Containers\User\Models\User;
 use App\Containers\User\Notifications\UserRegisteredNotification;
 use App\Ship\Parents\Actions\SubAction;
 use Illuminate\Contracts\Bus\Dispatcher;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Notification;
 
 class RegisterUserSubAction extends SubAction {
 
-    public function run(string $phone) {
+    public function run(string $phone): User {
         // Create a user record in database and return it.
         $user = Apiato::call('User@CreateUserByCredentialsTask', [
             true,
