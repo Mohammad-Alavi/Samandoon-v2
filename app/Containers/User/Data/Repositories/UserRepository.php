@@ -20,6 +20,14 @@ class UserRepository extends Repository {
     ];
 
     /**
+     * @param string $id
+     * @return User|null
+     */
+    public function findById(string $id): ?User {
+        return $this->findByField('id', $id)->first();
+    }
+
+    /**
      * @param string $phone
      * @return User|null
      */
