@@ -8,7 +8,7 @@ use App\Containers\User\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\App;
 
-class ActionGeneratePasswordTest extends TestCase {
+class GeneratePasswordActionTest extends TestCase {
 
     public function test_RegisterNewUser() {
         //  Register a new user

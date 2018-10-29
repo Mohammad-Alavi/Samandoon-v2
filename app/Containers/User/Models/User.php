@@ -13,6 +13,9 @@ class User extends UserModel implements ChargeableInterface {
     use ChargeableTrait;
     use AuthorizationTrait;
 
+    /**
+     * @var string
+     */
     protected $table = 'users';
 
     /**
@@ -47,6 +50,9 @@ class User extends UserModel implements ChargeableInterface {
         'expired_at',
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
         'is_client' => 'boolean',
         'confirmed' => 'boolean',
@@ -75,6 +81,9 @@ class User extends UserModel implements ChargeableInterface {
         'remember_token',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function paymentAccounts() {
         return $this->hasMany(PaymentAccount::class);
     }

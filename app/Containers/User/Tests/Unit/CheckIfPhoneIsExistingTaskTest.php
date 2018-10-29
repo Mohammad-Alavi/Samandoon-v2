@@ -7,7 +7,7 @@ use App\Containers\User\Tasks\CheckIfPhoneIsExistingTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class TaskCheckIfPhoneIsExistingTest extends TestCase {
+class CheckIfPhoneIsExistingTaskTest extends TestCase {
 
     /**
      * @var string
