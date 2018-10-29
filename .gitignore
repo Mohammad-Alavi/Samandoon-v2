@@ -21,3 +21,4 @@ _ide_helper*.php
 .phpstorm.meta.php
 after.sh
 aliases
+composer.phar
