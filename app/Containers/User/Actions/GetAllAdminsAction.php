@@ -18,7 +18,7 @@ class GetAllAdminsAction extends Action
      */
     public function run()
     {
-        return Apiato::call('User@GetAllUsersTask',
+        return Apiato::call('User@GetPaginatedAllUsersTask',
             [],
             [
                 'addRequestCriteria',

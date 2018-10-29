@@ -4,6 +4,7 @@ namespace App\Containers\User\Tests;
 
 use App\Containers\User\Actions\RegisterUserSubAction;
 use App\Containers\User\Models\User;
+use App\Containers\User\Tasks\DeleteAllUsersTask;
 use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
 use Illuminate\Support\Facades\App;
 
@@ -26,6 +27,10 @@ class TestCase extends ShipTestCase {
         for ($i = 0; $i <$count; $i++){
             $this->getNewUser('+98936---' . $i);
         }
+    }
+
+    public function deleteAllUsers(){
+        App::make(DeleteAllUsersTask::class)->run();
     }
 
 

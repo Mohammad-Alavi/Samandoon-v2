@@ -8,53 +8,48 @@ use App\Containers\User\Data\Criterias\RoleCriteria;
 use App\Containers\User\Data\Repositories\UserRepository;
 use App\Ship\Criterias\Eloquent\OrderByCreationDateDescendingCriteria;
 use App\Ship\Parents\Tasks\Task;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-/**
- * Class GetAllUsersTask.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class GetAllUsersTask extends Task
-{
+class GetPaginatedAllUsersTask extends Task {
 
     /**
-     * @var  \App\Containers\User\Data\Repositories\UserRepository
+     * @var UserRepository
      */
     protected $repository;
 
     /**
-     * GetAllUsersTask constructor.
+     * GetPaginatedAllUsersTask constructor.
      *
-     * @param \App\Containers\User\Data\Repositories\UserRepository $repository
+     * @param UserRepository $repository
      */
-    public function __construct(UserRepository $repository)
-    {
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
 
-    public function run()
-    {
+    /**
+     * @return LengthAwarePaginator
+     */
+    public function run() : LengthAwarePaginator{
         return $this->repository->paginate();
     }
-
-    public function clients()
-    {
+/*
+ *   UnTested methods  (MosleM)
+ *
+    public function clients() {
         $this->repository->pushCriteria(new ClientsCriteria());
     }
 
-    public function admins()
-    {
+    public function admins() {
         $this->repository->pushCriteria(new AdminsCriteria());
     }
 
-    public function ordered()
-    {
+    public function ordered() {
         $this->repository->pushCriteria(new OrderByCreationDateDescendingCriteria());
     }
 
-    public function withRole($roles)
-    {
+    public function withRole($roles) {
         $this->repository->pushCriteria(new RoleCriteria($roles));
     }
+*/
 
 }
