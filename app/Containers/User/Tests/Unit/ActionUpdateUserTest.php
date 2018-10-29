@@ -2,8 +2,8 @@
 
 namespace App\Containers\User\Tests\Unit;
 
-use App\Containers\User\Actions\GeneratePasswordAction;
 use App\Containers\User\Actions\UpdateUserAction;
+use App\Containers\User\Models\User;
 use App\Containers\User\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\App;
@@ -12,13 +12,7 @@ class ActionUpdateUserTest extends TestCase {
 
     public function test_EditAllFieldsWorks() {
         //  Register a new user
-        $data = [
-            'phone' => '+989160000000',
-        ];
-        $transporter = new DataTransporter($data);
-        $action = App::make(GeneratePasswordAction::class);
-        $action->run($transporter);
-        $user = $action->run($transporter);
+        $user = $this->getNewUser();
 
         //  Edit the user
         $data = [
@@ -34,6 +28,8 @@ class ActionUpdateUserTest extends TestCase {
         $updatedUser = $action->run($transporter);
 
         //  Check the result
+
+        $this->assertInstanceOf(User::class, $updatedUser);
         $this->assertSame('moslem', $updatedUser->first_name);
         $this->assertSame('deris', $updatedUser->last_name);
         $this->assertSame('moslem.deris@gmail.com', $updatedUser->email);
