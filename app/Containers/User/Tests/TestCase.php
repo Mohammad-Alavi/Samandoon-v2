@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\App;
 
 class TestCase extends ShipTestCase {
 
-    public function getNewUser($phone = '+989160000000'): User {
-        return App::make(RegisterUserSubAction::class)->run($phone);
+    public function getNewUser(string $phone = '+989160000000'): User {
+        $action = App::make(RegisterUserSubAction::class);
+        $user = $action->run($phone);
+        return $user;
     }
 
 }
