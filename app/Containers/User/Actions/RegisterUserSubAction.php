@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Notification;
 
 class RegisterUserSubAction extends SubAction {
 
+    /**
+     * @param string $phone
+     * @return User
+     */
     public function run(string $phone): User {
         // Create a user record in database and return it.
         $user = Apiato::call('User@CreateUserByCredentialsTask', [

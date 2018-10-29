@@ -3,7 +3,6 @@
 namespace App\Containers\Authentication\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter;
 use App\Containers\Authentication\Exceptions\PasswordExpiredException;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Ship\Parents\Actions\Action;
@@ -11,8 +10,7 @@ use App\Ship\Parents\Actions\Action;
 class ProxyApiLoginAction extends Action {
 
     /**
-     * @param \App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter $data
-     *
+     * @param LoginRequest $data
      * @return array
      */
     public function run(LoginRequest $data): array

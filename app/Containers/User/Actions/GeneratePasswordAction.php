@@ -14,8 +14,17 @@ use Illuminate\Support\Facades\Notification;
 class GeneratePasswordAction extends Action {
 
     use RandomGeneratorTrait;
+
+    /**
+     * @var User
+     */
     private $user;
 
+
+    /**
+     * @param DataTransporter $data
+     * @return User
+     */
     public function run(DataTransporter $data): User {
         //  Check if user had been registered before.
         $isPhoneExisting = Apiato::call('User@CheckIfPhoneIsExistingTask', [$data->phone]);

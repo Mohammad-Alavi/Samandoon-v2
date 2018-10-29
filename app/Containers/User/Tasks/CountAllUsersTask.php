@@ -5,14 +5,15 @@ namespace App\Containers\User\Tasks;
 use App\Containers\User\Data\Repositories\UserRepository;
 use App\Ship\Parents\Tasks\Task;
 
-class CheckIfPhoneIsExistingTask extends Task {
+class CountAllUsersTask extends Task {
+
     /**
      * @var UserRepository
      */
     protected $repository;
 
     /**
-     * CheckIfPhoneIsExistingTask constructor.
+     * CountAllUsersTask constructor.
      * @param UserRepository $repository
      */
     public function __construct(UserRepository $repository) {
@@ -20,10 +21,10 @@ class CheckIfPhoneIsExistingTask extends Task {
     }
 
     /**
-     * @param string $phone
-     * @return bool
+     * @return int
      */
-    public function run(string $phone): bool {
-        return $this->repository->findByPhone($phone) != null;
+    public function run(): int {
+        return $this->repository->all()->count();
     }
+
 }

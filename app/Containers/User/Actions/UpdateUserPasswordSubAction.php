@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UpdateUserPasswordSubAction extends SubAction {
 
-    public function run(string $userId, $newPassword): User {
+    /**
+     * @param string $userId
+     * @param string $newPassword
+     * @return User
+     */
+    public function run(string $userId, string $newPassword): User {
         $userData = [
             "password" => Hash::make($newPassword),
             "password_updated_at" => Carbon::now()];
