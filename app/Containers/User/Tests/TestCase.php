@@ -13,10 +13,20 @@ class TestCase extends ShipTestCase {
      * @param string $phone
      * @return  User
      */
-    public function getNewUser(string $phone = '+989160000000'): User {
+    public function getNewUser(string $phone = '+98916-------'): User {
         $action = App::make(RegisterUserSubAction::class);
         $user = $action->run($phone);
         return $user;
     }
+
+    /**
+     * @param int $count
+     */
+    public function getNewUsers(int $count) {
+        for ($i = 0; $i <$count; $i++){
+            $this->getNewUser('+98936---' . $i);
+        }
+    }
+
 
 }
