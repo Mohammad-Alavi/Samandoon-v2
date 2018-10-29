@@ -29,11 +29,11 @@ class ActionUpdateUserTest extends TestCase {
 
         //  Check the result
 
-        $this->assertInstanceOf(User::class, $updatedUser);
-        $this->assertSame('moslem', $updatedUser->first_name);
-        $this->assertSame('deris', $updatedUser->last_name);
-        $this->assertSame('moslem.deris@gmail.com', $updatedUser->email);
-        $this->assertSame('male', $updatedUser->gender);
-        $this->assertSame('02-07-1994', $updatedUser->birth);
+        $this->assertInstanceOf(User::class, $updatedUser, 'The returned object is not an instance of the User.');
+        $this->assertSame('moslem', $updatedUser->first_name, 'first_name field is not changed.');
+        $this->assertSame('deris', $updatedUser->last_name, 'last_name field is not changed.');
+        $this->assertSame('moslem.deris@gmail.com', $updatedUser->email, 'email field is not changed.');
+        $this->assertSame('male', $updatedUser->gender, 'gender field is not changed.');
+        $this->assertSame('02-07-1994', $updatedUser->birth, 'birth field is not changed.');
     }
 }

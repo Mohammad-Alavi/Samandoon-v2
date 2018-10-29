@@ -18,9 +18,9 @@ class ActionGeneratePasswordTest extends TestCase {
         $user = App::make(GeneratePasswordAction::class)->run(new DataTransporter($data));
 
         //  Check the result
-        $this->assertInstanceOf(User::class, $user);
-        $this->assertEquals($user->phone, $data['phone']);
-        $this->assertEquals($user->password_updated_at, $user->created_at);
+        $this->assertInstanceOf(User::class, $user, 'The returned object is not an instance of the User.');
+        $this->assertEquals($user->phone, $data['phone'], 'PHONE property is not set correctly.');
+        $this->assertEquals($user->password_updated_at, $user->created_at, 'Create and PasswordUpdate time of a new object should be same.');
     }
 
     public function test_GeneratePasswordForExistingUser() {
@@ -36,7 +36,7 @@ class ActionGeneratePasswordTest extends TestCase {
         $user = $action->run($transporter);
 
         //  Check the result
-        $this->assertInstanceOf(User::class, $user);
-        $this->assertNotEquals($user->password_updated_at, $user->created_at);
+        $this->assertInstanceOf(User::class, $user, 'The returned object is not an instance of the User.');
+        $this->assertNotEquals($user->password_updated_at, $user->created_at, 'PasswordUpdated time is not changed.');
     }
 }

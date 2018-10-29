@@ -18,9 +18,9 @@ class TaskCheckIfPhoneIsExistingTest extends TestCase {
         $shouldBeFalse = $task->run('+989161111111');  //  The non existing phone number
 
         //  Check the result
-        $this->assertInternalType('bool', $shouldBeTrue,  'The returned value sis not a boolean');
-        $this->assertInternalType('bool', $shouldBeFalse, 'The returned value sis not a boolean');
-        $this->assertTrue($shouldBeTrue);
-        $this->assertFalse($shouldBeFalse);
+        $this->assertInternalType('bool', $shouldBeTrue,  'The returned value is not a boolean');
+        $this->assertInternalType('bool', $shouldBeFalse, 'The returned value is not a boolean');
+        $this->assertTrue($shouldBeTrue, 'Task cant recognize that the phone is existing.');
+        $this->assertFalse($shouldBeFalse, 'Task cant recognize that the phone is not existing.');
     }
 }
