@@ -8,7 +8,7 @@ use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 
-class TaskCreateUserByCredentialsTest extends TestCase {
+class CreateUserByCredentialsTaskTest extends TestCase {
 
     /**
      * @var bool

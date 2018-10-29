@@ -7,7 +7,7 @@ use App\Containers\User\Tasks\DeleteAllUsersTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class TaskCountAllUsersTest extends TestCase {
+class CountAllUsersTaskTest extends TestCase {
 
     public function test_CountNoUsers() {
         //  Delete all users first

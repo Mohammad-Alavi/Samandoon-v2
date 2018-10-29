@@ -8,7 +8,7 @@ use App\Containers\User\Tasks\DeleteUserTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class TaskDeleteUserTest extends TestCase {
+class DeleteUserTaskTest extends TestCase {
 
     /**
      * @var User

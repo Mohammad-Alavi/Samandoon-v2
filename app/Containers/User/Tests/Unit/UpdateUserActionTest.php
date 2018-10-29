@@ -8,7 +8,7 @@ use App\Containers\User\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\App;
 
-class ActionUpdateUserTest extends TestCase {
+class UpdateUserActionTest extends TestCase {
 
     public function test_EditAllFieldsWorks() {
         //  Register a new user

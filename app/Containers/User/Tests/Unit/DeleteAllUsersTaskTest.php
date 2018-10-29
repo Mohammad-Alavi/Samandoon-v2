@@ -7,7 +7,7 @@ use App\Containers\User\Tasks\DeleteAllUsersTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class TaskDeleteAllUsersTest extends TestCase {
+class DeleteAllUsersTaskTest extends TestCase {
 
     public function test_DeleteAllUsers() {
         //  Create 10 users

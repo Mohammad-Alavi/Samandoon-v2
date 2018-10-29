@@ -7,7 +7,7 @@ use App\Containers\User\Tasks\CheckIfUserIsExistingTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class TaskCheckIfUserIsExistingTest extends TestCase {
+class CheckIfUserIsExistingTaskTest extends TestCase {
 
     /**
      * @var User
