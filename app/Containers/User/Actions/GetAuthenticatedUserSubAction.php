@@ -7,15 +7,13 @@ use App\Containers\User\Models\User;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Actions\SubAction;
 
-class GetAuthenticatedUserSubAction extends SubAction
-{
+class GetAuthenticatedUserSubAction extends SubAction {
 
     /**
-     * @return  \App\Containers\User\Models\User
+     * @return  User
      * @throws  NotFoundException
      */
-    public function run(): User
-    {
+    public function run(): User {
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
 
         if (!$user) {

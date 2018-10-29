@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Config;
 
 class CheckIfUserIsConfirmedTask extends Task
 {
+    /**
+     * @var User
+     */
     private $user;
 
     public function run()
@@ -45,6 +48,9 @@ class CheckIfUserIsConfirmedTask extends Task
         }
     }
 
+    /**
+     * @param User $user
+     */
     public function setUser(User $user)
     {
         $this->user = $user;

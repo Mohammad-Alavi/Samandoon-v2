@@ -11,34 +11,33 @@ use App\Ship\Parents\Tasks\Task;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-/**
- * Class UpdateUserTask.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class UpdateUserTask extends Task
-{
+class UpdateUserTask extends Task {
 
+    /**
+     * @var UserRepository
+     */
     protected $repository;
 
-    public function __construct(UserRepository $repository)
-    {
+    /**
+     * UpdateUserTask constructor.
+     * @param UserRepository $repository
+     */
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
 
     /**
-     * @param $userData
-     * @param $userId
+     * @param array $userData
+     * @param string $userId
      *
-     * @return mixed
+     * @return User
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws UpdateResourceFailedException
      *
      * @return  \App\Containers\User\Models\User
      */
-    public function run($userData, $userId): User
-    {
+    public function run(array $userData, string $userId): User {
         if (empty($userData)) {
             throw new UpdateResourceFailedException('Inputs are empty.');
         }

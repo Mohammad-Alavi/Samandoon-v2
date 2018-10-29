@@ -7,18 +7,11 @@ use App\Containers\User\Models\User;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 
-/**
- * Class CreateAdminAction.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
 class CreateAdminAction extends Action
 {
-
     /**
-     * @param \App\Ship\Transporters\DataTransporter $data
-     *
-     * @return  \App\Containers\User\Models\User
+     * @param DataTransporter $data
+     * @return User
      */
     public function run(DataTransporter $data): User
     {

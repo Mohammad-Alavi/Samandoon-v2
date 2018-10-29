@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Config;
 class CheckIfPasswordIsExpiredTask extends Task
 {
 
+    /**
+     * @param User $user
+     * @throws NotFoundException
+     * @return bool
+     */
     public function run(User $user): bool
     {
         try {
