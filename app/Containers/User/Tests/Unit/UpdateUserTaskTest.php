@@ -2,13 +2,12 @@
 
 namespace App\Containers\User\Tests\Unit;
 
-use App\Containers\User\Actions\UpdateUserAction;
 use App\Containers\User\Models\User;
+use App\Containers\User\Tasks\UpdateUserTask;
 use App\Containers\User\Tests\TestCase;
-use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\App;
 
-class UpdateUserActionTest extends TestCase {
+class UpdateUserTaskTest extends TestCase {
 
     /**
      * @var User
@@ -33,13 +32,10 @@ class UpdateUserActionTest extends TestCase {
     }
 
     public function test_EditAllFieldsWorks() {
-        //  Add $id property to $data array
-        $this->data = array_add($this->data, 'id', $this->user->id);
 
         //  Edit the user
-        $transporter = new DataTransporter($this->data);
-        $action = App::make(UpdateUserAction::class);
-        $this->user = $action->run($transporter);
+        $task = App::make(UpdateUserTask::class);
+        $this->user = $task->run($this->data, $this->user->id);
 
         //  Check the result
         $this->assertInstanceOf(User::class, $this->user, 'The returned object is not an instance of the User.');
