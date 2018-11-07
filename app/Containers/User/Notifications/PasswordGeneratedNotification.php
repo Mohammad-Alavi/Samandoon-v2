@@ -2,53 +2,54 @@
 
 namespace App\Containers\User\Notifications;
 
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Notifications\Notification;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 
-/**
- * Class PasswordGeneratedNotification
- */
 class PasswordGeneratedNotification extends Notification {
 
+    /**
+     * @var string
+     */
     protected $password;
 
-    public function __construct($password) {
+    /**
+     * PasswordGeneratedNotification constructor.
+     * @param string $password
+     */
+    public function __construct(string $password) {
         $this->password = $password;
     }
 
+    /**
+     * @param $notifiable
+     * @return array
+     */
     public function toArray($notifiable) {
         return [
             // ...
         ];
     }
 
-    /*
+    /**
+     * Get the notification's delivery channels.
      *
-     *                      IMPORTANT TO KNOW:
-     *
-     *                      SMS channel is not working and it might be a temporary bug!
-     *                      This is why we are using mail channel to send SMS
-     *                      and it makes no sense!
-     *
+     * @param  mixed $notifiable
+     * @return array
      */
-
     public function via($notifiable) {
         return [
-            'mail'
+            KavenegarChannel::class
         ];
     }
 
-    public function toMail($notifiable) {
-        $client = new Client();
-        $params = [
-            'query' => ['template' => Config::get('user-container.sms-template'),
-                        'receptor' => $notifiable->phone,
-                        'token'    => $this->password
-            ]
-        ];
-        $sms_api_key = Config::get('user-container.sms-api-key');
-        $res = $client->get('http://api.kavenegar.com/v1/' . $sms_api_key . '/verify/lookup.json', $params);
+    /**
+     * @return KavenegarMessage
+     */
+    public function toKavenegar(): KavenegarMessage {
+        $template = Config::get('user-container.sms.password-verification-token');
+        $tokens   = [$this->password];
+        return new KavenegarMessage($template, $tokens);
     }
 
 }

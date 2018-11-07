@@ -11,20 +11,34 @@ return [
     |
     */
     'allowed-reset-password-urls' => [
-          'password-reset',
+        'password-reset',
     ],
 
 
     /*
-     * Password Configurations
-     */
-    'password-length' => 5,
+   |--------------------------------------------------------------------------
+   | Password Configurations
+   |--------------------------------------------------------------------------
+   |
+   | Insert the length of auto generated password.
+   |
+   */
+    'password'                    => [
+        'one-time-password-length' => 5,
+    ],
 
 
     /*
-     * SMS Configurations
-     */
-    'sms-api-key' => '53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942',
-    'sms-template' => 'verify-ivisitor',
+   |--------------------------------------------------------------------------
+   | SMS Configurations
+   |--------------------------------------------------------------------------
+   |
+   | Insert all tokens needed to send sms through `KAVE-NEGAR` sms provider
+   |
+   */
+    'sms'                         => [
+        'api-key'                     => '53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942',
+        'password-verification-token' => 'verify-ivisitor',
+    ],
 
 ];
