@@ -10,21 +10,26 @@ use Illuminate\Support\Facades\Config;
 class KavenegarChannel {
 
     /**
+     * @var KavenegarMessage
+     */
+    protected $kavenegarMessage;
+
+    /**
      * @param User $notifiable
      * @param Notification $notification
      */
     public function send(User $notifiable, Notification $notification) {
-        $array = $notification->toKavenegar($notifiable);
+        $this->kavenegarMessage = $notification->toKavenegar();
 
         $client = new Client();
         $params = [
-            'query' => ['template' => $array['template'],
+            'query' => ['template' => $this->kavenegarMessage->template,
                         'receptor' => $notifiable->phone,
-                        'token'    => $array['tokens'][0] ?? null,
-                        'token2'   => $array['tokens'][1] ?? null,
-                        'token3'   => $array['tokens'][2] ?? null,
-                        'token4'   => $array['tokens'][3] ?? null,
-                        'token5'   => $array['tokens'][4] ?? null,
+                        'token'    => $this->kavenegarMessage->tokens[0] ?? null,
+                        'token2'   => $this->kavenegarMessage->tokens[1] ?? null,
+                        'token3'   => $this->kavenegarMessage->tokens[2] ?? null,
+                        'token4'   => $this->kavenegarMessage->tokens[3] ?? null,
+                        'token5'   => $this->kavenegarMessage->tokens[4] ?? null,
             ]
         ];
         $sms_api_key = Config::get('user-container.sms.api-key');

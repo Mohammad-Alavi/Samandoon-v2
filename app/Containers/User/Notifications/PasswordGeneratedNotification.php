@@ -44,15 +44,12 @@ class PasswordGeneratedNotification extends Notification {
     }
 
     /**
-     * @param User $notifiable
-     * @return array
+     * @return KavenegarMessage
      */
-    public function toKavenegar(User $notifiable) {
-
-        return [
-            'tokens' => [$this->password],
-            'template' => Config::get('user-container.sms.password-verification-token')
-        ];
+    public function toKavenegar(): KavenegarMessage {
+        $template = Config::get('user-container.sms.password-verification-token');
+        $tokens   = [$this->password];
+        return new KavenegarMessage($template, $tokens);
     }
 
 }
