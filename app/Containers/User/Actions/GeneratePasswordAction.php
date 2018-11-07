@@ -36,7 +36,7 @@ class GeneratePasswordAction extends Action {
             $this->user = Apiato::call('User@RegisterUserSubAction', [$data->phone]);
 
         //  Set a new password
-        $passwordLength = Config::get('user-container.password-length');
+        $passwordLength = Config::get('user-container.password.one-time-password-length');
         $newPassword = $this->getRandomNumber($passwordLength);
         $this->user = Apiato::call('User@UpdateUserPasswordSubAction', [$this->user->id, $newPassword]);
 
