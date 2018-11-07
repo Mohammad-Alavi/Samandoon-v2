@@ -2,7 +2,6 @@
 
 namespace App\Containers\User\Notifications;
 
-
 class KavenegarMessage {
 
     /**
