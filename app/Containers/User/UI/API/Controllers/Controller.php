@@ -19,15 +19,23 @@ use App\Ship\Transporters\DataTransporter;
 
 class Controller extends ApiController {
 
+    /**
+     * @param GeneratePasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function generatePassword(GeneratePasswordRequest $request) {
-        $user = Apiato::call('User@GeneratePasswordAction', [$request]);
+        $user = Apiato::call('User@GenerateOneTimePasswordAction', [$request]);
 
         return $this->noContent();
     }
 
 
+    /**
+     * @param LoginRequest $request
+     * @return mixed
+     */
     public function login(LoginRequest $request) {
-        $data = Apiato::call('Authentication@ProxyApiLoginAction', [$request]);
+        $data = Apiato::call('User@LoginAction', [$request]);
 
         return $data;
     }
