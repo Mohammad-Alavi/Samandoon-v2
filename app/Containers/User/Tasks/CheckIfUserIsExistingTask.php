@@ -3,6 +3,7 @@
 namespace App\Containers\User\Tasks;
 
 use App\Containers\User\Data\Repositories\UserRepository;
+use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 
 class CheckIfUserIsExistingTask extends Task {
@@ -24,6 +25,11 @@ class CheckIfUserIsExistingTask extends Task {
      * @return bool
      */
     public function run(string $id): bool {
-        return $this->repository->findById($id) != null;
+        try{
+            $this->repository->findById($id);
+            return true;
+        }catch (NotFoundException $e){
+            return false;
+        }
     }
 }
