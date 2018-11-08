@@ -15,7 +15,7 @@ class CreateAdminAction extends Action
      */
     public function run(DataTransporter $data): User
     {
-        $admin = Apiato::call('User@CreateUserByCredentialsTask', [
+        $admin = Apiato::call('User@CreateUserByPhoneTask', [
             $isClient = false,
             $data->email,
             $data->password,
