@@ -32,7 +32,7 @@ class KavenegarChannel {
                         'token5'   => $this->kavenegarMessage->tokens[4] ?? null,
             ]
         ];
-        $sms_api_key = Config::get('user-container.sms.api-key');
+        $sms_api_key = Config::get('user-container.sms.kavenegar.api-key');
         $client->get('http://api.kavenegar.com/v1/' . $sms_api_key . '/verify/lookup.json', $params);
     }
 }
