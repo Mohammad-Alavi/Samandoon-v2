@@ -13,8 +13,6 @@ npm-debug.log
 yarn-error.log
 .env
 storage/logs/laravel.log
-/public/api-rendered-markdowns/*
-/public/api/
 /public/uploads/
 /laradock*/
 _ide_helper*.php
