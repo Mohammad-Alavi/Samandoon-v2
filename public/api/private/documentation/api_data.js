@@ -1,5 +1,43 @@
 define({ "api": [
   {
+    "group": "Article",
+    "name": "createArticle",
+    "type": "POST",
+    "url": "/v1/article",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Article/UI/API/Routes/CreateArticle.v1.private.php",
+    "groupTitle": "Article"
+  },
+  {
     "group": "Localization",
     "name": "getAllLocalizations",
     "type": "GET",
