@@ -3,13 +3,15 @@
 namespace App\Containers\User\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\User\Exceptions\BadLoginTypeException;
+use App\Containers\User\Exceptions\NoReasonFailureException;
 use App\Containers\User\UI\API\Requests\CreateAdminRequest;
 use App\Containers\User\UI\API\Requests\DeleteUserRequest;
 use App\Containers\User\UI\API\Requests\FindUserByIdRequest;
-use App\Containers\User\UI\API\Requests\GeneratePasswordRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
+use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
@@ -20,13 +22,15 @@ use App\Ship\Transporters\DataTransporter;
 class Controller extends ApiController {
 
     /**
-     * @param GeneratePasswordRequest $request
+     * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function generatePassword(GeneratePasswordRequest $request) {
-        $user = Apiato::call('User@GenerateOneTimePasswordAction', [$request]);
-
-        return $this->noContent();
+    public function register(RegisterRequest $request) {
+        $result = Apiato::call('User@RegisterAction', [$request]);
+        if ($result)
+            return $this->noContent();
+        else
+            throw new NoReasonFailureException();
     }
 
 
@@ -35,7 +39,7 @@ class Controller extends ApiController {
      * @return mixed
      */
     public function login(LoginRequest $request) {
-        $data = Apiato::call('User@LoginAction', [$request]);
+        $data = Apiato::call('Authentication@LoginAction', [$request]);
 
         return $data;
     }

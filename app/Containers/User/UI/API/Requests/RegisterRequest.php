@@ -2,10 +2,10 @@
 
 namespace App\Containers\User\UI\API\Requests;
 
+use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Requests\Request;
 
-class GeneratePasswordRequest extends Request
-{
+class RegisterRequest extends Request {
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -38,18 +38,20 @@ class GeneratePasswordRequest extends Request
     /**
      * @return  array
      */
-    public function rules()
-    {
+    public function rules() {
+        $isOneTimePassword = Apiato::call('Authentication@GetAllowedLoginPasswordTypeTask') == 'one_time_password';
+        $passwordRule = $isOneTimePassword ? '' : 'min:6|max:30';
+
         return [
-            'phone' => 'required|size:13|regex:/(\+989)[0-9]/',
-        ];
+            'phone'    => 'size:13|regex:/(\+989)[0-9]/',
+            'email'    => 'email',
+            'password' => $passwordRule];
     }
 
     /**
      * @return  bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return $this->check([
             'hasAccess',
         ]);

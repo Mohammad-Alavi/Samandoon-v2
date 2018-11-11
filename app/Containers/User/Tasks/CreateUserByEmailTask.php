@@ -8,7 +8,7 @@ use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateUserByPhoneTask extends Task {
+class CreateUserByEmailTask extends Task {
 
     /**
      * @var UserRepository
@@ -16,7 +16,7 @@ class CreateUserByPhoneTask extends Task {
     protected $repository;
 
     /**
-     * CreateUserByPhoneTask constructor.
+     * CreateUserByEmailTask constructor.
      * @param UserRepository $repository
      */
     public function __construct(UserRepository $repository) {
@@ -25,18 +25,18 @@ class CreateUserByPhoneTask extends Task {
 
     /**
      * @param bool $isClient
-     * @param string $phone
+     * @param string $email
      * @return User
      */
     public function run(
         bool $isClient,
-        string $phone
+        string $email
     ): User {
 
         try {
             // create new user
             $user = $this->repository->create([
-                'phone'     => $phone,
+                'email'     => $email,
                 'is_client' => $isClient,
             ]);
 

@@ -4,8 +4,7 @@ namespace App\Containers\User\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
-class LoginRequest extends Request
-{
+class LoginRequest extends Request {
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -38,19 +37,17 @@ class LoginRequest extends Request
     /**
      * @return  array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'phone' => 'required|size:13|regex:/(\+989)[0-9]/',
-            'password' => 'required',
+            'phone' => 'size:13|regex:/(\+989)[0-9]/',
+            'email' => 'email',
         ];
     }
 
     /**
      * @return  bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return $this->check([
             'hasAccess',
         ]);

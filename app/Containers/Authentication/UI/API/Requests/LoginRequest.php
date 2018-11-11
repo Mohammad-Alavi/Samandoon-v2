@@ -50,7 +50,7 @@ class LoginRequest extends Request
     {
         $prefix = config('authentication-container.login.prefix', '');
 
-        $allowedLoginFields = config('authentication-container.login.allowed_login_attributes', ['email' => []]);
+        $allowedLoginFields = config('authentication-container.login.allowed_login_username_types', ['email' => []]);
 
         $rules = [
             'password' => 'required|min:3|max:30',

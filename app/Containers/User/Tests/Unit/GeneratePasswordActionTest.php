@@ -2,7 +2,7 @@
 
 namespace App\Containers\User\Tests\Unit;
 
-use App\Containers\User\Actions\GenerateOneTimePasswordAction;
+use App\Containers\User\Actions\FindOrCreateUserByPhoneAndOneTimePasswordSubAction;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
@@ -15,7 +15,7 @@ class GeneratePasswordActionTest extends TestCase {
         $data = [
             'phone' => '+989160000000',
         ];
-        $user = App::make(GenerateOneTimePasswordAction::class)->run(new DataTransporter($data));
+        $user = App::make(FindOrCreateUserByPhoneAndOneTimePasswordSubAction::class)->run(new DataTransporter($data));
 
         //  Check the result
         $this->assertInstanceOf(User::class, $user, 'The returned object is not an instance of the User.');
@@ -28,7 +28,7 @@ class GeneratePasswordActionTest extends TestCase {
             'phone' => '+989160000000',
         ];
         $transporter = new DataTransporter($data);
-        $action = App::make(GenerateOneTimePasswordAction::class);
+        $action = App::make(FindOrCreateUserByPhoneAndOneTimePasswordSubAction::class);
         $action->run($transporter);
 
         //  Get password for existing user

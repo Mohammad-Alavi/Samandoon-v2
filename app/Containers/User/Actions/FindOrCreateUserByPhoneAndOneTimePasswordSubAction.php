@@ -4,13 +4,13 @@ namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
-use App\Containers\User\Notifications\PasswordGeneratedNotification;
+use App\Containers\User\Notifications\OneTimePasswordGeneratedNotification;
 use App\Containers\User\Traits\RandomGeneratorTrait;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\Config;
 
-class GenerateOneTimePasswordAction extends Action {
+class FindOrCreateUserByPhoneAndOneTimePasswordSubAction extends Action {
 
     use RandomGeneratorTrait;
 
@@ -18,7 +18,6 @@ class GenerateOneTimePasswordAction extends Action {
      * @var User
      */
     private $user;
-
 
     /**
      * @param DataTransporter $data
@@ -32,7 +31,7 @@ class GenerateOneTimePasswordAction extends Action {
         if ($isPhoneExisting)
             $this->user = Apiato::call('User@FindUserByPhoneTask', [$data->phone]);
         else
-            $this->user = Apiato::call('User@RegisterUserSubAction', [$data->phone]);
+            $this->user = Apiato::call('User@CreateUserByPhoneTask', [true, $data->phone]);
 
         //  Generate a new password
         $passwordLength = Config::get('user-container.password.one-time-password-length');
@@ -40,7 +39,7 @@ class GenerateOneTimePasswordAction extends Action {
         //  Set the new password
         $this->user = Apiato::call('User@UpdateUserOneTimePasswordSubAction', [$this->user->id, $oneTimePassword]);
         //  Send the password to user's phone
-        $this->user->notify(new PasswordGeneratedNotification($oneTimePassword));
+        $this->user->notify(new OneTimePasswordGeneratedNotification($oneTimePassword));
 
         return $this->user;
     }

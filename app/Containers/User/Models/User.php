@@ -26,16 +26,15 @@ class User extends UserModel {
         'email',
         'phone',
         'password',
+        'one_time_password',
         'points',
-        'device',
-        'platform',
         'gender',
         'birth',
-        'confirmed',
         'is_client',
-
-        'password_updated_at',
-        'expired_at',
+        'is_phone_confirmed',
+        'is_email_confirmed',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
     /**
@@ -43,7 +42,8 @@ class User extends UserModel {
      */
     protected $casts = [
         'is_client' => 'boolean',
-        'confirmed' => 'boolean',
+        'is_phone_confirmed' => 'boolean',
+        'is_email_confirmed' => 'boolean',
     ];
 
     /**
@@ -55,8 +55,8 @@ class User extends UserModel {
         'created_at',
         'updated_at',
         'deleted_at',
-        'password_updated_at',
-        'expired_at',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
     /**
@@ -66,6 +66,7 @@ class User extends UserModel {
      */
     protected $hidden = [
         'password',
+        'one_time_password',
         'remember_token',
     ];
 
