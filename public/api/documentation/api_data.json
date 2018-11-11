@@ -1,0 +1,159 @@
+[
+  {
+    "group": "OAuth2",
+    "name": "ClientAdminWebAppLoginProxy",
+    "type": "post",
+    "url": "/v1/clients/web/admin/login",
+    "title": "Login (Password Grant with proxy)",
+    "description": "<p>Login Users using their email and password, without client_id and client_secret.</p>",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>user email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>user password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 315360000,\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbG...\",\n  \"refresh_token\": \"ZFDPA1S7H8Wydjkjl+xt+hPGWTagX...\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Authentication/UI/API/Routes/ProxyLoginForAdminWebClient.v1.public.php",
+    "groupTitle": "OAuth2"
+  },
+  {
+    "group": "OAuth2",
+    "name": "ClientAdminWebAppRefreshProxy",
+    "type": "post",
+    "url": "/v1/clients/web/admin/refresh",
+    "title": "Refresh",
+    "description": "<p>If <code>refresh_token</code> is not provided the w'll try to get it from the http cookie.</p>",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "refresh_token",
+            "description": "<p>The refresh Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 315360000,\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbG...\",\n  \"refresh_token\": \"ZFDPA1S7H8Wydjkjl+xt+hPGWTagX...\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Authentication/UI/API/Routes/ProxyRefreshForAdminWebClient.v1.public.php",
+    "groupTitle": "OAuth2"
+  },
+  {
+    "group": "OAuth2",
+    "name": "LoginCredentialsGrant",
+    "type": "post",
+    "url": "/v1/oauth/token",
+    "title": "Login (Client Credentials Grant)",
+    "description": "<p>Login Users using their username and passwords. (For Third-Party Clients). You must have client ID and secret first. You can generate them by creating new Client in our Web App.</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated User"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "client_id",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "client_secret",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grant_type",
+            "description": "<p>must be <code>client_credentials</code></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "scope",
+            "description": "<p>you can leave it empty</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 315360000,\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbG...\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Authentication/UI/API/Routes/LoginUsingCredentialGrant.v1.public.php",
+    "groupTitle": "OAuth2"
+  },
+  {
+    "group": "OAuth2",
+    "name": "Logout",
+    "type": "DELETE",
+    "url": "/v1/logout",
+    "title": "",
+    "description": "<p>User Logout. (Revoking Access Token)</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated User"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 202 Accepted\n{\n  \"message\": \"Token revoked successfully.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Authentication/UI/API/Routes/Logout.v1.public.php",
+    "groupTitle": "OAuth2"
+  }
+]
