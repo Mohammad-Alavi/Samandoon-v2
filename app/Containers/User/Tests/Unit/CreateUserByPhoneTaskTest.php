@@ -3,12 +3,11 @@
 namespace App\Containers\User\Tests\Unit;
 
 use App\Containers\User\Models\User;
-use App\Containers\User\Tasks\CreateUserByCredentialsTask;
+use App\Containers\User\Tasks\CreateUserByPhoneTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Hash;
 
-class CreateUserByCredentialsTaskTest extends TestCase {
+class CreateUserByPhoneTaskTest extends TestCase {
 
     /**
      * @var bool
@@ -21,11 +20,6 @@ class CreateUserByCredentialsTaskTest extends TestCase {
     protected $phone = '+989362913366';
 
     /**
-     * @var string
-     */
-    protected $password = 'secret';
-
-    /**
      * @var User
      */
     protected $user;
@@ -33,8 +27,8 @@ class CreateUserByCredentialsTaskTest extends TestCase {
     public function setUp() {
         parent::setUp();
         //  Create a user using the task
-        $task = App::make(CreateUserByCredentialsTask::class);
-        $this->user = $task->run($this->isClient, $this->phone, $this->password);
+        $task = App::make(CreateUserByPhoneTask::class);
+        $this->user = $task->run($this->isClient, $this->phone);
     }
 
     public function test_IsReturningUserType() {
@@ -43,7 +37,6 @@ class CreateUserByCredentialsTaskTest extends TestCase {
 
     public function test_IsDataSetCorrectly() {
         $this->assertEquals($this->phone, $this->user->phone, 'Field PHONE is not set correctly.');
-        $this->assertTrue(Hash::check($this->password, $this->user->password), 'Field PASSWORD is not set correctly.');
         $this->assertSame($this->isClient, $this->user->is_client, 'Field IS_CLIENT is not set correctly.');
     }
 
@@ -51,7 +44,6 @@ class CreateUserByCredentialsTaskTest extends TestCase {
         parent::tearDown();
         unset($this->isClient);
         unset($this->phone);
-        unset($this->password);
         unset($this->user);
     }
 }

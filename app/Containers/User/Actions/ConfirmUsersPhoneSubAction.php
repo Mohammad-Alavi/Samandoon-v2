@@ -5,18 +5,16 @@ namespace App\Containers\User\Actions;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Actions\SubAction;
-use Illuminate\Support\Facades\Hash;
 
-class UpdateUserPasswordSubAction extends SubAction {
+class ConfirmUsersPhoneSubAction extends SubAction {
 
     /**
      * @param string $userId
-     * @param string $newPassword
      * @return User
      */
-    public function run(string $userId, string $newPassword): User {
+    public function run(string $userId): User {
         $userData = [
-            "password" => Hash::make($newPassword),
+            "is_phone_confirmed" => true,
         ];
         $user = Apiato::call('User@UpdateUserTask', [$userData, $userId]);
 
