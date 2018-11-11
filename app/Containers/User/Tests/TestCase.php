@@ -2,7 +2,7 @@
 
 namespace App\Containers\User\Tests;
 
-use App\Containers\User\Actions\RegisterUserSubAction;
+use App\Containers\User\Actions\RegisterUserByPhoneSubAction;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tasks\DeleteAllUsersTask;
 use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
@@ -15,7 +15,7 @@ class TestCase extends ShipTestCase {
      * @return  User
      */
     public function getNewUser(string $phone = '+98916-------'): User {
-        $action = App::make(RegisterUserSubAction::class);
+        $action = App::make(RegisterUserByPhoneSubAction::class);
         $user = $action->run($phone);
         return $user;
     }

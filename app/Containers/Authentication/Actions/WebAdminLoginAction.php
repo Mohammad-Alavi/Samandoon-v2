@@ -26,7 +26,7 @@ class WebAdminLoginAction extends Action
         $user = Apiato::call('Authentication@WebLoginTask',
             [$data->email, $data->password, $data->remember_me ?? false]);
 
-        Apiato::call('Authentication@CheckIfUserIsConfirmedTask', [], [['setUser' => [$user]]]);
+        Apiato::call('Authentication@CheckIfUsersEmailIsConfirmedTask', [], [['setUser' => [$user]]]);
 
         if (!$user->hasAdminRole()) {
             throw new UserNotAdminException();

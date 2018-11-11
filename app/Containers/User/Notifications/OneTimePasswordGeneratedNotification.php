@@ -2,11 +2,10 @@
 
 namespace App\Containers\User\Notifications;
 
-use App\Containers\User\Models\User;
 use App\Ship\Parents\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
 
-class PasswordGeneratedNotification extends Notification {
+class OneTimePasswordGeneratedNotification extends Notification {
 
     /**
      * @var string
@@ -14,7 +13,7 @@ class PasswordGeneratedNotification extends Notification {
     protected $password;
 
     /**
-     * PasswordGeneratedNotification constructor.
+     * OneTimePasswordGeneratedNotification constructor.
      * @param string $password
      */
     public function __construct(string $password) {
@@ -47,8 +46,9 @@ class PasswordGeneratedNotification extends Notification {
      * @return KavenegarMessage
      */
     public function toKavenegar(): KavenegarMessage {
-        $template = Config::get('user-container.sms.password-verification-token');
-        $tokens   = [$this->password];
+        $template = Config::get('user-container.sms.kavenegar.password-verification-token');
+        $tokens = [$this->password];
+
         return new KavenegarMessage($template, $tokens);
     }
 

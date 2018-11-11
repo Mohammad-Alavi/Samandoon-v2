@@ -3,6 +3,7 @@
 namespace App\Containers\User\Tasks;
 
 use App\Containers\User\Data\Repositories\UserRepository;
+use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 
 class CheckIfPhoneIsExistingTask extends Task {
@@ -24,6 +25,11 @@ class CheckIfPhoneIsExistingTask extends Task {
      * @return bool
      */
     public function run(string $phone): bool {
-        return $this->repository->findByPhone($phone) != null;
+        try{
+            $this->repository->findByPhone($phone);
+            return true;
+        }catch (NotFoundException $e){
+            return false;
+        }
     }
 }

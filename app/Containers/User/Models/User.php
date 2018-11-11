@@ -22,28 +22,19 @@ class User extends UserModel {
     protected $fillable = [
         'first_name',
         'last_name',
+        'nick_name',
         'email',
         'phone',
         'password',
+        'one_time_password',
         'points',
-        'device',
-        'platform',
         'gender',
         'birth',
-        'social_provider',
-        'social_token',
-        'social_refresh_token',
-        'social_expires_in',
-        'social_token_secret',
-        'social_id',
-        'social_avatar',
-        'social_avatar_original',
-        'social_nickname',
-        'confirmed',
         'is_client',
-
-        'password_updated_at',
-        'expired_at',
+        'is_phone_confirmed',
+        'is_email_confirmed',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
     /**
@@ -51,7 +42,8 @@ class User extends UserModel {
      */
     protected $casts = [
         'is_client' => 'boolean',
-        'confirmed' => 'boolean',
+        'is_phone_confirmed' => 'boolean',
+        'is_email_confirmed' => 'boolean',
     ];
 
     /**
@@ -63,8 +55,8 @@ class User extends UserModel {
         'created_at',
         'updated_at',
         'deleted_at',
-        'password_updated_at',
-        'expired_at',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
     /**
@@ -74,6 +66,7 @@ class User extends UserModel {
      */
     protected $hidden = [
         'password',
+        'one_time_password',
         'remember_token',
     ];
 

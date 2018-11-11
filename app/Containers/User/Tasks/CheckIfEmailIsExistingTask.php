@@ -6,7 +6,7 @@ use App\Containers\User\Data\Repositories\UserRepository;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 
-class CheckIfUserIsExistingTask extends Task {
+class CheckIfEmailIsExistingTask extends Task {
     /**
      * @var UserRepository
      */
@@ -21,12 +21,12 @@ class CheckIfUserIsExistingTask extends Task {
     }
 
     /**
-     * @param string $id
+     * @param string $email
      * @return bool
      */
-    public function run(string $id): bool {
+    public function run(string $email): bool {
         try{
-            $this->repository->findById($id);
+            $this->repository->findByEmail($email);
             return true;
         }catch (NotFoundException $e){
             return false;

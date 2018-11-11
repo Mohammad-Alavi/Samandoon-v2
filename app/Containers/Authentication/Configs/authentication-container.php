@@ -4,15 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Email Confirmation
+    | Email and Phone Confirmation
     |--------------------------------------------------------------------------
     | 
-    | When set to true, the user must confirm his email before being able to 
-    | Login, after his registration.
+    | When set to true, the user must confirm its email or phone before being able to
+    | Login, after registration.
     | 
     */
-  
-    'require_email_confirmation' => false,
+
+    'is_email_confirmation_required' => false,
+    'is_phone_confirmation_required' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,15 +25,15 @@ return [
     */
 
     'clients' => [
-        'web' => [
+        'web'    => [
             'admin' => [
-                'id' => env('CLIENT_WEB_ADMIN_ID'),
+                'id'     => env('CLIENT_WEB_ADMIN_ID'),
                 'secret' => env('CLIENT_WEB_ADMIN_SECRET'),
             ],
         ],
         'mobile' => [
             'admin' => [
-                'id' => env('CLIENT_MOBILE_ADMIN_ID'),
+                'id'     => env('CLIENT_MOBILE_ADMIN_ID'),
                 'secret' => env('CLIENT_MOBILE_ADMIN_SECRET'),
             ],
         ],
@@ -54,7 +55,7 @@ return [
         | Default: ''
         |
         */
-        'prefix' => '',
+        'prefix'                           => '',
 
         /*
         |--------------------------------------------------------------------------
@@ -62,26 +63,27 @@ return [
         |--------------------------------------------------------------------------
         |
         | A list of fields the user is allowed to login with.
-        | Thereby, the key is the fieldname, the value (array) contains additional validation parameters that are applied!
         |
         | The order determines the order the fields are tested to login (in case multiple fields are submitted!
         |
-        | Default: ['email' => ['email']
+        | Default: ['email']
         |
         */
-        'allowed_login_attributes' => [
-            'email' => ['email'],
-            // 'name' => [],
-            'phone' => ['string', 'min:6', 'max:25'],
+        'allowed_login_username_types'     => [
+            //'email',
+            'phone',
         ],
+        'allowed_login_password_type'      => 'one_time_password', //  must be 'password' or 'one_time_password'
+
 
         /*
-         * Any password will expire after a while when it is generated.
+         * Any 'one time password' will expire after a while when it is generated.
          *
-         * This value defines the life time of a password (in seconds) . e.g: 120 (which means 2 minutes)
+         * This value defines the life time of a 'one time password' (in seconds).
+         * e.g: 120 (which means 2 minutes)
          *
          */
-        'password_expiration_age' => 120,
+        'one_time_password_expiration_age' => 12000,
     ],
 
 ];
