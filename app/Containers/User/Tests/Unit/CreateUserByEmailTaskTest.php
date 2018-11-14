@@ -7,7 +7,7 @@ use App\Containers\User\Tasks\CreateUserByEmailTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
-class CreateUserByPhoneTaskTest extends TestCase {
+class CreateUserByEmailTaskTest extends TestCase {
 
     /**
      * @var bool

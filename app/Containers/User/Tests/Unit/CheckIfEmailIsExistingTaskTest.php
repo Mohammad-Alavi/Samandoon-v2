@@ -4,7 +4,6 @@ namespace App\Containers\User\Tests\Unit;
 
 use App\Containers\User\Models\User;
 use App\Containers\User\Tasks\CheckIfEmailIsExistingTask;
-use App\Containers\User\Tasks\CheckIfPhoneIsExistingTask;
 use App\Containers\User\Tests\TestCase;
 use Illuminate\Support\Facades\App;
 
