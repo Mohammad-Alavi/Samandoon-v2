@@ -5,13 +5,10 @@ namespace App\Containers\User\Actions;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Exceptions\PhoneIsExistingException;
 use App\Containers\User\Models\User;
-use App\Containers\User\Traits\RandomGeneratorTrait;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 
 class CreateUserByPhoneAndPasswordSubAction extends Action {
-
-    use RandomGeneratorTrait;
 
     /**
      * @var User
@@ -20,6 +17,7 @@ class CreateUserByPhoneAndPasswordSubAction extends Action {
 
     /**
      * @param DataTransporter $data
+     *
      * @return User
      * @throws \Throwable
      */
