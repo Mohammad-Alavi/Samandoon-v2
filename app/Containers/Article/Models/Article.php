@@ -2,6 +2,7 @@
 
 namespace App\Containers\Article\Models;
 
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 
 class Article extends Model
@@ -32,4 +33,9 @@ class Article extends Model
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'articles';
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
