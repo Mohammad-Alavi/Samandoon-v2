@@ -61,8 +61,8 @@ class CheckIfEmailIsExistingTaskTest extends TestCase {
     public function tearDown() {
         parent::tearDown();
 
-        unset($this->registeredPhone);
-        unset($this->unRegisteredPhone);
+        unset($this->registeredEmail);
+        unset($this->unRegisteredEmail);
         unset($this->user);
         unset($this->task);
     }
