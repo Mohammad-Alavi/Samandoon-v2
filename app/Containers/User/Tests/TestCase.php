@@ -28,15 +28,14 @@ class TestCase extends ShipTestCase {
     /**
      * @param int $count
      */
-    public function getNewUsers(int $count) {
+    public function getNewUsers(int $count): void {
         for ($i = 0; $i < $count; $i++) {
             $this->getNewUser('+98936---' . $i);
         }
     }
 
-    public function deleteAllUsers() {
+    public function deleteAllUsers(): void {
         App::make(DeleteAllUsersTask::class)->run();
     }
-
 
 }
