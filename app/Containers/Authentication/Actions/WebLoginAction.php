@@ -24,7 +24,7 @@ class WebLoginAction extends Action
     {
         $user = Apiato::call('Authentication@WebLoginTask', [$data->email, $data->password, $data->remember]);
 
-        Apiato::call('Authentication@CheckIfUserIsConfirmedTask', [], [['setUser' => [$user]]]);
+        Apiato::call('Authentication@CheckIfUsersEmailIsConfirmedTask', [], [['setUser' => [$user]]]);
 
         return $user;
     }

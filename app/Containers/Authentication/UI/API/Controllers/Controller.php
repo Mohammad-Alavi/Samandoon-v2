@@ -59,7 +59,7 @@ class Controller extends ApiController
             ])
         );
 
-        $result = Apiato::call('Authentication@ProxyApiLoginAction', [$dataTransporter]);
+        $result = Apiato::call('Authentication@LoginByCredentialsUsingPassportSubAction', [$dataTransporter]);
 
         return $this->json($result['response_content'])->withCookie($result['refresh_cookie']);
     }
