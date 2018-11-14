@@ -42,7 +42,7 @@ class CreateAdminCommand extends ConsoleCommand
         ]);
 
         // and then call respective Action
-        $user = Apiato::call('User@CreateAdminAction', [$dataTransporter]);
+        $user = Apiato::call('User@CreateAdminByEmailAndPasswordSubAction', [$dataTransporter]);
 
         $this->info('Admin ' . $email . ' was successfully created');
     }
