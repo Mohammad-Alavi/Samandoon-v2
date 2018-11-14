@@ -4,15 +4,16 @@ namespace App\Containers\Article\Tasks;
 
 use App\Containers\Article\Data\Repositories\ArticleRepository;
 use App\Containers\Article\Models\Article;
-use App\Ship\Exceptions\CreateResourceFailedException;
+use App\Ship\Exceptions\UpdateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
- * Class CreateArticleTask
+ * Class UpdateArticleTask
  * @package App\Containers\Article\Tasks
  */
-class CreateArticleTask extends Task
+class UpdateArticleTask extends Task
 {
 
     protected $repository;
@@ -23,16 +24,17 @@ class CreateArticleTask extends Task
     }
 
     /**
+     * @param int $id
      * @param array $data
      * @return Article
      */
-    public function run(array $data) : Article
+    public function run(int $id, array $data) : Article
     {
         try {
-            return $this->repository->create($data);
+            return $this->repository->update($data, $id);
         }
         catch (Exception $exception) {
-            throw new CreateResourceFailedException($exception->getMessage());
+            throw new UpdateResourceFailedException($exception->getMessage());
         }
     }
 }
