@@ -5,13 +5,15 @@ namespace App\Containers\Article\Actions;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Ship\Transporters\DataTransporter;
 
 class CreateArticleAction extends Action
 {
-    public function run(Request $request)
+    public function run(DataTransporter $transporter)
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
+        $data = $transporter->sanitizeInput([
+            'title',
+            'text',
         ]);
 
         $article = Apiato::call('Article@CreateArticleTask', [$data]);
