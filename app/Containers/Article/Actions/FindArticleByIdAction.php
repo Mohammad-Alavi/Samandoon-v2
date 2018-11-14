@@ -7,16 +7,11 @@ use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
 
-class CreateArticleAction extends Action
+class FindArticleByIdAction extends Action
 {
     public function run(DataTransporter $transporter) : Article
     {
-        $data = $transporter->sanitizeInput([
-            'title',
-            'text',
-        ]);
-
-        $article = Apiato::call('Article@CreateArticleTask', [$data]);
+        $article = Apiato::call('Article@FindArticleByIdTask', [$transporter->id]);
 
         return $article;
     }
