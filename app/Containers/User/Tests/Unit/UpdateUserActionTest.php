@@ -29,7 +29,7 @@ class UpdateUserActionTest extends TestCase {
     public function setUp() {
         parent::setUp();
         //  Register a new user
-        $this->user = $this->getNewUser();
+        $this->user = $this->createUserByPhone();
     }
 
     public function test_EditAllFieldsWorks() {

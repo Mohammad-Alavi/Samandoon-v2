@@ -23,7 +23,7 @@ class CheckIfUserIsExistingTaskTest extends TestCase {
         parent::setUp();
 
         //  Register a new user
-        $this->user = $this->getNewUser();
+        $this->user = $this->createUserByPhone();
 
         //  Set the task value
         $this->task = App::make(CheckIfUserIsExistingTask::class);

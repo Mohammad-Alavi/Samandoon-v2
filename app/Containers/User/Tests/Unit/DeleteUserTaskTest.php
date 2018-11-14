@@ -18,7 +18,7 @@ class DeleteUserTaskTest extends TestCase {
     public function setUp() {
         parent::setUp();
         //  Create a user
-        $this->user = $this->getNewUser();
+        $this->user = $this->createUserByPhone();
 
         //  Delete the user using the task
         $task = App::make(DeleteUserTask::class);
