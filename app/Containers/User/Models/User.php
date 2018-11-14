@@ -41,7 +41,7 @@ class User extends UserModel {
      * @var array
      */
     protected $casts = [
-        'is_client' => 'boolean',
+        'is_client'          => 'boolean',
         'is_phone_confirmed' => 'boolean',
         'is_email_confirmed' => 'boolean',
     ];
