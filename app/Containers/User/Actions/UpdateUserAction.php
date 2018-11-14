@@ -15,10 +15,12 @@ class UpdateUserAction extends Action {
      * @return  User
      */
     public function run(DataTransporter $data): User {
+        //  TODO: don't let user change its email or phone if any of them is confirmed
         $userData = [
             'first_name' => $data->first_name,
             'last_name'  => $data->last_name,
             'email'      => $data->email,
+            'phone'      => $data->phone,
             'gender'     => $data->gender,
             'birth'      => $data->birth
         ];

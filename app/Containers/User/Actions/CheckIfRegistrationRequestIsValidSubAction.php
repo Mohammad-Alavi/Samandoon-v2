@@ -2,7 +2,8 @@
 
 namespace App\Containers\User\Actions;
 
-use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\Authentication\Tasks\GetAllowedLoginPasswordTypeTask;
+use App\Containers\Authentication\Tasks\GetAllowedLoginUsernameTypesTask;
 use App\Containers\User\Exceptions\BadLoginTypeException;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Ship\Parents\Actions\SubAction;
@@ -10,24 +11,49 @@ use App\Ship\Parents\Actions\SubAction;
 class CheckIfRegistrationRequestIsValidSubAction extends SubAction {
 
     /**
+     * @var GetAllowedLoginUsernameTypesTask
+     */
+    protected $getAllowedLoginUsernameTypesTask;
+
+    /**
+     * @var GetAllowedLoginPasswordTypeTask
+     */
+    protected $getAllowedLoginPasswordTypeTask;
+
+    /**
+     * CheckIfRegistrationRequestIsValidSubAction constructor.
+     *
+     * @param GetAllowedLoginUsernameTypesTask $getAllowedLoginUsernameTypesTask
+     * @param GetAllowedLoginPasswordTypeTask  $getAllowedLoginPasswordTypeTask
+     */
+    public function __construct(GetAllowedLoginUsernameTypesTask $getAllowedLoginUsernameTypesTask,
+                                GetAllowedLoginPasswordTypeTask $getAllowedLoginPasswordTypeTask) {
+        $this->getAllowedLoginUsernameTypesTask = $getAllowedLoginUsernameTypesTask;
+        $this->getAllowedLoginPasswordTypeTask = $getAllowedLoginPasswordTypeTask;
+    }
+
+
+    /**
      * @param RegisterRequest $request
+     *
+     * @return bool
      * @throws \Throwable
      */
-    public function run(RegisterRequest $request) {
+    public function run(RegisterRequest $request): bool {
         /*
         |--------------------------------------------------------------------------
         | Gather needed variables
         |--------------------------------------------------------------------------
         |
         */
-        $allowedPasswordType = Apiato::call('Authentication@GetAllowedLoginPasswordTypeTask');
-        $allowedUsernameTypes = Apiato::call('Authentication@GetAllowedLoginUsernameTypesTask');
+        $allowedUsernameTypes = $this->getAllowedLoginUsernameTypesTask->run();
+        $allowedPasswordType = $this->getAllowedLoginPasswordTypeTask->run();
         $isEmailAllowed = in_array('email', $allowedUsernameTypes);
         $isPhoneAllowed = in_array('phone', $allowedUsernameTypes);
         $isPasswordNeeded = $allowedPasswordType == 'password';
-        $requestHasEmail = isset($request['email']);
-        $requestHasPhone = isset($request['phone']);
-        $requestHasPassword = isset($request['password']);
+        $requestHasEmail = !is_null($request['email']);
+        $requestHasPhone = !is_null($request['phone']);
+        $requestHasPassword = !is_null($request['password']);
 
         /*
         |--------------------------------------------------------------------------
@@ -42,7 +68,9 @@ class CheckIfRegistrationRequestIsValidSubAction extends SubAction {
         |
         | * Throw an exception if email and phone are both missing
         |
-        | * Throw an exception if entered username type is not allowed
+        | * Throw an exception if phone is not allowed but entered
+        |
+        | * Throw an exception if email is not allowed but entered
         |
         */
 
@@ -58,9 +86,12 @@ class CheckIfRegistrationRequestIsValidSubAction extends SubAction {
         //  Throw an exception if email and phone are both missing
         throw_if(!$requestHasEmail && !$requestHasPhone, new BadLoginTypeException());
 
-        //  Throw an exception if entered username type is not allowed
+        //  Throw an exception if phone is not allowed but entered
         throw_if(!$isPhoneAllowed && $requestHasPhone, new BadLoginTypeException());
+
+        //  Throw an exception if email is not allowed but entered
         throw_if(!$isEmailAllowed && $requestHasEmail, new BadLoginTypeException());
 
+        return true;
     }
 }

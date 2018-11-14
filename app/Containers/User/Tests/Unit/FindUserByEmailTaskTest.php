@@ -30,7 +30,7 @@ class FindUserByEmailTaskTest extends TestCase {
         //  init
         $this->findUserByEmailTask = App::make(FindUserByEmailTask::class);
         //  Create a user
-        $this->user = $this->getNewUser();
+        $this->user = $this->createUserByPhone();
     }
 
     public function test_CheckIfFindsUserByEmail() {

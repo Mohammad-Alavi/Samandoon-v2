@@ -11,7 +11,7 @@ class DeleteAllUsersTaskTest extends TestCase {
 
     public function test_DeleteAllUsers() {
         //  Create 10 users
-        $this->getNewUsers(10);
+        $this->createUsersByPhone(10);
 
         //  Delete all users
         App::make(DeleteAllUsersTask::class)->run();
