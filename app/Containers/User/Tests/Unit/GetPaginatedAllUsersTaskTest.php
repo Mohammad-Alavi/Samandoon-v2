@@ -21,7 +21,7 @@ class GetPaginatedAllUsersTaskTest extends TestCase {
 
     public function test_GetPaginatedAllUsersTaskWorksFine() {
         $this->deleteAllUsers();
-        $this->getNewUsers($this->count);
+        $this->createUsersByPhone($this->count);
 
         $this->pagination = App::make(GetPaginatedAllUsersTask::class)->run();
 

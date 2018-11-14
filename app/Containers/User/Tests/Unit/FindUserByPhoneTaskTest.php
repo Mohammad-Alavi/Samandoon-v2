@@ -32,7 +32,7 @@ class FindUserByPhoneTaskTest extends TestCase {
         //  init
         $this->findUserByPhoneTask = App::make(FindUserByPhoneTask::class);
         //  Create a user
-        $this->user = $this->getNewUser($this->phone);
+        $this->user = $this->createUserByPhone($this->phone);
     }
 
     public function test_CheckIfFindsUserByPhone() {

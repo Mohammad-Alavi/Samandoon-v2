@@ -24,7 +24,7 @@ class CountAllUsersTaskTest extends TestCase {
 
     public function test_CountRegisteredUsers() {
         //  Create 10 users
-        $this->getNewUsers(10);
+        $this->createUsersByPhone(10);
 
         //  Count users by the task
         $count = App::make(CountAllUsersTask::class)->run();

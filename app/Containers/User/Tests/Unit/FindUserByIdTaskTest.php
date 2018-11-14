@@ -32,7 +32,7 @@ class FindUserByIdTaskTest extends TestCase {
         //  init
         $this->findUserByIdTask = App::make(FindUserByIdTask::class);
         //  Create a user
-        $this->user = $this->getNewUser();
+        $this->user = $this->createUserByPhone();
         $this->id = $this->user->id;
     }
 
