@@ -2,6 +2,7 @@
 
 namespace App\Containers\User\Models;
 
+use App\Containers\Article\Models\Article;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Ship\Parents\Models\UserModel;
 
@@ -70,4 +71,8 @@ class User extends UserModel {
         'remember_token',
     ];
 
+    public function Article()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
