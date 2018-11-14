@@ -21,6 +21,7 @@ class UpdateUserActionTest extends TestCase {
     protected $data = [
         'first_name' => 'moslem',
         'last_name'  => 'deris',
+        'phone'      => '+989362913366',
         'email'      => 'moslem.deris@gmail.com',
         'gender'     => 'male',
         'birth'      => '02-07-1994'
@@ -46,6 +47,7 @@ class UpdateUserActionTest extends TestCase {
         $this->assertSame($this->data['first_name'], $this->user->first_name, 'first_name field is not changed.');
         $this->assertSame($this->data['last_name'], $this->user->last_name, 'last_name field is not changed.');
         $this->assertSame($this->data['email'], $this->user->email, 'email field is not changed.');
+        $this->assertSame($this->data['phone'], $this->user->phone, 'phone field is not changed.');
         $this->assertSame($this->data['gender'], $this->user->gender, 'gender field is not changed.');
         $this->assertSame($this->data['birth'], $this->user->birth, 'birth field is not changed.');
     }
