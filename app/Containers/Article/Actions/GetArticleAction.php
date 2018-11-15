@@ -7,7 +7,7 @@ use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
 
-class FindArticleByIdAction extends Action
+class GetArticleAction extends Action
 {
     public function run(DataTransporter $transporter) : Article
     {

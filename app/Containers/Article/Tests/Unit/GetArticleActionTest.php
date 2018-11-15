@@ -2,7 +2,7 @@
 
 namespace App\Containers\Article\Tests\Unit;
 
-use App\Containers\Article\Actions\FindArticleByIdAction;
+use App\Containers\Article\Actions\GetArticleAction;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\App;
  * @group article
  * @group unit
  */
-class FindArticleByIdActionTest extends TestCase
+class GetArticleActionTest extends TestCase
 {
     /** @var FindArticleByIdAction $action */
     private $action;
@@ -24,13 +24,13 @@ class FindArticleByIdActionTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->article = $this->createNewArticle(1);
+        $this->article = $this->createNewArticle();
 
         $this->data = [
             'id' => $this->article->id,
         ];
 
-        $this->action = App::make(FindArticleByIdAction::class);
+        $this->action = App::make(GetArticleAction::class);
         $this->transporter = new DataTransporter($this->data);
         $this->foundArticle = $this->action->run($this->transporter);
     }
