@@ -45,7 +45,10 @@ class CreateAdminByEmailAndPasswordSubAction extends SubAction {
      * @param UpdateUserPasswordSubAction $updateUserPasswordSubAction
      * @param AssignRoleToUserTask        $assignRoleToUserTask
      */
-    public function __construct(CheckIfEmailIsExistingTask $checkIfEmailIsExistingTask, CreateUserByEmailTask $createUserByEmailTask, UpdateUserPasswordSubAction $updateUserPasswordSubAction, AssignRoleToUserTask $assignRoleToUserTask) {
+    public function __construct(CheckIfEmailIsExistingTask $checkIfEmailIsExistingTask,
+                                CreateUserByEmailTask $createUserByEmailTask,
+                                UpdateUserPasswordSubAction $updateUserPasswordSubAction,
+                                AssignRoleToUserTask $assignRoleToUserTask) {
         $this->checkIfEmailIsExistingTask = $checkIfEmailIsExistingTask;
         $this->createUserByEmailTask = $createUserByEmailTask;
         $this->updateUserPasswordSubAction = $updateUserPasswordSubAction;
