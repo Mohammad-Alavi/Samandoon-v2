@@ -2,15 +2,19 @@
 
 namespace App\Containers\Article\Actions;
 
+use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Article\Models\Article;
 use App\Ship\Parents\Actions\Action;
-use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
 
-class UpdateArticleAction extends Action
-{
-    public function run(DataTransporter $transporter) : Article
-    {
+class UpdateArticleAction extends Action {
+
+    /**
+     * @param DataTransporter $transporter
+     *
+     * @return Article
+     */
+    public function run(DataTransporter $transporter): Article {
         $data = $transporter->sanitizeInput([
             'title',
             'text',

@@ -7,22 +7,31 @@ use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class FindArticleByIdTask extends Task
-{
+class FindArticleByIdTask extends Task {
 
+    /**
+     * @var ArticleRepository
+     */
     protected $repository;
 
-    public function __construct(ArticleRepository $repository)
-    {
+    /**
+     * FindArticleByIdTask constructor.
+     *
+     * @param ArticleRepository $repository
+     */
+    public function __construct(ArticleRepository $repository) {
         $this->repository = $repository;
     }
 
-    public function run($id)
-    {
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function run(int $id) {
         try {
             return $this->repository->find($id);
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             throw new NotFoundException();
         }
     }
