@@ -5,25 +5,40 @@ namespace App\Containers\Article\Models;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 
-class Article extends Model
-{
+class Article extends Model {
+
+    /**
+     * @var array
+     */
     protected $fillable = [
         'title',
         'text',
     ];
 
+    /**
+     * @var array
+     */
     protected $attributes = [
 
     ];
 
+    /**
+     * @var array
+     */
     protected $hidden = [
 
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
 
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = [
         'created_at',
         'updated_at',
@@ -34,8 +49,10 @@ class Article extends Model
      */
     protected $resourceKey = 'articles';
 
-    public function User()
-    {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function User() {
         return $this->belongsTo(User::class);
     }
 }
