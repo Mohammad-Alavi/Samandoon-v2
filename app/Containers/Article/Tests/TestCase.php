@@ -36,9 +36,8 @@ class TestCase extends ShipTestCase
     /**
      * @return Article
      */
-    public function createNewArticle($id)
+    public function createNewArticle()
     {
-        array_add($this->data, 'id', $id);
         $article = new Article($this->data);
         $article->save();
         return $article;
