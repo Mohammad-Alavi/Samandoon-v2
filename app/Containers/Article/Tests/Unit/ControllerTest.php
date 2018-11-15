@@ -24,11 +24,8 @@ class ControllerTest extends TestCase
     private $controller;
 
     // Requests
-    /** @var CreateArticleRequest $createArticleRequest */
     private $createArticleRequest;
-    /** @var UpdateArticleRequest $updateArticleRequest */
     private $updateArticleRequest;
-    /** @var GetArticleRequest $getArticleRequest */
     private $getArticleRequest;
 
     // Request Data
@@ -105,5 +102,23 @@ class ControllerTest extends TestCase
     {
         $this->assertInternalType('array', $this->getArticle, 'The returned object should be of type array');
         $this->assertEquals($this->transformedArticle, $this->getArticle);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->controller);
+        unset($this->createdArticle);
+        unset($this->createArticleParam);
+        unset($this->createArticleRequest);
+        unset($this->updatedArticle);
+        unset($this->updateArticleParam);
+        unset($this->updateArticleRequest);
+        unset($this->getArticle);
+        unset($this->getArticleParam);
+        unset($this->getArticleRequest);
+        unset($this->transformedArticle);
+        unset($this->articleForUpdate);
+        unset($this->articleToGet);
     }
 }
