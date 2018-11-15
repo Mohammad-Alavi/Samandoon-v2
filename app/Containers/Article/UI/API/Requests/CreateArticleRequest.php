@@ -23,8 +23,8 @@ class CreateArticleRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => '',
-        'roles'       => '',
+        'permissions' => 'create-article',
+        'roles'       => 'user',
     ];
 
     /**
