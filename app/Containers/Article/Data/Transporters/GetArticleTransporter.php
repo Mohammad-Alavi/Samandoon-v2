@@ -14,11 +14,12 @@ class GetArticleTransporter extends Transporter
         'type' => 'object',
         'properties' => [
             // enter all properties here
-
+            'id'
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
         'required'   => [
+            'id'
             // define the properties that MUST be set
         ],
         'default'    => [

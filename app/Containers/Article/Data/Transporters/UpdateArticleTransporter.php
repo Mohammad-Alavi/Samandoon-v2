@@ -14,11 +14,14 @@ class UpdateArticleTransporter extends Transporter
         'type' => 'object',
         'properties' => [
             // enter all properties here
-
+            'id',
+            'title',
+            'text',
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
         'required'   => [
+            'id'
             // define the properties that MUST be set
         ],
         'default'    => [
