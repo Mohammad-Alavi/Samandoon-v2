@@ -14,19 +14,19 @@ class Controller extends ApiController
 {
     public function createArticle(CreateArticleRequest $request)
     {
-        $article = Apiato::call('Article@CreateArticleAction', new DataTransporter([$request]));
+        $article = Apiato::call('Article@CreateArticleAction', [new DataTransporter($request)]);
         return $this->transform($article, ArticleTransformer::class);
     }
 
     public function updateArticle(UpdateArticleRequest $request)
     {
-        $article = Apiato::call('Article@UpdateArticleAction', new DataTransporter([$request]));
+        $article = Apiato::call('Article@UpdateArticleAction', [new DataTransporter($request)]);
         return $this->transform($article, ArticleTransformer::class);
     }
 
     public function getArticle(GetArticleRequest $request)
     {
-        $article = Apiato::call('Article@CreateArticleAction', new DataTransporter([$request]));
+        $article = Apiato::call('Article@GetArticleAction', [new DataTransporter($request)]);
         return $this->transform($article, ArticleTransformer::class);
     }
 }
