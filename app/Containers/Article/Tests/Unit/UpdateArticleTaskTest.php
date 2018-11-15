@@ -24,7 +24,7 @@ class UpdateArticleTaskTest extends TestCase
     {
         parent::setUp();
 
-        $this->article = $this->createNewArticle(1);
+        $this->article = $this->createNewArticle();
         $this->data = [
             'title' => 'new title',
             'text' => 'new text',

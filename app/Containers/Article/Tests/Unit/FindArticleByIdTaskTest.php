@@ -23,7 +23,7 @@ class FindArticleByIdTaskTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->article = $this->createNewArticle(1);
+        $this->article = $this->createNewArticle();
         $this->task = App::make(FindArticleByIdTask::class);
         $this->foundArticle = $this->task->run($this->article->id);
     }

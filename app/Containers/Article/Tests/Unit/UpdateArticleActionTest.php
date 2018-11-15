@@ -25,7 +25,7 @@ class UpdateArticleActionTest extends TestCase
     {
         parent::setUp();
 
-        $this->article = $this->createNewArticle(1);
+        $this->article = $this->createNewArticle();
 
         $this->data = [
             'id' => $this->article->id,
