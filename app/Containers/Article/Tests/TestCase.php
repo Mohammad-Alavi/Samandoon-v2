@@ -49,6 +49,5 @@ class TestCase extends ShipTestCase
         unset($this->data);
         unset($this->transporter);
         unset($this->article);
-        unset($this->articleId);
     }
 }
