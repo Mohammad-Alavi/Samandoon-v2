@@ -14,7 +14,7 @@ class ArticlePermissionSeeder extends Seeder
     {
         // Default Permissions ----------------------------------------------------------
         Apiato::call('Authorization@CreatePermissionTask', ['create-article', 'Create Article']);
-        Apiato::call('Authorization@CreatePermissionTask', ['update-article', 'Create Article']);
-        Apiato::call('Authorization@CreatePermissionTask', ['delete-article', 'Create Article']);
+        Apiato::call('Authorization@CreatePermissionTask', ['update-article', 'Update Article']);
+        Apiato::call('Authorization@CreatePermissionTask', ['delete-article', 'Delete Article']);
     }
 }
