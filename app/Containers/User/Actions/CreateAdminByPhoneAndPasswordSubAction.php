@@ -35,7 +35,7 @@ class CreateAdminByPhoneAndPasswordSubAction extends SubAction {
         $this->user = Apiato::call('User@UpdateUserPasswordSubAction', [$this->user->id, $data->password]);
 
         //  Assign Roles to admin
-        Apiato::call('Authorization@AssignUserToRoleTask', [$this->user, ['admin']]);
+        Apiato::call('Authorization@AssignRoleToUserTask', [$this->user, ['admin']]);
 
         return $this->user;
     }

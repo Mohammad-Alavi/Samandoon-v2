@@ -3,7 +3,7 @@
 namespace App\Containers\Authorization\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\Authorization\UI\API\Requests\AssignUserToRoleRequest;
+use App\Containers\Authorization\UI\API\Requests\AssignRoleToUserRequest;
 use App\Containers\Authorization\UI\API\Requests\AttachPermissionToRoleRequest;
 use App\Containers\Authorization\UI\API\Requests\CreateRoleRequest;
 use App\Containers\Authorization\UI\API\Requests\DeleteRoleRequest;
@@ -78,13 +78,13 @@ class Controller extends ApiController
     }
 
     /**
-     * @param \App\Containers\Authorization\UI\API\Requests\AssignUserToRoleRequest $request
+     * @param \App\Containers\Authorization\UI\API\Requests\AssignRoleToUserRequest $request
      *
      * @return  mixed
      */
-    public function assignUserToRole(AssignUserToRoleRequest $request)
+    public function assignRoleToUser(AssignRoleToUserRequest $request)
     {
-        $user = Apiato::call('Authorization@AssignUserToRoleAction', [new DataTransporter($request)]);
+        $user = Apiato::call('Authorization@AssignRoleToUserAction', [new DataTransporter($request)]);
 
         return $this->transform($user, UserTransformer::class);
     }
