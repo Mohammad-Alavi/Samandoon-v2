@@ -79,4 +79,12 @@ class CreateUserByEmailAndPasswordSubActionTest extends TestCase {
         $transporter = new DataTransporter(['email' => $email, 'password' => $password]);
         $admin = $subAction->run($transporter);
     }
+
+    public function tearDown() {
+        parent::tearDown();
+
+        unset($this->checkIfEmailIsExistingTask);
+        unset($this->createUserByEmailTask);
+        unset($this->updateUserPasswordSubAction);
+    }
 }

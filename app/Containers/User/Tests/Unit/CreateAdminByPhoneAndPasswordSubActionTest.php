@@ -91,4 +91,13 @@ class CreateAdminByPhoneAndPasswordSubActionTest extends TestCase {
         $transporter = new DataTransporter(['phone' => $phone, 'password' => $password]);
         $admin = $subAction->run($transporter);
     }
+
+    public function tearDown() {
+        parent::tearDown();
+
+        unset($this->checkIfPhoneIsExistingTask);
+        unset($this->createUserByPhoneTask);
+        unset($this->updateUserPasswordSubAction);
+        unset($this->assignRoleToUserTask);
+    }
 }
