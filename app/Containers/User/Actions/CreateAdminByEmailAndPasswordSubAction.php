@@ -2,14 +2,15 @@
 
 namespace App\Containers\User\Actions;
 
+use App\Containers\Authorization\Tasks\AssignRoleToUserTask;
 use App\Containers\User\Exceptions\EmailIsExistingException;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tasks\CheckIfEmailIsExistingTask;
 use App\Containers\User\Tasks\CreateUserByEmailTask;
-use App\Ship\Parents\Actions\Action;
+use App\Ship\Parents\Actions\SubAction;
 use App\Ship\Transporters\DataTransporter;
 
-class CreateUserByEmailAndPasswordSubAction extends Action {
+class CreateAdminByEmailAndPasswordSubAction extends SubAction {
 
     /**
      * @var CheckIfEmailIsExistingTask
@@ -27,23 +28,31 @@ class CreateUserByEmailAndPasswordSubAction extends Action {
     private $updateUserPasswordSubAction;
 
     /**
+     * @var AssignRoleToUserTask
+     */
+    private $assignRoleToUserTask;
+
+    /**
      * @var User
      */
     private $user;
 
     /**
-     * CreateUserByEmailAndPasswordSubAction constructor.
+     * CreateAdminByEmailAndPasswordSubAction constructor.
      *
      * @param CheckIfEmailIsExistingTask  $checkIfEmailIsExistingTask
      * @param CreateUserByEmailTask       $createUserByEmailTask
      * @param UpdateUserPasswordSubAction $updateUserPasswordSubAction
+     * @param AssignRoleToUserTask        $assignRoleToUserTask
      */
     public function __construct(CheckIfEmailIsExistingTask $checkIfEmailIsExistingTask,
                                 CreateUserByEmailTask $createUserByEmailTask,
-                                UpdateUserPasswordSubAction $updateUserPasswordSubAction) {
+                                UpdateUserPasswordSubAction $updateUserPasswordSubAction,
+                                AssignRoleToUserTask $assignRoleToUserTask) {
         $this->checkIfEmailIsExistingTask = $checkIfEmailIsExistingTask;
         $this->createUserByEmailTask = $createUserByEmailTask;
         $this->updateUserPasswordSubAction = $updateUserPasswordSubAction;
+        $this->assignRoleToUserTask = $assignRoleToUserTask;
     }
 
     /**
@@ -60,10 +69,13 @@ class CreateUserByEmailAndPasswordSubAction extends Action {
         throw_if($isEmailExisting, new EmailIsExistingException());
 
         //  Create user
-        $this->user = $this->createUserByEmailTask->run(true, $data->email);
+        $this->user = $this->createUserByEmailTask->run(false, $data->email);
 
         //  Set the password
         $this->user = $this->updateUserPasswordSubAction->run($this->user->id, $data->password);
+
+        //  Assign Roles to admin
+        $this->assignRoleToUserTask->run($this->user, ['admin']);
 
         return $this->user;
     }
