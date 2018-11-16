@@ -79,7 +79,7 @@ class UpdateArticleActionTest extends TestCase
         $this->mUpdateArticleTask->expects($this->once())
             ->method('run')
             ->with($this->articleCreatedForTest->id, $this->dataForMockUpdateArticleTask)
-            ->willReturn(dump($this->mArticleToReturnFromMockUpdateTask));
+            ->willReturn($this->mArticleToReturnFromMockUpdateTask);
 
         $this->updatedArticle = $this->updateArticleAction->run($this->transporterPassedToAction);
 
