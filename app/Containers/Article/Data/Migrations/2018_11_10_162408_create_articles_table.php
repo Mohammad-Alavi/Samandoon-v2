@@ -14,7 +14,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->text('title');
+            $table->string('title', 100);
             $table->text('text');
             $table->timestamps();
             //$table->softDeletes();
