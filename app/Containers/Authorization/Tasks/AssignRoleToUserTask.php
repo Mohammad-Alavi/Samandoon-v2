@@ -7,11 +7,11 @@ use App\Ship\Parents\Tasks\Task;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 /**
- * Class AssignUserToRoleTask.
+ * Class AssignRoleToUserTask.
  *
  * @author Mahmoud Zalt <mahmoud@zalt.me>
  */
-class AssignUserToRoleTask extends Task
+class AssignRoleToUserTask extends Task
 {
 
     /**

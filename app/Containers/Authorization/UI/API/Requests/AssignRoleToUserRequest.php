@@ -5,11 +5,11 @@ namespace App\Containers\Authorization\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class AssignUserToRoleRequest.
+ * Class AssignRoleToUserRequest.
  *
  * @author Mahmoud Zalt <mahmoud@zalt.me>
  */
-class AssignUserToRoleRequest extends Request
+class AssignRoleToUserRequest extends Request
 {
 
     /**
