@@ -16,22 +16,36 @@ use Illuminate\Support\Facades\App;
 class UpdateArticleTaskTest extends TestCase
 {
     /** @var Article $updatedArticle */
-    protected $updatedArticle;
-    /** @var CreateArticleTask $task */
+    private $updatedArticle;
+    /** @var UpdateArticleTask $task */
     private $task;
+    /** @var Article $article */
+    private $article;
+    /** @var array $data */
+    private $data;
+    /** @var array $dataForUpdate */
+    private $dataForUpdate;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->article = $this->createNewArticle();
         $this->data = [
-            'title' => 'new title',
-            'text' => 'new text',
+            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
+            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
+        ];
+
+        // Create a new article with the provided data and save it into the database
+        $this->article = new Article($this->data);
+        $this->article->save();
+
+        $this->dataForUpdate = [
+            'title' => 'This is da new data for update',
+            'text' => 'And this is dat new data text and its awesome cus you now it.',
         ];
 
         $this->task = App::make(UpdateArticleTask::class);
-        $this->updatedArticle = $this->task->run($this->article->id, $this->data);
+        $this->updatedArticle = $this->task->run($this->article->id, $this->dataForUpdate);
     }
 
     public function test_UpdateArticleTask()
@@ -39,8 +53,8 @@ class UpdateArticleTaskTest extends TestCase
         $this->assertInstanceOf(Article::class, $this->updatedArticle, 'The returned object is not an instance of the Article.');
 
         $this->assertEquals($this->article->id, $this->updatedArticle->id);
-        $this->assertEquals($this->data['title'], $this->updatedArticle->title);
-        $this->assertEquals($this->data['text'], $this->updatedArticle->text);
+        $this->assertEquals($this->dataForUpdate['title'], $this->updatedArticle->title);
+        $this->assertEquals($this->dataForUpdate['text'], $this->updatedArticle->text);
     }
 
     public function tearDown()
@@ -50,5 +64,6 @@ class UpdateArticleTaskTest extends TestCase
         unset($this->data);
         unset($this->updatedArticle);
         unset($this->task);
+        unset($this->dataForUpdate);
     }
 }
