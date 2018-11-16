@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\App;
  */
 class FindArticleByIdTaskTest extends TestCase
 {
+    /** @var Article $article */
+    private $article;
+    /** @var array $data */
+    private $data;
     /** @var FindArticleByIdTask $task */
     private $task;
     /** @var Article $foundArticle */
@@ -23,24 +27,35 @@ class FindArticleByIdTaskTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->article = $this->createNewArticle();
+
+        $this->data = [
+            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
+            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
+        ];
+
+        // Create a new article with the provided data and save it into the database
+        $this->article = new Article($this->data);
+        $this->article->save();
+
         $this->task = App::make(FindArticleByIdTask::class);
-        $this->foundArticle = $this->task->run($this->article->id);
     }
 
     public function test_FindArticleByIdTask()
     {
-        $this->assertInstanceOf(Article::class, $this->article, 'The returned object is not an instance of the Article.');
+        $this->foundArticle = $this->task->run($this->article->id);
+        // Unset wasRecentlyCreated property on both object to prevent error when asserting for equality of objects
+        unset($this->article->wasRecentlyCreated);
+        unset($this->foundArticle->wasRecentlyCreated);
 
-        $this->assertEquals($this->article->id, $this->foundArticle->id);
-        $this->assertEquals($this->article->title, $this->foundArticle->title);
-        $this->assertEquals($this->article->text, $this->foundArticle->text);
+        $this->assertInstanceOf(Article::class, $this->article, 'The returned object is not an instance of the Article.');
+        $this->assertEquals($this->article, $this->foundArticle);
     }
 
     public function tearDown()
     {
         parent::tearDown();
         unset($this->task);
+        unset($this->data);
         unset($this->article);
         unset($this->foundArticle);
     }
