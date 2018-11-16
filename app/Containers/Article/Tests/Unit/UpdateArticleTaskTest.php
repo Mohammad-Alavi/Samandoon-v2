@@ -17,8 +17,8 @@ class UpdateArticleTaskTest extends TestCase
 {
     /** @var Article $updatedArticle */
     private $updatedArticle;
-    /** @var UpdateArticleTask $task */
-    private $task;
+    /** @var UpdateArticleTask $updateArticleTask */
+    private $updateArticleTask;
     /** @var Article $article */
     private $article;
     /** @var array $data */
@@ -44,8 +44,8 @@ class UpdateArticleTaskTest extends TestCase
             'text' => 'And this is dat new data text and its awesome cus you now it.',
         ];
 
-        $this->task = App::make(UpdateArticleTask::class);
-        $this->updatedArticle = $this->task->run($this->article->id, $this->dataForUpdate);
+        $this->updateArticleTask = App::make(UpdateArticleTask::class);
+        $this->updatedArticle = $this->updateArticleTask->run($this->article->id, $this->dataForUpdate);
     }
 
     public function test_UpdateArticleTask()
@@ -63,7 +63,7 @@ class UpdateArticleTaskTest extends TestCase
         unset($this->article);
         unset($this->data);
         unset($this->updatedArticle);
-        unset($this->task);
+        unset($this->updateArticleTask);
         unset($this->dataForUpdate);
     }
 }
