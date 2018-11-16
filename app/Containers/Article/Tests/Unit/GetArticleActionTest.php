@@ -73,5 +73,6 @@ class GetArticleActionTest extends TestCase
         unset($this->data);
         unset($this->transporter);
         unset($this->foundArticle);
+        unset($this->findArticleByIdTask);
     }
 }
