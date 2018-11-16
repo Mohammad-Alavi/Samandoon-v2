@@ -25,14 +25,13 @@ class DeleteUserTask extends Task {
 
     /**
      *
-     * @param User $user
+     * @param int $id
      *
      * @return bool
-     * @throws DeleteResourceFailedException
      */
-    public function run(User $user) {
+    public function run(int $id) {
         try {
-            return $this->repository->delete($user->id);
+            return $this->repository->delete($id);
         } catch (Exception $exception) {
             throw new DeleteResourceFailedException();
         }

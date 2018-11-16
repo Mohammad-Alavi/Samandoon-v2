@@ -8,11 +8,11 @@ use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 
 /**
- * Class AssignUserToRoleAction.
+ * Class AssignRoleToUserAction.
  *
  * @author Mahmoud Zalt <mahmoud@zalt.me>
  */
-class AssignUserToRoleAction extends Action
+class AssignRoleToUserAction extends Action
 {
 
     /**
@@ -31,7 +31,7 @@ class AssignUserToRoleAction extends Action
             return Apiato::call('Authorization@FindRoleTask', [$roleId]);
         }, $rolesIds);
 
-        $user = Apiato::call('Authorization@AssignUserToRoleTask', [$user, $roles]);
+        $user = Apiato::call('Authorization@AssignRoleToUserTask', [$user, $roles]);
 
         return $user;
     }

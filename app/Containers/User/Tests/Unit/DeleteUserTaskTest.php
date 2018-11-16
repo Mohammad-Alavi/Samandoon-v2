@@ -22,7 +22,7 @@ class DeleteUserTaskTest extends TestCase {
 
         //  Delete the user using the task
         $task = App::make(DeleteUserTask::class);
-        $task->run($this->user);
+        $task->run($this->user->id);
     }
 
     public function test_IsUserDeleted() {

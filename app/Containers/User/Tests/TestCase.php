@@ -2,12 +2,10 @@
 
 namespace App\Containers\User\Tests;
 
-use App\Containers\User\Actions\CreateUserByEmailAndPasswordSubAction;
-use App\Containers\User\Actions\CreateUserByPhoneAndPasswordSubAction;
+use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tasks\DeleteAllUsersTask;
 use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
-use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\App;
 
 class TestCase extends ShipTestCase {
@@ -16,12 +14,13 @@ class TestCase extends ShipTestCase {
      * @param string $phone
      * @param string $password
      *
+     * @param bool   $isClient
+     *
      * @return  User
      */
-    public function createUserByPhone(string $phone = '+98916-------', string $password = 'password'): User {
-        $action = App::make(CreateUserByPhoneAndPasswordSubAction::class);
-        $transporter = new DataTransporter(['phone' => $phone, 'password' => $password]);
-        $user = $action->run($transporter);
+    public function createUserByPhone(string $phone = '+98916-------', string $password = 'password', bool $isClient = true): User {
+        $user = Apiato::call('User@CreateUserByPhoneTask', [$isClient, $phone]);
+        $user = Apiato::call('User@FindUserByIdTask', [$user->id]);
 
         return $user;
     }
@@ -39,12 +38,13 @@ class TestCase extends ShipTestCase {
      * @param string $email
      * @param string $password
      *
+     * @param bool   $isClient
+     *
      * @return  User
      */
-    public function createUserByEmail(string $email = 'test@test.test', string $password = 'password'): User {
-        $action = App::make(CreateUserByEmailAndPasswordSubAction::class);
-        $transporter = new DataTransporter(['email' => $email, 'password' => $password]);
-        $user = $action->run($transporter);
+    public function createUserByEmail(string $email = 'test@test.test', string $password = 'password', bool $isClient = true): User {
+        $user = Apiato::call('User@CreateUserByEmailTask', [$isClient, $email]);
+        $user = Apiato::call('User@FindUserByIdTask', [$user->id]);
 
         return $user;
     }

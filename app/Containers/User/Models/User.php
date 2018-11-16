@@ -34,6 +34,7 @@ class User extends UserModel {
         'is_client',
         'is_phone_confirmed',
         'is_email_confirmed',
+        'is_subscription_expired',
         'one_time_password_updated_at',
         'subscription_expired_at',
     ];
@@ -42,9 +43,10 @@ class User extends UserModel {
      * @var array
      */
     protected $casts = [
-        'is_client'          => 'boolean',
-        'is_phone_confirmed' => 'boolean',
-        'is_email_confirmed' => 'boolean',
+        'is_client'               => 'boolean',
+        'is_phone_confirmed'      => 'boolean',
+        'is_email_confirmed'      => 'boolean',
+        'is_subscription_expired' => 'boolean',
     ];
 
     /**

@@ -46,7 +46,7 @@ class Controller extends ApiController {
 
 
     public function createAdmin(CreateAdminRequest $request) {
-        $admin = Apiato::call('User@CreateAdminAction', [new DataTransporter($request)]);
+        $admin = Apiato::call('User@CreateAdminByEmailAndPasswordSubAction', [new DataTransporter($request)]);
 
         return $this->transform($admin, UserTransformer::class);
     }
