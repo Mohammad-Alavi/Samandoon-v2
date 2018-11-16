@@ -2,7 +2,6 @@
 
 namespace App\Containers\Article\Tests\Unit;
 
-use App\Containers\Article\Actions\CreateArticleAction;
 use App\Containers\Article\Actions\UpdateArticleAction;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\UpdateArticleTask;
