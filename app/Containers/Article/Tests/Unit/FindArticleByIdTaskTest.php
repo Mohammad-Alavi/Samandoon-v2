@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\App;
  */
 class FindArticleByIdTaskTest extends TestCase
 {
-    /** @var Article $article */
-    private $article;
-    /** @var array $data */
-    private $data;
-    /** @var FindArticleByIdTask $task */
-    private $task;
+    /** @var Article $createdArticle */
+    private $createdArticle;
+    /** @var FindArticleByIdTask $findArticleByIdTask */
+    private $findArticleByIdTask;
     /** @var Article $foundArticle */
     private $foundArticle;
 
@@ -28,35 +26,41 @@ class FindArticleByIdTaskTest extends TestCase
     {
         parent::setUp();
 
-        $this->data = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
-
-        // Create a new article with the provided data and save it into the database
-        $this->article = new Article($this->data);
-        $this->article->save();
-
-        $this->task = App::make(FindArticleByIdTask::class);
+        $this->createdArticle = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->findArticleByIdTask = App::make(FindArticleByIdTask::class);
     }
 
-    public function test_FindArticleByIdTask()
+    public function test_FindArticleByIdAndReturnAnArticleObj()
     {
-        $this->foundArticle = $this->task->run($this->article->id);
-        // Unset wasRecentlyCreated property on both object to prevent error when asserting for equality of objects
-        unset($this->article->wasRecentlyCreated);
-        unset($this->foundArticle->wasRecentlyCreated);
+        $input = $this->createdArticle->id;
+        $actual = $this->findArticleByIdTask->run($input);
+        $expected = Article::class;
 
-        $this->assertInstanceOf(Article::class, $this->article, 'The returned object is not an instance of the Article.');
-        $this->assertEquals($this->article, $this->foundArticle);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
+    }
+
+    public function test_ValidateFoundArticleData()
+    {
+        $input = $this->createdArticle->id;
+        /** @var Article $actual */
+        $actual = $this->findArticleByIdTask->run($input);
+        /** @var Article $expected */
+        $expected = $this->createdArticle;
+
+        // Cast both to array for easier comparison
+        $actual = $actual->toArray();
+        $expected = $expected->toArray();
+        // Unset deleted_at to prevent error when asserting for equality of objects
+        unset($actual['deleted_at']);
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->task);
-        unset($this->data);
-        unset($this->article);
+        unset($this->findArticleByIdTask);
+        unset($this->createdArticle);
         unset($this->foundArticle);
     }
 }

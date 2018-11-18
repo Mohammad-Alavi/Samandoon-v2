@@ -18,61 +18,49 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class GetArticleActionTest extends TestCase
 {
-    /** @var FindArticleByIdAction $action */
-    private $action;
-    /** @var Article $foundArticle */
-    private $foundArticle;
+    /** @var FindArticleByIdAction $getArticleByIdAction */
+    private $getArticleByIdAction;
     /** @var Article $article */
     private $article;
-    /** @var array $data */
-    private $data;
-    /** @var MockObject|FindArticleByIdTask $findArticleByIdTask */
-    private $findArticleByIdTask;
-    /** @var DataTransporter $transporter */
-    private $transporter;
+    /** @var MockObject|FindArticleByIdTask $mFindArticleByIdTask */
+    private $mFindArticleByIdTask;
+    /** @var DataTransporter $transporterForAction */
+    private $transporterForAction;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->data = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
-        // Create a new article with the provided data and save it into the database
-        $this->article = new Article($this->data);
-        $this->article->save();
-
-        $this->findArticleByIdTask = $this->getMockBuilder(FindArticleByIdTask::class)
+        $this->article = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->mFindArticleByIdTask = $this->getMockBuilder(FindArticleByIdTask::class)
             ->setMethods(['run'])
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->action = new GetArticleAction($this->findArticleByIdTask);
-        $this->transporter = new DataTransporter(['id' => $this->article->id]);
+        $this->getArticleByIdAction = new GetArticleAction($this->mFindArticleByIdTask);
+        $this->transporterForAction = new DataTransporter(['id' => $this->article->id]);
     }
 
-    public function test_FindArticleByIdAction()
+    public function test_FindArticleByIdAndReturnAnArticleObj()
     {
-        $this->findArticleByIdTask->expects($this->once())
+        $this->mFindArticleByIdTask->expects($this->once())
             ->method('run')
-            ->with($this->article->id)
+            ->with($this->transporterForAction->id)
             ->willReturn($this->article);
-        $this->foundArticle = $this->action->run($this->transporter);
 
-        $this->assertInstanceOf(Article::class, $this->article, 'The returned object is not an instance of the Article.');
+        $input = $this->transporterForAction;
+        $actual = $this->getArticleByIdAction->run($input);
+        $expected = Article::class;
 
-        $this->assertEquals($this->article, $this->foundArticle);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->action);
+        unset($this->getArticleByIdAction);
         unset($this->article);
-        unset($this->data);
-        unset($this->transporter);
-        unset($this->foundArticle);
-        unset($this->findArticleByIdTask);
+        unset($this->transporterForAction);
+        unset($this->mFindArticleByIdTask);
     }
 }

@@ -16,56 +16,52 @@ use Illuminate\Support\Facades\App;
  */
 class GetAllArticlesTaskTest extends TestCase
 {
-    /** @var GetAllArticlesTask $task */
-    private $task;
-    /** @var LengthAwarePaginator $articles */
-    private $articles;
-    /** @var array $dataToCreateNewArticle */
-    private $dataToCreateNewArticle;
-
-    private $article;
+    /** @var GetAllArticlesTask $getAllArticlesTask */
+    private $getAllArticlesTask;
+    /** @var array $articleArray */
+    private $articleArray;
 
     public function setUp()
     {
         parent::setUp();
 
         // Create 5 Article for testing purpose
-        $this->createNewArticle();
-        $this->createNewArticle();
-        $this->createNewArticle();
-        $this->createNewArticle();
-        $this->createNewArticle();
+        $this->articleArray[0] = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->articleArray[1] = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->articleArray[2] = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->articleArray[3] = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->articleArray[4] = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
 
-        $this->task = App::make(GetAllArticlesTask::class);
-        $this->articles = $this->task->run();
+        $this->getAllArticlesTask = App::make(GetAllArticlesTask::class);
     }
 
-    public function test_GetAllArticlesTask()
+    public function test_GetAllArticlesShouldReturnAnLengthAwarePaginator()
     {
-        $this->assertInstanceOf(LengthAwarePaginator::class, $this->articles, 'The returned object is not a LengthAwarePaginator');
-        $this->assertEquals(5, $this->articles->getCollection()->count());
-        $this->assertTrue($this->articles->contains('title', $this->dataToCreateNewArticle['title']));
-        $this->assertTrue($this->articles->contains('text', $this->dataToCreateNewArticle['text']));
+        // we don't have an input
+        $input = '';
+        $actual = $this->getAllArticlesTask->run();
+        $expected = LengthAwarePaginator::class;
+
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not a LengthAwarePaginator');
     }
 
-    private function createNewArticle() {
-        $this->dataToCreateNewArticle = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
+    public function test_validateFoundArticlesData()
+    {
+        // we don't have an input
+        $input = '';
+        $actual = $this->getAllArticlesTask->run();
+        // wut ;o
+        $expected = '';
 
-        // Create a new article with the provided data and save it into the database
-        $this->article = new Article($this->dataToCreateNewArticle);
-        $this->article->save();
-
-        return $this->article;
+        $this->assertEquals(count($this->articleArray), $actual->getCollection()->count());
+        $this->assertTrue($actual->contains('title', TestCase::RAW_ARTICLE_DATA['title']));
+        $this->assertTrue($actual->contains('text', TestCase::RAW_ARTICLE_DATA['text']));
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->task);
-        unset($this->articles);
+        unset($this->getAllArticlesTask);
         unset($this->article);
     }
 }

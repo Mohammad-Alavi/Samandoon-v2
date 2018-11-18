@@ -16,10 +16,8 @@ use Illuminate\Support\Facades\App;
  */
 class CreateArticleTaskTest extends TestCase
 {
-    /** @var CreateArticleTask $task */
-    private $task;
-    /** @var Article $article */
-    private $article;
+    /** @var CreateArticleTask $createArticleTask */
+    private $createArticleTask;
     /** @var array $data */
     private $data;
 
@@ -27,29 +25,33 @@ class CreateArticleTaskTest extends TestCase
     {
         parent::setUp();
 
-        $this->task = App::make(CreateArticleTask::class);
-
-        $this->data = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
+        $this->createArticleTask = App::make(CreateArticleTask::class);
+        $this->data = TestCase::RAW_ARTICLE_DATA;
     }
 
-    public function test_CreateArticleTask_ReturnArticle()
+    public function test_CreateArticleAndReturnAnArticleObject()
     {
-        $this->article = $this->task->run($this->data);
+        $input = $this->data;
+        $actual = $this->createArticleTask->run($input);
+        $expected = Article::class;
 
-        $this->assertInstanceOf(Article::class, $this->article, 'The returned object is not an instance of the Article.');
-        $this->assertNotEmpty($this->article->id);
-        $this->assertEquals($this->data['title'], $this->article->title);
-        $this->assertEquals($this->data['text'], $this->article->text);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
+    }
+
+    public function test_ValidateCreatedArticleData()
+    {
+        $input = $this->data;
+        $actual = $this->createArticleTask->run($input);
+        $expected = $input;
+
+        $this->assertEquals($expected['title'], $actual->title);
+        $this->assertEquals($expected['text'], $actual->text);
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->task);
-        unset($this->article);
+        unset($this->createArticleTask);
         unset($this->data);
     }
 }

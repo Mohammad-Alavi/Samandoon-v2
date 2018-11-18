@@ -17,40 +17,24 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class UpdateArticleActionTest extends TestCase
 {
-    /** @var Article $updatedArticle */
-    private $updatedArticle;
     /** @var UpdateArticleAction $updateArticleAction */
     private $updateArticleAction;
-    /** @var array $dataToCreateTempArticle */
-    private $dataToCreateTempArticle;
-    /** @var array $dataForUpdatingArticle */
-    private $dataForUpdatingArticle;
-    /** @var DataTransporter $transporterPassedToAction */
-    private $transporterPassedToAction;
-    /** @var Article $articleCreatedForTest */
-    private $articleCreatedForTest;
+    /** @var array $dataForUpdate */
+    private $dataForUpdate;
+    /** @var DataTransporter $transporterForAction */
+    private $transporterForAction;
+    /** @var Article $newArticle */
+    private $newArticle;
     /** @var MockObject|UpdateArticleTask $mUpdateArticleTask */
     private $mUpdateArticleTask;
-    /** @var array $dataForMockUpdateArticleTask */
-    private $dataForMockUpdateArticleTask;
-    /** @var Article $mArticleToReturnFromMockUpdateTask */
-    private $mArticleToReturnFromMockUpdateTask;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->dataToCreateTempArticle = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
-
-        // Create a new article with the provided data and save it into the database
-        $this->articleCreatedForTest = new Article($this->dataToCreateTempArticle);
-        $this->articleCreatedForTest->save();
-
-        $this->dataForUpdatingArticle = [
-            'id' => $this->articleCreatedForTest->id,
+        $this->newArticle = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
+        $this->dataForUpdate = [
+            'id' => $this->newArticle->id,
             'title' => 'This is da new data for update',
             'text' => 'And this is dat new data text and its awesome cus you now it.',
         ];
@@ -61,45 +45,35 @@ class UpdateArticleActionTest extends TestCase
             ->getMock();
 
         $this->updateArticleAction = new UpdateArticleAction($this->mUpdateArticleTask);
-        $this->transporterPassedToAction = new DataTransporter($this->dataForUpdatingArticle);
-
-        // Array for mockObject
-        $this->dataForMockUpdateArticleTask = [
-            'title' => $this->dataForUpdatingArticle['title'],
-            'text' => $this->dataForUpdatingArticle['text'],
-        ];
-        // Article for mocked method of updateArticleTask
-        $this->mArticleToReturnFromMockUpdateTask = Article::make($this->dataForMockUpdateArticleTask);
-        $this->mArticleToReturnFromMockUpdateTask->id = $this->articleCreatedForTest->id;
+        $this->transporterForAction = new DataTransporter($this->dataForUpdate);
     }
 
-    public function test_UpdateArticleTask()
+    public function test_UpdateArticleAndReturnAnArticleObj()
     {
+        $mockedMethodInputId = $this->transporterForAction->id;
+        $mockedMethodInputData = [
+            'title' => $this->transporterForAction->title,
+            'text' => $this->transporterForAction->text,
+        ];
         $this->mUpdateArticleTask->expects($this->once())
             ->method('run')
-            ->with($this->articleCreatedForTest->id, $this->dataForMockUpdateArticleTask)
-            ->willReturn($this->mArticleToReturnFromMockUpdateTask);
+            ->with($mockedMethodInputId, $mockedMethodInputData)
+            ->willReturn(new Article($this->dataForUpdate));
 
-        $this->updatedArticle = $this->updateArticleAction->run($this->transporterPassedToAction);
+        $input = $this->transporterForAction;
+        $actual = $this->updateArticleAction->run($input);
+        $expected = Article::class;
 
-        $this->assertInstanceOf(Article::class, $this->updatedArticle, 'The returned object is not an instance of the Article.');
-
-        $this->assertEquals($this->articleCreatedForTest->id, $this->updatedArticle->id);
-        $this->assertEquals($this->dataForUpdatingArticle['title'], $this->updatedArticle->title);
-        $this->assertEquals($this->dataForUpdatingArticle['text'], $this->updatedArticle->text);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->updatedArticle);
         unset($this->updateArticleAction);
-        unset($this->dataToCreateTempArticle);
-        unset($this->dataForUpdatingArticle);
-        unset($this->transporterPassedToAction);
-        unset($this->articleCreatedForTest);
+        unset($this->dataForUpdate);
+        unset($this->transporterForAction);
+        unset($this->newArticle);
         unset($this->mUpdateArticleTask);
-        unset($this->dataForMockUpdateArticleTask);
-        unset($this->mArticleToReturnFromMockUpdateTask);
     }
 }

@@ -31,6 +31,7 @@ class DeleteArticleActionTest extends TestCase
             ->setMethods(['run'])
             ->disableOriginalConstructor()
             ->getMock();
+
         $this->deleteArticleAction = new DeleteArticleAction($this->mDeleteArticleTask);
         $this->deleteArticleTransporter = new DataTransporter(['id' => 1]);
     }
@@ -41,9 +42,19 @@ class DeleteArticleActionTest extends TestCase
             ->method('run')
             ->with($this->deleteArticleTransporter->id)
             ->willReturn(true);
-        $actual = $this->deleteArticleAction->run($this->deleteArticleTransporter);
+
+        $input = $this->deleteArticleTransporter;
+        $actual = $this->deleteArticleAction->run($input);
         $expected = true;
 
         $this->assertEquals($expected, $actual);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->deleteArticleAction);
+        unset($this->mDeleteArticleTask);
+        unset($this->deleteArticleTransporter);
     }
 }

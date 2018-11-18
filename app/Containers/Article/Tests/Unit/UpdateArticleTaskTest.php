@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\App;
  */
 class UpdateArticleTaskTest extends TestCase
 {
-    /** @var Article $updatedArticle */
-    private $updatedArticle;
     /** @var UpdateArticleTask $updateArticleTask */
     private $updateArticleTask;
-    /** @var Article $article */
-    private $article;
+    /** @var Article $newArticle */
+    private $newArticle;
     /** @var array $data */
     private $data;
     /** @var array $dataForUpdate */
@@ -30,14 +28,8 @@ class UpdateArticleTaskTest extends TestCase
     {
         parent::setUp();
 
-        $this->data = [
-            'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-            'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
-        ];
-
-        // Create a new article with the provided data and save it into the database
-        $this->article = new Article($this->data);
-        $this->article->save();
+        $this->data = TestCase::RAW_ARTICLE_DATA;
+        $this->newArticle = $this->createNewArticleAndSaveItToDBOrFail($this->data);
 
         $this->dataForUpdate = [
             'title' => 'This is da new data for update',
@@ -45,24 +37,34 @@ class UpdateArticleTaskTest extends TestCase
         ];
 
         $this->updateArticleTask = App::make(UpdateArticleTask::class);
-        $this->updatedArticle = $this->updateArticleTask->run($this->article->id, $this->dataForUpdate);
     }
 
-    public function test_UpdateArticleTask()
+    public function test_UpdateArticleAndReturnAnArticleObject()
     {
-        $this->assertInstanceOf(Article::class, $this->updatedArticle, 'The returned object is not an instance of the Article.');
+        $inputId = $this->newArticle->id;
+        $inputData = $this->dataForUpdate;
+        $actual = $this->updateArticleTask->run($inputId, $inputData);
+        $expected = Article::class;
 
-        $this->assertEquals($this->article->id, $this->updatedArticle->id);
-        $this->assertEquals($this->dataForUpdate['title'], $this->updatedArticle->title);
-        $this->assertEquals($this->dataForUpdate['text'], $this->updatedArticle->text);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
+    }
+
+    public function test_ValidateUpdatedArticleData()
+    {
+        $inputId = $this->newArticle->id;
+        $inputData = $this->dataForUpdate;
+        $actual = $this->updateArticleTask->run($inputId, $inputData);
+        $expected = $this->dataForUpdate;
+
+        $this->assertEquals($expected['title'], $actual->title);
+        $this->assertEquals($expected['text'], $actual->text);
     }
 
     public function tearDown()
     {
         parent::tearDown();
-        unset($this->article);
+        unset($this->newArticle);
         unset($this->data);
-        unset($this->updatedArticle);
         unset($this->updateArticleTask);
         unset($this->dataForUpdate);
     }
