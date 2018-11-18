@@ -5,10 +5,13 @@ namespace App\Containers\User\Tests;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
 use App\Containers\User\Tasks\DeleteAllUsersTask;
+use App\Containers\User\Traits\RandomGeneratorTrait;
 use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
 use Illuminate\Support\Facades\App;
 
 class TestCase extends ShipTestCase {
+
+    use RandomGeneratorTrait;
 
     /**
      * @param string $phone
@@ -18,7 +21,7 @@ class TestCase extends ShipTestCase {
      *
      * @return  User
      */
-    public function createUserByPhone(string $phone = '+98916-------', string $password = 'password', bool $isClient = true): User {
+    public function createUserByPhone(string $phone = '+989160000000', string $password = 'password', bool $isClient = true): User {
         $user = Apiato::call('User@CreateUserByPhoneTask', [$isClient, $phone]);
         $user = Apiato::call('User@FindUserByIdTask', [$user->id]);
 
@@ -26,11 +29,17 @@ class TestCase extends ShipTestCase {
     }
 
     /**
-     * @param int $count
+     * @param int    $count
+     * @param string $password
+     * @param bool   $isClient
      */
-    public function createUsersByPhone(int $count): void {
+    public function createUsersByPhone(int $count, string $password = 'password', bool $isClient = true): void {
         for ($i = 0; $i < $count; $i++) {
-            $this->createUserByPhone('+98936---' . $i);
+            $this->createUserByPhone(
+                '+98936' . $this->getRandomNumber(3) . $i,
+                $password,
+                $isClient
+            );
         }
     }
 
@@ -50,11 +59,17 @@ class TestCase extends ShipTestCase {
     }
 
     /**
-     * @param int $count
+     * @param int    $count
+     * @param string $password
+     * @param bool   $isClient
      */
-    public function createUsersByEmail(int $count): void {
+    public function createUsersByEmail(int $count, string $password = 'password', bool $isClient = true): void {
         for ($i = 0; $i < $count; $i++) {
-            $this->createUserByEmail('test@test.test_' . $i);
+            $this->createUserByEmail(
+                $this->getRandomNumber(3) . 'test@test.test_' . $i,
+                $password,
+                $isClient
+            );
         }
     }
 
