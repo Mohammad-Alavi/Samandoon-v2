@@ -13,6 +13,8 @@ use Illuminate\Contracts\Console\Kernel as ApiatoConsoleKernel;
  */
 abstract class TestCase extends AbstractTestCase
 {
+    /**@var Generator $faker */
+    protected $faker;
 
     /**
      * Setup the test environment, before each test.
