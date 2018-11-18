@@ -48,11 +48,4 @@ class Article extends Model {
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'articles';
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function User() {
-        return $this->belongsTo(User::class);
-    }
 }
