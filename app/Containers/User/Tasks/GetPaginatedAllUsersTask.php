@@ -29,27 +29,24 @@ class GetPaginatedAllUsersTask extends Task {
     /**
      * @return LengthAwarePaginator
      */
-    public function run() : LengthAwarePaginator{
+    public function run(): LengthAwarePaginator {
         return $this->repository->paginate();
     }
-/*
- *   UnTested methods  (MosleM)
- *
-    public function clients() {
+
+    public function clients(): void {
         $this->repository->pushCriteria(new ClientsCriteria());
     }
 
-    public function admins() {
+    public function admins(): void {
         $this->repository->pushCriteria(new AdminsCriteria());
     }
 
-    public function ordered() {
+    public function ordered(): void {
         $this->repository->pushCriteria(new OrderByCreationDateDescendingCriteria());
     }
 
-    public function withRole($roles) {
+    public function withRole($roles): void {
         $this->repository->pushCriteria(new RoleCriteria($roles));
     }
-*/
 
 }
