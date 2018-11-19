@@ -2,6 +2,7 @@
 
 namespace App\Containers\Article\Models;
 
+use App\Containers\Content\Models\Content;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 
@@ -13,6 +14,7 @@ class Article extends Model {
     protected $fillable = [
         'title',
         'text',
+        'content_id'
     ];
 
     /**
@@ -48,4 +50,9 @@ class Article extends Model {
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'articles';
+
+    public function content()
+    {
+        $this->belongsTo(Content::class);
+    }
 }
