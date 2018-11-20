@@ -2,7 +2,6 @@
 
 namespace App\Containers\User\Actions;
 
-use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Tasks\GetPaginatedAllUsersTask;
 use App\Ship\Parents\Actions\Action;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -15,7 +14,7 @@ class GetAllUsersAction extends Action {
     private $getPaginatedAllUsersTask;
 
     /**
-     * GetAllAdminsAction constructor.
+     * GetAllUsersAction constructor.
      *
      * @param GetPaginatedAllUsersTask $getPaginatedAllUsersTask
      */
