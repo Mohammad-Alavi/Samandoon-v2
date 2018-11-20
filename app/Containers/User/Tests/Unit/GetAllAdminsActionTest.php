@@ -55,8 +55,6 @@ class GetAllAdminsActionTest extends TestCase {
 
         $this->assertInstanceOf(LengthAwarePaginator::class, $result, 'Return type is not LengthAwarePaginator');
         $this->assertEquals(0, $result->count());
-
-        $this->createUsersByEmail($this->count, 'password', false);
     }
 
     public function test_CheckWithSomeAdmins() {
