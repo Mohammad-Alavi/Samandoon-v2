@@ -2,19 +2,33 @@
 
 namespace App\Containers\User\Actions;
 
-use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\User\Models\User;
+use App\Containers\Authentication\Tasks\GetAuthenticatedUserTask;
 use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Actions\SubAction;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class GetAuthenticatedUserSubAction extends SubAction {
 
     /**
-     * @return  User
+     * @var GetAuthenticatedUserTask
+     */
+    private $getAuthenticatedUserTask;
+
+    /**
+     * GetAuthenticatedUserSubAction constructor.
+     *
+     * @param GetAuthenticatedUserTask $getAuthenticatedUserTask
+     */
+    public function __construct(GetAuthenticatedUserTask $getAuthenticatedUserTask) {
+        $this->getAuthenticatedUserTask = $getAuthenticatedUserTask;
+    }
+
+    /**
+     * @return Authenticatable
      * @throws  NotFoundException
      */
-    public function run(): User {
-        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+    public function run(): Authenticatable {
+        $user = $this->getAuthenticatedUserTask->run();
 
         if (!$user) {
             throw new NotFoundException();
