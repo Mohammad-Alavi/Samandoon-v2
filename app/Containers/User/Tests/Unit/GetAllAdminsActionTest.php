@@ -19,7 +19,7 @@ class GetAllAdminsActionTest extends TestCase {
     /**
      * @var int
      */
-    private $count = 5;
+    private $adminsCount = 5;
 
     public function setUp() {
         parent::setUp();
@@ -29,7 +29,7 @@ class GetAllAdminsActionTest extends TestCase {
     }
 
     public function test_IfReturnsCorrectly() {
-        for ($i = 0; $i < $this->count; $i++) {
+        for ($i = 0; $i < $this->adminsCount; $i++) {
             $admins[$i] = $this->createUserByEmail('test@test.test_' . $i, 'password', false);
         }
 
@@ -41,7 +41,7 @@ class GetAllAdminsActionTest extends TestCase {
         $result = $action->run();
 
         $this->assertInstanceOf(LengthAwarePaginator::class, $result, 'Return type is not LengthAwarePaginator');
-        $this->assertEquals($this->count, $result->count());
+        $this->assertEquals($this->adminsCount, $result->count());
     }
 
 
@@ -49,7 +49,7 @@ class GetAllAdminsActionTest extends TestCase {
         $this->deleteAllUsers();
 
         //  Create some users
-        $this->createUsersByEmail($this->count);
+        $this->createUsersByEmail(2);
 
         $result = Apiato::call('User@GetAllAdminsAction');
 
@@ -61,21 +61,21 @@ class GetAllAdminsActionTest extends TestCase {
         $this->deleteAllUsers();
 
         //  Create some users
-        $this->createUsersByEmail($this->count);
+        $this->createUsersByEmail($this->adminsCount);
 
         //  Create some admins
-        $this->createUsersByEmail($this->count, 'password', false);
+        $this->createUsersByEmail($this->adminsCount, 'password', false);
 
         $result = Apiato::call('User@GetAllAdminsAction');
 
         $this->assertInstanceOf(LengthAwarePaginator::class, $result, 'Return type is not LengthAwarePaginator');
-        $this->assertEquals($this->count, $result->count());
+        $this->assertEquals($this->adminsCount, $result->count());
     }
 
     public function tearDown() {
         parent::tearDown();
 
         unset($this->getPaginatedAllUsersTask);
-        unset($this->count);
+        unset($this->adminsCount);
     }
 }
