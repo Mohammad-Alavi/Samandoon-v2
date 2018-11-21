@@ -12,9 +12,10 @@ use App\Ship\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
  */
 class TestCase extends ShipTestCase
 {
+    // Replace ShipTestCase Constant and new 'content_id' to it
     protected const RAW_ARTICLE_DATA = [
-        'title' => 'این یک تایتل زیبا در مورد یک نوشته زیباست',
-        'text' => 'این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست این یک تایتل زیبا در مورد یک نوشته زیباست',
+        'title' => ShipTestCase::RAW_ARTICLE_DATA['title'],
+        'text' => ShipTestCase::RAW_ARTICLE_DATA['text'],
         'content_id' => 1,
     ];
 
