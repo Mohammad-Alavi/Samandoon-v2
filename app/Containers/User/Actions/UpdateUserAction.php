@@ -16,6 +16,8 @@ class UpdateUserAction extends Action {
      */
     public function run(DataTransporter $data): User {
         //  TODO: don't let user change its email or phone if any of them is confirmed
+        //  TODO: OR
+        //  TODO: make it not confirmed after gets edited
         $userData = [
             'first_name' => $data->first_name,
             'last_name'  => $data->last_name,
