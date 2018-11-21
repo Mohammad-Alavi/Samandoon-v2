@@ -37,7 +37,7 @@ class CreateUserByEmailAndPasswordSubActionTest extends TestCase {
         $this->createUserByEmailTask = $this->getMockBuilder(CreateUserByEmailTask::class)
             ->disableOriginalConstructor()->getMock();
         $this->updateUserPasswordSubAction = $this->getMockBuilder(UpdateUserPasswordSubAction::class)
-            ->getMock();
+            ->disableOriginalConstructor()->getMock();
     }
 
     public function test_ShouldReturnUser() {

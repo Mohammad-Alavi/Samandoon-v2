@@ -43,7 +43,7 @@ class CreateAdminByPhoneAndPasswordSubActionTest extends TestCase {
         $this->createUserByPhoneTask = $this->getMockBuilder(CreateUserByPhoneTask::class)
             ->disableOriginalConstructor()->getMock();
         $this->updateUserPasswordSubAction = $this->getMockBuilder(UpdateUserPasswordSubAction::class)
-            ->getMock();
+            ->disableOriginalConstructor()->getMock();
         $this->assignRoleToUserTask = $this->getMockBuilder(AssignRoleToUserTask::class)
             ->getMock();
     }
