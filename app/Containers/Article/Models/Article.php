@@ -5,6 +5,7 @@ namespace App\Containers\Article\Models;
 use App\Containers\Content\Models\Content;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Article extends Model {
 
@@ -53,6 +54,6 @@ class Article extends Model {
 
     public function content()
     {
-        $this->belongsTo(Content::class);
+        return $this->belongsTo(Content::class);
     }
 }
