@@ -1,15 +1,15 @@
 [
   {
-    "group": "Article",
-    "name": "createArticle",
+    "group": "Content",
+    "name": "createContent",
     "type": "POST",
-    "url": "/v1/article",
-    "title": "Endpoint title here..",
-    "description": "<p>Endpoint description here..</p>",
+    "url": "/v1/user/:id/content",
+    "title": "Create Content",
+    "description": "<p>Create Content</p>",
     "version": "1.0.0",
     "permission": [
       {
-        "name": "none"
+        "name": "Authorized"
       }
     ],
     "parameter": {
@@ -17,10 +17,10 @@
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "array",
             "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
+            "field": "article",
+            "description": ""
           }
         ]
       }
@@ -34,8 +34,8 @@
         }
       ]
     },
-    "filename": "app/Containers/Article/UI/API/Routes/CreateArticle.v1.private.php",
-    "groupTitle": "Article"
+    "filename": "app/Containers/Content/UI/API/Routes/CreateContent.v1.private.php",
+    "groupTitle": "Content"
   },
   {
     "group": "Localization",
@@ -307,10 +307,10 @@
   },
   {
     "group": "RolePermission",
-    "name": "assignUserToRole",
+    "name": "assignRoleToUser",
     "type": "post",
     "url": "/v1/roles/assign",
-    "title": "Assign User to Roles",
+    "title": "Assign Roles to User",
     "description": "<p>Assign new roles to user. This endpoint does not sync the user with the new roles. It simply assign new role to the user. So make sure to never send an already assigned role since it will cause an error. To sync (update) all existing roles with the new ones use <code>/roles/sync</code> endpoint instead.</p>",
     "version": "1.0.0",
     "permission": [
