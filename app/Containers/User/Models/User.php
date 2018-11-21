@@ -35,6 +35,7 @@ class User extends UserModel {
         'is_phone_confirmed',
         'is_email_confirmed',
         'is_subscription_expired',
+        'password_updated_at',
         'one_time_password_updated_at',
         'subscription_expired_at',
     ];
@@ -58,6 +59,7 @@ class User extends UserModel {
         'created_at',
         'updated_at',
         'deleted_at',
+        'password_updated_at',
         'one_time_password_updated_at',
         'subscription_expired_at',
     ];

@@ -6,6 +6,7 @@ use App\Containers\User\Exceptions\BadLoginTypeException;
 use App\Containers\User\Models\User;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Ship\Parents\Actions\Action;
+use App\Ship\Transporters\DataTransporter;
 
 class RegisterAction extends Action {
 
@@ -71,10 +72,11 @@ class RegisterAction extends Action {
         |--------------------------------------------------------------------------
         |
         */
-        $requestHasEmail = isset($request['email']);
-        $requestHasPhone = isset($request['phone']);
-        $requestHasPassword = isset($request['password']);
+        $requestHasEmail = !is_null($request['email']);
+        $requestHasPhone = !is_null($request['phone']);
+        $requestHasPassword = !is_null($request['password']);
 
+        $transporter = new DataTransporter($request);
 
         /*
         |--------------------------------------------------------------------------
@@ -85,15 +87,15 @@ class RegisterAction extends Action {
 
         //  Register by email and password
         if ($requestHasEmail && $requestHasPassword)
-            $this->createUserByEmailAndPasswordSubAction->run($request);
+            return $this->createUserByEmailAndPasswordSubAction->run($transporter);
 
         //  Register by phone and password
         if ($requestHasPhone && $requestHasPassword)
-            $this->createUserByPhoneAndPasswordSubAction->run($request);
+            return $this->createUserByPhoneAndPasswordSubAction->run($transporter);
 
         //  Register by phone and oneTimePassword
         if ($requestHasPhone && !$requestHasPassword)
-            $this->findOrCreateUserByPhoneAndOneTimePasswordSubAction->run($request);
+            return $this->findOrCreateUserByPhoneAndOneTimePasswordSubAction->run($transporter);
 
         throw new BadLoginTypeException();
     }
