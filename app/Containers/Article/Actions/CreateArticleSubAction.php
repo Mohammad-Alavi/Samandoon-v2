@@ -2,6 +2,7 @@
 
 namespace App\Containers\Article\Actions;
 
+use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Ship\Parents\Actions\SubAction;
@@ -18,11 +19,11 @@ class CreateArticleSubAction extends SubAction
     }
 
     /**
-     * @param DataTransporter $transporter
+     * @param CreateArticleTransporter $transporter
      *
      * @return Article
      */
-    public function run(DataTransporter $transporter): Article
+    public function run(CreateArticleTransporter $transporter): Article
     {
         $data = $transporter->sanitizeInput([
             'title',
