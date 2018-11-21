@@ -4,13 +4,13 @@
  * @apiGroup           Content
  * @apiName            createContent
  *
- * @api                {POST} /v1/user/:id/content Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {POST} /v1/user/:id/content Create Content
+ * @apiDescription     Create Content
  *
  * @apiVersion         1.0.0
- * @apiPermission      none
+ * @apiPermission      Authorized
  *
- * @apiParam           {String}  parameters here..
+ * @apiParam           {array}  article [title => title here, text => text here]
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK
