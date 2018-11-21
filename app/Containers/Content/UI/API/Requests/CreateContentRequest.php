@@ -33,7 +33,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+         'id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+         'id',
     ];
 
     /**
@@ -52,7 +52,9 @@ class CreateContentRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
+             'id' => 'required',
+             'article.title' => 'required',
+             'article.text' => 'required',
             // '{user-input}' => 'required|max:255',
         ];
     }
@@ -63,7 +65,7 @@ class CreateContentRequest extends Request
     public function authorize()
     {
         return $this->check([
-            'hasAccess',
+            'hasAccess|isOwner',
         ]);
     }
 }
