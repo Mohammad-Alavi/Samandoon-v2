@@ -3,6 +3,7 @@
 namespace App\Containers\Article\Tests\Unit;
 
 use App\Containers\Article\Actions\CreateArticleSubAction;
+use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Containers\Article\Tests\TestCase;
@@ -23,8 +24,8 @@ class CreateArticleSubActionTest extends TestCase
     private $mCreateArticleTask;
     /** @var array $data */
     private $data;
-    /** @var DataTransporter $transporterForAction */
-    private $transporterForAction;
+    /** @var DataTransporter $transporterForSubAction */
+    private $transporterForSubAction;
 
     public function setUp()
     {
@@ -38,7 +39,7 @@ class CreateArticleSubActionTest extends TestCase
             ->getMock();
 
         $this->createArticleSubAction = new CreateArticleSubAction($this->mCreateArticleTask);
-        $this->transporterForAction = new DataTransporter($this->data);
+        $this->transporterForSubAction = new CreateArticleTransporter($this->data);
     }
 
     public function test_CreateArticleAndReturnAnArticleObject()
@@ -48,7 +49,7 @@ class CreateArticleSubActionTest extends TestCase
             ->with($this->data)
             ->willReturn(new Article($this->data));
 
-        $input = $this->transporterForAction;
+        $input = $this->transporterForSubAction;
         $actual = $this->createArticleSubAction->run($input);
         $expected = Article::class;
 
@@ -60,7 +61,7 @@ class CreateArticleSubActionTest extends TestCase
         parent::tearDown();
         unset($this->createArticleSubAction);
         unset($this->data);
-        unset($this->transporterForAction);
+        unset($this->transporterForSubAction);
         unset($this->mCreateArticleTask);
     }
 }

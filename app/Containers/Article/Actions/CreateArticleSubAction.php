@@ -2,11 +2,9 @@
 
 namespace App\Containers\Article\Actions;
 
-use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Ship\Parents\Actions\SubAction;
-use App\Ship\Transporters\DataTransporter;
 
 class CreateArticleSubAction extends SubAction
 {
@@ -19,19 +17,18 @@ class CreateArticleSubAction extends SubAction
     }
 
     /**
-     * @param CreateArticleTransporter $transporter
-     *
+     * @param array $data
      * @return Article
      */
-    public function run(CreateArticleTransporter $transporter): Article
+    public function run(array $data): Article
     {
-        $data = $transporter->sanitizeInput([
-            'title',
-            'text',
-            'content_id'
-        ]);
+        $readyDataForTask = [
+            'title' => $data['article']['title'],
+            'text' => $data['article']['text'],
+            'content_id' => $data['content_id']
+        ];
 
-        $article = $this->createArticleTask->run($data);
+        $article = $this->createArticleTask->run($readyDataForTask);
 
         return $article;
     }

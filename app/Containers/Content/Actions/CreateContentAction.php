@@ -3,47 +3,62 @@
 namespace App\Containers\Content\Actions;
 
 use App\Containers\Article\Actions\CreateArticleSubAction;
-use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\CreateContentTask;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
-use Carbon\Exceptions\InvalidDateException;
 use DB;
 use Throwable;
 
 class CreateContentAction extends Action
 {
     private $createContentTask;
-    private $createArticleSbAction;
+    private $createArticleSubAction;
 
     public function __construct(CreateContentTask $createContentTask, CreateArticleSubAction $createArticleSubAction)
     {
         $this->createContentTask = $createContentTask;
-        $this->createArticleSbAction = $createArticleSubAction;
+        $this->createArticleSubAction = $createArticleSubAction;
     }
 
     public function run(DataTransporter $transporter)
     {
         $data = $transporter->sanitizeInput([
+//            'have_someaddon',
             'article.title',
             'article.text',
         ]);
 
         DB::beginTransaction();
         try {
-            // Create Content
-            /** @var Content $content */
-            $content = $this->createContent();
-            // Create Article
-            /** @var Article $article */
-            $article = $this->createArticle($content->id, $data);
+            $content = $this->contentBuilder($data);
         } catch (Throwable $exception) {
             DB::rollBack();
             return $exception->getMessage();
         }
         DB::commit();
+
+        return $content;
+    }
+
+    private function contentBuilder($data)
+    {
+        // Create Content
+        /** @var Content $content */
+        $content = $this->createContent();
+        $data = array_add($data, 'content_id', $content->id);
+
+        // Create Article
+        $this->createArticle($data);
+
+        ////
+        // Create Addon -> If key exist and is true
+        ////
+//        if (array_key_exists('have_someaddon', $data) && $data['have_someaddon'] == true) {
+            /** @var Article $article */
+//            $some_addon = $this->sampleCreateAddonFunction($data);
+//        }
 
         return $content;
     }
@@ -59,19 +74,16 @@ class CreateContentAction extends Action
         return $content;
     }
 
-    private function createArticle($content_id, array $data)
+    private function createArticle(array $data)
     {
-        // Throw if data to create article are invalid
-        throw_if(!isset($data['article']['title']) && !isset($data['article']['text']), InvalidDateException::class, 'Data to create Article are invalid');
-
-        // Add Content id to array
-        $dataWithContentId = [
-            'title' => $data['article']['title'],
-            'text' => $data['article']['text'],
-            'content_id' => $content_id,
-        ];
-        // Pass the transporter to create new article linked to this newly created content
-        $article = $this->createArticleSbAction->run(new CreateArticleTransporter($dataWithContentId));
+        // Pass the array to create a new article linked to this newly created content
+        $article = $this->createArticleSubAction->run($data);
         return $article;
+    }
+
+    private function sampleCreateAddonFunction(array $data)
+    {
+        $addon = true; // Call corresponding addon action and validate data there
+        return $addon;
     }
 }

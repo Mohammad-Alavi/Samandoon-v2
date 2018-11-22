@@ -3,12 +3,12 @@
 namespace App\Containers\Content\Tests\Unit;
 
 use App\Containers\Article\Actions\CreateArticleSubAction;
-use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Content\Actions\CreateContentAction;
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\CreateContentTask;
 use App\Containers\Content\Tests\TestCase;
+use App\Containers\User\Models\User;
 use App\Ship\Transporters\DataTransporter;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -30,7 +30,7 @@ class CreateContentActionTest extends TestCase
     private $transporterForAction;
     /** @var array $data */
     private $data;
-
+// TODO Implement Create Content Action Test
     public function setUp()
     {
         parent::setUp();
@@ -47,6 +47,7 @@ class CreateContentActionTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $this->createContentAction = new CreateContentAction($this->mCreateContentTask, $this->mCreateArticleSubAction);
+
 
         $this->transporterForAction = new DataTransporter([
             'article' => [
@@ -71,38 +72,4 @@ class CreateContentActionTest extends TestCase
 
         $this->assertInstanceOf($expected, $actual);
     }
-
-    public function test_ReturnedContentObjShouldHaveAtLeastArticleAddon()
-    {
-        // Create a Content
-        /** @var Content $content */
-        $content = factory(Content::class)->create();
-
-        // Create Article SubAction Mock
-        $dataToCreateFakeReturnArticle = [
-            'title' => $this->transporterForAction->article->title,
-            'text' => $this->transporterForAction->article->text,
-            'content_id' => $content->id,
-        ];
-
-        $transporterForCreateArticleSubAction = new CreateArticleTransporter($dataToCreateFakeReturnArticle);
-
-        $this->mCreateArticleSubAction->expects($this->once())
-            ->method('run')
-            ->with($transporterForCreateArticleSubAction)
-            ->willReturn(new Article($dataToCreateFakeReturnArticle));
-
-        dump($content);
-        $article = $this->mCreateArticleSubAction->run($transporterForCreateArticleSubAction);
-        $this->assertEquals($content->id, $article->content_id);
-    }
-
-//    public function test_()
-//    {
-//        $content = $this->createContentAction->run(new DataTransporter([
-//            'title' => $this->transporterForAction->article->title,
-//            'text' => $this->transporterForAction->article->text,
-//        ]));
-////        dd($content);
-//    }
 }

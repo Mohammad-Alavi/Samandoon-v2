@@ -53,6 +53,7 @@ class CreateContentRequest extends Request
     {
         return [
              'id' => 'required',
+//             'have_article' => 'required',
              'article.title' => 'required',
              'article.text' => 'required',
             // '{user-input}' => 'required|max:255',

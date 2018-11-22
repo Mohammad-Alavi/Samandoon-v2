@@ -14,15 +14,15 @@ class CreateArticleTransporter extends Transporter
         'type' => 'object',
         'properties' => [
             // enter all properties here
-            'title',
-            'text',
+            'article.title',
+            'article.text',
             'content_id'
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
         'required'   => [
-            'title',
-            'text',
+            'article.title',
+            'article.text',
             'content_id'
             // define the properties that MUST be set
         ],
