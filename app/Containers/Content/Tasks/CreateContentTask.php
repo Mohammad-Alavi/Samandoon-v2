@@ -7,22 +7,31 @@ use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateContentTask extends Task
-{
+class CreateContentTask extends Task {
 
+    /**
+     * @var ContentRepository
+     */
     protected $repository;
 
-    public function __construct(ContentRepository $repository)
-    {
+    /**
+     * CreateContentTask constructor.
+     *
+     * @param ContentRepository $repository
+     */
+    public function __construct(ContentRepository $repository) {
         $this->repository = $repository;
     }
 
-    public function run(array $data)
-    {
+    /**
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function run(array $data = []) {
         try {
             return $this->repository->create($data);
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             throw new CreateResourceFailedException();
         }
     }
