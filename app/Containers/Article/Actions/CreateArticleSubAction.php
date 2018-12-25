@@ -6,29 +6,37 @@ use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Ship\Parents\Actions\SubAction;
 
-class CreateArticleSubAction extends SubAction
-{
-    /** @var CreateArticleTask $createArticleTask */
+class CreateArticleSubAction extends SubAction {
+
+    /**
+     * @var CreateArticleTask $createArticleTask
+     */
     protected $createArticleTask;
 
-    public function __construct(CreateArticleTask $createArticleTask)
-    {
+    /**
+     * CreateArticleSubAction constructor.
+     *
+     * @param CreateArticleTask $createArticleTask
+     */
+    public function __construct(CreateArticleTask $createArticleTask) {
         $this->createArticleTask = $createArticleTask;
     }
 
     /**
-     * @param array $data
+     * @param array  $data
+     *
+     * @param string $contentId
+     *
      * @return Article
      */
-    public function run(array $data): Article
-    {
-        $readyDataForTask = [
-            'title' => $data['article']['title'],
-            'text' => $data['article']['text'],
-            'content_id' => $data['content_id']
+    public function run(array $data, string $contentId): Article {
+        $articleData = [
+            'title'      => $data['title'],
+            'text'       => $data['text'],
+            'content_id' => $contentId
         ];
 
-        $article = $this->createArticleTask->run($readyDataForTask);
+        $article = $this->createArticleTask->run($articleData);
 
         return $article;
     }
