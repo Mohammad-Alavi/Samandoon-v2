@@ -2,11 +2,9 @@
 
 namespace App\Containers\Content\UI\API\Transformers;
 
-use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\UI\API\Transformers\ArticleTransformer;
 use App\Containers\Content\Models\Content;
 use App\Ship\Parents\Transformers\Transformer;
-use Illuminate\Support\Facades\App;
 
 class ContentTransformer extends Transformer
 {
@@ -46,7 +44,7 @@ class ContentTransformer extends Transformer
         ];
 
         $response = $this->ifAdmin([
-            'real_id'    => $entity->id,
+            'real_id' => $entity->id,
             // 'deleted_at' => $entity->deleted_at,
         ], $response);
 
