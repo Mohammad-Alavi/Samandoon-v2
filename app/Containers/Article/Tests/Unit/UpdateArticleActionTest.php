@@ -2,7 +2,7 @@
 
 namespace App\Containers\Article\Tests\Unit;
 
-use App\Containers\Article\Actions\UpdateArticleAction;
+use App\Containers\Article\Actions\UpdateArticleSubAction;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\UpdateArticleTask;
 use App\Containers\Article\Tests\TestCase;
@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class UpdateArticleActionTest extends TestCase
 {
-    /** @var UpdateArticleAction $updateArticleAction */
+    /** @var UpdateArticleSubAction $updateArticleAction */
     private $updateArticleAction;
     /** @var array $dataForUpdate */
     private $dataForUpdate;
@@ -44,7 +44,7 @@ class UpdateArticleActionTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->updateArticleAction = new UpdateArticleAction($this->mUpdateArticleTask);
+        $this->updateArticleAction = new UpdateArticleSubAction($this->mUpdateArticleTask);
         $this->transporterForAction = new DataTransporter($this->dataForUpdate);
     }
 

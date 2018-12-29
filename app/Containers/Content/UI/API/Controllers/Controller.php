@@ -18,6 +18,12 @@ class Controller extends ApiController
         return $this->transform($content, ContentTransformer::class);
     }
 
+    public function updateContent(UpdateContentRequest $request)
+    {
+        $content = Apiato::call('Content@UpdateContentAction', [new DataTransporter($request)]);
+        return $this->transform($content, ContentTransformer::class);
+    }
+
     public function getContent(GetContentRequest $request)
     {
         $content = Apiato::call('Content@GetContentAction', [new DataTransporter($request)]);
