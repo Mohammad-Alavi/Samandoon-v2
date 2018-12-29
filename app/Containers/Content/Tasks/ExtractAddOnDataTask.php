@@ -6,7 +6,7 @@ use App\Containers\Content\Exceptions\AddOnTypeNotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use App\Ship\Transporters\DataTransporter;
 
-class ExtractAddOnArrayTask extends Task {
+class ExtractAddOnDataTask extends Task {
 
     /**
      * @param DataTransporter $transporter

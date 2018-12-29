@@ -24,7 +24,7 @@ class CreateContentRequest extends Request
      */
     protected $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles' => '',
     ];
 
     /**
@@ -33,7 +33,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $decode = [
-         'id',
+        'id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-         'id',
+        'id',
     ];
 
     /**
@@ -52,10 +52,11 @@ class CreateContentRequest extends Request
     public function rules()
     {
         return [
-             'id' => 'required',
-//             'have_article' => 'required',
-             'article.title' => 'required',
-             'article.text' => 'required',
+            'id' => 'required',
+            'article.title' => 'required',
+            'article.text' => 'required',
+            'add_on_list' => 'required|array|in:' .
+                config('samandoon.available_add_ons.article'),
             // '{user-input}' => 'required|max:255',
         ];
     }

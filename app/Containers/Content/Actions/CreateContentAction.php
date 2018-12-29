@@ -4,22 +4,20 @@ namespace App\Containers\Content\Actions;
 
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\CreateContentTask;
+use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 use DB;
 use Throwable;
 
-class CreateContentAction extends Action {
-
-    /**
-     * @var CreateContentTask
-     */
+class CreateContentAction extends Action
+{
+    /** @var CreateContentTask $createContentTask */
     private $createContentTask;
-
-    /**
-     * @var ExtractDataAndAskToCreateArticleSubAction
-     */
-    private $extractDataAndAskToCreateArticleSubAction;
+    /** @var CreateAddOnsSubAction $createAddOnsSubAction */
+    private $createAddOnsSubAction;
+    /** @var ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction */
+    private $extractAndValidateAddOnSubAction;
 
     /**
      * @var Content
@@ -29,29 +27,33 @@ class CreateContentAction extends Action {
     /**
      * CreateContentAction constructor.
      *
-     * @param CreateContentTask                         $createContentTask
-     * @param ExtractDataAndAskToCreateArticleSubAction $extractDataAndAskToCreateArticleSubAction
+     * @param CreateContentTask $createContentTask
+     * @param ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction
+     * @param CreateAddOnsSubAction $createAddOnsSubAction
      */
     public function __construct(CreateContentTask $createContentTask,
-                                ExtractDataAndAskToCreateArticleSubAction $extractDataAndAskToCreateArticleSubAction) {
+                                ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction,
+                                CreateAddOnsSubAction $createAddOnsSubAction)
+    {
         $this->createContentTask = $createContentTask;
-        $this->extractDataAndAskToCreateArticleSubAction = $extractDataAndAskToCreateArticleSubAction;
+        $this->createAddOnsSubAction = $createAddOnsSubAction;
+        $this->extractAndValidateAddOnSubAction = $extractAndValidateAddOnSubAction;
     }
 
     /**
      * @param DataTransporter $transporter
      *
      * @return Content | string
+     * @throws \Exception
      */
-    public function run(DataTransporter $transporter) {
-
+    public function run(DataTransporter $transporter)
+    {
         DB::beginTransaction();
         try {
             $this->createContentAndItsAddOns($transporter);
         } catch (Throwable $exception) {
             DB::rollBack();
-
-            return $exception->getMessage();
+            throw new CreateResourceFailedException($exception->getMessage(), null,null,$exception->getCode());
         }
         DB::commit();
 
@@ -61,14 +63,19 @@ class CreateContentAction extends Action {
     /**
      * @param DataTransporter $transporter
      */
-    private function createContentAndItsAddOns(DataTransporter $transporter): void {
+    private function createContentAndItsAddOns(DataTransporter $transporter): void
+    {
+        // Create Content
         $this->content = $this->createContentTask->run();
 
-        //  Create Article (no need to check if 'hasArticle')
-        $this->extractDataAndAskToCreateArticleSubAction->run($transporter, $this->content);
+        /// ADD ANY ADDON NAME YOU WANT TO BE CREATED WITH THE CONTENT
+        ///  Create add-on if everything is OK ///
+        $addOnNameList = $transporter->add_on_list;
 
-//        if ($transporter['hasPoll'])
-//            $this->extractDataAndAskToCreatePollSubAction->run($transporter, $this->content);
+        // Validate and return extracted and validated addon array
+        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameList);
+
+        // create add-ons
+        $this->createAddOnsSubAction->run($addonDataArray, $addOnNameList, $this->content->id);
     }
-
 }

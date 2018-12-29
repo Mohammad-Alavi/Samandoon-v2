@@ -25,17 +25,16 @@ class CreateArticleSubAction extends SubAction {
     /**
      * @param array  $data
      *
-     * @param string $contentId
+     * @param string $content_id
      *
      * @return Article
      */
-    public function run(array $data, string $contentId): Article {
+    public function run(array $data, string $content_id): Article {
         $articleData = [
             'title'      => $data['title'],
             'text'       => $data['text'],
-            'content_id' => $contentId
+            'content_id' => $content_id
         ];
-
         $article = $this->createArticleTask->run($articleData);
 
         return $article;
