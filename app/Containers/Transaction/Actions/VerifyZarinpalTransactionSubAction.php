@@ -56,7 +56,7 @@ class VerifyZarinpalTransactionSubAction extends SubAction {
             $refId = $result['RefID'];
             $this->markTransactionPaidSubAction->run($transaction, $refId);
             $this->addPointsToUserSubAction->run($transaction->user, $transaction->points);
-            $transaction->user->notify(new PointsAddedNotification($transaction->points));
+            //$transaction->user->notify(new PointsAddedNotification($transaction->points));
             return true;
         }else
             return false;
