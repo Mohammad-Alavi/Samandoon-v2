@@ -3,6 +3,7 @@
 namespace App\Containers\User\Models;
 
 use App\Containers\Authorization\Traits\AuthorizationTrait;
+use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
 
 class User extends UserModel {
@@ -73,5 +74,12 @@ class User extends UserModel {
         'one_time_password',
         'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 
 }

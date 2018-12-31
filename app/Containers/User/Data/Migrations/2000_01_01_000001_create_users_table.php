@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
             $table->string('phone')->unique()->nullable();
             $table->string('gender')->nullable();
             $table->string('birth')->nullable();
-            $table->integer('points')->default(0);
+            $table->unsignedBigInteger('points')->default(0);
             $table->boolean('is_client')->default(false);
             $table->boolean('is_phone_confirmed')->default(false);
             $table->boolean('is_email_confirmed')->default(false);
