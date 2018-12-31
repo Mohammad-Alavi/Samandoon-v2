@@ -6,4 +6,8 @@ return [
 //        'poll'    => 'poll',
     ],
 
+    'validation_type' => [
+        'create' => 'create',
+        'update'    => 'update',
+    ],
 ];

@@ -2,11 +2,11 @@
 
 namespace App\Containers\Content\Actions;
 
-use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Content\Models\Content;
 use App\Ship\Parents\Actions\SubAction;
+use Apiato\Core\Foundation\Facades\Apiato;
 
-class CreateAddOnsSubAction extends SubAction
+class UpdateAddOnsSubAction extends SubAction
 {
     /**
      * @param array $addOnData
@@ -17,9 +17,9 @@ class CreateAddOnsSubAction extends SubAction
     {
         foreach ($addOnList as $addOn) {
             // generate action name
-            $actionName = ucfirst($addOn) . '@Create' . ucfirst($addOn) . 'SubAction';
+            $actionName = ucfirst($addOn) . '@Update' . ucfirst($addOn) . 'SubAction';
             // call the appropriate action
-            Apiato::call($actionName, [$addOnData[lcfirst($addOn)], $content->id]);
+            Apiato::call($actionName, [$addOnData[lcfirst($addOn)], $content->$addOn()->first()->id]);
         }
     }
 }

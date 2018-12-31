@@ -39,7 +39,7 @@ class ContentTransformer extends Transformer
             'updated_at' => $entity->updated_at,
             'deleted_at' => $entity->deleted_at,
             'add-on' => [
-                'article' => $article->transform($entity->article()->first())
+                'article' => $entity->article()->first() ? $article->transform($entity->article()->first()) : null,
             ]
         ];
 

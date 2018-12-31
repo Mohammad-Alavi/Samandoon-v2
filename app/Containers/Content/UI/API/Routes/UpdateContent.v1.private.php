@@ -4,19 +4,16 @@
  * @apiGroup           Content
  * @apiName            updateContent
  *
- * @api                {PUT} /v1/user/:id/content/:content_id Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {PUT} /v1/user/:id/content/:content_id Update Content
+ * @apiDescription     Update Content
  *
  * @apiVersion         1.0.0
- * @apiPermission      none
+ * @apiPermission      Authenticated|Owner
  *
- * @apiParam           {String}  parameters here..
+ * @apiParam           [array] article article[title => title here, text => text here]
+ * @apiParam           {array} addon =[article=>true] addon[addonname => true, addonname2 => false]
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * @apiUse             ContentSuccessSingleResponse
  */
 
 /** @var Route $router */

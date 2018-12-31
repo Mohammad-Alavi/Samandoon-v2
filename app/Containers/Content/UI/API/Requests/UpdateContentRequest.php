@@ -54,8 +54,9 @@ class UpdateContentRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'id' => 'required',
+            'content_id' => 'required',
+            'addon.article' => 'required',
         ];
     }
 

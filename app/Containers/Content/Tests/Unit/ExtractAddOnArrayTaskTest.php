@@ -3,21 +3,21 @@
 namespace App\Containers\Content\Tests\Unit;
 
 use App\Containers\Content\Exceptions\AddOnTypeNotFoundException;
-use App\Containers\Content\Tasks\ExtractAddOnArrayTask;
+use App\Containers\Content\Tasks\ExtractAddOnDataTask;
 use App\Containers\Content\Tests\TestCase;
 use App\Ship\Transporters\DataTransporter;
 
 class ExtractAddOnArrayTaskTest extends TestCase {
 
     /**
-     * @var ExtractAddOnArrayTask
+     * @var ExtractAddOnDataTask
      */
     private $extractAddOnArrayTask;
 
     public function setUp() {
         parent::setUp();
 
-        $this->extractAddOnArrayTask = new ExtractAddOnArrayTask();
+        $this->extractAddOnArrayTask = new ExtractAddOnDataTask();
     }
 
     public function test_CheckIdReturnsCorrectDataForAddOnArticle() {

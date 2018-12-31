@@ -53,7 +53,7 @@ class CreateContentAction extends Action
             $this->createContentAndItsAddOns($transporter);
         } catch (Throwable $exception) {
             DB::rollBack();
-            throw new CreateResourceFailedException($exception->getMessage(), null,null,$exception->getCode());
+            throw new CreateResourceFailedException($exception->getMessage(), null, null, $exception->getCode());
         }
         DB::commit();
 
@@ -68,14 +68,17 @@ class CreateContentAction extends Action
         // Create Content
         $this->content = $this->createContentTask->run();
 
-        /// ADD ANY ADDON NAME YOU WANT TO BE CREATED WITH THE CONTENT
-        ///  Create add-on if everything is OK ///
-        $addOnNameList = $transporter->add_on_list;
+        $addOnNameList = [];
+        foreach ($transporter->addon as $key => $value) {
+            if ($value == 'true') {
+                array_push($addOnNameList, $key);
+            }
+        }
 
         // Validate and return extracted and validated addon array
-        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameList);
+        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameList, config('samandoon.validation_type.create'));
 
         // create add-ons
-        $this->createAddOnsSubAction->run($addonDataArray, $addOnNameList, $this->content->id);
+        $this->createAddOnsSubAction->run($addonDataArray, $addOnNameList, $this->content);
     }
 }

@@ -25,9 +25,9 @@ class UpdateArticleSubAction extends SubAction {
      * @param Content $content
      * @return Article
      */
-    public function run(array $data, Content $content): Article {
+    public function run(array $data, $id): Article {
 
-        $article = $this->updateArticleTask->run($content->article()->first()->id, $data);
+        $article = $this->updateArticleTask->run($id, $data);
 
         return $article;
     }
