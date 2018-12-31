@@ -9,8 +9,7 @@ use App\Ship\Parents\Providers\MainProvider;
  *
  * The Main Service Provider of this container, it will be automatically registered in the framework.
  */
-class MainServiceProvider extends MainProvider
-{
+class MainServiceProvider extends MainProvider {
 
     /**
      * Container Service Providers.
@@ -33,8 +32,7 @@ class MainServiceProvider extends MainProvider
     /**
      * Register anything in the container.
      */
-    public function register()
-    {
+    public function register() {
         parent::register();
 
         // $this->app->bind(UserRepositoryInterface::class, UserRepository::class);

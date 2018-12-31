@@ -4,7 +4,6 @@ namespace App\Containers\Transaction\Actions;
 
 use App\Containers\Transaction\Models\Transaction;
 use App\Containers\User\Actions\AddPointsToUserSubAction;
-use App\Containers\User\Notifications\PointsAddedNotification;
 use App\Ship\Parents\Actions\SubAction;
 use Illuminate\Support\Facades\Config;
 use Zarinpal\Zarinpal;
@@ -51,14 +50,15 @@ class VerifyZarinpalTransactionSubAction extends SubAction {
         $result = $this->zarinpal->verify($transaction->amount, $transaction->authority);
 
         $isVerified = ($result) && ($result['Status'] == 'success');
-        if ($isVerified){
+        if ($isVerified) {
             /** @var string $refId */
             $refId = $result['RefID'];
             $this->markTransactionPaidSubAction->run($transaction, $refId);
             $this->addPointsToUserSubAction->run($transaction->user, $transaction->points);
+
             //$transaction->user->notify(new PointsAddedNotification($transaction->points));
             return true;
-        }else
+        } else
             return false;
     }
 }

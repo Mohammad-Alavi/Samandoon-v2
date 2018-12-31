@@ -4,14 +4,13 @@ namespace App\Containers\Transaction\Data\Transporters;
 
 use App\Ship\Parents\Transporters\Transporter;
 
-class CreateTransactionTransporter extends Transporter
-{
+class CreateTransactionTransporter extends Transporter {
 
     /**
      * @var array
      */
     protected $schema = [
-        'type' => 'object',
+        'type'       => 'object',
         'properties' => [
             // enter all properties here
 

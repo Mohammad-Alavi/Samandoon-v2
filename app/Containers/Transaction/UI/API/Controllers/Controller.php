@@ -7,7 +7,6 @@ use App\Containers\Transaction\UI\API\Requests\CreateTransactionRequest;
 use App\Containers\Transaction\UI\API\Requests\GetAllTransactionsRequest;
 use App\Containers\Transaction\UI\API\Transformers\TransactionTransformer;
 use App\Ship\Parents\Controllers\ApiController;
-use App\Ship\Parents\Requests\Request;
 
 class Controller extends ApiController {
     /**

@@ -31,7 +31,7 @@ class MarkTransactionPaidSubAction extends SubAction {
      */
     public function run(Transaction $transaction, string $refId) {
         $data = [
-            'ref_id' => $refId,
+            'ref_id'  => $refId,
             'paid_at' => Carbon::now()
         ];
         $this->updateTransactionTask->run($transaction->id, $data);

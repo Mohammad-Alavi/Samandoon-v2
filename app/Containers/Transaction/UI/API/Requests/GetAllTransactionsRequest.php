@@ -7,8 +7,7 @@ use App\Ship\Parents\Requests\Request;
 /**
  * Class GetAllTransactionsRequest.
  */
-class GetAllTransactionsRequest extends Request
-{
+class GetAllTransactionsRequest extends Request {
 
     /**
      * The assigned Transporter for this Request
@@ -49,8 +48,7 @@ class GetAllTransactionsRequest extends Request
     /**
      * @return  array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             // 'id' => 'required',
             // '{user-input}' => 'required|max:255',
@@ -60,8 +58,7 @@ class GetAllTransactionsRequest extends Request
     /**
      * @return  bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return $this->check([
             'hasAccess',
         ]);

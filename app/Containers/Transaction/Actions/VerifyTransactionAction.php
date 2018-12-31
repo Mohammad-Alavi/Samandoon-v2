@@ -42,13 +42,14 @@ class VerifyTransactionAction extends Action {
         /** @var Transaction $transaction */
         $transaction = $this->findTransactionByAuthorityTask->run($authority);
 
-        switch($transaction->gateway){
+        switch ($transaction->gateway) {
             case 'zarinpal':
                 return $this->verifyZarinpalTransactionSubAction->run($transaction);
 //            case 'payline':
 //                return $this->verifyPaylineTransactionSubAction->run($transaction);
 
-            default: throw new BadTransactionGatewayException();
+            default:
+                throw new BadTransactionGatewayException();
         }
 
     }
