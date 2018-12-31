@@ -55,8 +55,7 @@ class CreateContentRequest extends Request
             'id' => 'required',
             'article.title' => 'required',
             'article.text' => 'required',
-            'add_on_list' => 'required|array|in:' .
-                config('samandoon.available_add_ons.article'),
+            'addon.article' => 'required',
             // '{user-input}' => 'required|max:255',
         ];
     }
