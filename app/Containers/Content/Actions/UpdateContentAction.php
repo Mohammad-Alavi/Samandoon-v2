@@ -46,6 +46,7 @@ class UpdateContentAction extends Action
     /**
      * @param DataTransporter $transporter
      * @return Content|mixed
+     * @throws Throwable
      */
     private function updateContentAndItsAddOns(DataTransporter $transporter): Content
     {
@@ -61,6 +62,8 @@ class UpdateContentAction extends Action
         $addOnNameListForUpdate = [];
         foreach ($transporter->addon as $key => $value) {
             if ($value == 'false') {
+                // throw exception if user tries to delete article addon
+                throw_if($key == 'article', UpdateResourceFailedException::class, 'You cannot delete the Article AddOn');
                 array_push($addOnNameListForDeletion, $key);
             } elseif ($value == 'true') {
                 array_push($addOnNameListForUpdateOrCreation, $key);
@@ -71,15 +74,16 @@ class UpdateContentAction extends Action
         $this->deleteAddOnsSubAction->run($addOnNameListForDeletion, $content);
 
         // Create add on if content doesn't have it or Update it if Content have it
-        foreach ($addOnNameListForUpdateOrCreation as $addOnName) {
-            // Create AddOn list for creation
-            if (!$content->$addOnName()->first()) {
-                array_push($addOnNameListForCreation, $addOnName);
-            } // Create AddOn list for update
-            else {
-                array_push($addOnNameListForUpdate, $addOnName);
+            foreach ($addOnNameListForUpdateOrCreation as $addOnName) {
+                // Create AddOn list for creation
+                if (!$content->$addOnName()->first()) {
+                    array_push($addOnNameListForCreation, $addOnName);
+                } // Create AddOn list for update
+                else {
+                    array_push($addOnNameListForUpdate, $addOnName);
+                }
             }
-        }
+
         if (!empty($addOnNameListForCreation)) {
             // Extract and Validate Data
             $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameListForCreation, config('samandoon.validation_type.create'));

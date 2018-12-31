@@ -75,6 +75,8 @@ class CreateContentAction extends Action
             }
         }
 
+        throw_if(empty($addOnNameList), CreateResourceFailedException::class, 'You must at least create the Article addon');
+
         // Validate and return extracted and validated addon array
         $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameList, config('samandoon.validation_type.create'));
 
