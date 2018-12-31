@@ -40,7 +40,7 @@ return [
         'kavenegar' => [
             'api-key'                     => '53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942',
             'password-verification-token' => 'kabootar-verify',
-            'points-added-token' => 'ivisitor-payment-succeed',
+            'points-added-token'          => 'ivisitor-payment-succeed',
         ]
     ],
 
