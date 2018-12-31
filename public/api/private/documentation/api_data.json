@@ -20,7 +20,78 @@
             "type": "array",
             "optional": false,
             "field": "article",
-            "description": ""
+            "description": "<p>article[title =&gt; title here, text =&gt; text here]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "array",
+            "optional": false,
+            "field": "addon",
+            "defaultValue": "[article=>true",
+            "description": "<p>addon[addonname =&gt; true, addonname2 =&gt; false]</p>"
+          }
+        ]
+      }
+    },
+    "filename": "app/Containers/Content/UI/API/Routes/CreateContent.v1.private.php",
+    "groupTitle": "Content",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"8ykwxd4ggj4ampj9\",\n        \"created_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"kpn8rx3lde4wamge\",\n                \"title\": \"این یک نوشته است\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"8ykwxd4ggj4ampj9\",\n                \"created_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Content",
+    "name": "getContent",
+    "type": "GET",
+    "url": "/v1/user/:id/content/:content_id",
+    "title": "Get Content",
+    "description": "<p>Find the content by its ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "filename": "app/Containers/Content/UI/API/Routes/GetContent.v1.private.php",
+    "groupTitle": "Content",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"8ykwxd4ggj4ampj9\",\n        \"created_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"kpn8rx3lde4wamge\",\n                \"title\": \"این یک نوشته است\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"8ykwxd4ggj4ampj9\",\n                \"created_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Content",
+    "name": "updateContent",
+    "type": "PUT",
+    "url": "/v1/user/:id/content/:content_id",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
           }
         ]
       }
@@ -34,7 +105,7 @@
         }
       ]
     },
-    "filename": "app/Containers/Content/UI/API/Routes/CreateContent.v1.private.php",
+    "filename": "app/Containers/Content/UI/API/Routes/UpdateContent.v1.private.php",
     "groupTitle": "Content"
   },
   {
