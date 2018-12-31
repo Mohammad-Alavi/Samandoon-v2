@@ -10,13 +10,10 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authorized
  *
- * @apiParam           {array}  article [title => title here, text => text here]
+ * @apiParam           {array} article article[title => title here, text => text here]
+ * @apiParam           {array} addon =[article=>true] addon[addonname => true, addonname2 => false]
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * @apiUse             ContentSuccessSingleResponse
  */
 
 /** @var Route $router */
