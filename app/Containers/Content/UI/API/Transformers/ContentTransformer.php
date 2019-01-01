@@ -4,6 +4,7 @@ namespace App\Containers\Content\UI\API\Transformers;
 
 use App\Containers\Article\UI\API\Transformers\ArticleTransformer;
 use App\Containers\Content\Models\Content;
+use App\Containers\Repost\UI\API\Transformers\RepostTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
 class ContentTransformer extends Transformer
@@ -31,6 +32,7 @@ class ContentTransformer extends Transformer
     {
         /// Add-on transformers
         $article = new ArticleTransformer();
+        $repost = new RepostTransformer();
 
         $response = [
             'object' => 'Content',
@@ -40,6 +42,7 @@ class ContentTransformer extends Transformer
             'deleted_at' => $entity->deleted_at,
             'add-on' => [
                 'article' => $entity->article()->first() ? $article->transform($entity->article()->first()) : null,
+                'repost' => $entity->repost()->first() ? $repost->transform($entity->repost()->first()) : null,
             ]
         ];
 

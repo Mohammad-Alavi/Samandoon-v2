@@ -34,6 +34,7 @@ class CreateContentRequest extends Request
      */
     protected $decode = [
         'id',
+        'repost.referenced_content_id',
     ];
 
     /**

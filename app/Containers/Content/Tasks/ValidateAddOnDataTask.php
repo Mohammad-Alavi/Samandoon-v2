@@ -8,22 +8,22 @@ use Illuminate\Support\Facades\Validator;
 
 class ValidateAddOnDataTask extends Task
 {
-    public function run(array $data, string $addOnType, string $validationType)
+    public function run(array $data, string $addOnName, string $validationType)
     {
         switch ($validationType) {
             case config('samandoon.validation_type.create'):
-                $this->validateDataForCreation($data, $addOnType);
+                $this->validateDataForCreation($data, $addOnName);
                 break;
             case config('samandoon.validation_type.update'):
-                $this->validateDataForUpdate($data, $addOnType);
+                $this->validateDataForUpdate($data, $addOnName);
                 break;
         }
 
     }
 
-    private function validateDataForCreation(array $data, string $addOnType)
+    private function validateDataForCreation(array $data, string $addOnName)
     {
-        switch ($addOnType) {
+        switch ($addOnName) {
             case 'article':
                 $validator = Validator::make($data, [
                     'title' => 'required',
@@ -31,12 +31,18 @@ class ValidateAddOnDataTask extends Task
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
+            case 'repost':
+                $validator = Validator::make($data, [
+                    'referenced_content_id' => 'required|exists:contents,id',
+                ]);
+                throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
+                break;
         }
     }
 
-    private function validateDataForUpdate(array $data, string $addOnType)
+    private function validateDataForUpdate(array $data, string $addOnName)
     {
-        switch ($addOnType) {
+        switch ($addOnName) {
             case 'article':
                 $validator = Validator::make($data, [
 //                    'title' => 'required',

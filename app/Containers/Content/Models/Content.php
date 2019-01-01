@@ -3,6 +3,7 @@
 namespace App\Containers\Content\Models;
 
 use App\Containers\Article\Models\Article;
+use App\Containers\Repost\Models\Repost;
 use App\Ship\Parents\Models\Model;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -37,5 +38,10 @@ class Content extends Model
     public function article()
     {
         return $this->hasOne(Article::class);
+    }
+
+    public function Repost()
+    {
+        return $this->hasOne(Repost::class);
     }
 }
