@@ -59,9 +59,8 @@ class UpdateArticleActionTest extends TestCase
             ->method('run')
             ->with($mockedMethodInputId, $mockedMethodInputData)
             ->willReturn(new Article($this->dataForUpdate));
-
-        $input = $this->transporterForAction;
-        $actual = $this->updateArticleAction->run($input);
+        
+        $actual = $this->updateArticleAction->run($mockedMethodInputData, $mockedMethodInputId);
         $expected = Article::class;
 
         $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');

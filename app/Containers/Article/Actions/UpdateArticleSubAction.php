@@ -22,7 +22,7 @@ class UpdateArticleSubAction extends SubAction {
     /**
      * @param array $data
      *
-     * @param Content $content
+     * @param $id
      * @return Article
      */
     public function run(array $data, $id): Article {

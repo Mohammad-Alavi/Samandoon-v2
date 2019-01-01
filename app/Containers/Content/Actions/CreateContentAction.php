@@ -62,25 +62,25 @@ class CreateContentAction extends Action
 
     /**
      * @param DataTransporter $transporter
+     * @throws Throwable
      */
     private function createContentAndItsAddOns(DataTransporter $transporter): void
     {
         // Create Content
         $this->content = $this->createContentTask->run();
 
-        $addOnNameList = [];
+        $addonNames = [];
         foreach ($transporter->addon as $key => $value) {
             if ($value == 'true') {
-                array_push($addOnNameList, $key);
+                array_push($addonNames, $key);
             }
         }
 
-        throw_if(empty($addOnNameList), CreateResourceFailedException::class, 'You must at least create the Article addon');
+        throw_if(!in_array('article', $addonNames), CreateResourceFailedException::class, 'You must at least create the Article addon');
 
         // Validate and return extracted and validated addon array
-        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameList, config('samandoon.validation_type.create'));
-
+        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addonNames, config('samandoon.validation_type.create'));
         // create add-ons
-        $this->createAddOnsSubAction->run($addonDataArray, $addOnNameList, $this->content);
+        $this->createAddOnsSubAction->run($addonDataArray, $addonNames, $this->content);
     }
 }

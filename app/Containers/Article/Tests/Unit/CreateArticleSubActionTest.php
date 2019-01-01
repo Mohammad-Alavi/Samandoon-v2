@@ -30,14 +30,17 @@ class CreateArticleSubActionTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $this->data = TestCase::RAW_ARTICLE_DATA;
+        $this->data = [
+            'article' => [
+                'title' => TestCase::RAW_ARTICLE_DATA['title'],
+                'text' => TestCase::RAW_ARTICLE_DATA['text']
+            ]
+        ];
 
         $this->mCreateArticleTask = $this->getMockBuilder(CreateArticleTask::class)
             ->setMethods(['run'])
             ->disableOriginalConstructor()
             ->getMock();
-
         $this->createArticleSubAction = new CreateArticleSubAction($this->mCreateArticleTask);
         $this->transporterForSubAction = new CreateArticleTransporter($this->data);
     }
