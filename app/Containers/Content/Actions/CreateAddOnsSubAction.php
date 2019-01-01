@@ -10,16 +10,16 @@ class CreateAddOnsSubAction extends SubAction
 {
     /**
      * @param array $addOnData
-     * @param array $addOnList
+     * @param array $addOnNames
      * @param Content $content
      */
-    public function run(array $addOnData, array $addOnList, Content $content)
+    public function run(array $addOnData, array $addOnNames, Content $content)
     {
-        foreach ($addOnList as $addOn) {
+        foreach ($addOnNames as $addOnName) {
             // generate action name
-            $actionName = ucfirst($addOn) . '@Create' . ucfirst($addOn) . 'SubAction';
+            $actionName = ucfirst($addOnName) . '@Create' . ucfirst($addOnName) . 'SubAction';
             // call the appropriate action
-            Apiato::call($actionName, [$addOnData[lcfirst($addOn)], $content->id]);
+            Apiato::call($actionName, [$addOnData[lcfirst($addOnName)], $content->id]);
         }
     }
 }

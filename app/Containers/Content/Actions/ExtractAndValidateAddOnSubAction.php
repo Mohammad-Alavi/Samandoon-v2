@@ -33,19 +33,18 @@ class ExtractAndValidateAddOnSubAction extends SubAction
      * @param string $validationType
      * @return array
      */
-    public function run(DataTransporter $transporter, array $addonNames, string $validationType) : array
+    public function run(DataTransporter $transporter, array $addonNames, string $validationType): array
     {
+        $validatedData = [];
         foreach ($addonNames as $addonName) {
             // Extract add-on data
             $data = $this->extractAddOnDataTask->run($transporter, $addonName);
             // Validate add-on data
             $this->validateAddOnDataTask->run($data, $addonName, $validationType);
             // store validated data
-            $validatedData = [
-                $addonName => $data
-            ];
-            // return validated data
-            return $validatedData;
+            $validatedData[$addonName] = $data;
         }
+        // return validated data
+        return $validatedData;
     }
 }
