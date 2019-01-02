@@ -2,8 +2,10 @@
 
 namespace App\Containers\Article\Models;
 
+use App\Containers\Content\Models\Content;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Article extends Model {
 
@@ -13,6 +15,7 @@ class Article extends Model {
     protected $fillable = [
         'title',
         'text',
+        'content_id'
     ];
 
     /**
@@ -48,4 +51,9 @@ class Article extends Model {
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'articles';
+
+    public function content()
+    {
+        return $this->belongsTo(Content::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Containers\Article\UI\API\Transformers;
 
 use App\Containers\Article\Models\Article;
 use App\Ship\Parents\Transformers\Transformer;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ArticleTransformer extends Transformer
 {
@@ -33,6 +34,7 @@ class ArticleTransformer extends Transformer
             'id' => $article->getHashedKey(),
             'title' => $article->title,
             'text' => $article->text,
+            'content_id' => Hashids::encode($article->content_id),
             'created_at' => $article->created_at,
             'updated_at' => $article->updated_at,
 
