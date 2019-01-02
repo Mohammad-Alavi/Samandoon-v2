@@ -7,6 +7,11 @@ use App\Containers\Content\Tasks\ValidateAddOnDataTask;
 use App\Ship\Parents\Actions\SubAction;
 use App\Ship\Transporters\DataTransporter;
 
+/**
+ * Class ExtractAndValidateAddOnSubAction
+ *
+ * @package App\Containers\Content\Actions
+ */
 class ExtractAndValidateAddOnSubAction extends SubAction
 {
     /** @var ExtractAddOnDataTask $createAddOnsSubAction */
@@ -17,7 +22,7 @@ class ExtractAndValidateAddOnSubAction extends SubAction
     /**
      * CreateContentAction constructor.
      *
-     * @param ExtractAddOnDataTask $extractAddOnDataTask
+     * @param ExtractAddOnDataTask  $extractAddOnDataTask
      * @param ValidateAddOnDataTask $validateAddOnDataTask
      */
     public function __construct(ExtractAddOnDataTask $extractAddOnDataTask,
@@ -29,8 +34,9 @@ class ExtractAndValidateAddOnSubAction extends SubAction
 
     /**
      * @param DataTransporter $transporter
-     * @param array $addonNames
-     * @param string $validationType
+     * @param array           $addonNames
+     * @param string          $validationType
+     *
      * @return array
      */
     public function run(DataTransporter $transporter, array $addonNames, string $validationType): array

@@ -10,12 +10,17 @@ use App\Ship\Transporters\DataTransporter;
 use DB;
 use Throwable;
 
+/**
+ * Class CreateContentAction
+ *
+ * @package App\Containers\Content\Actions
+ */
 class CreateContentAction extends Action
 {
     /** @var CreateContentTask $createContentTask */
     private $createContentTask;
-    /** @var CreateAddOnsSubAction $createAddOnsSubAction */
-    private $createAddOnsSubAction;
+    /** @var CRUDAddOnsSubAction $CRUDAddOnsSubAction */
+    private $CRUDAddOnsSubAction;
     /** @var ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction */
     private $extractAndValidateAddOnSubAction;
 
@@ -27,16 +32,16 @@ class CreateContentAction extends Action
     /**
      * CreateContentAction constructor.
      *
-     * @param CreateContentTask $createContentTask
+     * @param CreateContentTask                $createContentTask
      * @param ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction
-     * @param CreateAddOnsSubAction $createAddOnsSubAction
+     * @param CRUDAddOnsSubAction              $CRUDAddOnsSubAction
      */
     public function __construct(CreateContentTask $createContentTask,
                                 ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction,
-                                CreateAddOnsSubAction $createAddOnsSubAction)
+                                CRUDAddOnsSubAction $CRUDAddOnsSubAction)
     {
         $this->createContentTask = $createContentTask;
-        $this->createAddOnsSubAction = $createAddOnsSubAction;
+        $this->CRUDAddOnsSubAction = $CRUDAddOnsSubAction;
         $this->extractAndValidateAddOnSubAction = $extractAndValidateAddOnSubAction;
     }
 
@@ -62,6 +67,7 @@ class CreateContentAction extends Action
 
     /**
      * @param DataTransporter $transporter
+     *
      * @throws Throwable
      */
     private function createContentAndItsAddOns(DataTransporter $transporter): void
@@ -79,8 +85,8 @@ class CreateContentAction extends Action
         throw_if(!in_array('article', $addonNames), CreateResourceFailedException::class, 'You must at least create the Article addon');
 
         // Validate and return extracted and validated addon array
-        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addonNames, config('samandoon.validation_type.create'));
-        // create add-ons
-        $this->createAddOnsSubAction->run($addonDataArray, $addonNames, $this->content);
+        $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addonNames, config('samandoon.action_to_perform_on_addon.create'));
+        // CREATE ADD-ONS
+        $this->CRUDAddOnsSubAction->run($addonNames, $this->content, config('samandoon.action_to_perform_on_addon.create'), $addonDataArray);
     }
 }

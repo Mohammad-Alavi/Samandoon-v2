@@ -4,10 +4,12 @@ return [
     'available_add_ons' => [
         'article' => 'article',
         'repost'    => 'repost',
+        'link'    => 'link',
     ],
 
-    'validation_type' => [
+    'action_to_perform_on_addon' => [
         'create' => 'create',
         'update'    => 'update',
+        'delete'    => 'delete',
     ],
 ];

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Containers\Article\Tasks;
+namespace App\Containers\Link\Tasks;
 
-use App\Containers\Article\Data\Repositories\ArticleRepository;
+use App\Containers\Link\Data\Repositories\LinkRepository;
 use App\Ship\Exceptions\DeleteResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class DeleteArticleTask extends Task
+class DeleteLinkTask extends Task
 {
 
     protected $repository;
 
-    public function __construct(ArticleRepository $repository)
+    public function __construct(LinkRepository $repository)
     {
         $this->repository = $repository;
     }

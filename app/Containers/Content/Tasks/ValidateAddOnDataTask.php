@@ -11,10 +11,10 @@ class ValidateAddOnDataTask extends Task
     public function run(array $data, string $addOnName, string $validationType)
     {
         switch ($validationType) {
-            case config('samandoon.validation_type.create'):
+            case config('samandoon.action_to_perform_on_addon.create'):
                 $this->validateDataForCreation($data, $addOnName);
                 break;
-            case config('samandoon.validation_type.update'):
+            case config('samandoon.action_to_perform_on_addon.update'):
                 $this->validateDataForUpdate($data, $addOnName);
                 break;
         }
@@ -34,6 +34,12 @@ class ValidateAddOnDataTask extends Task
             case 'repost':
                 $validator = Validator::make($data, [
                     'referenced_content_id' => 'required|exists:contents,id',
+                ]);
+                throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
+                break;
+            case 'link':
+                $validator = Validator::make($data, [
+                    'link_url' => 'required',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
