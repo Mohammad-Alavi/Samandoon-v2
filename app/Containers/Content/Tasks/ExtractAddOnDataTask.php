@@ -29,6 +29,11 @@ class ExtractAddOnDataTask extends Task
                     return $this->extractRepost($temporaryTransporter);
                     break;
                 }
+            case 'link':
+                {
+                    return $this->extractLink($temporaryTransporter);
+                    break;
+                }
 //            case 'poll':{
 //                return $this->extractPoll($transporter);
 //                break;
@@ -63,5 +68,14 @@ class ExtractAddOnDataTask extends Task
         ]);
 
         return empty($sanitizedData['repost']) ? [] : $sanitizedData['repost'];
+    }
+
+    private function extractLink(DataTransporter $transporter): array
+    {
+        $sanitizedData = $transporter->sanitizeInput([
+            'link.link_url',
+        ]);
+
+        return empty($sanitizedData['link']) ? [] : $sanitizedData['link'];
     }
 }
