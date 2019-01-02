@@ -56,7 +56,6 @@ class UpdateContentRequest extends Request
         return [
             'id' => 'required',
             'content_id' => 'required',
-            'addon.article' => 'required',
         ];
     }
 

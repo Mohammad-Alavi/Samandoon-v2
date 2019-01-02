@@ -10,25 +10,38 @@ use App\Ship\Transporters\DataTransporter;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
+/**
+ * Class UpdateContentAction
+ *
+ * @package App\Containers\Content\Actions
+ */
 class UpdateContentAction extends Action
 {
+    /** @var Content $content */
     private $content;
-    private $updateAddOnsSubAction;
+    /** @var CRUDAddOnsSubAction $CRUDAddOnsSubAction */
+    private $CRUDAddOnsSubAction;
     private $extractAndValidateAddOnSubAction;
-    private $deleteAddOnsSubAction;
-    private $createAddOnsSubAction;
 
+    /**
+     * UpdateContentAction constructor.
+     *
+     * @param ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction
+     * @param CRUDAddOnsSubAction              $CRUDAddOnsSubAction
+     */
     public function __construct(ExtractAndValidateAddOnSubAction $extractAndValidateAddOnSubAction,
-                                DeleteAddOnsSubAction $deleteAddOnsSubAction,
-                                CreateAddOnsSubAction $createAddOnsSubAction,
-                                UpdateAddOnsSubAction $updateAddOnsSubAction)
+                                CRUDAddOnsSubAction $CRUDAddOnsSubAction)
     {
-        $this->updateAddOnsSubAction = $updateAddOnsSubAction;
-        $this->deleteAddOnsSubAction = $deleteAddOnsSubAction;
+        $this->CRUDAddOnsSubAction = $CRUDAddOnsSubAction;
         $this->extractAndValidateAddOnSubAction = $extractAndValidateAddOnSubAction;
-        $this->createAddOnsSubAction = $createAddOnsSubAction;
     }
 
+    /**
+     * @param DataTransporter $transporter
+     *
+     * @return Content|mixed
+     * @throws \Exception
+     */
     public function run(DataTransporter $transporter)
     {
         DB::beginTransaction();
@@ -45,6 +58,7 @@ class UpdateContentAction extends Action
 
     /**
      * @param DataTransporter $transporter
+     *
      * @return Content|mixed
      * @throws Throwable
      */
@@ -60,40 +74,48 @@ class UpdateContentAction extends Action
         $addOnNameListForUpdateOrCreation = [];
         $addOnNameListForCreation = [];
         $addOnNameListForUpdate = [];
-        foreach ($transporter->addon as $key => $value) {
-            if ($value == 'false') {
-                // throw exception if user tries to delete article addon
-                throw_if($key == 'article', UpdateResourceFailedException::class, 'You cannot delete the Article AddOn');
-                array_push($addOnNameListForDeletion, $key);
-            } elseif ($value == 'true') {
-                array_push($addOnNameListForUpdateOrCreation, $key);
+
+        if ($transporter->exists('addon')) {
+            foreach ($transporter->addon as $key => $value) {
+                if ($value == 'false') {
+                    array_push($addOnNameListForDeletion, $key);
+                }
+                elseif ($value == 'true') {
+                    array_push($addOnNameListForUpdateOrCreation, $key);
+                }
             }
         }
 
-        // Delete add-ons
-        $this->deleteAddOnsSubAction->run($addOnNameListForDeletion, $content);
-
         // Create add on if content doesn't have it or Update it if Content have it
-            foreach ($addOnNameListForUpdateOrCreation as $addOnName) {
-                // Create AddOn list for creation
-                if (!$content->$addOnName()->first()) {
-                    array_push($addOnNameListForCreation, $addOnName);
-                } // Create AddOn list for update
-                else {
-                    array_push($addOnNameListForUpdate, $addOnName);
-                }
+        foreach ($addOnNameListForUpdateOrCreation as $addOnName) {
+            // Create AddOn list for creation
+            if (!$content->$addOnName()->first()) {
+                array_push($addOnNameListForCreation, $addOnName);
+            } // Create AddOn list for update
+            else {
+                array_push($addOnNameListForUpdate, $addOnName);
             }
+        }
 
+        // CREATE ADD-ONS
         if (!empty($addOnNameListForCreation)) {
-            // Extract and Validate Data
-            $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameListForCreation, config('samandoon.validation_type.create'));
-            // create add-ons
-            $this->createAddOnsSubAction->run($addonDataArray, $addOnNameListForCreation, $content);
-        } elseif (!empty($addOnNameListForUpdate)) {
-            // Extract and Validate Data
-            $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameListForUpdate, config('samandoon.validation_type.update'));
-            // Update Add-ons
-            $this->updateAddOnsSubAction->run($addonDataArray, $addOnNameListForUpdate, $content);
+            // EXTRACT and VALIDATE Data for CREATION
+            $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameListForCreation, config('samandoon.action_to_perform_on_addon.create'));
+            $this->CRUDAddOnsSubAction->run($addOnNameListForCreation, $content, config('samandoon.action_to_perform_on_addon.create'), $addonDataArray);
+        }
+
+        // UPDATE ADD-ONS
+        if (!empty($addOnNameListForUpdate)) {
+            // EXTRACT and VALIDATE Data for UPDATE
+            $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addOnNameListForUpdate, config('samandoon.action_to_perform_on_addon.update'));
+            $this->CRUDAddOnsSubAction->run($addOnNameListForUpdate, $content, config('samandoon.action_to_perform_on_addon.update'), $addonDataArray);
+        }
+
+        // DELETE ADD-ONS
+        if (!empty($addOnNameListForDeletion)) {
+            // throw exception if user tries to delete article addon
+            throw_if(in_array('article', $addOnNameListForDeletion), UpdateResourceFailedException::class, 'You cannot delete the Article AddOn');
+            $this->CRUDAddOnsSubAction->run($addOnNameListForDeletion, $content, config('samandoon.action_to_perform_on_addon.delete'));
         }
 
         return $content;
