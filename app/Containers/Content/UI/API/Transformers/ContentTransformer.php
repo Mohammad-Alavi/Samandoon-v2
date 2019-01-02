@@ -4,6 +4,8 @@ namespace App\Containers\Content\UI\API\Transformers;
 
 use App\Containers\Article\UI\API\Transformers\ArticleTransformer;
 use App\Containers\Content\Models\Content;
+use App\Containers\ExternalLink\UI\API\Transformers\ExternalLinkTransformer;
+use App\Containers\Link\UI\API\Transformers\LinkTransformer;
 use App\Containers\Repost\UI\API\Transformers\RepostTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
@@ -33,6 +35,7 @@ class ContentTransformer extends Transformer
         /// Add-on transformers
         $article = new ArticleTransformer();
         $repost = new RepostTransformer();
+        $link = new LinkTransformer();
 
         $response = [
             'object' => 'Content',
@@ -43,6 +46,7 @@ class ContentTransformer extends Transformer
             'add-on' => [
                 'article' => $entity->article()->first() ? $article->transform($entity->article()->first()) : null,
                 'repost' => $entity->repost()->first() ? $repost->transform($entity->repost()->first()) : null,
+                'link' => $entity->link()->first() ? $link->transform($entity->link()->first()) : null,
             ]
         ];
 
