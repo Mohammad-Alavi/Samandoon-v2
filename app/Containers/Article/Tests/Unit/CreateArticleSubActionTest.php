@@ -3,11 +3,9 @@
 namespace App\Containers\Article\Tests\Unit;
 
 use App\Containers\Article\Actions\CreateArticleSubAction;
-use App\Containers\Article\Data\Transporters\CreateArticleTransporter;
 use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Containers\Article\Tests\TestCase;
-use App\Ship\Transporters\DataTransporter;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -22,19 +20,18 @@ class CreateArticleSubActionTest extends TestCase
     private $createArticleSubAction;
     /** @var MockObject|CreateArticleTask createArticleTask */
     private $mCreateArticleTask;
-    /** @var array $data */
-    private $data;
-    /** @var DataTransporter $transporterForSubAction */
-    private $transporterForSubAction;
+    /** @var array $dataForCreatingArticle */
+    private $dataForCreatingArticle;
 
     public function setUp()
     {
         parent::setUp();
-        $this->data = [
-            'article' => [
-                'title' => TestCase::RAW_ARTICLE_DATA['title'],
-                'text' => TestCase::RAW_ARTICLE_DATA['text']
-            ]
+
+        // this data is for creating the article
+        $this->dataForCreatingArticle = [
+            'title' => TestCase::RAW_ARTICLE_DATA['title'],
+            'text' => TestCase::RAW_ARTICLE_DATA['text'],
+            'content_id' => 1,
         ];
 
         $this->mCreateArticleTask = $this->getMockBuilder(CreateArticleTask::class)
@@ -42,18 +39,17 @@ class CreateArticleSubActionTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $this->createArticleSubAction = new CreateArticleSubAction($this->mCreateArticleTask);
-        $this->transporterForSubAction = new CreateArticleTransporter($this->data);
     }
 
     public function test_CreateArticleAndReturnAnArticleObject()
     {
         $this->mCreateArticleTask->expects($this->once())
             ->method('run')
-            ->with($this->data)
-            ->willReturn(new Article($this->data));
+            ->with($this->dataForCreatingArticle)
+            ->willReturn(new Article($this->dataForCreatingArticle));
 
-        $input = $this->transporterForSubAction;
-        $actual = $this->createArticleSubAction->run($input);
+        $input = $this->dataForCreatingArticle;
+        $actual = $this->createArticleSubAction->run($input, $input['content_id']);
         $expected = Article::class;
 
         $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of Article.');
@@ -63,8 +59,7 @@ class CreateArticleSubActionTest extends TestCase
     {
         parent::tearDown();
         unset($this->createArticleSubAction);
-        unset($this->data);
-        unset($this->transporterForSubAction);
+        unset($this->dataForCreatingArticle);
         unset($this->mCreateArticleTask);
     }
 }

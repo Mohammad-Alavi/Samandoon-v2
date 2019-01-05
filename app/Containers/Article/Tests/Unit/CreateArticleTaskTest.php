@@ -35,7 +35,7 @@ class CreateArticleTaskTest extends TestCase
         $actual = $this->createArticleTask->run($input);
         $expected = Article::class;
 
-        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article.');
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Article Class.');
     }
 
     public function test_ValidateCreatedArticleData()
