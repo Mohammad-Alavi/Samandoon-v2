@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreateLinksTable
+ */
 class CreateLinksTable extends Migration
 {
 
@@ -17,8 +20,7 @@ class CreateLinksTable extends Migration
             $table->string('link_url');
             $table->integer('content_id');
             $table->timestamps();
-            //$table->softDeletes();
-
+            $table->softDeletes();
         });
     }
 

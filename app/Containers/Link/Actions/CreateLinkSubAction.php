@@ -6,10 +6,15 @@ use App\Containers\Link\Models\Link;
 use App\Containers\Link\Tasks\CreateLinkTask;
 use App\Ship\Parents\Actions\SubAction;
 
+/**
+ * Class CreateLinkSubAction
+ *
+ * @package App\Containers\Link\Actions
+ */
 class CreateLinkSubAction extends SubAction
 {
     /**
-     * @var CreateRepostTask $createLinkTask
+     * @var CreateLinkTask $createLinkTask
      */
     protected $createLinkTask;
 
@@ -24,11 +29,11 @@ class CreateLinkSubAction extends SubAction
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      *
      * @param string $content_id
      *
-     * @return ExternalLink
+     * @return Link
      */
     public function run(array $data, string $content_id): Link
     {
