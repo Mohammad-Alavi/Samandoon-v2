@@ -3,25 +3,23 @@
 namespace App\Containers\Content\Tasks;
 
 use App\Containers\Content\Data\Repositories\ContentRepository;
-use App\Ship\Exceptions\CreateResourceFailedException;
+use App\Containers\Content\Models\Content;
+use App\Ship\Exceptions\DeleteResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
 /**
- * Class CreateContentTask
+ * Class DeleteContentTask
  *
  * @package App\Containers\Content\Tasks
  */
-class CreateContentTask extends Task
+class DeleteContentTask extends Task
 {
 
-    /**
-     * @var ContentRepository
-     */
     protected $repository;
 
     /**
-     * CreateContentTask constructor.
+     * DeleteContentTask constructor.
      *
      * @param ContentRepository $repository
      */
@@ -31,16 +29,17 @@ class CreateContentTask extends Task
     }
 
     /**
-     * @param array $data
+     * @param $id
      *
-     * @return mixed
+     * @return int
      */
-    public function run(array $data = [])
+    public function run($id)
     {
         try {
-            return $this->repository->create($data);
-        } catch (Exception $exception) {
-            throw new CreateResourceFailedException($exception->getMessage());
+            return $this->repository->delete($id);
+        }
+        catch (Exception $exception) {
+            throw new DeleteResourceFailedException();
         }
     }
 }

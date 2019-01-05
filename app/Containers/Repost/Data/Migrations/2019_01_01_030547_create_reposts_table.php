@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreateRepostsTable
+ */
 class CreateRepostsTable extends Migration
 {
 
@@ -17,8 +20,7 @@ class CreateRepostsTable extends Migration
             $table->integer('content_id');
             $table->integer('referenced_content_id');
             $table->timestamps();
-            //$table->softDeletes();
-
+            $table->softDeletes();
         });
     }
 

@@ -4,6 +4,11 @@ namespace App\Containers\Content\Data\Transporters;
 
 use App\Ship\Parents\Transporters\Transporter;
 
+/**
+ * Class GetContentTransporter
+ *
+ * @package App\Containers\Content\Data\Transporters
+ */
 class GetContentTransporter extends Transporter
 {
 
@@ -18,11 +23,11 @@ class GetContentTransporter extends Transporter
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
-        'required'   => [
+        'required' => [
             // define the properties that MUST be set
         ],
-        'default'    => [
+        'default' => [
             // provide default values for specific properties here
-        ]
+        ],
     ];
 }

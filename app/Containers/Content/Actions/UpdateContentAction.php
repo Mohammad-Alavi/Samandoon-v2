@@ -7,6 +7,7 @@ use App\Containers\Content\Models\Content;
 use App\Ship\Exceptions\UpdateResourceFailedException;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -47,6 +48,8 @@ class UpdateContentAction extends Action
         DB::beginTransaction();
         try {
             $this->content = $this->updateContentAndItsAddOns($transporter);
+            $this->content->updated_at = $this->updateUpdatedAtColumnOfContent($this->content);
+            $this->content->saveOrFail();
         } catch (Throwable $exception) {
             DB::rollBack();
             throw new UpdateResourceFailedException($exception->getMessage(), null, null, $exception->getCode());
@@ -114,10 +117,29 @@ class UpdateContentAction extends Action
         // DELETE ADD-ONS
         if (!empty($addOnNameListForDeletion)) {
             // throw exception if user tries to delete article addon
-            throw_if(in_array('article', $addOnNameListForDeletion), UpdateResourceFailedException::class, 'You cannot delete the Article AddOn');
+            throw_if(in_array(config('samandoon.available_add_ons.article'), $addOnNameListForDeletion), UpdateResourceFailedException::class, 'You cannot delete the Article AddOn');
             $this->CRUDAddOnsSubAction->run($addOnNameListForDeletion, $content, config('samandoon.action_to_perform_on_addon.delete'));
         }
 
         return $content;
+    }
+
+    /**
+     * @param Content $content
+     */
+    private function updateUpdatedAtColumnOfContent(Content $content): Carbon
+    {
+        /** @var Carbon $contentUpdatedAt */
+        $contentUpdatedAt = $content->updated_at;
+
+        foreach (config('samandoon.available_add_ons') as $addOnName) {
+            $addOn = $content->$addOnName()->withTrashed()->orderBy('updated_at', 'desc')->first();
+            if ($addOn) {
+                $contentUpdatedAt = $contentUpdatedAt->lt($addOn->created_at) ? $addOn->created_at : $contentUpdatedAt;
+                $contentUpdatedAt = $contentUpdatedAt->lt($addOn->updated_at) ? $addOn->updated_at : $contentUpdatedAt;
+                $contentUpdatedAt = $contentUpdatedAt->lt($addOn->deleted_at) ? $addOn->deleted_at : $contentUpdatedAt;
+            }
+        }
+        return $contentUpdatedAt;
     }
 }

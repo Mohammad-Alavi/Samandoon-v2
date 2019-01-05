@@ -6,6 +6,11 @@ use App\Containers\Repost\Models\Repost;
 use App\Ship\Parents\Transformers\Transformer;
 use Vinkla\Hashids\Facades\Hashids;
 
+/**
+ * Class RepostTransformer
+ *
+ * @package App\Containers\Repost\UI\API\Transformers
+ */
 class RepostTransformer extends Transformer
 {
     /**
@@ -40,7 +45,7 @@ class RepostTransformer extends Transformer
         ];
 
         $response = $this->ifAdmin([
-            'real_id'    => $entity->id,
+            'real_id' => $entity->id,
             // 'deleted_at' => $entity->deleted_at,
         ], $response);
 

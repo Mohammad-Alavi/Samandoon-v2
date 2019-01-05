@@ -6,12 +6,17 @@ use App\Containers\Content\Exceptions\AddOnTypeNotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use App\Ship\Transporters\DataTransporter;
 
+/**
+ * Class ExtractAddOnDataTask
+ *
+ * @package App\Containers\Content\Tasks
+ */
 class ExtractAddOnDataTask extends Task
 {
 
     /**
      * @param DataTransporter $transporter
-     * @param string $addOnName
+     * @param string          $addOnName
      *
      * @return array
      */
@@ -39,7 +44,7 @@ class ExtractAddOnDataTask extends Task
 //                break;
 //            }
             default:
-                throw new AddOnTypeNotFoundException();
+                throw new AddOnTypeNotFoundException('Add-on type not found: ' . $addOnName);
         }
     }
 
@@ -59,6 +64,7 @@ class ExtractAddOnDataTask extends Task
 
     /**
      * @param DataTransporter $transporter
+     *
      * @return array
      */
     private function extractRepost(DataTransporter $transporter): array
@@ -70,6 +76,11 @@ class ExtractAddOnDataTask extends Task
         return empty($sanitizedData['repost']) ? [] : $sanitizedData['repost'];
     }
 
+    /**
+     * @param DataTransporter $transporter
+     *
+     * @return array
+     */
     private function extractLink(DataTransporter $transporter): array
     {
         $sanitizedData = $transporter->sanitizeInput([
