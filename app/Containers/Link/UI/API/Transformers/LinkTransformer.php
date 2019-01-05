@@ -6,6 +6,11 @@ use App\Containers\Link\Models\Link;
 use App\Ship\Parents\Transformers\Transformer;
 use Vinkla\Hashids\Facades\Hashids;
 
+/**
+ * Class LinkTransformer
+ *
+ * @package App\Containers\Link\UI\API\Transformers
+ */
 class LinkTransformer extends Transformer
 {
     /**
