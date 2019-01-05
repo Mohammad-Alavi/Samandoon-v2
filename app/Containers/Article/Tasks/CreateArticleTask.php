@@ -8,7 +8,13 @@ use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class CreateArticleTask extends Task {
+/**
+ * Class CreateArticleTask
+ *
+ * @package App\Containers\Article\Tasks
+ */
+class CreateArticleTask extends Task
+{
 
     /**
      * @var ArticleRepository
@@ -20,7 +26,8 @@ class CreateArticleTask extends Task {
      *
      * @param ArticleRepository $repository
      */
-    public function __construct(ArticleRepository $repository) {
+    public function __construct(ArticleRepository $repository)
+    {
         $this->repository = $repository;
     }
 
@@ -29,7 +36,8 @@ class CreateArticleTask extends Task {
      *
      * @return Article
      */
-    public function run(array $data): Article {
+    public function run(array $data): Article
+    {
         try {
             return $this->repository->create($data);
         } catch (Exception $exception) {

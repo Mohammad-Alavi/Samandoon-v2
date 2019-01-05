@@ -6,7 +6,13 @@ use App\Containers\Article\Models\Article;
 use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Ship\Parents\Actions\SubAction;
 
-class CreateArticleSubAction extends SubAction {
+/**
+ * Class CreateArticleSubAction
+ *
+ * @package App\Containers\Article\Actions
+ */
+class CreateArticleSubAction extends SubAction
+{
 
     /**
      * @var CreateArticleTask $createArticleTask
@@ -18,7 +24,8 @@ class CreateArticleSubAction extends SubAction {
      *
      * @param CreateArticleTask $createArticleTask
      */
-    public function __construct(CreateArticleTask $createArticleTask) {
+    public function __construct(CreateArticleTask $createArticleTask)
+    {
         $this->createArticleTask = $createArticleTask;
     }
 
@@ -29,11 +36,12 @@ class CreateArticleSubAction extends SubAction {
      *
      * @return Article
      */
-    public function run(array $data, string $content_id): Article {
+    public function run(array $data, string $content_id): Article
+    {
         $articleData = [
-            'title'      => $data['title'],
-            'text'       => $data['text'],
-            'content_id' => $content_id
+            'title' => $data['title'],
+            'text' => $data['text'],
+            'content_id' => $content_id,
         ];
         $article = $this->createArticleTask->run($articleData);
 

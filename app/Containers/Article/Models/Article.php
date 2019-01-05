@@ -3,11 +3,17 @@
 namespace App\Containers\Article\Models;
 
 use App\Containers\Content\Models\Content;
-use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
-use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model {
+/**
+ * Class Article
+ *
+ * @package App\Containers\Article\Models
+ */
+class Article extends Model
+{
+    use SoftDeletes;
 
     /**
      * @var array
@@ -15,7 +21,7 @@ class Article extends Model {
     protected $fillable = [
         'title',
         'text',
-        'content_id'
+        'content_id',
     ];
 
     /**
@@ -52,6 +58,9 @@ class Article extends Model {
      */
     protected $resourceKey = 'articles';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function content()
     {
         return $this->belongsTo(Content::class);

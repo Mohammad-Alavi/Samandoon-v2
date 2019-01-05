@@ -6,6 +6,11 @@ use App\Containers\Article\Models\Article;
 use App\Ship\Parents\Transformers\Transformer;
 use Vinkla\Hashids\Facades\Hashids;
 
+/**
+ * Class ArticleTransformer
+ *
+ * @package App\Containers\Article\UI\API\Transformers
+ */
 class ArticleTransformer extends Transformer
 {
     /**
@@ -41,7 +46,7 @@ class ArticleTransformer extends Transformer
         ];
 
         $response = $this->ifAdmin([
-            'real_id'    => $article->id,
+            'real_id' => $article->id,
             // 'deleted_at' => $entity->deleted_at,
         ], $response);
 
