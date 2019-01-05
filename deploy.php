@@ -7,11 +7,13 @@ require 'recipe/laravel.php';
 set('ssh_type', 'native');
 set('ssh_multiplexing', false);
 
-set('repository', 'https://gitlab.com/denora/kabootar-api.git');
+set('repository', 'https://github.com/Mohammad-Alavi/Samandoon-v2');
 
 add('shared_files', []);
 add('shared_dirs', []);
 add('writable_dirs', []);
+
+set('branch', 'develop');
 
 // Servers
 
