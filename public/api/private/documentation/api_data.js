@@ -18,6 +18,19 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "array",
+            "allowedValues": [
+              "article",
+              "repost",
+              "link"
+            ],
+            "optional": false,
+            "field": "addon",
+            "defaultValue": "article=>true",
+            "description": "<p>example: addon[article =&gt; true, repost =&gt; true]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "array",
             "optional": false,
             "field": "article",
             "description": "<p>article[title =&gt; title here, text =&gt; text here]</p>"
@@ -26,9 +39,15 @@ define({ "api": [
             "group": "Parameter",
             "type": "array",
             "optional": false,
-            "field": "addon",
-            "defaultValue": "[article=>true",
-            "description": "<p>addon[addonname =&gt; true, addonname2 =&gt; false]</p>"
+            "field": "repost",
+            "description": "<p>repost[referenced_content_id =&gt; reloj65plp4v8ndy]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "array",
+            "optional": false,
+            "field": "link",
+            "description": "<p>link[link_url =&gt; https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]</p>"
           }
         ]
       }
@@ -39,11 +58,36 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"8ykwxd4ggj4ampj9\",\n        \"created_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"kpn8rx3lde4wamge\",\n                \"title\": \"این یک نوشته است\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"8ykwxd4ggj4ampj9\",\n                \"created_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
           "type": "json"
         }
       ]
     }
+  },
+  {
+    "group": "Content",
+    "name": "deleteContent",
+    "type": "DELETE",
+    "url": "/v1/user/:id/content/:content_id",
+    "title": "Delete Content",
+    "description": "<p>Deletes the given Content</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated|Owner"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Content/UI/API/Routes/DeleteContent.v1.private.php",
+    "groupTitle": "Content"
   },
   {
     "group": "Content",
@@ -64,7 +108,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"8ykwxd4ggj4ampj9\",\n        \"created_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2018-12-30 02:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"kpn8rx3lde4wamge\",\n                \"title\": \"این یک نوشته است\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"8ykwxd4ggj4ampj9\",\n                \"created_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2018-12-30 02:46:30.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
           "type": "json"
         }
       ]
@@ -75,12 +119,12 @@ define({ "api": [
     "name": "updateContent",
     "type": "PUT",
     "url": "/v1/user/:id/content/:content_id",
-    "title": "Endpoint title here..",
-    "description": "<p>Endpoint description here..</p>",
+    "title": "Update Content",
+    "description": "<p>Update Content</p>",
     "version": "1.0.0",
     "permission": [
       {
-        "name": "none"
+        "name": "Authenticated|Owner"
       }
     ],
     "parameter": {
@@ -88,25 +132,44 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
+            "type": "array",
+            "allowedValues": [
+              "article",
+              "repost",
+              "link"
+            ],
+            "optional": true,
+            "field": "addon",
+            "description": "<p>example: addon[article =&gt; true, repost =&gt; true]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "array",
+            "optional": true,
+            "field": "article",
+            "description": "<p>article[title =&gt; title here, text =&gt; text here]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "array",
+            "optional": true,
+            "field": "link",
+            "description": "<p>link[link_url =&gt; https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]</p>"
           }
         ]
       }
     },
+    "filename": "app/Containers/Content/UI/API/Routes/UpdateContent.v1.private.php",
+    "groupTitle": "Content",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/Content/UI/API/Routes/UpdateContent.v1.private.php",
-    "groupTitle": "Content"
+    }
   },
   {
     "group": "Localization",
