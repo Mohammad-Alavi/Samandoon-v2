@@ -5,6 +5,11 @@ namespace App\Containers\Article\Data\Seeders;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Seeders\Seeder;
 
+/**
+ * Class ArticlePermissionSeeder
+ *
+ * @package App\Containers\Article\Data\Seeders
+ */
 class ArticlePermissionSeeder extends Seeder {
 
     public function run() {

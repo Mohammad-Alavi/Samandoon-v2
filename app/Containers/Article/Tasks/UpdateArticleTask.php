@@ -8,7 +8,13 @@ use App\Ship\Exceptions\UpdateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class UpdateArticleTask extends Task {
+/**
+ * Class UpdateArticleTask
+ *
+ * @package App\Containers\Article\Tasks
+ */
+class UpdateArticleTask extends Task
+{
 
     /**
      * @var ArticleRepository
@@ -20,7 +26,8 @@ class UpdateArticleTask extends Task {
      *
      * @param ArticleRepository $repository
      */
-    public function __construct(ArticleRepository $repository) {
+    public function __construct(ArticleRepository $repository)
+    {
         $this->repository = $repository;
     }
 
@@ -30,7 +37,8 @@ class UpdateArticleTask extends Task {
      *
      * @return Article
      */
-    public function run(int $id, array $data): Article {
+    public function run(int $id, array $data): Article
+    {
         try {
             return $this->repository->update($data, $id);
         } catch (Exception $exception) {
