@@ -21,20 +21,19 @@ class UpdateArticleActionTest extends TestCase
     private $updateArticleAction;
     /** @var array $dataForUpdate */
     private $dataForUpdate;
-    /** @var DataTransporter $transporterForAction */
-    private $transporterForAction;
     /** @var Article $newArticle */
     private $newArticle;
     /** @var MockObject|UpdateArticleTask $mUpdateArticleTask */
     private $mUpdateArticleTask;
 
+    /**
+     * @throws \Throwable
+     */
     public function setUp()
     {
         parent::setUp();
 
-        $this->newArticle = $this->createNewArticleAndSaveItToDBOrFail(TestCase::RAW_ARTICLE_DATA);
         $this->dataForUpdate = [
-            'id' => $this->newArticle->id,
             'title' => 'This is da new data for update',
             'text' => 'And this is dat new data text and its awesome cus you now it.',
         ];
@@ -50,7 +49,6 @@ class UpdateArticleActionTest extends TestCase
 
     public function test_UpdateArticleAndReturnAnArticleObj()
     {
-        $mockedMethodInputId = $this->transporterForAction->id;
         $mockedMethodInputData = [
             'title' => $this->transporterForAction->title,
             'text' => $this->transporterForAction->text,
