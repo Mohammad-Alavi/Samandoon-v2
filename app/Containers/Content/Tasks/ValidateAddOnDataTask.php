@@ -6,8 +6,20 @@ use App\Ship\Exceptions\ValidationFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class ValidateAddOnDataTask
+ *
+ * @package App\Containers\Content\Tasks
+ */
 class ValidateAddOnDataTask extends Task
 {
+    /**
+     * @param array  $data
+     * @param string $addOnName
+     * @param string $validationType
+     *
+     * @throws \Throwable
+     */
     public function run(array $data, string $addOnName, string $validationType)
     {
         switch ($validationType) {
@@ -21,6 +33,12 @@ class ValidateAddOnDataTask extends Task
 
     }
 
+    /**
+     * @param array  $data
+     * @param string $addOnName
+     *
+     * @throws \Throwable
+     */
     private function validateDataForCreation(array $data, string $addOnName)
     {
         switch ($addOnName) {
@@ -46,6 +64,12 @@ class ValidateAddOnDataTask extends Task
         }
     }
 
+    /**
+     * @param array  $data
+     * @param string $addOnName
+     *
+     * @throws \Throwable
+     */
     private function validateDataForUpdate(array $data, string $addOnName)
     {
         switch ($addOnName) {

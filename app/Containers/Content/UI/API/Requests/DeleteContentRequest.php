@@ -5,9 +5,9 @@ namespace App\Containers\Content\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class CreateContentRequest.
+ * Class DeleteContentRequest.
  */
-class CreateContentRequest extends Request
+class DeleteContentRequest extends Request
 {
 
     /**
@@ -15,7 +15,7 @@ class CreateContentRequest extends Request
      *
      * @var string
      */
-    protected $transporter = \App\Containers\Content\Data\Transporters\CreateContentTransporter::class;
+    protected $transporter = \App\Containers\Content\Data\Transporters\DeleteContentTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -24,7 +24,7 @@ class CreateContentRequest extends Request
      */
     protected $access = [
         'permissions' => '',
-        'roles' => '',
+        'roles'       => '',
     ];
 
     /**
@@ -33,8 +33,8 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'id',
-        'repost.referenced_content_id',
+         'id',
+         'content_id',
     ];
 
     /**
@@ -44,7 +44,8 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'id',
+         'id',
+        'content_id',
     ];
 
     /**
@@ -54,10 +55,7 @@ class CreateContentRequest extends Request
     {
         return [
             'id' => 'required',
-//            'article.title' => 'required',
-//            'article.text' => 'required',
-            'addon.article' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'content_id' => 'required',
         ];
     }
 

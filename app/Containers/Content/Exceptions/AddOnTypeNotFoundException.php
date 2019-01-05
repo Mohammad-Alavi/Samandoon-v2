@@ -5,7 +5,13 @@ namespace App\Containers\Content\Exceptions;
 use App\Ship\Parents\Exceptions\Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class AddOnTypeNotFoundException extends Exception {
+/**
+ * Class AddOnTypeNotFoundException
+ *
+ * @package App\Containers\Content\Exceptions
+ */
+class AddOnTypeNotFoundException extends Exception
+{
     /**
      * @var int
      */

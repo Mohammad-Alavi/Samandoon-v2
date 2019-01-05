@@ -6,6 +6,11 @@ use App\Containers\Repost\Models\Repost;
 use App\Containers\Repost\Tasks\CreateRepostTask;
 use App\Ship\Parents\Actions\SubAction;
 
+/**
+ * Class CreateRepostSubAction
+ *
+ * @package App\Containers\Repost\Actions
+ */
 class CreateRepostSubAction extends SubAction
 {
     /**
@@ -24,7 +29,7 @@ class CreateRepostSubAction extends SubAction
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      *
      * @param string $content_id
      *

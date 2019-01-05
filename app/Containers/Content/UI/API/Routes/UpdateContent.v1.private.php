@@ -10,8 +10,9 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated|Owner
  *
- * @apiParam           [array] article article[title => title here, text => text here]
- * @apiParam           {array} addon =[article=>true] addon[addonname => true, addonname2 => false]
+ * @apiParam           {array=article,repost,link} [addon] example: addon[article => true, repost => true]
+ * @apiParam           {array} [article] article[title => title here, text => text here]
+ * @apiParam           {array} [link] link[link_url => https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]
  *
  * @apiUse             ContentSuccessSingleResponse
  */

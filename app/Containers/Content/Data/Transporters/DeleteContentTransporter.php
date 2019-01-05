@@ -4,12 +4,7 @@ namespace App\Containers\Content\Data\Transporters;
 
 use App\Ship\Parents\Transporters\Transporter;
 
-/**
- * Class UpdateContentTransporter
- *
- * @package App\Containers\Content\Data\Transporters
- */
-class UpdateContentTransporter extends Transporter
+class DeleteContentTransporter extends Transporter
 {
 
     /**
@@ -23,11 +18,11 @@ class UpdateContentTransporter extends Transporter
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
-        'required' => [
+        'required'   => [
             // define the properties that MUST be set
         ],
-        'default' => [
+        'default'    => [
             // provide default values for specific properties here
-        ],
+        ]
     ];
 }
