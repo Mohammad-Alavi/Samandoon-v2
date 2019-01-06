@@ -5,12 +5,12 @@ namespace App\Containers\Comment\Tests\Unit;
 use App\Containers\Comment\Tests\TestCase;
 
 /**
- * Class CreateCommentTest.
+ * Class CreateCommentTaskTest.
  *
  * @group comment
  * @group unit
  */
-class CreateCommentTest extends TestCase
+class CreateCommentTaskTest extends TestCase
 {
 
     /**
