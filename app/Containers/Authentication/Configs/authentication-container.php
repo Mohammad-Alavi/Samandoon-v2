@@ -70,10 +70,10 @@ return [
         |
         */
         'allowed_login_username_types'     => [
-            'email',
-            //'phone',
+//            'email',
+            'phone',
         ],
-        'allowed_login_password_type'      => 'password', //  must be 'password' or 'one_time_password'
+        'allowed_login_password_type'      => 'one_time_password', //  must be 'password' or 'one_time_password'
 
 
         /*
@@ -83,7 +83,7 @@ return [
          * e.g: 120 (which means 2 minutes)
          *
          */
-        'one_time_password_expiration_age' => 12000,
+        'one_time_password_expiration_age' => 120,
     ],
 
 ];
