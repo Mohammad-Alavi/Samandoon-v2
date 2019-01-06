@@ -18,7 +18,7 @@ class UpdateUserRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => 'update-users',
+        'permissions' => '',
         'roles'       => '',
     ];
 
