@@ -4,19 +4,16 @@
  * @apiGroup           Comment
  * @apiName            createComment
  *
- * @api                {POST} /v1/content/:content_id/comment Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {POST} /v1/content/:content_id/comment Create Comment
+ * @apiDescription     Create a Comment
  *
  * @apiVersion         1.0.0
- * @apiPermission      none
+ * @apiPermission      Authorized
  *
- * @apiParam           {String}  parameters here..
+ * @apiParam           {String} body Comment text
+ * @apiParam           {String} [parent_id] Parent id of the comment
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * @apiUse             CommentSuccessSingleResponse
  */
 
 /** @var Route $router */
