@@ -42,12 +42,11 @@ class ArticleTransformer extends Transformer
             'content_id' => Hashids::encode($article->content_id),
             'created_at' => $article->created_at,
             'updated_at' => $article->updated_at,
-
         ];
 
         $response = $this->ifAdmin([
             'real_id' => $article->id,
-            // 'deleted_at' => $entity->deleted_at,
+             'deleted_at' => $article->deleted_at,
         ], $response);
 
         return $response;
