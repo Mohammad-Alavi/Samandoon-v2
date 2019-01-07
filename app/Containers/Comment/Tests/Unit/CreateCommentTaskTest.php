@@ -2,7 +2,12 @@
 
 namespace App\Containers\Comment\Tests\Unit;
 
+use App\Containers\Comment\Models\Comment;
+use App\Containers\Comment\Tasks\CreateCommentTask;
 use App\Containers\Comment\Tests\TestCase;
+use App\Containers\Content\Models\Content;
+use App\Containers\User\Models\User;
+use Illuminate\Support\Facades\App;
 
 /**
  * Class CreateCommentTaskTest.
@@ -12,28 +17,55 @@ use App\Containers\Comment\Tests\TestCase;
  */
 class CreateCommentTaskTest extends TestCase
 {
+    /** @var CreateCommentTask $createCommentTask */
+    private $createCommentTask;
+    /** @var Content $content */
+    private $content;
+    /** @var User $user */
+    private $user;
+    /** @var array $data */
+    private $data;
 
-    /**
-     * @test
-     */
-    public function test_()
+    public function setUp()
     {
-        // create a data object
-        $data = [
-            // 'key' => 'value',
+        parent::setUp();
+
+        $this->content = $this->createNewContentAndSaveItToDBOrFail();
+        $this->user = $this->createNewUserAndSaveItToDBOrFail();
+        $this->createCommentTask = App::make(CreateCommentTask::class);
+        $this->data = [
+            'body' => TestCase::RAW_COMMENT_DATA['body'],
+            'content_id' => $this->content->id,
+            'user_id' => $this->user->id,
+            'parent_id' => 631,
         ];
+    }
 
-        /**
-         * you may want to do something like:
-         *
-         * 1) create a new Transporter with this data
-         * 2) create a specific Action or Task
-         * 3) pass the Transporter to the Action / Task
-         * 4) assert that everything is correct!
-         *
-         */
+    public function test_CreateCommentAndReturnAnCommentObject()
+    {
+        $input = $this->data;
+        $actual = $this->createCommentTask->run($input);
+        $expected = Comment::class;
 
-        // assert something here
-        $this->assertEquals(true, true);
+        $this->assertInstanceOf($expected, $actual, 'The returned object is not an instance of the Comment Class.');
+    }
+
+    public function test_ValidateCreatedCommentData()
+    {
+        $input = $this->data;
+        $actual = $this->createCommentTask->run($input);
+        $expected = $input;
+
+        $this->assertEquals($expected['body'], $actual->body);
+        $this->assertEquals($expected['content_id'], $actual->content_id);
+        $this->assertEquals($expected['user_id'], $actual->user_id);
+        $this->assertEquals($expected['parent_id'], $actual->parent_id);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->createCommentTask);
+        unset($this->data);
     }
 }
