@@ -3,6 +3,7 @@
 namespace App\Containers\Comment\Models;
 
 use App\Containers\Content\Models\Content;
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 
 /**
@@ -47,5 +48,13 @@ class Comment extends Model
     public function content()
     {
         return $this->belongsTo(Content::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
