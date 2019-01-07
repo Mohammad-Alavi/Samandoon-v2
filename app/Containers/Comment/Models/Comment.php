@@ -2,12 +2,21 @@
 
 namespace App\Containers\Comment\Models;
 
+use App\Containers\Content\Models\Content;
 use App\Ship\Parents\Models\Model;
 
+/**
+ * Class Comment
+ *
+ * @package App\Containers\Comment\Models
+ */
 class Comment extends Model
 {
     protected $fillable = [
-
+        'body',
+        'content_id',
+        'user_id',
+        'parent_id',
     ];
 
     protected $attributes = [
@@ -31,4 +40,12 @@ class Comment extends Model
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'comments';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function content()
+    {
+        return $this->belongsTo(Content::class);
+    }
 }
