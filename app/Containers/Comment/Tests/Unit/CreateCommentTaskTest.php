@@ -66,6 +66,8 @@ class CreateCommentTaskTest extends TestCase
     {
         parent::tearDown();
         unset($this->createCommentTask);
+        unset($this->content);
+        unset($this->user);
         unset($this->data);
     }
 }
