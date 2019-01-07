@@ -13,12 +13,17 @@ class CreateCommentTransporter extends Transporter
     protected $schema = [
         'type' => 'object',
         'properties' => [
-            // enter all properties here
-
+            'body',
+            'content_id',
+            'user_id',
+            'parent_id',
             // allow for undefined properties
             // 'additionalProperties' => true,
         ],
         'required'   => [
+            'body',
+            'content_id',
+            'user_id',
             // define the properties that MUST be set
         ],
         'default'    => [
