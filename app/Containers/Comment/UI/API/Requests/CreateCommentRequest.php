@@ -33,7 +33,8 @@ class CreateCommentRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'content_id',
+        'parent_id'
     ];
 
     /**
@@ -43,7 +44,7 @@ class CreateCommentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'content_id',
     ];
 
     /**
@@ -52,7 +53,9 @@ class CreateCommentRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
+             'body' => 'required',
+             'content_id' => 'required',
+             'parent_id' => 'exists:comments,id',
             // '{user-input}' => 'required|max:255',
         ];
     }
