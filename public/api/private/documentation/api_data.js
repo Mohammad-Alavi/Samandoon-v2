@@ -1,5 +1,50 @@
 define({ "api": [
   {
+    "group": "Comment",
+    "name": "createComment",
+    "type": "POST",
+    "url": "/v1/content/:content_id/comment",
+    "title": "Create Comment",
+    "description": "<p>Create a Comment</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authorized"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "body",
+            "description": "<p>Comment text</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "parent_id",
+            "description": "<p>Parent id of the comment</p>"
+          }
+        ]
+      }
+    },
+    "filename": "app/Containers/Comment/UI/API/Routes/CreateComment.v1.private.php",
+    "groupTitle": "Comment",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Comment\",\n        \"id\": \"qmv7dk48x5b690wx\",\n        \"body\": \"شسیشسی\",\n        \"content_id\": \"eq6am74064z0vpbn\",\n        \"user_id\": \"bml0wd39b5pkznag\",\n        \"parent_id\": \"qnwmkv5704blag6r\",\n        \"created_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "group": "Content",
     "name": "createContent",
     "type": "POST",
