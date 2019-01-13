@@ -83,7 +83,7 @@ return [
          * e.g: 120 (which means 2 minutes)
          *
          */
-        'one_time_password_expiration_age' => 120,
+        'one_time_password_expiration_age' => 150,
     ],
 
 ];
