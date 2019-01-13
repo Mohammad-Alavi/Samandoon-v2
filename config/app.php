@@ -145,6 +145,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Zarinpal\Laravel\ZarinpalServiceProvider::class,
 
         /*
          * Application Service Providers...

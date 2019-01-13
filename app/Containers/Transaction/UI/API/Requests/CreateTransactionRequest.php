@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Containers\User\UI\API\Requests;
+namespace App\Containers\Transaction\UI\API\Requests;
 
+use App\Containers\Transaction\Data\Transporters\CreateTransactionTransporter;
 use App\Ship\Parents\Requests\Request;
 
-/**
- * Class UpdateUserRequest.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class UpdateUserRequest extends Request
-{
+class CreateTransactionRequest extends Request {
+
+    /**
+     * The assigned Transporter for this Request
+     *
+     * @var string
+     */
+    protected $transporter = CreateTransactionTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -28,42 +30,36 @@ class UpdateUserRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'id',
+        // 'id',
     ];
 
     /**
-     * Defining the URL parameters (`/stores/999/items`) allows applying
+     * Defining the URL parameters (e.g, `/user/{id}`) allows applying
      * validation rules on them and allows accessing them like request data.
      *
      * @var  array
      */
     protected $urlParameters = [
-        'id',
+        // 'id',
     ];
 
     /**
      * @return  array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'email'    => 'email|unique:users,email',
-            'id'       => 'required|exists:users,id',
-            'password' => 'min:6|max:40',
-            'name'     => 'min:2|max:50',
+            // 'id' => 'required',
+            // '{user-input}' => 'required|max:255',
+            'amount' => 'required|integer'
         ];
     }
 
     /**
      * @return  bool
      */
-    public function authorize()
-    {
-        // is this an admin who has access to permission `update-users`
-        // or the user is updating his own object (is the owner).
-
+    public function authorize() {
         return $this->check([
-            'hasAccess|isOwner',
+            'hasAccess',
         ]);
     }
 }

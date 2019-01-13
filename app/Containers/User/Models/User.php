@@ -4,6 +4,7 @@ namespace App\Containers\User\Models;
 
 use App\Containers\Article\Models\Article;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
+use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
 
 class User extends UserModel {
@@ -75,8 +76,18 @@ class User extends UserModel {
         'remember_token',
     ];
 
-    public function Article()
-    {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function Article() {
         return $this->hasMany(Article::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
+
 }
