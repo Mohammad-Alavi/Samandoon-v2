@@ -21,13 +21,13 @@ class CreateUsersTable extends Migration {
             $table->string('phone')->unique()->nullable();
             $table->string('gender')->nullable();
             $table->string('birth')->nullable();
-            $table->integer('points')->default(0);
+            $table->unsignedBigInteger('points')->default(0);
             $table->boolean('is_client')->default(false);
             $table->boolean('is_phone_confirmed')->default(false);
             $table->boolean('is_email_confirmed')->default(false);
             $table->boolean('is_subscription_expired')->default(true);
-            $table->timestamp('password_updated_at')->default(Carbon::now());
-            $table->timestamp('one_time_password_updated_at')->default(Carbon::now());
+            $table->timestamp('password_updated_at')->nullable();
+            $table->timestamp('one_time_password_updated_at')->nullable();
             $table->timestamp('subscription_expired_at')->default(Carbon::now());
 
             $table->rememberToken();
