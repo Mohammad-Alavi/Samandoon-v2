@@ -1,0 +1,6 @@
+{
+  "name": "apiato/transaction",
+  "description": "Transaction Container for apiato.",
+  "require": {
+  }
+}

@@ -4,11 +4,10 @@ namespace App\Containers\User\Models;
 
 use App\Containers\Article\Models\Article;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
-use App\Containers\Comment\Models\Comment;
+use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
 
-class User extends UserModel
-{
+class User extends UserModel {
 
     use AuthorizationTrait;
 
@@ -46,9 +45,9 @@ class User extends UserModel
      * @var array
      */
     protected $casts = [
-        'is_client' => 'boolean',
-        'is_phone_confirmed' => 'boolean',
-        'is_email_confirmed' => 'boolean',
+        'is_client'               => 'boolean',
+        'is_phone_confirmed'      => 'boolean',
+        'is_email_confirmed'      => 'boolean',
         'is_subscription_expired' => 'boolean',
     ];
 
@@ -80,16 +79,15 @@ class User extends UserModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function article()
-    {
+    public function Article() {
         return $this->hasMany(Article::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
     }
+
 }
