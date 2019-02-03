@@ -5,6 +5,7 @@ namespace App\Containers\Content\Models;
 use App\Containers\Article\Models\Article;
 use App\Containers\Link\Models\Link;
 use App\Containers\Repost\Models\Repost;
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class Content extends Model
     use SoftDeletes;
 
     protected $fillable = [
-
+        'user_id'
     ];
 
     protected $attributes = [
@@ -91,5 +92,13 @@ class Content extends Model
 
             parent::delete();
         });
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(user::class);
     }
 }
