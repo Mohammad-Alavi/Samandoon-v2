@@ -45,7 +45,7 @@ class ContentTransformer extends Transformer
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
-            'user' => $userTransform->transform($entity->user()->first()),
+            'user' => $userTransform->transform($entity->user),
         ];
 
         $response = $this->ifAdmin([
@@ -71,8 +71,8 @@ class ContentTransformer extends Transformer
             // AddOn transformer class
             $addOnTransformer = new $addOnTransformer();
             // AddOn transformer array
-            $addOnTransformerArray['add-on'][$addOnName] = $content->$addOnName()->first() ?
-                $addOnTransformer->transform($content->$addOnName()->first()) :
+            $addOnTransformerArray['add-on'][$addOnName] = $content->$addOnName ?
+                $addOnTransformer->transform($content->$addOnName) :
                 null;
         }
         return $addOnTransformerArray;

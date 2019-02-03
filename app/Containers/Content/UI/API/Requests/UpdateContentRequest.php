@@ -35,6 +35,7 @@ class UpdateContentRequest extends Request
     protected $decode = [
          'id',
          'content_id',
+        'repost.referenced_content_id',
     ];
 
     /**
