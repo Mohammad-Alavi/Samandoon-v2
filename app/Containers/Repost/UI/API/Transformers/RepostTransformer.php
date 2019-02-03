@@ -48,12 +48,11 @@ class RepostTransformer extends Transformer
             'object' => 'Repost',
             'id' => $entity->getHashedKey(),
             'content_id' => Hashids::encode($entity->content_id),
-            'created_at' => $entity->created_at,
-            'updated_at' => $entity->updated_at,
             'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
             'referenced_content_user' => $userTransform->transform($referenced_content->user),
-            'referenced_content_article_text' => $referenced_content->article->text
-
+            'referenced_content_article_text' => $referenced_content->article->text,
+            'referenced_content_created_at' => $referenced_content->created_at,
+            'referenced_content_updated_at' => $referenced_content->updated_at,
         ];
 
         $response = $this->ifAdmin([
