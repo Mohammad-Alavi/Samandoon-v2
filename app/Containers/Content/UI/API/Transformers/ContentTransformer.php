@@ -3,6 +3,7 @@
 namespace App\Containers\Content\UI\API\Transformers;
 
 use App\Containers\Content\Models\Content;
+use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
 /**
@@ -33,6 +34,7 @@ class ContentTransformer extends Transformer
      */
     public function transform(Content $entity)
     {
+        $userTransform = new UserTransformer();
         /// Returns add-on transformers
         /// Generates add-on transformers automatically
         $addonArray = $this->addOnsTransformerGenerator($entity);
@@ -43,7 +45,7 @@ class ContentTransformer extends Transformer
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
-            'user' => $entity->user()->first(),
+            'user' => $userTransform->transform($entity->user()->first()),
         ];
 
         $response = $this->ifAdmin([
