@@ -56,7 +56,6 @@ class ExtractAddOnDataTask extends Task
     private function extractArticle(DataTransporter $transporter): array
     {
         $sanitizedData = $transporter->sanitizeInput([
-            'article.title',
             'article.text',
         ]);
         return empty($sanitizedData['article']) ? [] : $sanitizedData['article'];
