@@ -35,7 +35,7 @@ class CreateContentTask extends Task
      *
      * @return mixed
      */
-    public function run(array $data = [])
+    public function run(array $data)
     {
         try {
             return $this->repository->create($data);

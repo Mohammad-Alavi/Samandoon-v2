@@ -73,7 +73,7 @@ class CreateContentAction extends Action
     private function createContentAndItsAddOns(DataTransporter $transporter): void
     {
         // Create Content
-        $this->content = $this->createContentTask->run();
+        $this->content = $this->createContentTask->run(['user_id' => $transporter->id]);
 
         $addonNames = [];
         foreach ($transporter->addon as $key => $value) {
