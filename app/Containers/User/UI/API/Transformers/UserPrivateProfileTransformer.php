@@ -46,6 +46,11 @@ class UserPrivateProfileTransformer extends Transformer {
         return $response;
     }
 
+    /**
+     * @param User $user
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
     public function includeRoles(User $user) {
         return $this->collection($user->roles, new RoleTransformer());
     }
