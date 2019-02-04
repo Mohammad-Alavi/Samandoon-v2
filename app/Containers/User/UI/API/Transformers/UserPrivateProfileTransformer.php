@@ -34,8 +34,8 @@ class UserPrivateProfileTransformer extends Transformer {
         $response = [
             'user' => $userTransformer->transform($user),
 
-//            'settings' => $settings,
-//            'stats'    => $stats,
+            //            'settings' => $settings,
+            //            'stats'    => $stats,
         ];
 
         $response = $this->ifAdmin([
