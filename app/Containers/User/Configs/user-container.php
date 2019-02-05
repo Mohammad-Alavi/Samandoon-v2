@@ -23,7 +23,7 @@ return [
    | Insert the length of auto generated password.
    |
    */
-    'password'                    => [
+    'password' => [
         'one-time-password-length' => 5,
     ],
 
@@ -36,12 +36,18 @@ return [
    | Insert all tokens needed to send sms through `KAVE-NEGAR` sms provider
    |
    */
-    'sms'                         => [
+    'sms' => [
         'kavenegar' => [
-            'api-key'                     => '53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942',
-            'password-verification-token' => 'kabootar-verify',
-            'points-added-token'          => 'ivisitor-payment-succeed',
-        ]
+            'api-key' => '53325932454A5273416461524C302B4E39576B5A4F6538796275507836776942',
+            'password-verification-token' => 'samandoon-login-code',
+            'points-added-token' => 'ivisitor-payment-succeed',
+        ],
     ],
 
+    'avatar' => [
+        'thumb' => [
+            'width' => 200,
+            'height' => 200,
+        ],
+    ],
 ];
