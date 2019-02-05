@@ -3,25 +3,17 @@
 namespace App\Containers\User\Models;
 
 use App\Containers\Authorization\Traits\AuthorizationTrait;
-use App\Containers\Payment\Contracts\ChargeableInterface;
-use App\Containers\Payment\Models\PaymentAccount;
-use App\Containers\Payment\Traits\ChargeableTrait;
+use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-/**
- * Class User.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class User extends UserModel implements ChargeableInterface
-{
+class User extends UserModel implements HasMedia {
 
-    use ChargeableTrait;
     use AuthorizationTrait;
-
+    use HasMediaTrait;
     /**
-     * The database table used by the model.
-     *
      * @var string
      */
     protected $table = 'users';
@@ -32,29 +24,33 @@ class User extends UserModel implements ChargeableInterface
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'nick_name',
         'email',
+        'phone',
         'password',
-        'device',
-        'platform',
+        'one_time_password',
+        'points',
         'gender',
         'birth',
-        'social_provider',
-        'social_token',
-        'social_refresh_token',
-        'social_expires_in',
-        'social_token_secret',
-        'social_id',
-        'social_avatar',
-        'social_avatar_original',
-        'social_nickname',
-        'confirmed',
         'is_client',
+        'is_phone_confirmed',
+        'is_email_confirmed',
+        'is_subscription_expired',
+        'password_updated_at',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
-        'is_client' => 'boolean',
-        'confirmed' => 'boolean',
+        'is_client'               => 'boolean',
+        'is_phone_confirmed'      => 'boolean',
+        'is_email_confirmed'      => 'boolean',
+        'is_subscription_expired' => 'boolean',
     ];
 
     /**
@@ -66,6 +62,9 @@ class User extends UserModel implements ChargeableInterface
         'created_at',
         'updated_at',
         'deleted_at',
+        'password_updated_at',
+        'one_time_password_updated_at',
+        'subscription_expired_at',
     ];
 
     /**
@@ -75,12 +74,36 @@ class User extends UserModel implements ChargeableInterface
      */
     protected $hidden = [
         'password',
+        'one_time_password',
         'remember_token',
     ];
 
-    public function paymentAccounts()
+    /**
+     * @param Media|null $media
+     *
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null)
     {
-        return $this->hasMany(PaymentAccount::class);
+        $this->addMediaConversion('thumb')
+            ->width((int)config('user-container.avatar.thumb.width'))
+            ->height((int)'user-container.avatar.thumb.height')
+            ->keepOriginalImageFormat()
+            ->nonQueued()
+            ->performOnCollections('avatar');
+    }
+
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('avatar')
+        ->singleFile();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
     }
 
 }

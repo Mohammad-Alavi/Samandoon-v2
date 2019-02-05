@@ -6,13 +6,7 @@ use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Transformers\Transformer;
 
-/**
- * Class UserTransformer.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
- */
-class UserTransformer extends Transformer
-{
+class UserTransformer extends Transformer {
 
     /**
      * @var  array
@@ -33,29 +27,34 @@ class UserTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(User $user)
-    {
+    public function transform(User $user) {
         $response = [
-            'object'               => 'User',
-            'id'                   => $user->getHashedKey(),
-            'name'                 => $user->name,
-            'email'                => $user->email,
-            'confirmed'            => $user->confirmed,
-            'nickname'             => $user->nickname,
-            'gender'               => $user->gender,
-            'birth'                => $user->birth,
-
-            'social_auth_provider' => $user->social_provider,
-            'social_id'            => $user->social_id,
-            'social_avatar'        => [
-                'avatar'   => $user->social_avatar,
-                'original' => $user->social_avatar_original,
+            'object'                  => 'User',
+            'id'                      => $user->getHashedKey(),
+            'first_name'              => $user->first_name,
+            'last_name'               => $user->last_name,
+            'nick_name'               => $user->nick_name,
+            'email'                   => $user->email,
+            'phone'                   => $user->phone,
+            'is_phone_confirmed'      => $user->is_phone_confirmed,
+            'is_email_confirmed'      => $user->is_email_confirmed,
+            'gender'                  => $user->gender,
+            'birth'                   => $user->birth,
+            'points'                  => $user->points,
+            'is_subscription_expired' => $user->is_subscription_expired,
+            'subscription_expired_at' => $user->subscription_expired_at,
+            'images' => [
+                'avatar' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMediaUrl('avatar')),
+                'avatar_thumb' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar_thumb') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
             ],
-
-            'created_at'           => $user->created_at,
-            'updated_at'           => $user->updated_at,
-            'readable_created_at'  => $user->created_at->diffForHumans(),
-            'readable_updated_at'  => $user->updated_at->diffForHumans(),
+            'created_at'          => $user->created_at,
+            'updated_at'          => $user->updated_at,
+            'readable_created_at' => $user->created_at->diffForHumans(),
+            'readable_updated_at' => $user->updated_at->diffForHumans(),
         ];
 
         $response = $this->ifAdmin([
@@ -66,8 +65,12 @@ class UserTransformer extends Transformer
         return $response;
     }
 
-    public function includeRoles(User $user)
-    {
+    /**
+     * @param User $user
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeRoles(User $user) {
         return $this->collection($user->roles, new RoleTransformer());
     }
 

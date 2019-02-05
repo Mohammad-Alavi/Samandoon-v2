@@ -3,7 +3,7 @@
 /**
  * @apiGroup           Users
  * @apiName            deleteUser
- * @api                {delete} /v1/users/:id Delete User (admin, client..)
+ * @api                {delete} /v1/user/:id Delete User (admin, client..)
  * @apiDescription     Delete Users of any type (Admin, Client,...)
  *
  * @apiVersion         1.0.0
@@ -16,7 +16,7 @@
 }
  */
 
-$router->delete('users/{id}', [
+$router->delete('user/{id}', [
     'as' => 'api_user_delete_user',
     'uses'       => 'Controller@deleteUser',
     'middleware' => [

@@ -18,7 +18,7 @@ class UpdateUserRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => 'update-users',
+        'permissions' => '',
         'roles'       => '',
     ];
 
@@ -47,10 +47,15 @@ class UpdateUserRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'email|unique:users,email',
             'id'       => 'required|exists:users,id',
-            'password' => 'min:6|max:40',
-            'name'     => 'min:2|max:50',
+            'first_name'     => 'min:2|max:50',
+            'last_name'     => 'min:2|max:50',
+            'nick_name'     => 'min:2|max:50',
+            'email'    => 'email|unique:users,email',
+            'phone'    => 'size:13|regex:/(\+989)[0-9]/',
+            'gender'    => 'in:male,female,unspecified',
+            'birth'    => 'date_format:YmdHiT',
+            'avatar'    => 'image|max:1024',
         ];
     }
 

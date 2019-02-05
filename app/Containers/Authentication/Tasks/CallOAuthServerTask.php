@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Config;
  *
  * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
-class CallOAuthServerTask extends Task
-{
+class CallOAuthServerTask extends Task {
 
     /**
      * @string
@@ -22,13 +21,12 @@ class CallOAuthServerTask extends Task
     CONST AUTH_ROUTE = '/v1/oauth/token';
 
     /**
-     * @param $data
+     * @param array $data
      *
      * @return  array
      * @throws \App\Containers\Authentication\Exceptions\LoginFailedException
      */
-    public function run($data)
-    {
+    public function run(array $data) {
         // Full url to the oauth token endpoint
         $authFullApiUrl = Config::get('apiato.api.url') . self::AUTH_ROUTE;
 

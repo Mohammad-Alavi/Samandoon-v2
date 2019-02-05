@@ -6,6 +6,7 @@
 /.idea
 /.vscode
 /.vagrant
+Vagrantfile
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -18,3 +19,6 @@ storage/logs/laravel.log
 /laradock*/
 _ide_helper*.php
 .phpstorm.meta.php
+after.sh
+aliases
+composer.phar

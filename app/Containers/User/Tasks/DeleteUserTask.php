@@ -8,34 +8,31 @@ use App\Ship\Exceptions\DeleteResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-/**
- * Class DeleteUserTask
- *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
- */
-class DeleteUserTask extends Task
-{
+class DeleteUserTask extends Task {
 
+    /**
+     * @var UserRepository
+     */
     protected $repository;
 
-    public function __construct(UserRepository $repository)
-    {
+    /**
+     * DeleteUserTask constructor.
+     * @param UserRepository $repository
+     */
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
 
     /**
      *
-     * @param User $user
+     * @param int $id
      *
      * @return bool
-     * @throws DeleteResourceFailedException
      */
-    public function run(User $user)
-    {
+    public function run(int $id) {
         try {
-            return $this->repository->delete($user->id);
-        }
-        catch (Exception $exception) {
+            return $this->repository->delete($id);
+        } catch (Exception $exception) {
             throw new DeleteResourceFailedException();
         }
     }
