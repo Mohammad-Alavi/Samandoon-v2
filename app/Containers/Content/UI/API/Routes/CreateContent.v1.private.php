@@ -19,7 +19,7 @@
  */
 
 /** @var Route $router */
-$router->post('user/{id}/content', [
+$router->post('content', [
     'as' => 'api_content_create_content',
     'uses'  => 'Controller@createContent',
     'middleware' => [

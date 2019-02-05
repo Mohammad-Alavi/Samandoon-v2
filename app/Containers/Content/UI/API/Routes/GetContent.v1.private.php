@@ -14,7 +14,7 @@
  */
 
 /** @var Route $router */
-$router->get('user/{id}/content/{content_id}', [
+$router->get('content/{content_id}', [
     'as' => 'api_content_get_content',
     'uses'  => 'Controller@getContent',
 //    'middleware' => [
