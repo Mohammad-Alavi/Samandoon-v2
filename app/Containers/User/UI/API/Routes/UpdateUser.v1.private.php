@@ -8,8 +8,14 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated User
  *
- * @apiParam           {String}  password (optional)
- * @apiParam           {String}  name (optional)
+ * @apiParam           {String}  [first_name] min:2|max:50
+ * @apiParam           {String}  [last_name] min:2|max:50
+ * @apiParam           {String}  [nick_name] min:2|max:50
+ * @apiParam           {String}  [email] email|unique:users,email
+ * @apiParam           {String}  [phone] size:13|regex:/(\+989)[0-9]/
+ * @apiParam           {String="male,female,unspecified"}  [gender]
+ * @apiParam           {date}  [birth] date_format:YmdHiT'
+ * @apiParam           {image}  [avatar]
  *
  * @apiUse             UserSuccessSingleResponse
  */
