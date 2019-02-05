@@ -11,18 +11,19 @@
     "postinstall": "opencollective postinstall"
   },
   "dependencies": {
-    "ajv": "^6.6.2",
-    "apidoc": "^0.17.7",
+    "ajv": "^6.5.4",
+    "apidoc": "^0.17.6",
+    "npm": "^6.7.0",
     "opencollective": "^1.0.3"
   },
   "devDependencies": {
     "axios": "^0.16.2",
-    "bootstrap-sass": "^3.4.0",
+    "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.1",
     "jquery": "^3.1.1",
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
-    "vue": "^2.5.21"
+    "vue": "^2.1.10"
   },
   "collective": {
     "type": "opencollective",

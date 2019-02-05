@@ -43,7 +43,14 @@ class UserTransformer extends Transformer {
             'points'                  => $user->points,
             'is_subscription_expired' => $user->is_subscription_expired,
             'subscription_expired_at' => $user->subscription_expired_at,
-
+            'images' => [
+                'avatar' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMediaUrl('avatar')),
+                'avatar_thumb' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar_thumb') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
+            ],
             'created_at'          => $user->created_at,
             'updated_at'          => $user->updated_at,
             'readable_created_at' => $user->created_at->diffForHumans(),
