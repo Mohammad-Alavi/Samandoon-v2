@@ -2,12 +2,15 @@
 
 namespace App\Containers\Content\Actions;
 
+use App\Containers\Authentication\Tasks\GetAuthenticatedUserTask;
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\CreateContentTask;
+use App\Containers\User\Models\User;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 use DB;
+use Illuminate\Support\Facades\App;
 use Throwable;
 
 /**
@@ -72,8 +75,14 @@ class CreateContentAction extends Action
      */
     private function createContentAndItsAddOns(DataTransporter $transporter): void
     {
-        // Create Content
-        $this->content = $this->createContentTask->run(['user_id' => $transporter->id]);
+        /** @var GetAuthenticatedUserTask $getAuthenticatedUserTask */
+        $getAuthenticatedUserTask = App::make(GetAuthenticatedUserTask::class);
+        // Get the current user
+        /** @var User $authenticatedUser */
+        $authenticatedUser = $getAuthenticatedUserTask->run();
+
+        //// Create Content
+        $this->content = $this->createContentTask->run(['user_id' => $authenticatedUser->id]);
 
         $addonNames = [];
         foreach ($transporter->addon as $key => $value) {

@@ -33,7 +33,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'id',
+//        'id',
         'repost.referenced_content_id',
     ];
 
@@ -44,7 +44,7 @@ class CreateContentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'id',
+//        'id',
     ];
 
     /**
@@ -53,7 +53,7 @@ class CreateContentRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required',
+//            'id' => 'required',
 //            'article.title' => 'required',
 //            'article.text' => 'required',
             'addon.article' => 'required',
