@@ -3,17 +3,17 @@
 namespace App\Containers\Comment\Tasks;
 
 use App\Containers\Comment\Data\Repositories\CommentRepository;
-use App\Ship\Exceptions\DeleteResourceFailedException;
+use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
-class DeleteCommentTask extends Task
+class FindCommentByIdTask extends Task
 {
 
     protected $repository;
 
     /**
-     * DeleteCommentTask constructor.
+     * FindCommentByIdTask constructor.
      *
      * @param CommentRepository $repository
      */
@@ -25,15 +25,15 @@ class DeleteCommentTask extends Task
     /**
      * @param $id
      *
-     * @return int
+     * @return mixed
      */
     public function run($id)
     {
         try {
-            return $this->repository->delete($id);
+            return $this->repository->find($id);
         }
         catch (Exception $exception) {
-            throw new DeleteResourceFailedException();
+            throw new NotFoundException();
         }
     }
 }

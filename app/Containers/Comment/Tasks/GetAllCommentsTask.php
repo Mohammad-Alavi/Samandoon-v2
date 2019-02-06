@@ -3,17 +3,15 @@
 namespace App\Containers\Comment\Tasks;
 
 use App\Containers\Comment\Data\Repositories\CommentRepository;
-use App\Ship\Exceptions\DeleteResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
-use Exception;
 
-class DeleteCommentTask extends Task
+class GetAllCommentsTask extends Task
 {
 
     protected $repository;
 
     /**
-     * DeleteCommentTask constructor.
+     * GetAllCommentsTask constructor.
      *
      * @param CommentRepository $repository
      */
@@ -23,17 +21,12 @@ class DeleteCommentTask extends Task
     }
 
     /**
-     * @param $id
+     * @param string $content_id
      *
-     * @return int
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function run($id)
+    public function run(string $content_id)
     {
-        try {
-            return $this->repository->delete($id);
-        }
-        catch (Exception $exception) {
-            throw new DeleteResourceFailedException();
-        }
+        return $this->repository->findByContentId($content_id);
     }
 }

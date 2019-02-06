@@ -45,6 +45,81 @@
     }
   },
   {
+    "group": "Comment",
+    "name": "deleteComment",
+    "type": "DELETE",
+    "url": "/v1/user/:id/content/:id/comment/:id",
+    "title": "Delete Comment",
+    "description": "<p>Delete a Comment by its ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated|Owner"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Comment/UI/API/Routes/DeleteComment.v1.private.php",
+    "groupTitle": "Comment"
+  },
+  {
+    "group": "Comment",
+    "name": "getAllComments",
+    "type": "GET",
+    "url": "/v1/comment",
+    "title": "Get All Comments of a Content",
+    "description": "<p>Get All Comments of a Content by its Content ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "filename": "app/Containers/Comment/UI/API/Routes/GetAllComments.v1.private.php",
+    "groupTitle": "Comment",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Comment\",\n        \"id\": \"qmv7dk48x5b690wx\",\n        \"body\": \"شسیشسی\",\n        \"content_id\": \"eq6am74064z0vpbn\",\n        \"user_id\": \"bml0wd39b5pkznag\",\n        \"parent_id\": \"qnwmkv5704blag6r\",\n        \"created_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Comment",
+    "name": "getComment",
+    "type": "GET",
+    "url": "/v1/comment/:id",
+    "title": "Find Comment by ID",
+    "description": "<p>Find a comment by it's ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "filename": "app/Containers/Comment/UI/API/Routes/GetComment.v1.private.php",
+    "groupTitle": "Comment",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Comment\",\n        \"id\": \"qmv7dk48x5b690wx\",\n        \"body\": \"شسیشسی\",\n        \"content_id\": \"eq6am74064z0vpbn\",\n        \"user_id\": \"bml0wd39b5pkznag\",\n        \"parent_id\": \"qnwmkv5704blag6r\",\n        \"created_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-07 14:46:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "group": "Content",
     "name": "createContent",
     "type": "POST",
@@ -132,6 +207,44 @@
       ]
     },
     "filename": "app/Containers/Content/UI/API/Routes/DeleteContent.v1.private.php",
+    "groupTitle": "Content"
+  },
+  {
+    "group": "Content",
+    "name": "getAllContents",
+    "type": "GET",
+    "url": "/v1/content",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
     "groupTitle": "Content"
   },
   {
@@ -1079,6 +1192,82 @@
     "groupTitle": "Settings"
   },
   {
+    "group": "Transaction",
+    "name": "createTransaction",
+    "type": "POST",
+    "url": "/v1/transactions",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Transaction/UI/API/Routes/CreateTransaction.v1.private.php",
+    "groupTitle": "Transaction"
+  },
+  {
+    "group": "Transaction",
+    "name": "getAllTransactions",
+    "type": "GET",
+    "url": "/v1/transactions",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Transaction/UI/API/Routes/GetAllTransactions.v1.private.php",
+    "groupTitle": "Transaction"
+  },
+  {
     "group": "Users",
     "name": "createAdmin",
     "type": "post",
@@ -1381,16 +1570,61 @@
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>(optional)</p>"
+            "optional": true,
+            "field": "first_name",
+            "description": "<p>min:2|max:50</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>(optional)</p>"
+            "optional": true,
+            "field": "last_name",
+            "description": "<p>min:2|max:50</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "nick_name",
+            "description": "<p>min:2|max:50</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>email|unique:users,email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>size:13|regex:/(+989)[0-9]/</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "allowedValues": [
+              "\"male,female,unspecified\""
+            ],
+            "optional": true,
+            "field": "gender",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "date",
+            "optional": true,
+            "field": "birth",
+            "description": "<p>date_format:YmdHiT'</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "image",
+            "optional": true,
+            "field": "avatar",
+            "description": ""
           }
         ]
       }

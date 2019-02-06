@@ -2,6 +2,7 @@
 
 namespace App\Containers\Comment\Data\Repositories;
 
+use App\Containers\Comment\Models\Comment;
 use App\Ship\Parents\Repositories\Repository;
 
 /**
@@ -18,4 +19,8 @@ class CommentRepository extends Repository
         // ...
     ];
 
+    public function findByContentId($content_id)
+    {
+        return Comment::where('content_id', $content_id)->paginate();
+    }
 }

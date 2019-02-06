@@ -7,7 +7,7 @@ use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
 
-class DeleteCommentAction extends Action
+class FindCommentByIdAction extends Action
 {
     /**
      * @param DataTransporter $transporter
@@ -16,6 +16,7 @@ class DeleteCommentAction extends Action
      */
     public function run(DataTransporter $transporter)
     {
-        return Apiato::call('Comment@DeleteCommentTask', [$transporter->comment_id]);
+        $comment = Apiato::call('Comment@FindCommentByIdTask', [$transporter->id]);
+        return $comment;
     }
 }

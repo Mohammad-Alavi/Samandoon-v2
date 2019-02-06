@@ -4,19 +4,14 @@
  * @apiGroup           Comment
  * @apiName            deleteComment
  *
- * @api                {DELETE} /v1/user/:id/content/:id/comment/:id Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {DELETE} /v1/user/:id/content/:id/comment/:id Delete Comment
+ * @apiDescription     Delete a Comment by its ID
  *
  * @apiVersion         1.0.0
- * @apiPermission      none
- *
- * @apiParam           {String}  parameters here..
+ * @apiPermission      Authenticated|Owner
  *
  * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * HTTP/1.1 204 No Content
  */
 
 /** @var Route $router */

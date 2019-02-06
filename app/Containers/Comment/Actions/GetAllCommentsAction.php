@@ -7,7 +7,7 @@ use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
 
-class DeleteCommentAction extends Action
+class GetAllCommentsAction extends Action
 {
     /**
      * @param DataTransporter $transporter
@@ -16,6 +16,8 @@ class DeleteCommentAction extends Action
      */
     public function run(DataTransporter $transporter)
     {
-        return Apiato::call('Comment@DeleteCommentTask', [$transporter->comment_id]);
+        $content = Apiato::call('Content@FindContentByIdTask', [$transporter->content_id]);
+        $comments = Apiato::call('Comment@GetAllCommentsTask', [$content->id], ['OrderByCreationDateDescendingCriteria']);
+        return $comments;
     }
 }
