@@ -44,7 +44,6 @@ class ValidateAddOnDataTask extends Task
         switch ($addOnName) {
             case 'article':
                 $validator = Validator::make($data, [
-                    'title' => 'required',
                     'text' => 'required',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());

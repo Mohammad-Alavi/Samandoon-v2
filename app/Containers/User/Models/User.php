@@ -4,13 +4,17 @@ namespace App\Containers\User\Models;
 
 use App\Containers\Article\Models\Article;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
+use App\Containers\Content\Models\Content;
 use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
-class User extends UserModel {
+class User extends UserModel implements HasMedia {
 
     use AuthorizationTrait;
-
+    use HasMediaTrait;
     /**
      * @var string
      */
@@ -77,10 +81,32 @@ class User extends UserModel {
     ];
 
     /**
+     * @param Media|null $media
+     *
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width((int)config('user-container.avatar.thumb.width'))
+            ->height((int)'user-container.avatar.thumb.height')
+            ->keepOriginalImageFormat()
+            ->nonQueued()
+            ->performOnCollections('avatar');
+    }
+
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('avatar')
+        ->singleFile();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Article() {
-        return $this->hasMany(Article::class);
+    public function contents()
+    {
+        return $this->hasMany(content::class);
     }
 
     /**

@@ -37,7 +37,6 @@ class ArticleTransformer extends Transformer
         $response = [
             'object' => 'Article',
             'id' => $article->getHashedKey(),
-            'title' => $article->title,
             'text' => $article->text,
             'content_id' => Hashids::encode($article->content_id),
             'created_at' => $article->created_at,

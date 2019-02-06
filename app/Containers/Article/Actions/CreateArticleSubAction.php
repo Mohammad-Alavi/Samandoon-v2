@@ -39,7 +39,6 @@ class CreateArticleSubAction extends SubAction
     public function run(array $data, string $content_id): Article
     {
         $articleData = [
-            'title' => $data['title'],
             'text' => $data['text'],
             'content_id' => $content_id,
         ];

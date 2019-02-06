@@ -2,13 +2,15 @@
 
 namespace App\Containers\Content\UI\API\Transformers;
 
-use App\Containers\Article\UI\API\Transformers\ArticleTransformer;
 use App\Containers\Content\Models\Content;
-use App\Containers\ExternalLink\UI\API\Transformers\ExternalLinkTransformer;
-use App\Containers\Link\UI\API\Transformers\LinkTransformer;
-use App\Containers\Repost\UI\API\Transformers\RepostTransformer;
+use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
+/**
+ * Class ContentTransformer
+ *
+ * @package App\Containers\Content\UI\API\Transformers
+ */
 class ContentTransformer extends Transformer
 {
     /**
@@ -32,29 +34,47 @@ class ContentTransformer extends Transformer
      */
     public function transform(Content $entity)
     {
-        /// Add-on transformers
-        $article = new ArticleTransformer();
-        $repost = new RepostTransformer();
-        $link = new LinkTransformer();
+        $userTransform = new UserTransformer();
+        /// Returns add-on transformers
+        /// Generates add-on transformers automatically
+        $addonArray = $this->addOnsTransformerGenerator($entity);
 
         $response = [
             'object' => 'Content',
             'id' => $entity->getHashedKey(),
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
-            'deleted_at' => $entity->deleted_at,
-            'add-on' => [
-                'article' => $entity->article()->first() ? $article->transform($entity->article()->first()) : null,
-                'repost' => $entity->repost()->first() ? $repost->transform($entity->repost()->first()) : null,
-                'link' => $entity->link()->first() ? $link->transform($entity->link()->first()) : null,
-            ]
+            'add-on' => $addonArray['add-on'],
+            'user' => $userTransform->transform($entity->user),
         ];
 
         $response = $this->ifAdmin([
             'real_id' => $entity->id,
-            // 'deleted_at' => $entity->deleted_at,
+            'deleted_at' => $entity->deleted_at,
         ], $response);
 
         return $response;
+    }
+
+    /**
+     * @param Content $content
+     *
+     * @return mixed
+     */
+    private function addOnsTransformerGenerator(Content $content): array
+    {
+        $addOnTransformerArray['add-on'] = [];
+        foreach (config('samandoon.available_add_ons') as $addOnName) {
+            $addOnTransformerName = ucfirst($addOnName) . 'Transformer';
+            // AddOn transformer full name with namespace
+            $addOnTransformer = "App\Containers\\" . ucfirst($addOnName) . "\UI\API\Transformers\\" . $addOnTransformerName;
+            // AddOn transformer class
+            $addOnTransformer = new $addOnTransformer();
+            // AddOn transformer array
+            $addOnTransformerArray['add-on'][$addOnName] = $content->$addOnName ?
+                $addOnTransformer->transform($content->$addOnName) :
+                null;
+        }
+        return $addOnTransformerArray;
     }
 }

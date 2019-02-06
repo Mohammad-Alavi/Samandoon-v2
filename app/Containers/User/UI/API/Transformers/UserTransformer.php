@@ -33,17 +33,24 @@ class UserTransformer extends Transformer {
             'id'                      => $user->getHashedKey(),
             'first_name'              => $user->first_name,
             'last_name'               => $user->last_name,
+            'nick_name'               => $user->nick_name,
             'email'                   => $user->email,
             'phone'                   => $user->phone,
             'is_phone_confirmed'      => $user->is_phone_confirmed,
             'is_email_confirmed'      => $user->is_email_confirmed,
-            'nickname'                => $user->nick_name,
             'gender'                  => $user->gender,
             'birth'                   => $user->birth,
             'points'                  => $user->points,
             'is_subscription_expired' => $user->is_subscription_expired,
             'subscription_expired_at' => $user->subscription_expired_at,
-
+            'images' => [
+                'avatar' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMediaUrl('avatar')),
+                'avatar_thumb' => empty($user->getFirstMediaUrl('avatar')) ?
+                    config('samandoon.storage_path') . config('samandoon.default.avatar_thumb') :
+                    config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
+            ],
             'created_at'          => $user->created_at,
             'updated_at'          => $user->updated_at,
             'readable_created_at' => $user->created_at->diffForHumans(),
@@ -58,6 +65,11 @@ class UserTransformer extends Transformer {
         return $response;
     }
 
+    /**
+     * @param User $user
+     *
+     * @return \League\Fractal\Resource\Collection
+     */
     public function includeRoles(User $user) {
         return $this->collection($user->roles, new RoleTransformer());
     }

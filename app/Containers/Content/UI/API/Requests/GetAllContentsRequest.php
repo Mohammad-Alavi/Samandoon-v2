@@ -5,9 +5,9 @@ namespace App\Containers\Content\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class UpdateContentRequest.
+ * Class GetAllContentsRequest.
  */
-class UpdateContentRequest extends Request
+class GetAllContentsRequest extends Request
 {
 
     /**
@@ -15,7 +15,7 @@ class UpdateContentRequest extends Request
      *
      * @var string
      */
-    protected $transporter = \App\Containers\Content\Data\Transporters\UpdateContentTransporter::class;
+    protected $transporter = \App\Containers\Content\Data\Transporters\GetAllContentsTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -33,9 +33,7 @@ class UpdateContentRequest extends Request
      * @var  array
      */
     protected $decode = [
-         'id',
-         'content_id',
-        'repost.referenced_content_id',
+        // 'id',
     ];
 
     /**
@@ -45,8 +43,7 @@ class UpdateContentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-         'id',
-         'content_id',
+        // 'id',
     ];
 
     /**
@@ -55,8 +52,8 @@ class UpdateContentRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required',
-            'content_id' => 'required',
+            // 'id' => 'required',
+            // '{user-input}' => 'required|max:255',
         ];
     }
 
@@ -66,7 +63,7 @@ class UpdateContentRequest extends Request
     public function authorize()
     {
         return $this->check([
-            'hasAccess|isOwner',
+            'hasAccess',
         ]);
     }
 }
