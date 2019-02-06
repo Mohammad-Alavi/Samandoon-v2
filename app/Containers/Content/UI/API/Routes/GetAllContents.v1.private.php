@@ -4,19 +4,13 @@
  * @apiGroup           Content
  * @apiName            getAllContents
  *
- * @api                {GET} /v1/content Endpoint title here..
- * @apiDescription     Endpoint description here..
+ * @api                {GET} /v1/content Get All Contents
+ * @apiDescription     Get All Contents
  *
  * @apiVersion         1.0.0
  * @apiPermission      none
  *
- * @apiParam           {String}  parameters here..
- *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * @apiUse             ContentSuccessSingleResponse
  */
 
 /** @var Route $router */
