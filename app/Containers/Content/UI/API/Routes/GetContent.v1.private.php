@@ -5,7 +5,7 @@
  * @apiName            getContent
  *
  * @api                {GET} /v1/user/:id/content/:content_id Get Content
- * @apiDescription     Find the content by its ID
+ * @apiDescription     Find content by it's ID
  *
  * @apiVersion         1.0.0
  * @apiPermission      none

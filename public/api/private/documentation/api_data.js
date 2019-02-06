@@ -91,11 +91,36 @@ define({ "api": [
   },
   {
     "group": "Content",
+    "name": "getAllContents",
+    "type": "GET",
+    "url": "/v1/content",
+    "title": "Get All Contents",
+    "description": "<p>Get All Contents</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
+    "groupTitle": "Content",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Content",
     "name": "getContent",
     "type": "GET",
     "url": "/v1/user/:id/content/:content_id",
     "title": "Get Content",
-    "description": "<p>Find the content by its ID</p>",
+    "description": "<p>Find content by it's ID</p>",
     "version": "1.0.0",
     "permission": [
       {
@@ -1034,6 +1059,82 @@ define({ "api": [
     "groupTitle": "Settings"
   },
   {
+    "group": "Transaction",
+    "name": "createTransaction",
+    "type": "POST",
+    "url": "/v1/transactions",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Transaction/UI/API/Routes/CreateTransaction.v1.private.php",
+    "groupTitle": "Transaction"
+  },
+  {
+    "group": "Transaction",
+    "name": "getAllTransactions",
+    "type": "GET",
+    "url": "/v1/transactions",
+    "title": "Endpoint title here..",
+    "description": "<p>Endpoint description here..</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Transaction/UI/API/Routes/GetAllTransactions.v1.private.php",
+    "groupTitle": "Transaction"
+  },
+  {
     "group": "Users",
     "name": "createAdmin",
     "type": "post",
@@ -1336,16 +1437,61 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>(optional)</p>"
+            "optional": true,
+            "field": "first_name",
+            "description": "<p>min:2|max:50</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>(optional)</p>"
+            "optional": true,
+            "field": "last_name",
+            "description": "<p>min:2|max:50</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "nick_name",
+            "description": "<p>min:2|max:50</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>email|unique:users,email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>size:13|regex:/(+989)[0-9]/</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "allowedValues": [
+              "\"male,female,unspecified\""
+            ],
+            "optional": true,
+            "field": "gender",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "date",
+            "optional": true,
+            "field": "birth",
+            "description": "<p>date_format:YmdHiT'</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "image",
+            "optional": true,
+            "field": "avatar",
+            "description": ""
           }
         ]
       }
