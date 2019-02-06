@@ -3,6 +3,7 @@
 namespace App\Containers\Content\Models;
 
 use App\Containers\Article\Models\Article;
+use App\Containers\Comment\Models\Comment;
 use App\Containers\Link\Models\Link;
 use App\Containers\Repost\Models\Repost;
 use App\Containers\User\Models\User;
@@ -73,6 +74,14 @@ class Content extends Model
 //    {
 //        return $this->hasOne(Link::class);
 //    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     /**
      * @return bool|null|void

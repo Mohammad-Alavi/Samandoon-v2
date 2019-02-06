@@ -4,6 +4,7 @@ namespace App\Ship\Parents\Tests\PhpUnit;
 
 use Apiato\Core\Abstracts\Tests\PhpUnit\TestCase as AbstractTestCase;
 use App\Containers\Content\Models\Content;
+use App\Containers\User\Models\User;
 use Faker\Generator;
 use Illuminate\Contracts\Console\Kernel as ApiatoConsoleKernel;
 
@@ -73,5 +74,18 @@ abstract class TestCase extends AbstractTestCase
         $article = new Content();
         $article->saveOrFail();
         return $article;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return User
+     * @throws \Throwable
+     */
+    protected function createNewUserAndSaveItToDBOrFail()
+    {
+        $user = new User();
+        $user->saveOrFail();
+        return $user;
     }
 }
