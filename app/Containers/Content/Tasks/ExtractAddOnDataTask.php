@@ -39,6 +39,11 @@ class ExtractAddOnDataTask extends Task
                     return $this->extractLink($temporaryTransporter);
                     break;
                 }
+            case 'image':
+                {
+                    return $this->extractImage($temporaryTransporter);
+                    break;
+                }
 //            case 'poll':{
 //                return $this->extractPoll($transporter);
 //                break;
@@ -87,5 +92,19 @@ class ExtractAddOnDataTask extends Task
         ]);
 
         return empty($sanitizedData['link']) ? [] : $sanitizedData['link'];
+    }
+
+    /**
+     * @param DataTransporter $transporter
+     *
+     * @return array
+     */
+    private function extractImage(DataTransporter $transporter): array
+    {
+        $sanitizedData = $transporter->sanitizeInput([
+            'image.image',
+        ]);
+
+        return empty($sanitizedData['image']) ? [] : $sanitizedData['image'];
     }
 }

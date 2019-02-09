@@ -5,6 +5,7 @@ namespace App\Containers\Content\Tasks;
 use App\Ship\Exceptions\ValidationFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Illuminate\Support\Facades\Validator;
+use Request;
 
 /**
  * Class ValidateAddOnDataTask
@@ -60,6 +61,12 @@ class ValidateAddOnDataTask extends Task
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
+            case 'image':
+                $validator = Validator::make($data, [
+                    'image' => 'required|image',
+                ]);
+                throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
+                break;
         }
     }
 
@@ -76,6 +83,12 @@ class ValidateAddOnDataTask extends Task
                 $validator = Validator::make($data, [
 //                    'title' => 'required',
 //                    'text' => 'required',
+                ]);
+                throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
+                break;
+            case 'image':
+                $validator = Validator::make(Request::allFiles(), [
+                    'image.image' => 'required|image',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;

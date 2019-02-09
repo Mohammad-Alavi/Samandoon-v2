@@ -4,6 +4,7 @@ namespace App\Containers\Content\Models;
 
 use App\Containers\Article\Models\Article;
 use App\Containers\Comment\Models\Comment;
+use App\Containers\Image\Models\Image;
 use App\Containers\Link\Models\Link;
 use App\Containers\Repost\Models\Repost;
 use App\Containers\User\Models\User;
@@ -74,6 +75,11 @@ class Content extends Model
 //    {
 //        return $this->hasOne(Link::class);
 //    }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

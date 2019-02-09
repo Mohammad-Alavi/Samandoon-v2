@@ -6,6 +6,7 @@ return [
         'article' => 'article',
         'repost' => 'repost',
         'link' => 'link',
+        'image' => 'image',
     ],
 
     /*
