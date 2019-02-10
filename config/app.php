@@ -147,6 +147,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Zarinpal\Laravel\ZarinpalServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
         /*
          * Application Service Providers...
