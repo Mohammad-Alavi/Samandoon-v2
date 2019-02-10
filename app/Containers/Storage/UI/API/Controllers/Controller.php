@@ -18,7 +18,7 @@ class Controller extends ApiController
     public function downloadFile(DownloadFileRequest $request)
     {
         $file = Apiato::call('Storage@DownloadFileAction', [new DataTransporter($request)]);
-        return response()->download($file, 'avatar');
+        return response()->download($file);
     }
 
     /**
