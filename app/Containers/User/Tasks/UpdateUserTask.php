@@ -10,7 +10,10 @@ use App\Ship\Exceptions\UpdateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Vinkla\Hashids\Facades\Hashids;
 
 class UpdateUserTask extends Task {
 
@@ -52,6 +55,7 @@ class UpdateUserTask extends Task {
             // associate avatar image to user if it exist
             if (array_key_exists('avatar', $userData)) {
                 $user->addMediaFromRequest('avatar')
+                    ->usingFileName(md5((Request::file('avatar')->getClientOriginalName() . Carbon::now()->toTimeString())) . '.' . Request::file('avatar')->getClientOriginalExtension())
                     ->toMediaCollection('avatar');
             }
         } catch (ModelNotFoundException $exception) {
