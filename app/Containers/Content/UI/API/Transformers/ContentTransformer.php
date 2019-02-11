@@ -49,10 +49,12 @@ class ContentTransformer extends Transformer
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
-            'like_count' => $entity->likers()->count(),
-            'liked_by_current_user' => empty($currentUser) ? null : $entity->isLikedBy($currentUser->id),
-//            'comment_count' => $entity->comments()->count(),
+            'stats' => [
+                'like_count' => $entity->likers()->count(),
+                'liked_by_current_user' => empty($currentUser) ? false : $entity->isLikedBy($currentUser->id),
+                'comment_count' => $entity->comments()->count(),
 //            'seen_count' => $entity->getUniquePageViews(),
+            ],
             'user' => $userTransform->transform($entity->user),
         ];
 
