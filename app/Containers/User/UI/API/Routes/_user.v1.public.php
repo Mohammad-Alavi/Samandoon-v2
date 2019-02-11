@@ -21,12 +21,12 @@ HTTP/1.1 200 OK
     "is_subscription_expired": true,
     "subscription_expired_at": {
         "date": "2019-02-11 00:50:29.000000",
-      "timezone_type": 3,
-      "timezone": "Asia\/Tehran"
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
     },
     "images": {
         "avatar": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar.png",
-      "avatar_thumb": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar_thumb.png"
+        "avatar_thumb": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar_thumb.png"
     },
     "stats": {
       "followings_count": 0,
@@ -36,13 +36,13 @@ HTTP/1.1 200 OK
     },
     "created_at": {
         "date": "2019-02-11 03:14:09.000000",
-      "timezone_type": 3,
-      "timezone": "Asia\/Tehran"
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
     },
     "updated_at": {
         "date": "2019-02-11 03:14:30.000000",
-      "timezone_type": 3,
-      "timezone": "Asia\/Tehran"
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
     },
     "readable_created_at": "12 hours ago",
     "readable_updated_at": "12 hours ago"
