@@ -18,7 +18,7 @@ class FindUserByIdRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => 'search-users',
+        'permissions' => '',
         'roles'       => '',
     ];
 
