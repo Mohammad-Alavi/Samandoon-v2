@@ -57,7 +57,7 @@ class FindUserByIdRequest extends Request
     public function authorize()
     {
         return $this->check([
-            'hasAccess|isOwner',
+            'hasAccess',
         ]);
     }
 }
