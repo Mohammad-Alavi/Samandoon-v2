@@ -9,6 +9,7 @@ use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanLike;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -17,7 +18,8 @@ class User extends UserModel implements HasMedia {
 
     use AuthorizationTrait;
     use HasMediaTrait;
-    use CanFollow, CanBeFollowed;
+    use CanFollow, CanBeFollowed, CanLike;
+
     /**
      * @var string
      */

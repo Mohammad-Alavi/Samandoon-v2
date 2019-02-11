@@ -12,10 +12,12 @@ use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\GetFollowersRequest;
 use App\Containers\User\UI\API\Requests\GetFollowingsRequest;
+use App\Containers\User\UI\API\Requests\LikeRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
+use App\Containers\User\UI\API\Transformers\LikeTransformer;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Controllers\ApiController;
@@ -166,5 +168,13 @@ class Controller extends ApiController
         $followings = Apiato::call('User@GetFollowingsAction', [new DataTransporter($request)]);
 
         return $this->transform($followings, UserTransformer::class);
+    }
+
+    public function like(LikeRequest $request)
+    {
+        $likePayload = Apiato::call('User@LikeAction', [new DataTransporter($request)]);
+        $likeTransformer = new LikeTransformer();
+
+        return $likeTransformer->transform($likePayload);
     }
 }

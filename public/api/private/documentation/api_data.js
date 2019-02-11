@@ -417,6 +417,31 @@ define({ "api": [
     "groupTitle": "Follow"
   },
   {
+    "group": "Like",
+    "name": "like",
+    "type": "POST",
+    "url": "/v1/user/like/:content_id",
+    "title": "Like",
+    "description": "<p>Like the given Content</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 1, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // is current User liked the given Content ID?\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/User/UI/API/Routes/Like.v1.private.php",
+    "groupTitle": "Like"
+  },
+  {
     "group": "Localization",
     "name": "getAllLocalizations",
     "type": "GET",
