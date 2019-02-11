@@ -11,6 +11,7 @@ use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 /**
  * Class Content
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 class Content extends Model
 {
     use SoftDeletes;
+    use CanBeLiked;
 
     protected $fillable = [
         'user_id'

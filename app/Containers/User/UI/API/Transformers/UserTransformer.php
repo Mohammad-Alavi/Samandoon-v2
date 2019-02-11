@@ -6,7 +6,8 @@ use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Transformers\Transformer;
 
-class UserTransformer extends Transformer {
+class UserTransformer extends Transformer
+{
 
     /**
      * @var  array
@@ -27,20 +28,23 @@ class UserTransformer extends Transformer {
      *
      * @return array
      */
-    public function transform(User $user) {
+    public function transform(User $user)
+    {
+        $currentUser = auth('api')->user();
+
         $response = [
-            'object'                  => 'User',
-            'id'                      => $user->getHashedKey(),
-            'first_name'              => $user->first_name,
-            'last_name'               => $user->last_name,
-            'nick_name'               => $user->nick_name,
-            'email'                   => $user->email,
-            'phone'                   => $user->phone,
-            'is_phone_confirmed'      => $user->is_phone_confirmed,
-            'is_email_confirmed'      => $user->is_email_confirmed,
-            'gender'                  => $user->gender,
-            'birth'                   => $user->birth,
-            'points'                  => $user->points,
+            'object' => 'User',
+            'id' => $user->getHashedKey(),
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'nick_name' => $user->nick_name,
+            'email' => $user->email,
+            'phone' => $user->phone,
+            'is_phone_confirmed' => $user->is_phone_confirmed,
+            'is_email_confirmed' => $user->is_email_confirmed,
+            'gender' => $user->gender,
+            'birth' => $user->birth,
+            'points' => $user->points,
             'is_subscription_expired' => $user->is_subscription_expired,
             'subscription_expired_at' => $user->subscription_expired_at,
             'images' => [
@@ -51,14 +55,21 @@ class UserTransformer extends Transformer {
                     config('samandoon.storage_path') . config('samandoon.default.avatar_thumb') :
                     config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
             ],
-            'created_at'          => $user->created_at,
-            'updated_at'          => $user->updated_at,
+            'stats' => [
+                'followings_count' => $user->followings()->count(),
+                'followers_count' => $user->followers()->count(),
+                // when you are in another users profile it show if you are following that user
+                'is_following' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
+                'content_count' => $user->contents()->count(),
+            ],
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
             'readable_created_at' => $user->created_at->diffForHumans(),
             'readable_updated_at' => $user->updated_at->diffForHumans(),
         ];
 
         $response = $this->ifAdmin([
-            'real_id'    => $user->id,
+            'real_id' => $user->id,
             'deleted_at' => $user->deleted_at,
         ], $response);
 
@@ -70,7 +81,8 @@ class UserTransformer extends Transformer {
      *
      * @return \League\Fractal\Resource\Collection
      */
-    public function includeRoles(User $user) {
+    public function includeRoles(User $user)
+    {
         return $this->collection($user->roles, new RoleTransformer());
     }
 

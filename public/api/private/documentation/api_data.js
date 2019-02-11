@@ -214,38 +214,25 @@ define({ "api": [
     "name": "getAllContents",
     "type": "GET",
     "url": "/v1/content",
-    "title": "Endpoint title here..",
-    "description": "<p>Endpoint description here..</p>",
+    "title": "Get All Contents",
+    "description": "<p>Get All Contents</p>",
     "version": "1.0.0",
     "permission": [
       {
         "name": "none"
       }
     ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
-          }
-        ]
-      }
-    },
+    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
+    "groupTitle": "Content",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
-    "groupTitle": "Content"
+    }
   },
   {
     "group": "Content",
@@ -253,7 +240,7 @@ define({ "api": [
     "type": "GET",
     "url": "/v1/user/:id/content/:content_id",
     "title": "Get Content",
-    "description": "<p>Find the content by its ID</p>",
+    "description": "<p>Find content by it's ID</p>",
     "version": "1.0.0",
     "permission": [
       {
@@ -324,6 +311,156 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Follow",
+    "name": "follow",
+    "type": "POST",
+    "url": "/v1/user/follow/:id",
+    "title": "Follow",
+    "description": "<p>Follow a User by it's ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/Follow.v1.private.php",
+    "groupTitle": "Follow",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 53, // the followers count of the followed User\n    \"is_following\": true // (or false) is the authenticated User following the given User? (user of the given ID)\n}\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Follow",
+    "name": "getFollowers",
+    "type": "GET",
+    "url": "/v1/user/follow/followers?limit=10",
+    "title": "Get Followers",
+    "description": "<p>Get the followers of the authenticated user</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/GetFollowers.v1.private.php",
+    "groupTitle": "Follow",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"phone\": \"+989391079907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n        \"followings_count\": 0,\n        \"followers_count\": 1,\n        \"is_following\": false, // when you are in another users profile it show if you are following that user\n        \"content_count\": 4\n      },\n      \"created_at\": {\n        \"date\": \"2019-02-11 03:06:14.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-11 03:09:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"2 hours ago\",\n      \"readable_updated_at\": \"2 hours ago\"\n    }\n  ],\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": [],\n    \"pagination\": {\n        \"total\": 1,\n      \"count\": 1,\n      \"per_page\": 10,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Follow",
+    "name": "getFollowings",
+    "type": "GET",
+    "url": "/v1/user/follow/followings?limit=10",
+    "title": "Get Followings",
+    "description": "<p>Get the followings of the authenticated user</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/GetFollowings.v1.private.php",
+    "groupTitle": "Follow",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"phone\": \"+989391079907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n        \"followings_count\": 0,\n        \"followers_count\": 1,\n        \"is_following\": false, // when you are in another users profile it show if you are following that user\n        \"content_count\": 4\n      },\n      \"created_at\": {\n        \"date\": \"2019-02-11 03:06:14.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-11 03:09:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"2 hours ago\",\n      \"readable_updated_at\": \"2 hours ago\"\n    }\n  ],\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": [],\n    \"pagination\": {\n        \"total\": 1,\n      \"count\": 1,\n      \"per_page\": 10,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Follow",
+    "name": "unfollow",
+    "type": "POST",
+    "url": "/v1/user/unfollow/:id",
+    "title": "Unfollow",
+    "description": "<p>Unfollow the user of the given ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/Unfollow.v1.private.php",
+    "groupTitle": "Follow",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 53, // the followers count of the followed User\n    \"is_following\": true // (or false) is the authenticated User following the given User? (user of the given ID)\n}\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Like",
+    "name": "like",
+    "type": "POST",
+    "url": "/v1/user/like/:content_id",
+    "title": "Like",
+    "description": "<p>Like the given Content</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/Like.v1.private.php",
+    "groupTitle": "Like",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Like",
+    "name": "unlike",
+    "type": "POST",
+    "url": "/v1/user/unlike/:content_id",
+    "title": "Unlike",
+    "description": "<p>Unlike the given Content</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/Unlike.v1.private.php",
+    "groupTitle": "Like",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
           "type": "json"
         }
       ]
@@ -636,7 +773,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -943,7 +1080,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -1033,7 +1170,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -1192,6 +1329,56 @@ define({ "api": [
     "groupTitle": "Settings"
   },
   {
+    "group": "Storage",
+    "name": "deleteFile",
+    "type": "DELETE",
+    "url": "/v1/storage/:id/:resource_name",
+    "title": "Delete File",
+    "description": "<p>Delete the given file from storage</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated|Owner"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Storage/UI/API/Routes/DeleteFile.v1.private.php",
+    "groupTitle": "Storage"
+  },
+  {
+    "group": "Storage",
+    "name": "downloadFile",
+    "type": "GET",
+    "url": "/v1/storage/:id/:resource_name",
+    "title": "Download File",
+    "description": "<p>Download a file from server's public folder</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Storage/UI/API/Routes/DownloadFile.v1.private.php",
+    "groupTitle": "Storage"
+  },
+  {
     "group": "Transaction",
     "name": "createTransaction",
     "type": "POST",
@@ -1313,7 +1500,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -1354,7 +1541,7 @@ define({ "api": [
     "version": "1.0.0",
     "permission": [
       {
-        "name": "Authenticated User"
+        "name": "none"
       }
     ],
     "filename": "app/Containers/User/UI/API/Routes/FindUserById.v1.private.php",
@@ -1363,7 +1550,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -1463,7 +1650,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
@@ -1635,7 +1822,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n        \"object\": \"User\",\n        \"id\": \"lnmojg5bv4ew80ra\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"email\": null,\n        \"phone\": \"+989362913366\",\n        \"confirmed\": null,\n        \"gender\": null,\n        \"birth\": null,\n        \"points\": 0,\n        \"created_at\": {\n            \"date\": \"2018-10-25 10:18:30.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"updated_at\": {\n            \"date\": \"2018-10-26 16:38:13.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"UTC\"\n        },\n        \"readable_created_at\": \"1 day ago\",\n        \"readable_updated_at\": \"3 minutes ago\"\n        },\n        \"meta\": {\n            \"include\": [],\n            \"custom\": []\n    }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"User\",\n    \"id\": \"bml0wd39b5pkznag\",\n    \"first_name\": null,\n    \"last_name\": null,\n    \"nick_name\": null,\n    \"email\": null,\n    \"phone\": \"+989169302582\",\n    \"is_phone_confirmed\": true,\n    \"is_email_confirmed\": false,\n    \"gender\": null,\n    \"birth\": null,\n    \"points\": 0,\n    \"is_subscription_expired\": true,\n    \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n    },\n    \"stats\": {\n      \"followings_count\": 0,\n      \"followers_count\": 1,\n      \"is_following\": true, // when you are in another users profile it show if you are following that user\n      \"content_count\": 4\n    },\n    \"created_at\": {\n        \"date\": \"2019-02-11 03:14:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-11 03:14:30.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"readable_created_at\": \"12 hours ago\",\n    \"readable_updated_at\": \"12 hours ago\"\n  },\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]

@@ -3,6 +3,7 @@
 namespace App\Containers\Content\UI\API\Transformers;
 
 use App\Containers\Content\Models\Content;
+use App\Containers\User\Models\User;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
@@ -34,6 +35,9 @@ class ContentTransformer extends Transformer
      */
     public function transform(Content $entity)
     {
+        /** @var User $currentUser */
+        $currentUser = auth('api')->user();
+
         $userTransform = new UserTransformer();
         /// Returns add-on transformers
         /// Generates add-on transformers automatically
@@ -45,6 +49,10 @@ class ContentTransformer extends Transformer
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
+            'like_count' => $entity->likers()->count(),
+            'liked_by_current_user' => empty($currentUser) ? null : $entity->isLikedBy($currentUser->id),
+//            'comment_count' => $entity->comments()->count(),
+//            'seen_count' => $entity->getUniquePageViews(),
             'user' => $userTransform->transform($entity->user),
         ];
 

@@ -5,12 +5,17 @@ namespace App\Containers\User\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class FindUserByIdRequest.
- *
- * @author Mahmoud Zalt <mahmoud@zalt.me>
+ * Class FollowRequest.
  */
-class FindUserByIdRequest extends Request
+class FollowRequest extends Request
 {
+
+    /**
+     * The assigned Transporter for this Request
+     *
+     * @var string
+     */
+    protected $transporter = \App\Containers\User\Data\Transporters\FollowTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -28,17 +33,17 @@ class FindUserByIdRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'id',
+         'id',
     ];
 
     /**
-     * Defining the URL parameters (`/stores/999/items`) allows applying
+     * Defining the URL parameters (e.g, `/user/{id}`) allows applying
      * validation rules on them and allows accessing them like request data.
      *
      * @var  array
      */
     protected $urlParameters = [
-        'id',
+         'id',
     ];
 
     /**
@@ -47,7 +52,8 @@ class FindUserByIdRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required|exists:users,id'
+             'id' => 'required|exists:users,id',
+            // '{user-input}' => 'required|max:255',
         ];
     }
 
