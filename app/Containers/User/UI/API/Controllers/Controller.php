@@ -10,6 +10,7 @@ use App\Containers\User\UI\API\Requests\FindUserByIdRequest;
 use App\Containers\User\UI\API\Requests\FollowRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
+use App\Containers\User\UI\API\Requests\GetFollowersRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
@@ -140,5 +141,17 @@ class Controller extends ApiController
             'followers_count' => $result['followers_count'],
             'is_following' => $result['is_following']
         ], 200);
+    }
+
+    /**
+     * @param GetFollowersRequest $request
+     *
+     * @return mixed
+     */
+    public function getFollowers(GetFollowersRequest $request)
+    {
+        $followers = Apiato::call('User@GetFollowersAction', [new DataTransporter($request)]);
+
+        return $this->transform($followers, UserTransformer::class);
     }
 }
