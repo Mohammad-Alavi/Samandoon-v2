@@ -322,24 +322,24 @@
     "type": "POST",
     "url": "/v1/user/follow/:id",
     "title": "Follow",
-    "description": "<p>Follow a User by it's ID - &quot;followers_count&quot; = the followers count of the followed User - &quot;is_following&quot; = is the authenticated User following the given User? (user of the given ID)</p>",
+    "description": "<p>Follow a User by it's ID</p>",
     "version": "1.0.0",
     "permission": [
       {
         "name": "Authenticated"
       }
     ],
+    "filename": "app/Containers/User/UI/API/Routes/Follow.v1.private.php",
+    "groupTitle": "Follow",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 1,\n    \"is_following\": true\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 53, // the followers count of the followed User\n    \"is_following\": true // (or false) is the authenticated User following the given User? (user of the given ID)\n}\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/User/UI/API/Routes/Follow.v1.private.php",
-    "groupTitle": "Follow"
+    }
   },
   {
     "group": "Follow",
@@ -404,17 +404,17 @@
         "name": "Authenticated"
       }
     ],
+    "filename": "app/Containers/User/UI/API/Routes/Unfollow.v1.private.php",
+    "groupTitle": "Follow",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 23,\n    \"is_following\": false\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 53, // the followers count of the followed User\n    \"is_following\": true // (or false) is the authenticated User following the given User? (user of the given ID)\n}\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/User/UI/API/Routes/Unfollow.v1.private.php",
-    "groupTitle": "Follow"
+    }
   },
   {
     "group": "Like",

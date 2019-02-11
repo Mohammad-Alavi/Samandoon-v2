@@ -8,6 +8,11 @@ use App\Ship\Transporters\DataTransporter;
 
 class GetFollowersAction extends Action
 {
+    /**
+     * @param DataTransporter $dataTransporter
+     *
+     * @return mixed
+     */
     public function run(DataTransporter $dataTransporter)
     {
         $AuthenticatedUser = Apiato::call('Authentication@GetAuthenticatedUserTask');

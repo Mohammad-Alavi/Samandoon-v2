@@ -11,6 +11,7 @@ class GetFollowersTask extends Task
      * @param User $user
      * @param      $limit
      *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function run(User $user, $limit)
     {

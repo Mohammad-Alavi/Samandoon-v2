@@ -13,7 +13,6 @@ class UnfollowAction extends Action
      * @param DataTransporter $dataTransporter
      *
      * @return mixed
-     * @throws \Throwable
      */
     public function run(DataTransporter $dataTransporter)
     {

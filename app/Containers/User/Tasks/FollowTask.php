@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\DB;
 class FollowTask extends Task
 {
     /**
-     * @throws \Exception
+     * @param User $user
+     * @param User $target
+     *
+     * @return array
+     * @throws Exception
      */
     public function run(User $user, User $target)
     {

@@ -125,7 +125,7 @@ class Controller extends ApiController
     /**
      * @param FollowRequest $request
      *
-     * @return mixed
+     * @return JsonResponse
      */
     public function follow(FollowRequest $request)
     {
@@ -137,6 +137,11 @@ class Controller extends ApiController
         ], 200);
     }
 
+    /**
+     * @param UnfollowRequest $request
+     *
+     * @return JsonResponse
+     */
     public function unfollow(UnfollowRequest $request)
     {
         $result = Apiato::call('User@UnfollowAction', [new DataTransporter($request)]);
@@ -150,7 +155,7 @@ class Controller extends ApiController
     /**
      * @param GetFollowersRequest $request
      *
-     * @return mixed
+     * @return array
      */
     public function getFollowers(GetFollowersRequest $request)
     {

@@ -5,18 +5,12 @@
  * @apiName            follow
  *
  * @api                {POST} /v1/user/follow/:id Follow
- * @apiDescription     Follow a User by it's ID - "followers_count" = the followers count of the followed User
- *                     - "is_following" = is the authenticated User following the given User? (user of the given ID)
+ * @apiDescription     Follow a User by it's ID
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-    "followers_count": 1,
-    "is_following": true
-}
+ * @apiUse             FollowSuccessResponse
  */
 
 /** @var Route $router */

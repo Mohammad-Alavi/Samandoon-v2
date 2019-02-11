@@ -10,12 +10,7 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-    "followers_count": 23,
-    "is_following": false
-}
+ * @apiUse             FollowSuccessResponse
  */
 
 /** @var Route $router */

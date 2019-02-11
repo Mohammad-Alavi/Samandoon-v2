@@ -15,7 +15,7 @@ class UnfollowTask extends Task
      * @param User $target
      *
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function run(User $user, User $target)
     {
