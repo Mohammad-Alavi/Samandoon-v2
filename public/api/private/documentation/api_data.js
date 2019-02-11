@@ -214,38 +214,25 @@ define({ "api": [
     "name": "getAllContents",
     "type": "GET",
     "url": "/v1/content",
-    "title": "Endpoint title here..",
-    "description": "<p>Endpoint description here..</p>",
+    "title": "Get All Contents",
+    "description": "<p>Get All Contents</p>",
     "version": "1.0.0",
     "permission": [
       {
         "name": "none"
       }
     ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
-          }
-        ]
-      }
-    },
+    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
+    "groupTitle": "Content",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n        \"id\": \"7vmg6q36ak4b8kzr\",\n        \"created_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-01-04 05:17:42.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"deleted_at\": null,\n        \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n                \"id\": \"ojl0865y0j4bgmew\",\n                \"title\": \"شسیشسی\",\n                \"text\": \"این متن یک نوشته است\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"repost\": {\n            \"object\": \"Repost\",\n                \"id\": \"kxeml73oyx4d9qbr\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"referenced_content_id\": \"reloj65plp4v8ndy\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            },\n            \"link\": {\n            \"object\": \"Link\",\n                \"id\": \"dqb9073ap3ekzgrm\",\n                \"link_url\": \"https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string\",\n                \"content_id\": \"7vmg6q36ak4b8kzr\",\n                \"created_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                },\n                \"updated_at\": {\n                \"date\": \"2019-01-04 05:17:42.000000\",\n                    \"timezone_type\": 3,\n                    \"timezone\": \"Asia/Tehran\"\n                }\n            }\n        }\n    },\n    \"meta\": {\n    \"include\": [],\n        \"custom\": []\n    }\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/Content/UI/API/Routes/GetAllContents.v1.private.php",
-    "groupTitle": "Content"
+    }
   },
   {
     "group": "Content",
@@ -253,7 +240,7 @@ define({ "api": [
     "type": "GET",
     "url": "/v1/user/:id/content/:content_id",
     "title": "Get Content",
-    "description": "<p>Find the content by its ID</p>",
+    "description": "<p>Find content by it's ID</p>",
     "version": "1.0.0",
     "permission": [
       {
@@ -328,6 +315,31 @@ define({ "api": [
         }
       ]
     }
+  },
+  {
+    "group": "Follow",
+    "name": "follow",
+    "type": "POST",
+    "url": "/v1/user/follow/:id",
+    "title": "Follow",
+    "description": "<p>Follow a User by it's ID - &quot;followers_count&quot; = the followers count of the followed User - &quot;is_following&quot; = is the authenticated User following the given User? (user of the given ID)</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 1,\n    \"is_following\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/User/UI/API/Routes/Follow.v1.private.php",
+    "groupTitle": "Follow"
   },
   {
     "group": "Localization",
@@ -1190,6 +1202,56 @@ define({ "api": [
     },
     "filename": "app/Containers/Settings/UI/API/Routes/UpdateSetting.v1.private.php",
     "groupTitle": "Settings"
+  },
+  {
+    "group": "Storage",
+    "name": "deleteFile",
+    "type": "DELETE",
+    "url": "/v1/storage/:id/:resource_name",
+    "title": "Delete File",
+    "description": "<p>Delete the given file from storage</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated|Owner"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Storage/UI/API/Routes/DeleteFile.v1.private.php",
+    "groupTitle": "Storage"
+  },
+  {
+    "group": "Storage",
+    "name": "downloadFile",
+    "type": "GET",
+    "url": "/v1/storage/:id/:resource_name",
+    "title": "Download File",
+    "description": "<p>Download a file from server's public folder</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/Storage/UI/API/Routes/DownloadFile.v1.private.php",
+    "groupTitle": "Storage"
   },
   {
     "group": "Transaction",
