@@ -7,72 +7,104 @@ HTTP/1.1 200 OK
 {
     "data": {
     "object": "Content",
-        "id": "7vmg6q36ak4b8kzr",
-        "created_at": {
-        "date": "2019-01-04 05:17:42.000000",
-            "timezone_type": 3,
-            "timezone": "Asia/Tehran"
-        },
-        "updated_at": {
-        "date": "2019-01-04 05:17:42.000000",
-            "timezone_type": 3,
-            "timezone": "Asia/Tehran"
-        },
-        "deleted_at": null,
-        "add-on": {
+    "id": "qmv7dk48x5b690wx",
+    "created_at": {
+        "date": "2019-02-11 05:27:22.000000",
+      "timezone_type": 3,
+      "timezone": "Asia\/Tehran"
+    },
+    "updated_at": {
+        "date": "2019-02-11 05:27:22.000000",
+      "timezone_type": 3,
+      "timezone": "Asia\/Tehran"
+    },
+    "add-on": {
         "article": {
             "object": "Article",
-                "id": "ojl0865y0j4bgmew",
-                "title": "شسیشسی",
-                "text": "این متن یک نوشته است",
-                "content_id": "7vmg6q36ak4b8kzr",
-                "created_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                },
-                "updated_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                }
-            },
-            "repost": {
-            "object": "Repost",
-                "id": "kxeml73oyx4d9qbr",
-                "content_id": "7vmg6q36ak4b8kzr",
-                "referenced_content_id": "reloj65plp4v8ndy",
-                "created_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                },
-                "updated_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                }
-            },
-            "link": {
-            "object": "Link",
-                "id": "dqb9073ap3ekzgrm",
-                "link_url": "https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string",
-                "content_id": "7vmg6q36ak4b8kzr",
-                "created_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                },
-                "updated_at": {
-                "date": "2019-01-04 05:17:42.000000",
-                    "timezone_type": 3,
-                    "timezone": "Asia/Tehran"
-                }
-            }
+        "id": "qmv7dk48x5b690wx",
+        "text": "این برای حذف است",
+        "content_id": "qmv7dk48x5b690wx",
+        "created_at": {
+                "date": "2019-02-11 05:27:22.000000",
+          "timezone_type": 3,
+          "timezone": "Asia\/Tehran"
+        },
+        "updated_at": {
+                "date": "2019-02-11 05:27:22.000000",
+          "timezone_type": 3,
+          "timezone": "Asia\/Tehran"
         }
+      },
+      "repost": null,
+      "link": {
+            "object": "Link",
+        "id": "qmv7dk48x5b690wx",
+        "link_url": "https:\/\/stackoverflow.com",
+        "content_id": "qmv7dk48x5b690wx",
+        "created_at": {
+                "date": "2019-02-11 05:27:22.000000",
+          "timezone_type": 3,
+          "timezone": "Asia\/Tehran"
+        },
+        "updated_at": {
+                "date": "2019-02-11 05:27:22.000000",
+          "timezone_type": 3,
+          "timezone": "Asia\/Tehran"
+        }
+      },
+      "image": null
     },
-    "meta": {
-    "include": [],
-        "custom": []
+    "stats": {
+        "like_count": 1,
+      "liked_by_current_user": false,
+      "comment_count": 2
+    },
+    "user": {
+        "object": "User",
+      "id": "bml0wd39b5pkznag",
+      "first_name": null,
+      "last_name": null,
+      "nick_name": null,
+      "email": null,
+      "phone": "+989169302582",
+      "is_phone_confirmed": true,
+      "is_email_confirmed": false,
+      "gender": null,
+      "birth": null,
+      "points": 0,
+      "is_subscription_expired": true,
+      "subscription_expired_at": {
+            "date": "2019-02-11 00:50:29.000000",
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
+      },
+      "images": {
+            "avatar": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar.png",
+        "avatar_thumb": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar_thumb.png"
+      },
+      "stats": {
+            "followings_count": 0,
+        "followers_count": 1,
+        "is_following": false,
+        "content_count": 4
+      },
+      "created_at": {
+            "date": "2019-02-11 03:14:09.000000",
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
+      },
+      "updated_at": {
+            "date": "2019-02-11 03:14:30.000000",
+        "timezone_type": 3,
+        "timezone": "Asia\/Tehran"
+      },
+      "readable_created_at": "13 hours ago",
+      "readable_updated_at": "13 hours ago"
     }
-} */
+  },
+  "meta": {
+    "include": [],
+    "custom": []
+  }
+}
+ */
