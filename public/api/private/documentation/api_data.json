@@ -429,17 +429,42 @@
         "name": "Authenticated"
       }
     ],
+    "filename": "app/Containers/User/UI/API/Routes/Like.v1.private.php",
+    "groupTitle": "Like",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 1, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // is current User liked the given Content ID?\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
           "type": "json"
         }
       ]
-    },
-    "filename": "app/Containers/User/UI/API/Routes/Like.v1.private.php",
-    "groupTitle": "Like"
+    }
+  },
+  {
+    "group": "Like",
+    "name": "unlike",
+    "type": "POST",
+    "url": "/v1/user/unlike/:content_id",
+    "title": "Unlike",
+    "description": "<p>Unlike the given Content</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/Unlike.v1.private.php",
+    "groupTitle": "Like",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "group": "Localization",

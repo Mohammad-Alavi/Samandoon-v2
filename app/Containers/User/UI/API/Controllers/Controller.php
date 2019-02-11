@@ -16,6 +16,7 @@ use App\Containers\User\UI\API\Requests\LikeRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
+use App\Containers\User\UI\API\Requests\UnlikeRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
 use App\Containers\User\UI\API\Transformers\LikeTransformer;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
@@ -173,6 +174,19 @@ class Controller extends ApiController
     public function like(LikeRequest $request)
     {
         $likePayload = Apiato::call('User@LikeAction', [new DataTransporter($request)]);
+        $likeTransformer = new LikeTransformer();
+
+        return $likeTransformer->transform($likePayload);
+    }
+
+    /**
+     * @param UnlikeRequest $request
+     *
+     * @return array
+     */
+    public function unlike(UnlikeRequest $request)
+    {
+        $likePayload = Apiato::call('User@UnlikeAction', [new DataTransporter($request)]);
         $likeTransformer = new LikeTransformer();
 
         return $likeTransformer->transform($likePayload);

@@ -10,13 +10,7 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated
  *
- * @apiSuccessExample  {json}  Success-Response:
- * HTTP/1.1 200 OK
-{
-    "msg": "User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).",
-    "like_count": 1, // this is the current like count of the liked target e.g. Content
-    "is_liked": true // is current User liked the given Content ID?
-}
+ * @apiUse             LikeSuccessResponse
  */
 
 /** @var Route $router */
