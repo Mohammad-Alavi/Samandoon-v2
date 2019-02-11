@@ -342,6 +342,31 @@
     "groupTitle": "Follow"
   },
   {
+    "group": "Follow",
+    "name": "unfollow",
+    "type": "POST",
+    "url": "/v1/user/unfollow/:id",
+    "title": "Unfollow",
+    "description": "<p>Unfollow the user of the given ID</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"followers_count\": 23,\n    \"is_following\": false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/User/UI/API/Routes/Unfollow.v1.private.php",
+    "groupTitle": "Follow"
+  },
+  {
     "group": "Localization",
     "name": "getAllLocalizations",
     "type": "GET",

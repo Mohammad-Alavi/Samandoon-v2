@@ -12,6 +12,7 @@ use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
+use App\Containers\User\UI\API\Requests\UnfollowRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
@@ -124,6 +125,16 @@ class Controller extends ApiController
     public function follow(FollowRequest $request)
     {
         $result = Apiato::call('User@FollowAction', [new DataTransporter($request)]);
+
+        return new JsonResponse([
+            'followers_count' => $result['followers_count'],
+            'is_following' => $result['is_following']
+        ], 200);
+    }
+
+    public function unfollow(UnfollowRequest $request)
+    {
+        $result = Apiato::call('User@UnfollowAction', [new DataTransporter($request)]);
 
         return new JsonResponse([
             'followers_count' => $result['followers_count'],
