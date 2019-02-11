@@ -17,7 +17,7 @@
 $router->get('content', [
     'as' => 'api_content_get_all_contents',
     'uses'  => 'Controller@getAllContents',
-    'middleware' => [
-      'auth:api',
-    ],
+//    'middleware' => [
+//      'auth:api',
+//    ],
 ]);
