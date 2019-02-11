@@ -29,6 +29,12 @@ HTTP/1.1 200 OK
         "avatar": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar.png",
         "avatar_thumb": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar_thumb.png"
       },
+      "stats": {
+        "followings_count": 0,
+        "followers_count": 1,
+        "is_following": false, // when you are in another users profile it show if you are following that user
+        "content_count": 4
+      },
       "created_at": {
         "date": "2019-02-11 03:06:14.000000",
         "timezone_type": 3,
