@@ -176,6 +176,11 @@ class Controller extends ApiController
         return $this->transform($followings, UserTransformer::class);
     }
 
+    /**
+     * @param LikeRequest $request
+     *
+     * @return array
+     */
     public function like(LikeRequest $request)
     {
         $likePayload = Apiato::call('User@LikeAction', [new DataTransporter($request)]);
