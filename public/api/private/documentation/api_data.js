@@ -368,6 +368,31 @@ define({ "api": [
   },
   {
     "group": "Follow",
+    "name": "getFollowings",
+    "type": "GET",
+    "url": "/v1/user/follow/followings?limit=10",
+    "title": "Get Followings",
+    "description": "<p>Get the followings of the authenticated user</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/GetFollowings.v1.private.php",
+    "groupTitle": "Follow",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"phone\": \"+989391079907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"created_at\": {\n        \"date\": \"2019-02-11 03:06:14.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-11 03:09:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"2 hours ago\",\n      \"readable_updated_at\": \"2 hours ago\"\n    }\n  ],\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": [],\n    \"pagination\": {\n        \"total\": 1,\n      \"count\": 1,\n      \"per_page\": 10,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Follow",
     "name": "unfollow",
     "type": "POST",
     "url": "/v1/user/unfollow/:id",
@@ -1378,44 +1403,6 @@ define({ "api": [
     },
     "filename": "app/Containers/Transaction/UI/API/Routes/GetAllTransactions.v1.private.php",
     "groupTitle": "Transaction"
-  },
-  {
-    "group": "User",
-    "name": "getFollowings",
-    "type": "GET",
-    "url": "/v1/user/follow/followings",
-    "title": "Endpoint title here..",
-    "description": "<p>Endpoint description here..</p>",
-    "version": "1.0.0",
-    "permission": [
-      {
-        "name": "none"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "app/Containers/User/UI/API/Routes/GetFollowings.v1.private.php",
-    "groupTitle": "User"
   },
   {
     "group": "Users",

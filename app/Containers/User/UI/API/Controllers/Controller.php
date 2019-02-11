@@ -11,6 +11,7 @@ use App\Containers\User\UI\API\Requests\FollowRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\GetFollowersRequest;
+use App\Containers\User\UI\API\Requests\GetFollowingsRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
@@ -153,5 +154,17 @@ class Controller extends ApiController
         $followers = Apiato::call('User@GetFollowersAction', [new DataTransporter($request)]);
 
         return $this->transform($followers, UserTransformer::class);
+    }
+
+    /**
+     * @param GetFollowingsRequest $request
+     *
+     * @return array
+     */
+    public function getFollowings(GetFollowingsRequest $request)
+    {
+        $followings = Apiato::call('User@GetFollowingsAction', [new DataTransporter($request)]);
+
+        return $this->transform($followings, UserTransformer::class);
     }
 }
