@@ -59,7 +59,7 @@ class UserTransformer extends Transformer
                 'followings_count' => $user->followings()->count(),
                 'followers_count' => $user->followers()->count(),
                 // when you are in another users profile it show if you are following that user
-                'is_following' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
+                'followed_by_current_user' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
                 'content_count' => $user->contents()->count(),
             ],
             'created_at' => $user->created_at,

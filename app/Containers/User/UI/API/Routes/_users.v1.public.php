@@ -32,7 +32,7 @@ HTTP/1.1 200 OK
       "stats": {
         "followings_count": 0,
         "followers_count": 1,
-        "is_following": false, // when you are in another users profile it show if you are following that user
+        "followed_by_current_user": false, // when you are in another users profile it show if you are following that user
         "content_count": 4
       },
       "created_at": {
