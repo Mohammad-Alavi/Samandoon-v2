@@ -3,6 +3,7 @@
 namespace App\Containers\User\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\Content\UI\API\Transformers\ContentTransformer;
 use App\Containers\User\Exceptions\NoReasonFailureException;
 use App\Containers\User\UI\API\Requests\CreateAdminRequest;
 use App\Containers\User\UI\API\Requests\DeleteUserRequest;
@@ -12,6 +13,7 @@ use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
 use App\Containers\User\UI\API\Requests\GetFollowersRequest;
 use App\Containers\User\UI\API\Requests\GetFollowingsRequest;
+use App\Containers\User\UI\API\Requests\GetUserFeedRequest;
 use App\Containers\User\UI\API\Requests\LikeRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
@@ -133,7 +135,7 @@ class Controller extends ApiController
 
         return new JsonResponse([
             'followers_count' => $result['followers_count'],
-            'is_following' => $result['is_following']
+            'is_following' => $result['is_following'],
         ], 200);
     }
 
@@ -148,7 +150,7 @@ class Controller extends ApiController
 
         return new JsonResponse([
             'followers_count' => $result['followers_count'],
-            'is_following' => $result['is_following']
+            'is_following' => $result['is_following'],
         ], 200);
     }
 
@@ -200,5 +202,17 @@ class Controller extends ApiController
         $likeTransformer = new LikeTransformer();
 
         return $likeTransformer->transform($likePayload);
+    }
+
+    /**
+     * @param GetUserFeedRequest $request
+     *
+     * @return array
+     */
+    public function getUserFeed(GetUserFeedRequest $request)
+    {
+        $feed = Apiato::call('User@GetUserFeedAction', [new DataTransporter($request)]);
+
+        return $this->transform($feed, ContentTransformer::class);
     }
 }

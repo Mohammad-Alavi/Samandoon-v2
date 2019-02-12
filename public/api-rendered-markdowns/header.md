@@ -34,7 +34,7 @@ X-RateLimit-Remaining → 29
 
 ## **Tokens**
 
-The Access Token lives for `1 days, 0 hours, 0 minutes and 0 seconds`. (equivalent to `1440` minutes).
+The Access Token lives for `30 days, 0 hours, 0 minutes and 0 seconds`. (equivalent to `43200` minutes).
 While the Refresh Token lives for `30 days, 0 hours, 0 minutes and 0 seconds`. (equivalent to `43200` minutes).
 
 *You will need to re-authenticate the user when the token expires.*
