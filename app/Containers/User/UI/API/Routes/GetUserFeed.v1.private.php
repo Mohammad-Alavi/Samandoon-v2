@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @apiGroup           User
+ * @apiGroup           Users
  * @apiName            getUserFeed
  *
  * @api                {GET} /v1/feed Get User Feed
