@@ -62,8 +62,8 @@ class ValidateAddOnDataTask extends Task
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
             case 'image':
-                $validator = Validator::make($data, [
-                    'image' => 'required|image',
+                $validator = Validator::make(Request::allFiles(), [
+                    'image.image' => 'required|image',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
