@@ -148,6 +148,7 @@ return [
         Zarinpal\Laravel\ZarinpalServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
+        Spatie\Tags\TagsServiceProvider::class,
 
         /*
          * Application Service Providers...
