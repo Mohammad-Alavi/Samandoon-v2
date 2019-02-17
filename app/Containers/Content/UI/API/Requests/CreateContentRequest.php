@@ -57,6 +57,7 @@ class CreateContentRequest extends Request
 //            'article.title' => 'required',
 //            'article.text' => 'required',
             'addon.article' => 'required',
+            'addon.subject' => 'required',
             // '{user-input}' => 'required|max:255',
         ];
     }

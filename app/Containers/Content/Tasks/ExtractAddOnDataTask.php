@@ -44,6 +44,11 @@ class ExtractAddOnDataTask extends Task
                     return $this->extractImage($temporaryTransporter);
                     break;
                 }
+            case 'subject':
+                {
+                    return $this->extractSubject($temporaryTransporter);
+                    break;
+                }
 //            case 'poll':{
 //                return $this->extractPoll($transporter);
 //                break;
@@ -106,5 +111,14 @@ class ExtractAddOnDataTask extends Task
         ]);
 
         return empty($sanitizedData['image']) ? [] : $sanitizedData['image'];
+    }
+
+    private function extractSubject(DataTransporter $transporter): array
+    {
+        $sanitizedData = $transporter->sanitizeInput([
+            'subject.subject',
+        ]);
+
+        return empty($sanitizedData['subject']) ? [] : $sanitizedData['subject'];
     }
 }
