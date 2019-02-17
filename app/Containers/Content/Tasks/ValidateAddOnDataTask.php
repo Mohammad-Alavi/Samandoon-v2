@@ -69,7 +69,9 @@ class ValidateAddOnDataTask extends Task
                 break;
             case 'subject':
                 $validator = Validator::make($data, [
-                    'subject' => 'required',
+                    'subject' => 'required|
+                    in:علمی,فرهنگی,اجتماعی,ورزشی,هنری,نیکو کاری و امور خیریه,بشردوستانه,امور زنان,
+                    آسیب دیدگان اجتماعی,حمایتی,بهداشت و درمان,توانبخشی,محیط زیست,عمران و آبادانی,بدون موضوع',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
