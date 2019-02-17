@@ -82,7 +82,7 @@ class ContentTransformer extends Transformer
             $addOnTransformer = new $addOnTransformer();
             // AddOn transformer array
             $addOnTransformerArray['add-on'][$addOnName] = $content->$addOnName ?
-                $addOnTransformer->transform($content->$addOnName) :
+                $addOnTransformer->transform($content->$addOnName()->first()) :
                 null;
         }
         return $addOnTransformerArray;

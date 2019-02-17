@@ -67,6 +67,12 @@ class ValidateAddOnDataTask extends Task
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
+            case 'subject':
+                $validator = Validator::make($data, [
+                    'subject' => 'required',
+                ]);
+                throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
+                break;
         }
     }
 

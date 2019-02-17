@@ -14,7 +14,8 @@
  * @apiParam           {array} article article[title => title here, text => text here]
  * @apiParam           {array} repost repost[referenced_content_id => reloj65plp4v8ndy]
  * @apiParam           {array} link link[link_url => https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]
- *
+ * @apiParam           {json}  [subjects=add,docs,here] ["environment", "women", "etc"]
+ * @apiParam           {json}  [tags] ["world end", "hantoosh", "aantoosh"]
  * @apiUse             ContentSuccessSingleResponse
  */
 
