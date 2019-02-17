@@ -31,6 +31,8 @@ class CreateContentAction extends Action
      * @var Content
      */
     private $content;
+    /** @var User $authenticatedUser */
+    private $authenticatedUser;
 
     /**
      * CreateContentAction constructor.
@@ -58,7 +60,8 @@ class CreateContentAction extends Action
     {
         DB::beginTransaction();
         try {
-            $this->createContentAndItsAddOns($transporter);
+            $this->authenticatedUser = $this->getAuthenticatedUser();
+            $this->createContentAndItsAddOns($transporter, $this->authenticatedUser);
         } catch (Throwable $exception) {
             DB::rollBack();
             throw new CreateResourceFailedException($exception->getMessage(), null, null, $exception->getCode());
@@ -73,14 +76,8 @@ class CreateContentAction extends Action
      *
      * @throws Throwable
      */
-    private function createContentAndItsAddOns(DataTransporter $transporter): void
+    private function createContentAndItsAddOns(DataTransporter $transporter, $authenticatedUser)
     {
-        /** @var GetAuthenticatedUserTask $getAuthenticatedUserTask */
-        $getAuthenticatedUserTask = App::make(GetAuthenticatedUserTask::class);
-        // Get the current user
-        /** @var User $authenticatedUser */
-        $authenticatedUser = $getAuthenticatedUserTask->run();
-
         //// Create Content
         $this->content = $this->createContentTask->run(['user_id' => $authenticatedUser->id]);
 
@@ -91,11 +88,22 @@ class CreateContentAction extends Action
             }
         }
 
-        throw_if(!in_array('article', $addonNames), CreateResourceFailedException::class, 'You must at least create the Article addon');
+        throw_if(!in_array('article', $addonNames) || !in_array('subject', $addonNames), CreateResourceFailedException::class, 'You must at least create the Article and Subject addon');
 
         // Validate and return extracted and validated addon array
         $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addonNames, config('samandoon.action_to_perform_on_addon.create'));
         // CREATE ADD-ONS
         $this->CRUDAddOnsSubAction->run($addonNames, $this->content, config('samandoon.action_to_perform_on_addon.create'), $addonDataArray);
+    }
+
+    private function getAuthenticatedUser()
+    {
+        /** @var GetAuthenticatedUserTask $getAuthenticatedUserTask */
+        $getAuthenticatedUserTask = App::make(GetAuthenticatedUserTask::class);
+        // Get the current user
+        /** @var User $authenticatedUser */
+        $authenticatedUser = $getAuthenticatedUserTask->run();
+
+        return $authenticatedUser;
     }
 }
