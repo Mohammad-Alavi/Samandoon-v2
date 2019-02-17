@@ -2,7 +2,6 @@
 
 namespace App\Containers\Subject\Actions;
 
-use App\Containers\Subject\Models\Subject;
 use App\Containers\Subject\Tasks\CreateSubjectTask;
 use App\Ship\Parents\Actions\SubAction;
 use Spatie\Tags\Tag;

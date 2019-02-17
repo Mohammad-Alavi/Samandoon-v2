@@ -21,7 +21,6 @@ class CreateSubjectTask extends Task
     public function run(int $content_id, array $data): Tag
     {
         try {
-//            $subject = json_decode($data['subject'], true);
             return $this->repository->addSubject($content_id, $data['subject']);
         } catch (Exception $exception) {
             throw new UpdateResourceFailedException();
