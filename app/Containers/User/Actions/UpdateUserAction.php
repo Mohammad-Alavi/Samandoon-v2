@@ -4,6 +4,7 @@ namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
+use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 
@@ -31,6 +32,18 @@ class UpdateUserAction extends Action
             'birth',
             'avatar',
         ]);
+
+        if (array_key_exists('first_name', $sanitizedData)) {
+            $sanitizedData['first_name'] = ArabicToPersianStringConverter::Convert($sanitizedData['first_name']);
+        }
+
+        if (array_key_exists('last_name', $sanitizedData)) {
+            $sanitizedData['last_name'] = ArabicToPersianStringConverter::Convert($sanitizedData['last_name']);
+        }
+
+        if (array_key_exists('nick_name', $sanitizedData)) {
+            $sanitizedData['nick_name'] = ArabicToPersianStringConverter::Convert($sanitizedData['nick_name']);
+        }
 
         $user = Apiato::call('User@UpdateUserTask', [$sanitizedData, $data->id]);
 
