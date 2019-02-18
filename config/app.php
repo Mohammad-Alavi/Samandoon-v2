@@ -149,7 +149,8 @@ return [
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
         Spatie\Tags\TagsServiceProvider::class,
-
+        Laravel\Scout\ScoutServiceProvider::class,
+        TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
         /*
          * Application Service Providers...
          *
