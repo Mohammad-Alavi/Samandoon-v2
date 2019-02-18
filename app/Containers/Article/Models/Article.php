@@ -5,6 +5,7 @@ namespace App\Containers\Article\Models;
 use App\Containers\Content\Models\Content;
 use App\Ship\Parents\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Article
@@ -14,6 +15,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     use SoftDeletes;
+    use Searchable;
+
+    public $asYouType = true;
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' => $this->id,
+            'text' => $this->text,
+        ];
+
+        // Customize array...
+
+        return $array;
+    }
 
     /**
      * @var array
