@@ -3,6 +3,7 @@
 namespace App\Containers\Content\Tasks;
 
 use App\Containers\Content\Exceptions\AddOnTypeNotFoundException;
+use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Tasks\Task;
 use App\Ship\Transporters\DataTransporter;
 
@@ -68,6 +69,9 @@ class ExtractAddOnDataTask extends Task
         $sanitizedData = $transporter->sanitizeInput([
             'article.text',
         ]);
+        if (array_key_exists('text', $sanitizedData['article'])) {
+            $sanitizedData['article']['text'] = ArabicToPersianStringConverter::Convert($sanitizedData['article']['text']);
+        };
         return empty($sanitizedData['article']) ? [] : $sanitizedData['article'];
     }
 
