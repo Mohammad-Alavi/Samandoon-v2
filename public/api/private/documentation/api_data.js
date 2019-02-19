@@ -1217,6 +1217,56 @@ define({ "api": [
     }
   },
   {
+    "group": "Search",
+    "name": "searchContent",
+    "type": "GET",
+    "url": "/v1/search/content?q=ووته",
+    "title": "Search Content",
+    "description": "<p>Search the Content text and return the resault</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/Content/UI/API/Routes/SearchContent.v1.private.php",
+    "groupTitle": "Search",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n    \"id\": \"lnmojg5bwy5ew80r\",\n    \"created_at\": {\n        \"date\": \"2019-02-17 18:15:29.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-17 18:15:29.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n        \"id\": \"7ozb8r4zvn369anp\",\n        \"text\": \"ای برای ریختن پشم است\",\n        \"content_id\": \"lnmojg5bwy5ew80r\",\n        \"created_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"repost\": null,\n      \"link\": {\n            \"object\": \"Link\",\n        \"id\": \"7ozb8r4zvn369anp\",\n        \"link_url\": \"https:\\/\\/stackoverflow.com\",\n        \"content_id\": \"lnmojg5bwy5ew80r\",\n        \"created_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"image\": {\n            \"object\": \"Image\",\n        \"id\": \"8gq07y4nd03wkxvo\",\n        \"image_url\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/87\\/516912ff6e44036f6ea62c0c5cf577a0.jpg\",\n        \"created_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"subject\": {\n            \"object\": \"Subject\",\n        \"id\": \"qovgxe3xm4ladbpm\",\n        \"subject\": \"بدون موضوع\",\n        \"created_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-17 18:15:29.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      }\n    },\n    \"stats\": {\n        \"like_count\": 0,\n      \"liked_by_current_user\": false,\n      \"comment_count\": 0\n    },\n    \"user\": {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"phone\": \"+989391079907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n            \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n            \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n            \"followings_count\": 1,\n        \"followers_count\": 1,\n        \"followed_by_current_user\": false,\n        \"content_count\": 53\n      },\n      \"created_at\": {\n            \"date\": \"2019-02-11 03:06:14.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n            \"date\": \"2019-02-12 03:59:00.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"6 days ago\",\n      \"readable_updated_at\": \"5 days ago\"\n    }\n  },\n  \"meta\": {\n    \"include\": [],\n    \"custom\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Search",
+    "name": "searchUser",
+    "type": "GET",
+    "url": "/v1/search/user?q=همزا",
+    "title": "Search User",
+    "description": "<p>Find Users by their nickname and username</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/User/UI/API/Routes/SearchUser.v1.private.php",
+    "groupTitle": "Search",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"phone\": \"+989391079907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n        \"date\": \"2019-02-11 00:50:29.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n        \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n        \"followings_count\": 0,\n        \"followers_count\": 1,\n        \"followed_by_current_user\": false, // when you are in another users profile it show if you are following that user\n        \"content_count\": 4\n      },\n      \"created_at\": {\n        \"date\": \"2019-02-11 03:06:14.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-11 03:09:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"2 hours ago\",\n      \"readable_updated_at\": \"2 hours ago\"\n    }\n  ],\n  \"meta\": {\n    \"include\": [\n        \"roles\"\n    ],\n    \"custom\": [],\n    \"pagination\": {\n        \"total\": 1,\n      \"count\": 1,\n      \"per_page\": 10,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "group": "Setting",
     "name": "getAllSettings",
     "type": "GET",
