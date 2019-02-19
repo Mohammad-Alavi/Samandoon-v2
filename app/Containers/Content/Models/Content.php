@@ -48,6 +48,15 @@ class Content extends Model
         'updated_at',
     ];
 
+    protected $with = [
+        'article',
+        'repost',
+        'link',
+        'image',
+        'subject',
+        'user',
+    ];
+
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
