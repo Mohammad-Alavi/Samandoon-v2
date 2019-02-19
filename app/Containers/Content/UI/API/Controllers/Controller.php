@@ -7,10 +7,13 @@ use App\Containers\Content\UI\API\Requests\CreateContentRequest;
 use App\Containers\Content\UI\API\Requests\DeleteContentRequest;
 use App\Containers\Content\UI\API\Requests\GetAllContentsRequest;
 use App\Containers\Content\UI\API\Requests\GetContentRequest;
+use App\Containers\Content\UI\API\Requests\SearchContentRequest;
 use App\Containers\Content\UI\API\Requests\UpdateContentRequest;
 use App\Containers\Content\UI\API\Transformers\ContentTransformer;
+use App\Containers\Content\UI\API\Transformers\SearchContentTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use App\Ship\Transporters\DataTransporter;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class Controller
@@ -63,9 +66,28 @@ class Controller extends ApiController
         return $this->noContent();
     }
 
+    /**
+     * @param GetAllContentsRequest $request
+     *
+     * @return array
+     */
     public function getAllContents(GetAllContentsRequest $request)
     {
         $content = Apiato::call('Content@GetAllContentsAction', [new DataTransporter($request)]);
         return $this->transform($content, ContentTransformer::class);
+    }
+
+    /**
+     * @param SearchContentRequest $request
+     *
+     * @return array
+     */
+    public function searchContent(SearchContentRequest $request)
+    {
+        Request::exists('q') && Request::input('q') != '' ?
+            $content = $this->transform(Apiato::call('Content@SearchContentAction', [new DataTransporter($request)]), SearchContentTransformer::class) :
+            $content = $this->transform(Apiato::call('Content@GetAllContentsAction', [new DataTransporter($request)]), ContentTransformer::class);
+
+        return $content;
     }
 }
