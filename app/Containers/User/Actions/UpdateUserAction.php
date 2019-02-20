@@ -27,6 +27,7 @@ class UpdateUserAction extends Action
             'last_name',
             'nick_name',
             'email',
+            'username',
             'phone',
             'gender',
             'birth',
