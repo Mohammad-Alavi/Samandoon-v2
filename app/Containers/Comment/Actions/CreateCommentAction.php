@@ -5,6 +5,7 @@ namespace App\Containers\Comment\Actions;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Authentication\Tasks\GetAuthenticatedUserTask;
 use App\Containers\Comment\Tasks\CreateCommentTask;
+use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 
@@ -38,6 +39,9 @@ class CreateCommentAction extends Action
             'content_id',
             'parent_id',
         ]);
+
+        $data['body'] = ArabicToPersianStringConverter::Convert($data['body']);
+
         $comment = $this->createCommentTask->run($data);
 
         return $comment;
