@@ -92,6 +92,6 @@ class UserTransformer extends Transformer
      */
     private function obscurePhone(string $phone)
     {
-        substr_replace($phone, '***', 7, 3);
+        return substr_replace($phone, '***', 7, 3);
     }
 }
