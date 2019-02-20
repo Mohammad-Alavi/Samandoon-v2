@@ -33,6 +33,7 @@ class UserPrivateProfileTransformer extends Transformer {
 
         $response = [
             'user' => $userTransformer->transform($user),
+            'private_phone' => $user->phone,
 
             //            'settings' => $settings,
             //            'stats'    => $stats,

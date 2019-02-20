@@ -39,7 +39,8 @@ class UserTransformer extends Transformer
             'last_name' => $user->last_name,
             'nick_name' => $user->nick_name,
             'email' => $user->email,
-            'phone' => $user->phone,
+            'username' => $user->username,
+            'public_phone' => $this->obscurePhone($user->phone),
             'is_phone_confirmed' => $user->is_phone_confirmed,
             'is_email_confirmed' => $user->is_email_confirmed,
             'gender' => $user->gender,
@@ -86,4 +87,11 @@ class UserTransformer extends Transformer
         return $this->collection($user->roles, new RoleTransformer());
     }
 
+    /**
+     * @param string $phone
+     */
+    private function obscurePhone(string $phone)
+    {
+        substr_replace($phone, '***', 7, 3);
+    }
 }
