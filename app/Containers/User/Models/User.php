@@ -29,6 +29,7 @@ class User extends UserModel implements HasMedia {
         $array = [
             'id' => $this->id,
             'nick_name' => $this->nick_name,
+            'username' => $this->username,
         ];
 
         // Customize array...
