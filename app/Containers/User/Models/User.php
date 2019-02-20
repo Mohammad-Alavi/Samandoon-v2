@@ -35,6 +35,7 @@ class User extends UserModel implements HasMedia {
         'last_name',
         'nick_name',
         'email',
+        'username',
         'phone',
         'password',
         'one_time_password',
