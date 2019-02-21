@@ -8,9 +8,8 @@ use App\Ship\Parents\Tasks\Task;
 use Exception;
 use Spatie\Tags\Tag;
 
-class CreateSubjectTask extends Task
+class UpdateSubjectTask extends Task
 {
-
     protected $repository;
 
     public function __construct(ContentRepository $repository)
@@ -21,7 +20,7 @@ class CreateSubjectTask extends Task
     public function run(int $content_id, array $data): Tag
     {
         try {
-            return $this->repository->addSubject($content_id, $data['subject'], config('samandoon.tag_type.subject'));
+            return $this->repository->updateSubject($content_id, $data['subject'], config('samandoon.tag_type.subject'));
         } catch (Exception $exception) {
             throw new UpdateResourceFailedException();
         }

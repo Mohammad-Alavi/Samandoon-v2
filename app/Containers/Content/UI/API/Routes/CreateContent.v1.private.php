@@ -14,10 +14,9 @@
  * @apiParam           {array} article article[title => title here, text => text here]
  * @apiParam           {array="علمی,فرهنگی,اجتماعی,ورزشی,هنری,بشردوستانه,امور زنان,
 آسیب دیدگان اجتماعی,حمایتی,بهداشت و درمان,توانبخشی,محیط زیست,عمران و آبادانی,بدون موضوع,نیکو کاری و امور خیریه"} subject subject[subject => علمی]
- * @apiParam           {array} repost repost[referenced_content_id => reloj65plp4v8ndy]
- * @apiParam           {array} link link[link_url => https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]
- * @apiParam           {array} image image[image => send image file here]
- * @apiParam           {json}  [tags] ["world end", "hantoosh", "aantoosh"]
+ * @apiParam           {array} [repost] repost[referenced_content_id => reloj65plp4v8ndy]
+ * @apiParam           {array} [link] link[link_url => https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]
+ * @apiParam           {array} [image] image[image => send image file here]
  * @apiUse             ContentSuccessSingleResponse
  */
 
