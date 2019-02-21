@@ -4,7 +4,7 @@
  * @apiGroup           Comment
  * @apiName            getAllComments
  *
- * @api                {GET} /v1/comment Get All Comments of a Content
+ * @api                {GET} /v1/content/{content_id}/comment Get All Comments of a Content
  * @apiDescription     Get All Comments of a Content by its Content ID
  *
  * @apiVersion         1.0.0

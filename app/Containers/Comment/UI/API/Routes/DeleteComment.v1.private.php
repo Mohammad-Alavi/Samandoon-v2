@@ -4,7 +4,7 @@
  * @apiGroup           Comment
  * @apiName            deleteComment
  *
- * @api                {DELETE} /v1/user/:id/content/:id/comment/:id Delete Comment
+ * @api                {DELETE} /v1/user/:id/comment/:comment_id Delete Comment
  * @apiDescription     Delete a Comment by its ID
  *
  * @apiVersion         1.0.0
