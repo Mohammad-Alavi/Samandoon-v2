@@ -26,9 +26,9 @@ class UpdateImageSubAction extends SubAction
      *
      * @return Image
      */
-    public function run(array $data, $id): Image
+    public function run(array $data, $content): Image
     {
-        $image = $this->updateImageTask->run($id, $data);
+        $image = $this->updateImageTask->run($content->image->id, $data);
 
         return $image;
     }

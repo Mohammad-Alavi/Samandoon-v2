@@ -33,7 +33,16 @@ class ContentRepository extends Repository
         /** @var Content $content */
         $content = $this->find($content_id);
         $subject = Tag::findOrCreate([$subject], $tagType)->first();
-        $content->attachTag($subject);
+        $content->syncTagsWithType([$subject], $tagType);
+        return $subject;
+    }
+
+    public function updateSubject(int $content_id, string $subject, string $tagType = "subject"): Tag
+    {
+        /** @var Content $content */
+        $content = $this->find($content_id);
+        $subject = Tag::findOrCreate([$subject], $tagType)->first();
+        $content->syncTagsWithType([$subject], $tagType);
         return $subject;
     }
 }

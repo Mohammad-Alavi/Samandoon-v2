@@ -31,7 +31,7 @@ class CRUDAddOnsSubAction extends SubAction
                     Apiato::call($actionName, [$addOnData[lcfirst($addOnName)], $content->id]);
                     break;
                 case config('samandoon.action_to_perform_on_addon.update'):
-                    Apiato::call($actionName, [$addOnData[lcfirst($addOnName)], $content->$addOnName()->first()->id]);
+                    Apiato::call($actionName, [$addOnData[lcfirst($addOnName)], $content]);
                     break;
                 case config('samandoon.action_to_perform_on_addon.delete'):
                     if ($content->$addOnName()->first()) {

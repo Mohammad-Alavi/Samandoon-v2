@@ -8,6 +8,7 @@ use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\ExtractHashtagsFromStringTask;
 use App\Containers\Content\Tasks\FindContentByIdTask;
 use App\Ship\Parents\Actions\SubAction;
+use Spatie\Tags\Tag;
 
 /**
  * Class UpdateArticleSubAction
@@ -43,17 +44,18 @@ class UpdateArticleSubAction extends SubAction
      *
      * @return Article
      */
-    public function run(array $data, $id): Article
+    public function run(array $data, $content): Article
     {
-        $article = $this->updateArticleTask->run($id, $data);
+        $article = $this->updateArticleTask->run($content->article->id, $data);
 
         /** @var array $articleTags */
         $articleTags = $this->extractHashtagsFromStringTask->run($data['text']);
+        /** @var Tag $tagsWithTypeOfContent */
+        $tagsWithTypeOfContent = Tag::findOrCreate($articleTags, config('samandoon.tag_type.content'));
         /** @var Content $content */
-        $content = $this->findContentByIdTask->run($id);
-
+        $content = $article->content;
         //attach tags that are in article to content
-        $content->syncTags($articleTags);
+        $content->syncTagsWithType($tagsWithTypeOfContent, config('samandoon.tag_type.content'));
 
         return $article;
     }
