@@ -33,10 +33,9 @@ class UpdateLinkSubAction extends SubAction
      *
      * @return Link
      */
-    public function run(array $data, $id): Link
+    public function run(array $data, $content): Link
     {
-
-        $article = $this->updateLinkTask->run($id, $data);
+        $article = $this->updateLinkTask->run($content->link->id, $data);
 
         return $article;
     }

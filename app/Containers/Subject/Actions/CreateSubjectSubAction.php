@@ -13,7 +13,6 @@ use Spatie\Tags\Tag;
  */
 class CreateSubjectSubAction extends SubAction
 {
-
     /**
      * @var CreateSubjectTask $createSubjectTask
      */
@@ -30,11 +29,11 @@ class CreateSubjectSubAction extends SubAction
     }
 
     /**
-     * @param array  $data
+     * @param array $data
      *
-     * @param string $content_id
+     * @param int   $content_id
      *
-     * @return Subject
+     * @return Tag
      */
     public function run(array $data, int $content_id): Tag
     {
