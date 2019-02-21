@@ -28,7 +28,7 @@ class Content extends Model
     use HasTags;
 
     protected $fillable = [
-        'user_id'
+        'user_id',
     ];
 
     protected $attributes = [
@@ -108,8 +108,11 @@ class Content extends Model
     {
         DB::transaction(function () {
             foreach (config('samandoon.available_add_ons') as $addOnName) {
+                if ($addOnName == 'subject') {
+//                $this->subject()->detach();
+                    continue;
+                }
                 $this->$addOnName()->delete();
-//                $this->subjects()->detach();
             }
 
             // revoke user's permission to manage events and articles
