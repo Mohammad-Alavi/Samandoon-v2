@@ -133,6 +133,9 @@ class UpdateContentAction extends Action
         $contentUpdatedAt = $content->updated_at;
 
         foreach (config('samandoon.available_add_ons') as $addOnName) {
+            // skip 'subject' addon because subject addon doesn't work like all other addons
+            if ($addOnName == 'subject') continue;
+
             $addOn = $content->$addOnName()->withTrashed()->orderBy('updated_at', 'desc')->first();
             if ($addOn) {
                 $contentUpdatedAt = $contentUpdatedAt->lt($addOn->created_at) ? $addOn->created_at : $contentUpdatedAt;
