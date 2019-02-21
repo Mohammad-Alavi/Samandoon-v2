@@ -21,7 +21,7 @@ class CreateSubjectTask extends Task
     public function run(int $content_id, array $data): Tag
     {
         try {
-            return $this->repository->addSubject($content_id, $data['subject']);
+            return $this->repository->addSubject($content_id, $data['subject'], config('samandoon.tag_type.subject'));
         } catch (Exception $exception) {
             throw new UpdateResourceFailedException();
         }

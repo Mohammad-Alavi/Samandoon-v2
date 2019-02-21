@@ -10,6 +10,12 @@ return [
         'subject' => 'subject',
     ],
 
+    // tag types used when storing tags in DB
+    'tag_type' => [
+        'content' => 'content',
+        'subject' => 'subject',
+    ],
+
     /*
    |--------------------------------------------------------------------------
    | Action to perform on addon
