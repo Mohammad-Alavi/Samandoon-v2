@@ -10,9 +10,6 @@
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated
- *
- * @apiParam           {string} [tag] this and tag_type parameter should be send together
- * @apiParam           {string=subject,content} [tag_type] this and tag parameter should be send together
 
  * @apiUse             ContentSuccessSingleResponse
  *
