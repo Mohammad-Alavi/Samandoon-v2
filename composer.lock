@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3146113167f8dc340dcb02fb1a72395",
+    "content-hash": "319d105ed2d1007b29a489031cb0832d",
     "packages": [
         {
             "name": "apiato/containers-installer",
@@ -1005,16 +1005,16 @@
         },
         {
             "name": "graham-campbell/manager",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
-                "reference": "850e7ab0c63eb816a5ed17158df1cf78827919fb"
+                "reference": "ba3e236392665425723b2b967196aeeabc7f929f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/850e7ab0c63eb816a5ed17158df1cf78827919fb",
-                "reference": "850e7ab0c63eb816a5ed17158df1cf78827919fb",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/ba3e236392665425723b2b967196aeeabc7f929f",
+                "reference": "ba3e236392665425723b2b967196aeeabc7f929f",
                 "shasum": ""
             },
             "require": {
@@ -1026,7 +1026,7 @@
                 "graham-campbell/analyzer": "^2.1",
                 "graham-campbell/testbench-core": "^3.0",
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.5|^7.0"
+                "phpunit/phpunit": "^6.5|^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -1061,7 +1061,7 @@
                 "laravel",
                 "manager"
             ],
-            "time": "2019-01-29T14:38:38+00:00"
+            "time": "2019-02-16T14:23:38+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1795,6 +1795,71 @@
                 "passport"
             ],
             "time": "2018-03-15T12:39:02+00:00"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v7.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "59d301b79d53fb6ad47e143e06372434af0fda38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/59d301b79d53fb6ad47e143e06372434af0fda38",
+                "reference": "59d301b79d53fb6ad47e143e06372434af0fda38",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/contracts": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/pagination": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/queue": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "algolia/algoliasearch-client-php": "^2.2",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^2.2)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2019-02-14T16:50:18+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2542,16 +2607,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a"
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5221f49a608808c1e4d436df32884cbc1b821ac0",
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2654,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-01-12T16:31:37+00:00"
+            "time": "2019-02-16T20:54:15+00:00"
         },
         {
             "name": "optimus/heimdal",
@@ -3519,26 +3584,26 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "11f0b270669a55f90093d63ddb5214e0f7c279da"
+                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/11f0b270669a55f90093d63ddb5214e0f7c279da",
-                "reference": "11f0b270669a55f90093d63ddb5214e0f7c279da",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/e62f8b459bee0a880c8976c316e82638a74510b5",
+                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
-                "php": "^7.0",
+                "php": "^7.2",
                 "psr/log": "^1.0",
                 "symfony/process": "^4.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5",
+                "phpunit/phpunit": "^8.0",
                 "symfony/var-dumper": "^4.2"
             },
             "type": "library",
@@ -3565,7 +3630,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2019-01-14T09:15:47+00:00"
+            "time": "2019-02-15T12:11:38+00:00"
         },
         {
             "name": "spatie/laravel-fractal",
@@ -3720,27 +3785,27 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.31.0",
+            "version": "2.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "5f9960854295c6aec1c706aaa3b146962d6ee905"
+                "reference": "9da0a1618b0c85f71ef7e11b942d5f6f92d2c063"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5f9960854295c6aec1c706aaa3b146962d6ee905",
-                "reference": "5f9960854295c6aec1c706aaa3b146962d6ee905",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/9da0a1618b0c85f71ef7e11b942d5f6f92d2c063",
+                "reference": "9da0a1618b0c85f71ef7e11b942d5f6f92d2c063",
                 "shasum": ""
             },
             "require": {
-                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "php": ">=7.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0",
+                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0|~3.8.0",
                 "phpunit/phpunit": "^5.7|6.2|^7.0",
                 "predis/predis": "^1.1"
             },
@@ -3781,7 +3846,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-02-04T03:56:54+00:00"
+            "time": "2019-02-20T15:56:22+00:00"
         },
         {
             "name": "spatie/laravel-tags",
@@ -5084,6 +5149,129 @@
             "time": "2019-01-30T11:44:30+00:00"
         },
         {
+            "name": "teamtnt/laravel-scout-tntsearch-driver",
+            "version": "v7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teamtnt/laravel-scout-tntsearch-driver.git",
+                "reference": "fe638e0269533d37a6eabb5845039d5f3226b157"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teamtnt/laravel-scout-tntsearch-driver/zipball/fe638e0269533d37a6eabb5845039d5f3226b157",
+                "reference": "fe638e0269533d37a6eabb5845039d5f3226b157",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "~5.4",
+                "illuminate/contracts": "~5.4",
+                "illuminate/database": "~5.4",
+                "illuminate/pagination": "~5.4",
+                "illuminate/queue": "~5.4",
+                "illuminate/support": "~5.4",
+                "laravel/scout": "7.*",
+                "php": ">=7.1",
+                "teamtnt/tntsearch": "2.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "suggest": {
+                "teamtnt/tntsearch": "Required to use the TNTSearch engine."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "TeamTNT\\Scout\\TNTSearchScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TeamTNT\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TNT Studio",
+                    "email": "info@tntstudio.hr"
+                }
+            ],
+            "description": "Driver for Laravel Scout search package based on https://github.com/teamtnt/tntsearch",
+            "keywords": [
+                "laravel",
+                "scout",
+                "search",
+                "tntsearch"
+            ],
+            "time": "2019-02-11T13:44:35+00:00"
+        },
+        {
+            "name": "teamtnt/tntsearch",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teamtnt/tntsearch.git",
+                "reference": "6eb15ad2d7e4275e8a008a3b85a215419754b6b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teamtnt/tntsearch/zipball/6eb15ad2d7e4275e8a008a3b85a215419754b6b2",
+                "reference": "6eb15ad2d7e4275e8a008a3b85a215419754b6b2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-pdo_sqlite": "*",
+                "ext-sqlite3": "*",
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TeamTNT\\TNTSearch\\": "src"
+                },
+                "files": [
+                    "helper/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nenad Tičarić",
+                    "email": "nticaric@gmail.com",
+                    "homepage": "http://www.tntstudio.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fully featured full text search engine written in PHP",
+            "homepage": "https://github.com/teamtnt/tntsearch",
+            "keywords": [
+                "Fuzzy search",
+                "fulltext",
+                "geosearch",
+                "search",
+                "teamtnt",
+                "tntsearch"
+            ],
+            "time": "2019-02-11T13:33:38+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.1",
             "source": {
@@ -5911,16 +6099,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.10",
+            "version": "0.9.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "4876fc0c7d9e5da49712554a35c94d84ed1e9ee5"
+                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4876fc0c7d9e5da49712554a35c94d84ed1e9ee5",
-                "reference": "4876fc0c7d9e5da49712554a35c94d84ed1e9ee5",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/be9bf28d8e57d67883cba9fcadfcff8caab667f8",
+                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8",
                 "shasum": ""
             },
             "require": {
@@ -5972,7 +6160,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2018-11-13T20:50:16+00:00"
+            "time": "2019-02-12T16:07:13+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6495,16 +6683,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f"
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b8454ea6958c3dee38453d3bd571e023108c91f",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b389aebe1b8b0578430bda0c7c95a829608e059",
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059",
                 "shasum": ""
             },
             "require": {
@@ -6516,7 +6704,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -6540,7 +6728,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2018-02-01T13:07:23+00:00"
+            "time": "2019-02-20T10:12:59+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -6593,16 +6781,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.4",
+            "version": "7.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0"
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2896657da5fb237bc316bdfc18c2650efeee0dc0",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
                 "shasum": ""
             },
             "require": {
@@ -6673,7 +6861,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-07T14:15:04+00:00"
+            "time": "2019-02-18T09:24:50+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

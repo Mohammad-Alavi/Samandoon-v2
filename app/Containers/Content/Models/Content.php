@@ -48,6 +48,15 @@ class Content extends Model
         'updated_at',
     ];
 
+    protected $with = [
+        'article',
+        'repost',
+        'link',
+        'image',
+        'subject',
+        'user',
+    ];
+
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
@@ -97,7 +106,7 @@ class Content extends Model
 
     public function subject()
     {
-        return $this->morphToMany(Tag::class, 'taggable')->where('type', 'subject');
+        return $this->morphToMany(Tag::class, 'taggable')->where('type', config('samandoon.tag_type.subject'));
     }
 
     /**

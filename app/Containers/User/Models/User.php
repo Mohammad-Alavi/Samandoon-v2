@@ -7,6 +7,7 @@ use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Content\Models\Content;
 use App\Containers\Transaction\Models\Transaction;
 use App\Ship\Parents\Models\UserModel;
+use Laravel\Scout\Searchable;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanLike;
@@ -19,7 +20,22 @@ class User extends UserModel implements HasMedia {
     use AuthorizationTrait;
     use HasMediaTrait;
     use CanFollow, CanBeFollowed, CanLike;
+    use Searchable;
 
+    public $asYouType = true;
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' => $this->id,
+            'nick_name' => $this->nick_name,
+            'username' => $this->username,
+        ];
+
+        // Customize array...
+
+        return $array;
+    }
     /**
      * @var string
      */

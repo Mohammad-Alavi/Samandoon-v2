@@ -17,6 +17,7 @@ use App\Containers\User\UI\API\Requests\GetUserFeedRequest;
 use App\Containers\User\UI\API\Requests\LikeRequest;
 use App\Containers\User\UI\API\Requests\LoginRequest;
 use App\Containers\User\UI\API\Requests\RegisterRequest;
+use App\Containers\User\UI\API\Requests\SearchUserRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
 use App\Containers\User\UI\API\Requests\UnlikeRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
@@ -214,5 +215,12 @@ class Controller extends ApiController
         $feed = Apiato::call('User@GetUserFeedAction', [new DataTransporter($request)]);
 
         return $this->transform($feed, ContentTransformer::class);
+    }
+
+    public function searchUser(SearchUserRequest $request)
+    {
+        $content = Apiato::call('User@SearchUserAction', [new DataTransporter($request)]);
+
+        return $this->transform($content, UserTransformer::class);
     }
 }
