@@ -106,7 +106,7 @@ class Content extends Model
 
     public function subject()
     {
-        return $this->morphToMany(Tag::class, 'taggable')->where('type', 'subject');
+        return $this->morphToMany(Tag::class, 'taggable')->where('type', config('samandoon.tag_type.subject'));
     }
 
     /**
