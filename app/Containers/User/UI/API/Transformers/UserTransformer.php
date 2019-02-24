@@ -30,6 +30,7 @@ class UserTransformer extends Transformer
      */
     public function transform(User $user)
     {
+        /** @var User $currentUser */
         $currentUser = auth('api')->user();
 
         $response = [
@@ -57,11 +58,11 @@ class UserTransformer extends Transformer
                     config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
             ],
             'stats' => [
-                'followings_count' => $user->followings()->count(),
-                'followers_count' => $user->followers()->count(),
+                'followings_count' => $user->followings->count(),
+                'followers_count' => $user->followers->count(),
                 // when you are in another users profile it show if you are following that user
                 'followed_by_current_user' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
-                'content_count' => $user->contents()->count(),
+//                'content_count' => $user->contents->count(),
             ],
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,

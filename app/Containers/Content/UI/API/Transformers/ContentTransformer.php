@@ -50,9 +50,9 @@ class ContentTransformer extends Transformer
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
             'stats' => [
-                'like_count' => $entity->likers()->count(),
+                'like_count' => $entity->likers->count(),
                 'liked_by_current_user' => empty($currentUser) ? false : $entity->isLikedBy($currentUser->id),
-                'comment_count' => $entity->comments()->count(),
+                'comment_count' => $entity->comments->count(),
 //            'seen_count' => $entity->getUniquePageViews(),
             ],
             'user' => $userTransform->transform($entity->user),
@@ -81,8 +81,9 @@ class ContentTransformer extends Transformer
             // AddOn transformer class
             $addOnTransformer = new $addOnTransformer();
             // AddOn transformer array
-            $addOnTransformerArray['add-on'][$addOnName] = $content->$addOnName()->first() ?
-                $addOnTransformer->transform($content->$addOnName()->first()) :
+            $addon = $content->$addOnName;
+            $addOnTransformerArray['add-on'][$addOnName] = $addon ?
+                $addOnTransformer->transform($addon) :
                 null;
         }
         return $addOnTransformerArray;

@@ -22,8 +22,6 @@ class CreateArticleSubAction extends SubAction
     protected $createArticleTask;
     /** @var ExtractHashtagsFromStringTask $extractHashtagsFromStringTask */
     protected $extractHashtagsFromStringTask;
-    /** @var FindContentByIdTask $findContentByIdTask */
-    protected $findContentByIdTask;
 
     /**
      * CreateArticleSubAction constructor.
@@ -33,12 +31,10 @@ class CreateArticleSubAction extends SubAction
      * @param FindContentByIdTask           $findContentByIdTask
      */
     public function __construct(CreateArticleTask $createArticleTask,
-                                ExtractHashtagsFromStringTask $extractHashtagsFromStringTask,
-                                FindContentByIdTask $findContentByIdTask)
+                                ExtractHashtagsFromStringTask $extractHashtagsFromStringTask)
     {
         $this->createArticleTask = $createArticleTask;
         $this->extractHashtagsFromStringTask = $extractHashtagsFromStringTask;
-        $this->findContentByIdTask = $findContentByIdTask;
     }
 
     /**
@@ -63,7 +59,7 @@ class CreateArticleSubAction extends SubAction
         /** @var Tag $tagsWithTypeOfContent */
         $tagsWithTypeOfContent = Tag::findOrCreate($articleTags, config('samandoon.tag_type.content'));
         /** @var Content $content */
-        $content = $this->findContentByIdTask->run($articleData['content_id']);
+        $content = $article->content;
 
         //attach tags that are in article to content
         $content->attachTags($tagsWithTypeOfContent);

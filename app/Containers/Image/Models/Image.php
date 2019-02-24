@@ -35,6 +35,10 @@ class Image extends Model implements HasMedia
         'updated_at',
     ];
 
+    protected $with = [
+        'media',
+    ];
+
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */

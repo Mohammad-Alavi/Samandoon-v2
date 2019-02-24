@@ -3,6 +3,7 @@
 namespace App\Containers\Subject\UI\API\Transformers;
 
 use App\Ship\Parents\Transformers\Transformer;
+use Illuminate\Database\Eloquent\Collection;
 use Spatie\Tags\Tag;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -27,8 +28,9 @@ class SubjectTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(Tag $entity)
+    public function transform(Collection $entity)
     {
+        $entity = $entity->first();
         $response = [
             'object' => 'Subject',
             'id' => Hashids::encode($entity->id),

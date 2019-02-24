@@ -37,6 +37,10 @@ class Comment extends Model
         'updated_at',
     ];
 
+    protected $with = [
+        'user',
+    ];
+
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */

@@ -102,6 +102,11 @@ class User extends UserModel implements HasMedia {
         'remember_token',
     ];
 
+    protected $with = [
+        'followings',
+        'followers',
+    ];
+
     /**
      * @param Media|null $media
      *

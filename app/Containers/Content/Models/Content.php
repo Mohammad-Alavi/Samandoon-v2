@@ -55,6 +55,8 @@ class Content extends Model
         'image',
         'subject',
         'user',
+        'comments',
+        'likers',
     ];
 
     /**
@@ -106,7 +108,7 @@ class Content extends Model
 
     public function subject()
     {
-        return $this->morphToMany(Tag::class, 'taggable')->where('type', config('samandoon.tag_type.subject'));
+        return $this->morphToMany(Tag::class, 'taggable', 'taggables')->where('type', config('samandoon.tag_type.subject'));
     }
 
     /**
