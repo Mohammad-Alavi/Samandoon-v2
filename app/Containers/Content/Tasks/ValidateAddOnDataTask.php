@@ -70,8 +70,22 @@ class ValidateAddOnDataTask extends Task
             case 'subject':
                 $validator = Validator::make($data, [
                     'subject' => 'required|
-                    in:علمی,فرهنگی,اجتماعی,ورزشی,هنری,نیکو کاری و امور خیریه,بشردوستانه,امور زنان,
-                    آسیب دیدگان اجتماعی,حمایتی,بهداشت و درمان,توانبخشی,محیط زیست,عمران و آبادانی,بدون موضوع',
+                    in:' .
+                    config('subject-container.subjects.scientific') . ',' .
+                    config('subject-container.subjects.cultural') . ',' .
+                    config('subject-container.subjects.art') . ',' .
+                    config('subject-container.subjects.social') . ',' .
+                    config('subject-container.subjects.sports') . ',' .
+                    config('subject-container.subjects.charity') . ',' .
+                    config('subject-container.subjects.philanthropy') . ',' .
+                    config('subject-container.subjects.women_affairs') . ',' .
+                    config('subject-container.subjects.socially_disadvantaged') . ',' .
+                    config('subject-container.subjects.supportive') . ',' .
+                    config('subject-container.subjects.health_care') . ',' .
+                    config('subject-container.subjects.rehabilitation') . ',' .
+                    config('subject-container.subjects.environment') . ',' .
+                    config('subject-container.subjects.development_and_prosperity') . ',' .
+                    config('subject-container.subjects.no_subject')
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
@@ -102,8 +116,22 @@ class ValidateAddOnDataTask extends Task
                 break;
             case 'subject':
                 $validator = Validator::make($data, [
-                    'subject' => 'in:علمی,فرهنگی,اجتماعی,ورزشی,هنری,نیکو کاری و امور خیریه,بشردوستانه,امور زنان,
-                    آسیب دیدگان اجتماعی,حمایتی,بهداشت و درمان,توانبخشی,محیط زیست,عمران و آبادانی,بدون موضوع',
+                    'subject' => 'in:' .
+                        config('subject-container.subjects.scientific') . ',' .
+                        config('subject-container.subjects.cultural') . ',' .
+                        config('subject-container.subjects.art') . ',' .
+                        config('subject-container.subjects.social') . ',' .
+                        config('subject-container.subjects.sports') . ',' .
+                        config('subject-container.subjects.charity') . ',' .
+                        config('subject-container.subjects.philanthropy') . ',' .
+                        config('subject-container.subjects.women_affairs') . ',' .
+                        config('subject-container.subjects.socially_disadvantaged') . ',' .
+                        config('subject-container.subjects.supportive') . ',' .
+                        config('subject-container.subjects.health_care') . ',' .
+                        config('subject-container.subjects.rehabilitation') . ',' .
+                        config('subject-container.subjects.environment') . ',' .
+                        config('subject-container.subjects.development_and_prosperity') . ',' .
+                        config('subject-container.subjects.no_subject')
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
