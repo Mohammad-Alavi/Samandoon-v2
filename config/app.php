@@ -151,6 +151,7 @@ return [
         Spatie\Tags\TagsServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
+        BeyondCode\QueryDetector\QueryDetectorServiceProvider::class,
         /*
          * Application Service Providers...
          *
