@@ -3,21 +3,32 @@
 namespace App\Containers\Content\Tasks;
 
 use App\Containers\Content\Data\Repositories\ContentRepository;
+use App\Containers\Tag\Models\Tag;
 use App\Ship\Criterias\Eloquent\OrderByFieldCriteria;
 use App\Ship\Parents\Tasks\Task;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\Tags\Tag;
 
 class GetAllContentsTask extends Task
 {
 
     protected $repository;
 
+    /**
+     * GetAllContentsTask constructor.
+     *
+     * @param ContentRepository $repository
+     */
     public function __construct(ContentRepository $repository)
     {
         $this->repository = $repository;
     }
 
+    /**
+     * @param $data
+     *
+     * @return mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
     public function run($data)
     {
         // tag && tagType-> exist || is_null || false

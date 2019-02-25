@@ -7,8 +7,8 @@ use App\Containers\Article\Tasks\CreateArticleTask;
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\ExtractHashtagsFromStringTask;
 use App\Containers\Content\Tasks\FindContentByIdTask;
+use App\Containers\Tag\Models\Tag;
 use App\Ship\Parents\Actions\SubAction;
-use Spatie\Tags\Tag;
 
 /**
  * Class CreateArticleSubAction

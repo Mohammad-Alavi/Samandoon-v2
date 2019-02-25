@@ -3,9 +3,8 @@
 namespace App\Containers\Content\Data\Repositories;
 
 use App\Containers\Content\Models\Content;
-use App\Containers\Subject\Models\Subject;
+use App\Containers\Tag\Models\Tag;
 use App\Ship\Parents\Repositories\Repository;
-use Spatie\Tags\Tag;
 
 /**
  * Class ContentRepository

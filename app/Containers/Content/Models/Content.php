@@ -7,14 +7,14 @@ use App\Containers\Comment\Models\Comment;
 use App\Containers\Image\Models\Image;
 use App\Containers\Link\Models\Link;
 use App\Containers\Repost\Models\Repost;
-use App\Containers\Subject\Models\Subject;
+use App\Containers\Tag\Models\Tag;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Spatie\Tags\HasTags;
-use Spatie\Tags\Tag;
 
 /**
  * Class Content
@@ -140,5 +140,20 @@ class Content extends Model
     public function user()
     {
         return $this->belongsTo(user::class);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getTagClassName(): string
+    {
+        return Tag::class;
+    }
+
+    public function tags(): MorphToMany
+    {
+        return $this
+            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
+            ->withTimestamps()->orderBy('order_column');
     }
 }
