@@ -64,6 +64,9 @@ class UserTransformer extends Transformer
                 'followed_by_current_user' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
 //                'content_count' => $user->contents->count(),
             ],
+            'social_activity_tendency' => [
+                'subject_count' => $user->subjectCategoryCount(),
+            ],
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
             'readable_created_at' => $user->created_at->diffForHumans(),
@@ -79,6 +82,14 @@ class UserTransformer extends Transformer
     }
 
     /**
+     * @param string $phone
+     */
+    private function obscurePhone(string $phone)
+    {
+        return substr_replace($phone, '***', 7, 3);
+    }
+
+    /**
      * @param User $user
      *
      * @return \League\Fractal\Resource\Collection
@@ -86,13 +97,5 @@ class UserTransformer extends Transformer
     public function includeRoles(User $user)
     {
         return $this->collection($user->roles, new RoleTransformer());
-    }
-
-    /**
-     * @param string $phone
-     */
-    private function obscurePhone(string $phone)
-    {
-        return substr_replace($phone, '***', 7, 3);
     }
 }

@@ -143,4 +143,19 @@ class User extends UserModel implements HasMedia {
         return $this->hasMany(Transaction::class);
     }
 
+
+    /**
+     * @return array
+     */
+    public function subjectCategoryCount(): array
+    {
+
+        $subjectNameArray = [];
+        $this->contents()->with('subject')->each(function (Content $query) use (&$subjectNameArray) {
+            $subject = $query->subject->first();
+            array_push($subjectNameArray, $subject->name);
+        });
+        $result = array_count_values($subjectNameArray);
+        return $result;
+    }
 }
