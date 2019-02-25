@@ -51,6 +51,7 @@ class UpdateUserRequest extends Request
             'first_name'     => 'min:2|max:50',
             'last_name'     => 'min:2|max:50',
             'nick_name'     => 'min:2|max:50',
+            'description'     => 'max:150',
             'email'    => 'email|unique:users,email',
             'username'    => 'bail|min:5|max:32|regex:/^[a-zA-Z](?:_?[a-zA-Z0-9]+)*$/|unique:users,username',
             'phone'    => 'size:13|regex:/(\+989)[0-9]/',

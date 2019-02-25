@@ -26,6 +26,7 @@ class UpdateUserAction extends Action
             'first_name',
             'last_name',
             'nick_name',
+            'description',
             'email',
             'username',
             'phone',
@@ -44,6 +45,10 @@ class UpdateUserAction extends Action
 
         if (array_key_exists('nick_name', $sanitizedData)) {
             $sanitizedData['nick_name'] = ArabicToPersianStringConverter::Convert($sanitizedData['nick_name']);
+        }
+
+        if (array_key_exists('description', $sanitizedData)) {
+            $sanitizedData['description'] = ArabicToPersianStringConverter::Convert($sanitizedData['description']);
         }
 
         $user = Apiato::call('User@UpdateUserTask', [$sanitizedData, $data->id]);
