@@ -155,7 +155,7 @@ define({ "api": [
             "type": "array",
             "optional": false,
             "field": "article",
-            "description": "<p>article[title =&gt; title here, text =&gt; text here]</p>"
+            "description": "<p>max:2200 article[text =&gt; text here]</p>"
           },
           {
             "group": "Parameter",
@@ -336,7 +336,7 @@ define({ "api": [
             "type": "array",
             "optional": true,
             "field": "article",
-            "description": "<p>article[title =&gt; title here, text =&gt; text here]</p>"
+            "description": "<p>max:2200 article[text =&gt; text here]</p>"
           },
           {
             "group": "Parameter",
@@ -1910,6 +1910,13 @@ define({ "api": [
             "optional": true,
             "field": "nick_name",
             "description": "<p>min:2|max:50</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "description",
+            "description": "<p>max:150</p>"
           },
           {
             "group": "Parameter",

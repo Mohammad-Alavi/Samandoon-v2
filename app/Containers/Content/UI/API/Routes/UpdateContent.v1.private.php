@@ -11,7 +11,7 @@
  * @apiPermission      Authenticated|Owner
  *
  * @apiParam           {array=article,subject,link,image} [addon] example: addon[article => true, repost => true]
- * @apiParam           {array} [article] article[title => title here, text => text here]
+ * @apiParam           {array} [article] max:2200 article[text => text here]
  * @apiParam           {array} [link] link[link_url => https://stackoverflow.com/questions/38726530/replace-snake-case-to-camelcase-in-part-of-a-string]
  * @apiParam           {array="علمی,فرهنگی,اجتماعی,ورزشی,هنری,بشردوستانه,امور زنان,
 آسیب دیدگان اجتماعی,حمایتی,بهداشت و درمان,توانبخشی,محیط زیست,عمران و آبادانی,بدون موضوع,نیکو کاری و امور خیریه"} [subject] subject[subject => علمی]
