@@ -45,7 +45,7 @@ class ValidateAddOnDataTask extends Task
         switch ($addOnName) {
             case 'article':
                 $validator = Validator::make($data, [
-                    'text' => 'required',
+                    'text' => 'required|max:2200',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
@@ -103,8 +103,7 @@ class ValidateAddOnDataTask extends Task
         switch ($addOnName) {
             case 'article':
                 $validator = Validator::make($data, [
-//                    'title' => 'required',
-//                    'text' => 'required',
+                    'text' => 'max:2200',
                 ]);
                 throw_if($validator->fails(), ValidationFailedException::class, $validator->errors());
                 break;
