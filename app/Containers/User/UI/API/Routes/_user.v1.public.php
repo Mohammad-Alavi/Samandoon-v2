@@ -6,51 +6,60 @@
 HTTP/1.1 200 OK
 {
     "data": {
-    "object": "User",
-    "id": "bml0wd39b5pkznag",
-    "first_name": null,
-    "last_name": null,
-    "nick_name": null,
-    "email": null,
-    "phone": "+989169302582",
-    "is_phone_confirmed": true,
-    "is_email_confirmed": false,
-    "gender": null,
-    "birth": null,
-    "points": 0,
-    "is_subscription_expired": true,
-    "subscription_expired_at": {
-        "date": "2019-02-11 00:50:29.000000",
+    "user": {
+        "object": "User",
+      "id": "qmv7dk48x5b690wx",
+      "first_name": null,
+      "last_name": null,
+      "nick_name": null,
+      "email": null,
+      "username": null,
+      "public_phone": "+989391***907",
+      "is_phone_confirmed": true,
+      "is_email_confirmed": false,
+      "gender": null,
+      "birth": null,
+      "points": 0,
+      "is_subscription_expired": true,
+      "subscription_expired_at": {
+            "date": "2019-02-20 09:42:31.000000",
         "timezone_type": 3,
         "timezone": "Asia\/Tehran"
-    },
-    "images": {
-        "avatar": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar.png",
+      },
+      "images": {
+            "avatar": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar.png",
         "avatar_thumb": "http:\/\/api.samandoon.local\/v1\/storage\/default_images\/avatar_thumb.png"
-    },
-    "stats": {
-      "followings_count": 0,
-      "followers_count": 1,
-      "followed_by_current_user": true, // when you are in another users profile it show if you are following that user
-      "content_count": 4
-    },
-    "created_at": {
-        "date": "2019-02-11 03:14:09.000000",
+      },
+      "stats": {
+            "followings_count": 0,
+        "followers_count": 0,
+        "followed_by_current_user": false
+      },
+      "social_activity_tendency": {
+            "subject_count": {
+                "علمی": 1,
+          "فرهنگی": 2,
+          "هنری": 22,
+          "محیط زیست": 1
+        }
+      },
+      "created_at": {
+            "date": "2019-02-20 09:43:09.000000",
         "timezone_type": 3,
         "timezone": "Asia\/Tehran"
-    },
-    "updated_at": {
-        "date": "2019-02-11 03:14:30.000000",
+      },
+      "updated_at": {
+            "date": "2019-02-20 09:43:48.000000",
         "timezone_type": 3,
         "timezone": "Asia\/Tehran"
+      },
+      "readable_created_at": "4 days ago",
+      "readable_updated_at": "4 days ago"
     },
-    "readable_created_at": "12 hours ago",
-    "readable_updated_at": "12 hours ago"
+    "private_phone": "+989391079907"
   },
   "meta": {
-    "include": [
-        "roles"
-    ],
+    "include": [],
     "custom": []
   }
 }
