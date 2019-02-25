@@ -38,6 +38,7 @@ class UserTransformer extends Transformer
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'nick_name' => $user->nick_name,
+            'description' => $user->description,
             'email' => $user->email,
             'username' => $user->username,
             'public_phone' => $this->obscurePhone($user->phone),
