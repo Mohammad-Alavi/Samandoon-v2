@@ -3,8 +3,8 @@
 namespace App\Containers\Subject\Actions;
 
 use App\Containers\Subject\Tasks\UpdateSubjectTask;
+use App\Containers\Tag\Models\Tag;
 use App\Ship\Parents\Actions\SubAction;
-use Spatie\Tags\Tag;
 
 class UpdateSubjectSubAction extends SubAction
 {
