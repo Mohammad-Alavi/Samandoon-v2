@@ -2,10 +2,15 @@
 
 namespace App\Containers\Tag\Models;
 
+use Apiato\Core\Traits\HashIdTrait;
+use Apiato\Core\Traits\HasResourceKeyTrait;
 use \Spatie\Tags\Tag as SpatieTag;
 
 class Tag extends SpatieTag
 {
+    use HashIdTrait;
+    use HasResourceKeyTrait;
+
     protected $fillable = [
 
     ];
