@@ -2,7 +2,6 @@
 
 namespace App\Containers\User\Models;
 
-use App\Containers\Article\Models\Article;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Content\Models\Content;
 use App\Containers\Transaction\Models\Transaction;
@@ -15,7 +14,8 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class User extends UserModel implements HasMedia {
+class User extends UserModel implements HasMedia
+{
 
     use AuthorizationTrait;
     use HasMediaTrait;
@@ -23,24 +23,10 @@ class User extends UserModel implements HasMedia {
     use Searchable;
 
     public $asYouType = true;
-
-    public function toSearchableArray()
-    {
-        $array = [
-            'id' => $this->id,
-            'nick_name' => $this->nick_name,
-            'username' => $this->username,
-        ];
-
-        // Customize array...
-
-        return $array;
-    }
     /**
      * @var string
      */
     protected $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -67,17 +53,15 @@ class User extends UserModel implements HasMedia {
         'one_time_password_updated_at',
         'subscription_expired_at',
     ];
-
     /**
      * @var array
      */
     protected $casts = [
-        'is_client'               => 'boolean',
-        'is_phone_confirmed'      => 'boolean',
-        'is_email_confirmed'      => 'boolean',
+        'is_client' => 'boolean',
+        'is_phone_confirmed' => 'boolean',
+        'is_email_confirmed' => 'boolean',
         'is_subscription_expired' => 'boolean',
     ];
-
     /**
      * The dates attributes.
      *
@@ -91,7 +75,6 @@ class User extends UserModel implements HasMedia {
         'one_time_password_updated_at',
         'subscription_expired_at',
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -102,11 +85,23 @@ class User extends UserModel implements HasMedia {
         'one_time_password',
         'remember_token',
     ];
-
     protected $with = [
         'followings',
         'followers',
     ];
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' => $this->id,
+            'nick_name' => $this->nick_name,
+            'username' => $this->username,
+        ];
+
+        // Customize array...
+
+        return $array;
+    }
 
     /**
      * @param Media|null $media
@@ -126,24 +121,16 @@ class User extends UserModel implements HasMedia {
     public function registerMediaCollections()
     {
         $this->addMediaCollection('avatar')
-        ->singleFile();
+            ->singleFile();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contents()
+    public function transactions()
     {
-        return $this->hasMany(content::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function transactions() {
         return $this->hasMany(Transaction::class);
     }
-
 
     /**
      * @return array
@@ -158,5 +145,13 @@ class User extends UserModel implements HasMedia {
         });
         $result = array_count_values($subjectNameArray);
         return $result;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contents()
+    {
+        return $this->hasMany(content::class);
     }
 }

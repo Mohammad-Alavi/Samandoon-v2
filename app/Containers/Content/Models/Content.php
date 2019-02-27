@@ -106,6 +106,9 @@ class Content extends Model
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * @return MorphToMany
+     */
     public function subject()
     {
         return $this->morphToMany(Tag::class, 'taggable', 'taggables')->where('type', config('samandoon.tag_type.subject'));
@@ -150,6 +153,9 @@ class Content extends Model
         return Tag::class;
     }
 
+    /**
+     * @return MorphToMany
+     */
     public function tags(): MorphToMany
     {
         return $this
