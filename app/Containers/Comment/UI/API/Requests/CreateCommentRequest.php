@@ -53,7 +53,7 @@ class CreateCommentRequest extends Request
     public function rules()
     {
         return [
-             'body' => 'required',
+             'body' => 'required|max:2200',
              'content_id' => 'required',
              'parent_id' => 'exists:comments,id',
             // '{user-input}' => 'required|max:255',

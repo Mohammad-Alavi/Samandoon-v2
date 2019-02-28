@@ -10,7 +10,7 @@
  * @apiVersion         1.0.0
  * @apiPermission      Authorized
  *
- * @apiParam           {String} body Comment text
+ * @apiParam           {String} body max:2200 Comment text
  * @apiParam           {String} [parent_id] Parent id of the comment
  *
  * @apiUse             CommentSuccessSingleResponse
