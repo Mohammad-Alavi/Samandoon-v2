@@ -8,7 +8,7 @@ set('ssh_type', 'native');
 set('ssh_multiplexing', false);
 set('http_user', 'admin');
 set('writable_mode', 'chown');
-//set('writable_use_sudo', false);
+set('writable_use_sudo', true);
 
 set('repository', 'https://github.com/Mohammad-Alavi/Samandoon-v2');
 

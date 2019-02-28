@@ -20,7 +20,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "body",
-            "description": "<p>Comment text</p>"
+            "description": "<p>max:2200 Comment text</p>"
           },
           {
             "group": "Parameter",
@@ -1515,6 +1515,17 @@ define({ "api": [
             "optional": false,
             "field": "period",
             "description": "<p>get the trending tags in day or week</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "allowedValues": [
+              "content",
+              "subject"
+            ],
+            "optional": false,
+            "field": "tag_type",
+            "description": "<p>get the trending tags of a specific tag_type</p>"
           }
         ]
       }
