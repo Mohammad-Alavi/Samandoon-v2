@@ -59,11 +59,12 @@ class UserTransformer extends Transformer
                     config('samandoon.storage_path') . str_replace(config('samandoon.storage_path_replace'), '', $user->getFirstMedia('avatar')->getUrl('thumb')),
             ],
             'stats' => [
+                // counts
                 'followings_count' => $user->followings->count(),
                 'followers_count' => $user->followers->count(),
-                // when you are in another users profile it show if you are following that user
-                'followed_by_current_user' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
-//                'content_count' => $user->contents->count(),
+                'content_count' => $user->contents->count(),
+                // when you are in another users profile it show if you are {x}ed that user
+                'followed_by_me' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
             ],
             'social_activity_tendency' => [
                 'subject_count' => $user->subjectCategoryCount(),
