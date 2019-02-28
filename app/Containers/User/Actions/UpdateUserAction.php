@@ -35,6 +35,7 @@ class UpdateUserAction extends Action
             'avatar',
         ]);
 
+        // change all arabic words in strings to its persian equivalent
         if (array_key_exists('first_name', $sanitizedData)) {
             $sanitizedData['first_name'] = ArabicToPersianStringConverter::Convert($sanitizedData['first_name']);
         }
@@ -49,6 +50,11 @@ class UpdateUserAction extends Action
 
         if (array_key_exists('description', $sanitizedData)) {
             $sanitizedData['description'] = ArabicToPersianStringConverter::Convert($sanitizedData['description']);
+        }
+
+        // make username all lowercase
+        if (array_key_exists('username', $sanitizedData)) {
+            $sanitizedData['username'] = strtolower($sanitizedData['username']);
         }
 
         $user = Apiato::call('User@UpdateUserTask', [$sanitizedData, $data->id]);
