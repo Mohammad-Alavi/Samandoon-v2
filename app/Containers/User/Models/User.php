@@ -137,9 +137,8 @@ class User extends UserModel implements HasMedia
      */
     public function subjectCategoryCount(): array
     {
-
         $subjectNameArray = [];
-        $this->contents()->with('subject')->each(function (Content $query) use (&$subjectNameArray) {
+        $this->contents->each(function (Content $query) use (&$subjectNameArray) {
             $subject = $query->subject->first();
             array_push($subjectNameArray, $subject->name);
         });

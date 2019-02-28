@@ -50,9 +50,14 @@ class ContentTransformer extends Transformer
             'updated_at' => $entity->updated_at,
             'add-on' => $addonArray['add-on'],
             'stats' => [
+                // counts
                 'like_count' => $entity->likers->count(),
-                'liked_by_current_user' => empty($currentUser) ? false : $entity->isLikedBy($currentUser->id),
                 'comment_count' => $entity->comments->count(),
+                // when you are in another users profile it show if you are {x}ed that user
+                'liked_by_me' => empty($currentUser) ? false : $entity->isLikedBy($currentUser->id),
+                'commented_by_me' => empty($currentUser) ? false : $entity->isCommentedBy($currentUser->id),
+                'reposted_by_me' => empty($currentUser) ? false : $entity->isRepostedBy($currentUser),
+
 //            'seen_count' => $entity->getUniquePageViews(),
             ],
             'user' => $userTransform->transform($entity->user),

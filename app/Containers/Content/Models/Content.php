@@ -99,14 +99,6 @@ class Content extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    /**
      * @return MorphToMany
      */
     public function subject()
@@ -146,6 +138,16 @@ class Content extends Model
     }
 
     /**
+     * @return MorphToMany
+     */
+    public function tags(): MorphToMany
+    {
+        return $this
+            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
+            ->withTimestamps()->orderBy('order_column');
+    }
+
+    /**
      * @return string
      */
     public static function getTagClassName(): string
@@ -154,12 +156,36 @@ class Content extends Model
     }
 
     /**
-     * @return MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tags(): MorphToMany
+    public function comments()
     {
-        return $this
-            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
-            ->withTimestamps()->orderBy('order_column');
+        return $this->hasMany(Comment::class);
+    }
+
+
+    /**
+     * @param int $user_id
+     *
+     * @return bool
+     */
+    public function isCommentedBy(int $user_id): bool
+    {
+        return $this->comments->where('user_id', '=', $user_id)->count() > 0 ? true : false;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function isRepostedBy(User $user): bool
+    {
+        $ref_content_id_of_reposts = [];
+        $user->contents()->whereHas('repost')->each(function (Content $content) use (&$ref_content_id_of_reposts) {
+            array_push($ref_content_id_of_reposts, $content->repost->referenced_content_id);
+        });
+
+        return in_array($this->id, $ref_content_id_of_reposts);
     }
 }
