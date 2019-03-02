@@ -6,6 +6,7 @@ use App\Containers\Content\Models\Content;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 /**
  * Class Comment
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Comment extends Model
 {
     use SoftDeletes;
+    use CanBeLiked;
 
     protected $fillable = [
         'body',
