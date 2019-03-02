@@ -36,4 +36,14 @@ class Tag extends SpatieTag
      * A resource key to be used by the the JSON API Serializer responses.
      */
     protected $resourceKey = 'tags';
+
+    public static function findFromString(string $name, string $type = null, string $locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+
+        return static::query()
+            ->where(\DB::raw( "json_extract(name, '$." . $locale . "')" ), '=', $name)
+            ->where('type', $type)
+            ->first();
+    }
 }
