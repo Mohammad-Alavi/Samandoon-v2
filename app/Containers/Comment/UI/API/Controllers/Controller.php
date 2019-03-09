@@ -7,6 +7,7 @@ use App\Containers\Comment\UI\API\Requests\CreateCommentRequest;
 use App\Containers\Comment\UI\API\Requests\DeleteCommentRequest;
 use App\Containers\Comment\UI\API\Requests\GetAllCommentsRequest;
 use App\Containers\Comment\UI\API\Requests\GetCommentRequest;
+use App\Containers\Comment\UI\API\Requests\LikeCommentRequest;
 use App\Containers\Comment\UI\API\Transformers\CommentTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use App\Ship\Transporters\DataTransporter;
@@ -54,6 +55,18 @@ class Controller extends ApiController
     public function getAllComments(GetAllCommentsRequest $request)
     {
         $comment = Apiato::call('Comment@GetAllCommentsAction', [new DataTransporter($request)]);
+        return $this->transform($comment, CommentTransformer::class);
+    }
+
+    public function likeComment(LikeCommentRequest $request)
+    {
+        $comment = Apiato::call('Comment@LikeCommentAction', [new DataTransporter($request)]);
+        return $this->transform($comment, CommentTransformer::class);
+    }
+
+    public function unlikeComment(LikeCommentRequest $request)
+    {
+        $comment = Apiato::call('Comment@UnlikeCommentAction', [new DataTransporter($request)]);
         return $this->transform($comment, CommentTransformer::class);
     }
 }
