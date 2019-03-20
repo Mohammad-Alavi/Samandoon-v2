@@ -30,7 +30,7 @@ host('server-samandoon.ir')
     ->configFile('~/.ssh/config')
     ->identityFile('~/.ssh/1990')
     ->forwardAgent(true)
-    ->multiplexing(true)
+//    ->multiplexing(true)
     ->set('deploy_path', '/home/admin/domains/server-samandoon.ir');
 //    ->become('admin');
 //    ->pty(true);
