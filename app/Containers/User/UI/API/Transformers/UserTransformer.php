@@ -3,7 +3,7 @@
 namespace App\Containers\User\UI\API\Transformers;
 
 use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
-use App\Containers\User\Models\User;
+use App\Containers\User\Models\User as User;
 use App\Ship\Parents\Transformers\Transformer;
 
 class UserTransformer extends Transformer
