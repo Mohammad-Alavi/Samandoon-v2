@@ -10,7 +10,7 @@
  * @apiVersion         1.0.0
  * @apiPermission      none
  *
- * @apiUse             UserSuccessSingleResponse
+ * @apiUse             UserSuccessProfileSingleResponse
  */
 
 $router->get('profile', [
