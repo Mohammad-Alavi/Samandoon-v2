@@ -14,6 +14,6 @@ class SearchUserAction extends Action
             'q',
         ]);
 
-        return Apiato::call('User@SearchuserTask', [$sanitizedData, $transporter->limit]);
+        return Apiato::call('User@SearchUserTask', [$sanitizedData, $transporter->limit]);
     }
 }
