@@ -22,13 +22,7 @@ class UnlikeCommentTask extends Task
     {
         try {
             DB::beginTransaction();
-            if (!$is_liked = $user->hasLiked($comment)) {
-                $user->like($comment);
-                $is_liked = true;
-                if ($user->id == $comment->user->id) {
-                    // TODO DON'T NOTIFY USER IF HE LIKE HIS OWN CONTENT
-                }
-            }
+            $user->unlike($comment);
         } catch (Exception $exception) {
             DB::rollBack();
             throw new UpdateResourceFailedException('Failed to unlike the specified comment');
