@@ -50,6 +50,7 @@ class CommentTransformer extends Transformer
                 'liked_by_me' => is_null($currentUser) ? false : $entity->isLikedBy($currentUser->id),
             ],
             'updated_at' => $entity->updated_at,
+            'created_at' => $entity->created_at,
             'user' => $userTransformer->transform($entity->user),
         ];
 
