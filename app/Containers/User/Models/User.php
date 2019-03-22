@@ -86,8 +86,8 @@ class User extends UserModel implements HasMedia
         'remember_token',
     ];
     protected $with = [
-        'followings',
-        'followers',
+//        'followings',
+//        'followers',
     ];
 
     public function toSearchableArray()
