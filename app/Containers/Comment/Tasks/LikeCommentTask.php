@@ -36,6 +36,6 @@ class LikeCommentTask extends Task
         DB::commit();
 
 //        return ['user' => $user, 'comment' => $comment, 'is_liked' => $is_liked];
-        return $comment;
+        return $comment->refresh();
     }
 }

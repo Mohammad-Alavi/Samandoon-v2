@@ -29,6 +29,6 @@ class UnlikeCommentTask extends Task
         }
         DB::commit();
 
-        return $comment;
+        return $comment->refresh();
     }
 }
