@@ -66,7 +66,7 @@ class UserTransformer extends Transformer
                 'content_count' => $user->contents->count(),
                 // when you are in another users profile it show if you are {x}ed that user
                 'followed_by_me' => is_null($currentUser) ? false : $user->isFollowedBy($currentUser->id),
-                'following_me' => is_null($currentUser) ? false : $user->isFollowing($currentUser->id),
+                'following_me' => is_null($currentUser) ? false : $user->isFollowing($currentUser->id, User::class),
             ],
             'social_activity_tendency' => [
                 'subject_count' => $this->prepareSubjectCount($user->subjectCategoryCount()),
