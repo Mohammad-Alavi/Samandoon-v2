@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @apiGroup           Comment
+ * @apiGroup           Like/Unlike
  * @apiName            unlikeComment
  *
  * @api                {POST} /v1/comment/:comment_id/unlike Unlike Comment

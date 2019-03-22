@@ -478,11 +478,11 @@ define({ "api": [
     }
   },
   {
-    "group": "Like",
+    "group": "Like_Unlike",
     "name": "like",
     "type": "POST",
     "url": "/v1/user/like/:content_id",
-    "title": "Like",
+    "title": "Like Content",
     "description": "<p>Like the given Content</p>",
     "version": "1.0.0",
     "permission": [
@@ -491,23 +491,48 @@ define({ "api": [
       }
     ],
     "filename": "app/Containers/User/UI/API/Routes/Like.v1.private.php",
-    "groupTitle": "Like",
+    "groupTitle": "Like_Unlike",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n    \"id\": \"qovgxe3xm4ladbpm\",\n    \"created_at\": {\n        \"date\": \"2019-02-21 07:08:28.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-21 07:08:28.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n        \"id\": \"rvdz8a3ra4mnpk6w\",\n        \"text\": \"عن#میخورم #برات یه دنیا ولی! #نرینی_برام به مولا!\",\n        \"content_id\": \"qovgxe3xm4ladbpm\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"repost\": null,\n      \"link\": {\n            \"object\": \"Link\",\n        \"id\": \"kpn8rx3le5wamge6\",\n        \"link_url\": \"https:\\/\\/stackoverflow.com\",\n        \"content_id\": \"qovgxe3xm4ladbpm\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"image\": {\n            \"object\": \"Image\",\n        \"id\": \"kpn8rx3le5wamge6\",\n        \"image_url\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/56\\/168f197d4a00d8f9fb1de86cd54d8322.jpg\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"subject\": {\n            \"object\": \"Subject\",\n        \"id\": \"qmv7dk48ax3b690w\",\n        \"subject\": \"علمی\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 06:23:05.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 06:23:05.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      }\n    },\n    \"stats\": {\n        \"like_count\": 0,\n      \"liked_by_current_user\": false,\n      \"comment_count\": 0\n    },\n    \"user\": {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"username\": null,\n      \"public_phone\": \"+989391***907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n            \"date\": \"2019-02-20 09:42:31.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n            \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n            \"followings_count\": 0,\n        \"followers_count\": 0,\n        \"followed_by_current_user\": false,\n        \"content_count\": 12\n      },\n      \"created_at\": {\n            \"date\": \"2019-02-20 09:43:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n            \"date\": \"2019-02-20 09:43:48.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"21 hours ago\",\n      \"readable_updated_at\": \"21 hours ago\"\n    }\n  },\n  \"meta\": {\n    \"include\": [],\n    \"custom\": []\n  }\n}",
           "type": "json"
         }
       ]
     }
   },
   {
-    "group": "Like",
+    "group": "Like_Unlike",
+    "name": "likeComment",
+    "type": "POST",
+    "url": "/v1/comment/:comment_id/like",
+    "title": "Like Comment",
+    "description": "<p>Like the given Comment</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/Comment/UI/API/Routes/LikeComment.v1.private.php",
+    "groupTitle": "Like_Unlike",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Comment\",\n        \"id\": \"lo9m8d5jd5e07yvx\",\n        \"body\": \"این متن یک کامنت هست\",\n        \"content_id\": \"w6l8b75dy5qkv9ze\",\n        \"parent_id\": \"qnwmkv5704blag6r\",\n        \"created_at\": {\n        \"date\": \"2019-02-06 14:08:43.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-02-06 14:08:43.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"user\": {\n        \"object\": \"User\",\n            \"id\": \"qmv7dk48x5b690wx\",\n            \"first_name\": \"Mohammad\",\n            \"last_name\": null,\n            \"nick_name\": null,\n            \"email\": null,\n            \"phone\": \"+989391079907\",\n            \"is_phone_confirmed\": true,\n            \"is_email_confirmed\": false,\n            \"gender\": null,\n            \"birth\": null,\n            \"points\": 0,\n            \"is_subscription_expired\": true,\n            \"subscription_expired_at\": {\n            \"date\": \"2019-02-05 15:17:26.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"images\": {\n            \"avatar\": \"http://api.samandoon.local/v1/storage/1/me2.png\",\n                \"avatar_thumb\": \"http://api.samandoon.local/v1/storage/1/conversions/me2-thumb.png\"\n            },\n            \"created_at\": {\n            \"date\": \"2019-02-05 15:18:43.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"updated_at\": {\n            \"date\": \"2019-02-05 15:23:18.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"readable_created_at\": \"22 hours ago\",\n            \"readable_updated_at\": \"22 hours ago\"\n        }\n    },\n    \"meta\": {\n        \"include\": [],\n            \"custom\": [],\n            \"pagination\": {\n            \"total\": 6,\n                \"count\": 6,\n                \"per_page\": 15,\n                \"current_page\": 1,\n                \"total_pages\": 1,\n                \"links\": []\n            }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Like_Unlike",
     "name": "unlike",
     "type": "POST",
     "url": "/v1/user/unlike/:content_id",
-    "title": "Unlike",
+    "title": "Unlike Content",
     "description": "<p>Unlike the given Content</p>",
     "version": "1.0.0",
     "permission": [
@@ -516,12 +541,37 @@ define({ "api": [
       }
     ],
     "filename": "app/Containers/User/UI/API/Routes/Unlike.v1.private.php",
-    "groupTitle": "Like",
+    "groupTitle": "Like_Unlike",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"msg\": \"User (3mjzyg5dp5a0vwp6) liked Content (kjeonp5eordqzvb8).\",\n    \"like_count\": 137, // this is the current like count of the liked target e.g. Content\n    \"is_liked\": true // (or false) is current User liked the given Content ID?\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Content\",\n    \"id\": \"qovgxe3xm4ladbpm\",\n    \"created_at\": {\n        \"date\": \"2019-02-21 07:08:28.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"updated_at\": {\n        \"date\": \"2019-02-21 07:08:28.000000\",\n      \"timezone_type\": 3,\n      \"timezone\": \"Asia\\/Tehran\"\n    },\n    \"add-on\": {\n        \"article\": {\n            \"object\": \"Article\",\n        \"id\": \"rvdz8a3ra4mnpk6w\",\n        \"text\": \"عن#میخورم #برات یه دنیا ولی! #نرینی_برام به مولا!\",\n        \"content_id\": \"qovgxe3xm4ladbpm\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"repost\": null,\n      \"link\": {\n            \"object\": \"Link\",\n        \"id\": \"kpn8rx3le5wamge6\",\n        \"link_url\": \"https:\\/\\/stackoverflow.com\",\n        \"content_id\": \"qovgxe3xm4ladbpm\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"image\": {\n            \"object\": \"Image\",\n        \"id\": \"kpn8rx3le5wamge6\",\n        \"image_url\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/56\\/168f197d4a00d8f9fb1de86cd54d8322.jpg\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 07:08:28.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      },\n      \"subject\": {\n            \"object\": \"Subject\",\n        \"id\": \"qmv7dk48ax3b690w\",\n        \"subject\": \"علمی\",\n        \"created_at\": {\n                \"date\": \"2019-02-21 06:23:05.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n                \"date\": \"2019-02-21 06:23:05.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        }\n      }\n    },\n    \"stats\": {\n        \"like_count\": 0,\n      \"liked_by_current_user\": false,\n      \"comment_count\": 0\n    },\n    \"user\": {\n        \"object\": \"User\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"first_name\": null,\n      \"last_name\": null,\n      \"nick_name\": null,\n      \"email\": null,\n      \"username\": null,\n      \"public_phone\": \"+989391***907\",\n      \"is_phone_confirmed\": true,\n      \"is_email_confirmed\": false,\n      \"gender\": null,\n      \"birth\": null,\n      \"points\": 0,\n      \"is_subscription_expired\": true,\n      \"subscription_expired_at\": {\n            \"date\": \"2019-02-20 09:42:31.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"images\": {\n            \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar.png\",\n        \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/default_images\\/avatar_thumb.png\"\n      },\n      \"stats\": {\n            \"followings_count\": 0,\n        \"followers_count\": 0,\n        \"followed_by_current_user\": false,\n        \"content_count\": 12\n      },\n      \"created_at\": {\n            \"date\": \"2019-02-20 09:43:09.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n            \"date\": \"2019-02-20 09:43:48.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"readable_created_at\": \"21 hours ago\",\n      \"readable_updated_at\": \"21 hours ago\"\n    }\n  },\n  \"meta\": {\n    \"include\": [],\n    \"custom\": []\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Like_Unlike",
+    "name": "unlikeComment",
+    "type": "POST",
+    "url": "/v1/comment/:comment_id/unlike",
+    "title": "Unlike Comment",
+    "description": "<p>Unlike the given Comment</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/Comment/UI/API/Routes/UnlikeComment.v1.private.php",
+    "groupTitle": "Like_Unlike",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": {\n    \"object\": \"Comment\",\n        \"id\": \"lo9m8d5jd5e07yvx\",\n        \"body\": \"این متن یک کامنت هست\",\n        \"content_id\": \"w6l8b75dy5qkv9ze\",\n        \"parent_id\": \"qnwmkv5704blag6r\",\n        \"created_at\": {\n        \"date\": \"2019-02-06 14:08:43.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"updated_at\": {\n        \"date\": \"2019-02-06 14:08:43.000000\",\n            \"timezone_type\": 3,\n            \"timezone\": \"Asia/Tehran\"\n        },\n        \"user\": {\n        \"object\": \"User\",\n            \"id\": \"qmv7dk48x5b690wx\",\n            \"first_name\": \"Mohammad\",\n            \"last_name\": null,\n            \"nick_name\": null,\n            \"email\": null,\n            \"phone\": \"+989391079907\",\n            \"is_phone_confirmed\": true,\n            \"is_email_confirmed\": false,\n            \"gender\": null,\n            \"birth\": null,\n            \"points\": 0,\n            \"is_subscription_expired\": true,\n            \"subscription_expired_at\": {\n            \"date\": \"2019-02-05 15:17:26.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"images\": {\n            \"avatar\": \"http://api.samandoon.local/v1/storage/1/me2.png\",\n                \"avatar_thumb\": \"http://api.samandoon.local/v1/storage/1/conversions/me2-thumb.png\"\n            },\n            \"created_at\": {\n            \"date\": \"2019-02-05 15:18:43.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"updated_at\": {\n            \"date\": \"2019-02-05 15:23:18.000000\",\n                \"timezone_type\": 3,\n                \"timezone\": \"Asia/Tehran\"\n            },\n            \"readable_created_at\": \"22 hours ago\",\n            \"readable_updated_at\": \"22 hours ago\"\n        }\n    },\n    \"meta\": {\n        \"include\": [],\n            \"custom\": [],\n            \"pagination\": {\n            \"total\": 6,\n                \"count\": 6,\n                \"per_page\": 15,\n                \"current_page\": 1,\n                \"total_pages\": 1,\n                \"links\": []\n            }\n}",
           "type": "json"
         }
       ]

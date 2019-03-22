@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @apiGroup           Like
+ * @apiGroup           Like/Unlike
  * @apiName            unlike
  *
- * @api                {POST} /v1/user/unlike/:content_id Unlike
+ * @api                {POST} /v1/user/unlike/:content_id Unlike Content
  * @apiDescription     Unlike the given Content
  *
  * @apiVersion         1.0.0
  * @apiPermission      Authenticated
  *
- * @apiUse             LikeSuccessResponse
+ * @apiUse             ContentSuccessSingleResponse
  */
 
 /** @var Route $router */
