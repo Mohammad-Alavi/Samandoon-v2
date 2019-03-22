@@ -15,7 +15,7 @@ class UnlikeTask extends Task
      * @param User    $user
      * @param Content $content
      *
-     * @return array
+     * @return Content
      * @throws \Exception
      */
     public function run(User $user, Content $content)
@@ -29,6 +29,6 @@ class UnlikeTask extends Task
         }
         DB::commit();
 
-        return ['user' => $user, 'content' => $content, 'is_liked' => false];
+        return $content->refresh();
     }
 }

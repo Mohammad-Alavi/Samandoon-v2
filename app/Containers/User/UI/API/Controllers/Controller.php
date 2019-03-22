@@ -186,10 +186,9 @@ class Controller extends ApiController
      */
     public function like(LikeRequest $request)
     {
-        $likePayload = Apiato::call('User@LikeAction', [new DataTransporter($request)]);
-        $likeTransformer = new LikeTransformer();
+        $content = Apiato::call('User@LikeAction', [new DataTransporter($request)]);
 
-        return $likeTransformer->transform($likePayload);
+        return $this->transform($content, ContentTransformer::class);
     }
 
     /**
@@ -199,10 +198,9 @@ class Controller extends ApiController
      */
     public function unlike(UnlikeRequest $request)
     {
-        $likePayload = Apiato::call('User@UnlikeAction', [new DataTransporter($request)]);
-        $likeTransformer = new LikeTransformer();
+        $content = Apiato::call('User@UnlikeAction', [new DataTransporter($request)]);
 
-        return $likeTransformer->transform($likePayload);
+        return $this->transform($content, ContentTransformer::class);
     }
 
     /**

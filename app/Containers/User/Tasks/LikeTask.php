@@ -15,7 +15,7 @@ class LikeTask extends Task
      * @param User    $user
      * @param Content $content
      *
-     * @return array
+     * @return Content
      * @throws \Exception
      */
     public function run(User $user, Content $content)
@@ -35,6 +35,6 @@ class LikeTask extends Task
         }
         DB::commit();
 
-        return ['user' => $user, 'content' => $content, 'is_liked' => $is_liked];
+        return $content->refresh();
     }
 }
