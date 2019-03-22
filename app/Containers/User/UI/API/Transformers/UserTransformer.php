@@ -60,6 +60,7 @@ class UserTransformer extends Transformer
             ],
             'stats' => [
                 // counts
+                // watch out for max function nesting if you are eager loading this relations
                 'followings_count' => $user->followings->count(),
                 'followers_count' => $user->followers->count(),
                 'content_count' => $user->contents->count(),
@@ -68,7 +69,7 @@ class UserTransformer extends Transformer
                 'following_me' => is_null($currentUser) ? false : $user->isFollowing($currentUser->id),
             ],
             'social_activity_tendency' => [
-                'subject_count' => $user->subjectCategoryCount(),
+                'subject_count' => $this->prepareSubjectCount($user->subjectCategoryCount()),
             ],
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
@@ -100,5 +101,18 @@ class UserTransformer extends Transformer
     public function includeRoles(User $user)
     {
         return $this->collection($user->roles, new RoleTransformer());
+    }
+
+    private function prepareSubjectCount(array $subjectCategoryCount)
+    {
+        $subjectsAndCounts = [];
+        foreach ($subjectCategoryCount as $key => $value) {
+            $temp = [
+                'subject' => $key,
+                'count' => $value,
+            ];
+            array_push($subjectsAndCounts, $temp);
+        }
+        return $subjectsAndCounts;
     }
 }
