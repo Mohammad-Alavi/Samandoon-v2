@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration {
             $table->string('one_time_password')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('gender')->nullable();
-            $table->string('birth')->nullable();
+            $table->timestampTz('birth')->nullable();
             $table->unsignedBigInteger('points')->default(0);
             $table->boolean('is_client')->default(false);
             $table->boolean('is_phone_confirmed')->default(false);
