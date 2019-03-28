@@ -7,6 +7,7 @@ use App\Containers\User\Models\User;
 use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
+use Illuminate\Support\Carbon;
 
 class UpdateUserAction extends Action
 {
@@ -21,6 +22,10 @@ class UpdateUserAction extends Action
         //  TODO: don't let user change its email or phone if any of them is confirmed
         //  TODO: OR
         //  TODO: make it not confirmed after gets edited
+
+        $data->exists('birth') ?
+            $data->birth = Carbon::createFromFormat('Ymd', $data->birth)->toDateString() :
+            $data->birth = null;
 
         $sanitizedData = $data->sanitizeInput([
             'first_name',

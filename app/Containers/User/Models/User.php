@@ -67,6 +67,7 @@ class User extends UserModel implements HasMedia {
         'password_updated_at',
         'one_time_password_updated_at',
         'subscription_expired_at',
+        'birth'
     ];
 
     /**
