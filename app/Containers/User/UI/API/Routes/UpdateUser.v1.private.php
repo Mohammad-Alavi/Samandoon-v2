@@ -16,7 +16,7 @@
  * @apiParam           {String}  [username] min:5|max:32|regex:/^[a-zA-Z](?:_?[a-zA-Z0-9]+)*$/|unique:users,username
  * @apiParam           {String}  [phone] size:13|regex:/(\+989)[0-9]/
  * @apiParam           {String="male,female,unspecified"}  [gender]
- * @apiParam           {date}  [birth] date_format:YmdHiT'
+ * @apiParam           {date}  [birth] date_format:Ymd' example:20141020
  * @apiParam           {image}  [avatar]
  *
  * @apiUse             UserSuccessSingleResponse

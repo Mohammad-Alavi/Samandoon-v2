@@ -56,7 +56,7 @@ class UpdateUserRequest extends Request
             'username'    => 'bail|min:5|max:32|regex:/^[a-zA-Z](?:_?[a-zA-Z0-9]+)*$/|unique:users,username',
             'phone'    => 'size:13|regex:/(\+989)[0-9]/',
             'gender'    => 'in:male,female,unspecified',
-            'birth'    => 'date_format:YmdHiT',
+            'birth'    => 'date_format:Ymd',
             'avatar'    => 'image|max:1024',
         ];
     }
