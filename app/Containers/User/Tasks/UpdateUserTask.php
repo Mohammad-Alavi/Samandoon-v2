@@ -63,7 +63,7 @@ class UpdateUserTask extends Task {
             throw new NotFoundException('User Not Found');
         } catch (Exception $exception) {
             DB::rollBack();
-            throw new InternalErrorException();
+            throw new InternalErrorException($exception);
         }
         DB::commit();
 
