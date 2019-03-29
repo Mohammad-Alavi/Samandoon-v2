@@ -49,9 +49,4 @@ class Repost extends Model
     {
         return $this->belongsTo(Content::class);
     }
-
-//    public function  referencedContent()
-//    {
-//
-//    }
 }

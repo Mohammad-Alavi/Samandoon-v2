@@ -49,6 +49,7 @@ class RepostTransformer extends Transformer
             'id' => $entity->getHashedKey(),
             'content_id' => Hashids::encode($entity->content_id),
             'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
+            'referenced_content_count' => Repost::where('referenced_content_id', '=', $entity->referenced_content_id)->count(),
             'referenced_content_user' => $userTransform->transform($referenced_content->user),
             'referenced_content_article_text' => $referenced_content->article->text,
             'referenced_content_created_at' => $referenced_content->created_at,
