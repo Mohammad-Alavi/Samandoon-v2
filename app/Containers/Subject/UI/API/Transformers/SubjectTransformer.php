@@ -34,6 +34,7 @@ class SubjectTransformer extends Transformer
             'object' => 'Subject',
             'id' => Hashids::encode($entity->id),
             'subject' => $entity->name,
+            'color' => config('subject-container.colors.' . $entity->name),
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
         ];
