@@ -40,12 +40,14 @@ HTTP/1.1 200 OK
     "social_activity_tendency": {
         "subject_count": [
         {
-            "subject": "فرهنگی",
-          "count": 1
+          "subject": "فرهنگی",
+          "count": 2,
+          "color": "#800000"
         },
         {
-            "subject": "علمی",
-          "count": 1
+          "subject": "علمی",
+          "count": 5,
+          "color": "#FF0000",
         }
       ]
     },

@@ -42,11 +42,13 @@ HTTP/1.1 200 OK
             "subject_count": [
               {
                 "subject": "فرهنگی",
-                "count": 1
+                "count": 3,
+                "color": "#800000"
               },
               {
                 "subject": "علمی",
-                "count": 1
+                "count": 7,
+                "color": "#FF0000",
               }
             ]
           },
