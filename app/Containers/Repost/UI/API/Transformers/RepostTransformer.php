@@ -53,6 +53,8 @@ class RepostTransformer extends Transformer
                 'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
                 'referenced_content_article_text' => $referenced_content->article->text,
                 'referenced_content_user' => $userTransform->transform($referenced_content->user),
+                'referenced_content_created_at' => $referenced_content->created_at,
+                'referenced_content_updated_at' => $referenced_content->updated_at,
             ];
         } catch (Exception $exception) {
             if ($exception->getStatusCode() == 404) {
@@ -63,6 +65,8 @@ class RepostTransformer extends Transformer
                     'referenced_content_id' => null,
                     'referenced_content_article_text' => null,
                     'referenced_content_user' => null,
+                    'referenced_content_created_at' => null,
+                    'referenced_content_updated_at' => null,
                 ];
             }
         }
