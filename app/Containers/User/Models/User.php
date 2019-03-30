@@ -140,9 +140,12 @@ class User extends UserModel implements HasMedia
     {
         $subjectNameArray = [];
         $this->contents->each(function (Content $query) use (&$subjectNameArray) {
+            // get the subject of the content
             $subject = $query->subject->first();
             array_push($subjectNameArray, $subject->name);
         });
+        // count how many of each subject this array has
+        // example: it has 4 علمی and 1 فرهنگی
         $result = array_count_values($subjectNameArray);
         return $result;
     }
