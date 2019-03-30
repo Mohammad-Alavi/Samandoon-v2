@@ -6,6 +6,7 @@ use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\FindContentByIdTask;
 use App\Containers\Repost\Models\Repost;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
+use App\Ship\Parents\Exceptions\Exception;
 use App\Ship\Parents\Transformers\Transformer;
 use Illuminate\Support\Facades\App;
 use Vinkla\Hashids\Facades\Hashids;
@@ -42,19 +43,47 @@ class RepostTransformer extends Transformer
         /** @var FindContentByIdTask $findContentByIdTask */
         $findContentByIdTask = App::make(FindContentByIdTask::class);
         /** @var Content $referenced_content */
-        $referenced_content = $findContentByIdTask->run($entity->referenced_content_id);
+        try {
+            $referenced_content = $findContentByIdTask->run($entity->referenced_content_id);
 
-        $response = [
-            'object' => 'Repost',
-            'id' => $entity->getHashedKey(),
-            'content_id' => Hashids::encode($entity->content_id),
-            'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
-            'referenced_content_count' => Repost::where('referenced_content_id', '=', $entity->referenced_content_id)->count(),
-            'referenced_content_user' => $userTransform->transform($referenced_content->user),
-            'referenced_content_article_text' => $referenced_content->article->text,
-            'referenced_content_created_at' => $referenced_content->created_at,
-            'referenced_content_updated_at' => $referenced_content->updated_at,
-        ];
+            $response = [
+                'object' => 'Repost',
+                'id' => $entity->getHashedKey(),
+                'content_id' => Hashids::encode($entity->content_id),
+                'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
+                'referenced_content_count' => Repost::where('referenced_content_id', '=', $entity->referenced_content_id)->count(),
+                'referenced_content_user' => $userTransform->transform($referenced_content->user),
+                'referenced_content_article_text' => $referenced_content->article->text,
+                'referenced_content_created_at' => $referenced_content->created_at,
+                'referenced_content_updated_at' => $referenced_content->updated_at,
+            ];
+        } catch (Exception $exception) {
+            if ($exception->getStatusCode() == 404) {
+                $response = [
+                    'object' => 'Repost',
+                    'id' => null,
+                    'content_id' => Hashids::encode($entity->content_id),
+                    'referenced_content_id' => null,
+                    'referenced_content_count' => null,
+                    'referenced_content_user' => null,
+                    'referenced_content_article_text' => null,
+                    'referenced_content_created_at' => null,
+                    'referenced_content_updated_at' => null,
+                ];
+            }
+        }
+
+//        $response = [
+//            'object' => 'Repost',
+//            'id' => $entity->getHashedKey(),
+//            'content_id' => Hashids::encode($entity->content_id),
+//            'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
+//            'referenced_content_count' => Repost::where('referenced_content_id', '=', $entity->referenced_content_id)->count(),
+//            'referenced_content_user' => $userTransform->transform($referenced_content->user),
+//            'referenced_content_article_text' => $referenced_content->article->text,
+//            'referenced_content_created_at' => $referenced_content->created_at,
+//            'referenced_content_updated_at' => $referenced_content->updated_at,
+//        ];
 
         $response = $this->ifAdmin([
             'real_id' => $entity->id,
