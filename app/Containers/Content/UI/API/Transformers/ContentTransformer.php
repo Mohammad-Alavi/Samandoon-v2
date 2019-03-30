@@ -3,6 +3,7 @@
 namespace App\Containers\Content\UI\API\Transformers;
 
 use App\Containers\Content\Models\Content;
+use App\Containers\Repost\Models\Repost;
 use App\Containers\User\Models\User;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Transformers\Transformer;
@@ -53,6 +54,7 @@ class ContentTransformer extends Transformer
                 // counts
                 'like_count' => $entity->likers->count(),
                 'comment_count' => $entity->comments->count(),
+                'repost_count' => Repost::where('referenced_content_id', '=', $entity->id)->count(),
                 // when you are in another users profile it show if you are {x}ed that user
                 'liked_by_me' => empty($currentUser) ? false : $entity->isLikedBy($currentUser->id),
                 'commented_by_me' => empty($currentUser) ? false : $entity->isCommentedBy($currentUser->id),
