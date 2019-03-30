@@ -4,6 +4,7 @@ namespace App\Containers\Storage\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Storage\UI\API\Requests\DeleteFileRequest;
+use App\Containers\Storage\UI\API\Requests\DownloadConversionFilesRequest;
 use App\Containers\Storage\UI\API\Requests\DownloadFileRequest;
 use App\Ship\Parents\Controllers\ApiController;
 use App\Ship\Transporters\DataTransporter;
@@ -18,6 +19,17 @@ class Controller extends ApiController
     public function downloadFile(DownloadFileRequest $request)
     {
         $file = Apiato::call('Storage@DownloadFileAction', [new DataTransporter($request)]);
+        return response()->download($file);
+    }
+
+    /**
+     * @param DownloadConversionFilesRequest $request
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadConversionFiles(DownloadConversionFilesRequest $request)
+    {
+        $file = Apiato::call('Storage@DownloadConversionFilesAction', [new DataTransporter($request)]);
         return response()->download($file);
     }
 
