@@ -3,7 +3,6 @@
 namespace App\Containers\Comment\Tasks;
 
 use App\Containers\Comment\Data\Repositories\CommentRepository;
-use App\Ship\Criterias\Eloquent\OrderByFieldCriteria;
 use App\Ship\Parents\Tasks\Task;
 
 class GetAllCommentsTask extends Task
@@ -28,7 +27,7 @@ class GetAllCommentsTask extends Task
      */
     public function run(string $content_id)
     {
-        $this->repository->pushCriteria(new OrderByFieldCriteria('created_at', 'desc'));
         return $this->repository->findByContentId($content_id);
+
     }
 }

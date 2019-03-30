@@ -21,6 +21,6 @@ class CommentRepository extends Repository
 
     public function findByContentId($content_id)
     {
-        return Comment::where('content_id', $content_id)->paginate();
+        return Comment::where('content_id', $content_id)->paginate()->sortByDesc('created_at');
     }
 }
