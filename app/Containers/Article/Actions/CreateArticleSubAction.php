@@ -8,6 +8,7 @@ use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\ExtractHashtagsFromStringTask;
 use App\Containers\Content\Tasks\FindContentByIdTask;
 use App\Containers\Tag\Models\Tag;
+use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Actions\SubAction;
 
 /**
@@ -56,6 +57,11 @@ class CreateArticleSubAction extends SubAction
 
         /** @var array $articleTags */
         $articleTags = $this->extractHashtagsFromStringTask->run($articleData['text']);
+
+        // throw an exception if the max number of tags reached
+        $max_tag_number = config('samandoon.maximum_allowed_tag_number');
+        throw_if(count($articleTags) > $max_tag_number, CreateResourceFailedException::class, 'maximum allowed number of tags in a content reached. ' . 'max tag number: ' . $max_tag_number);
+
         /** @var Tag $tagsWithTypeOfContent */
         $tagsWithTypeOfContent = Tag::findOrCreate($articleTags, config('samandoon.tag_type.content'));
         /** @var Content $content */

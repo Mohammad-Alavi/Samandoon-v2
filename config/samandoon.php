@@ -36,4 +36,6 @@ return [
     'api_url' => env('API_URL', 'http://localhost'),
     'storage_path' => env('API_URL', 'http://localhost') . '/v1/storage',
     'storage_path_replace' => str_replace(['http://', 'https://'], '', env('APP_URL', 'http://localhost')) . '/storage',
+
+    'maximum_allowed_tag_number' => 30,
 ];
