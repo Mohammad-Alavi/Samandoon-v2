@@ -121,6 +121,8 @@ class Content extends Model
                 $this->$addOnName()->delete();
             }
 
+            // delete all comments of this content
+            $this->comments()->delete();
             // revoke user's permission to manage events and articles
 //            $this->user->revokePermissionTo('manage-event');
 //            $this->user->revokePermissionTo('manage-article');
