@@ -40,7 +40,7 @@ HTTP/1.1 200 OK
         "id": "qnwmkv5704blag6r",
         "content_id": "qmv7dk48x5b690wx",
         "referenced_content_id": "qnwmkv5704blag6r",
-        "referenced_content_count": 2,
+        "referenced_content_article_text": "عن #میخورم برات یه #دنیا ولی! #نرینی_برام به مولا!",
         "referenced_content_user": {
                 "object": "User",
           "id": "qmv7dk48x5b690wx",
@@ -94,17 +94,6 @@ HTTP/1.1 200 OK
           "readable_created_at": "47 minutes ago",
           "readable_updated_at": "47 minutes ago"
         },
-        "referenced_content_article_text": "عن #میخورم برات یه #دنیا ولی! #نرینی_برام به مولا!",
-        "referenced_content_created_at": {
-                "date": "2019-03-30 02:56:30.000000",
-          "timezone_type": 3,
-          "timezone": "Asia\/Tehran"
-        },
-        "referenced_content_updated_at": {
-                "date": "2019-03-30 02:56:30.000000",
-          "timezone_type": 3,
-          "timezone": "Asia\/Tehran"
-        }
       },
       "link": {
             "object": "Link",
@@ -155,8 +144,9 @@ HTTP/1.1 200 OK
       }
     },
     "stats": {
-        "like_count": 0,
+      "like_count": 0,
       "comment_count": 0,
+      "repost_count": 5,
       "liked_by_me": false,
       "commented_by_me": false,
       "reposted_by_me": false
