@@ -110,6 +110,7 @@ class UserTransformer extends Transformer
             $temp = [
                 'subject' => $key,
                 'count' => $value,
+                'color' => config('subject-container.colors.' . $key),
             ];
             array_push($subjectsAndCounts, $temp);
         }
