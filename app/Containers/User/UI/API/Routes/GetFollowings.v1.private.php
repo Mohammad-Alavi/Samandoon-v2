@@ -4,7 +4,7 @@
  * @apiGroup           Follow
  * @apiName            getFollowings
  *
- * @api                {GET} /v1/user/follow/followings?limit=10 Get Followings
+ * @api                {GET} /v1/user/{id}/followings?limit=10 Get Followings
  * @apiDescription     Get the followings of the authenticated user
  *
  * @apiVersion         1.0.0
