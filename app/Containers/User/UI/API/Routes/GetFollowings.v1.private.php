@@ -14,10 +14,10 @@
  */
 
 /** @var Route $router */
-$router->get('user/follow/followings', [
+$router->get('user/{id}/followings', [
     'as' => 'api_user_get_followings',
     'uses'  => 'Controller@getFollowings',
-    'middleware' => [
-      'auth:api',
-    ],
+//    'middleware' => [
+//      'auth:api',
+//    ],
 ]);
