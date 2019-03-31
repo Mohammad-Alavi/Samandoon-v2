@@ -33,7 +33,7 @@ class GetFollowersRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+         'id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class GetFollowersRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+         'id',
     ];
 
     /**

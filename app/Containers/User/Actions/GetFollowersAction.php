@@ -15,8 +15,8 @@ class GetFollowersAction extends Action
      */
     public function run(DataTransporter $dataTransporter)
     {
-        $AuthenticatedUser = Apiato::call('Authentication@GetAuthenticatedUserTask');
+        $user = Apiato::call('User@FindUserbyIdTask', [$dataTransporter->id]);
 
-        return Apiato::call('User@GetFollowersTask', [$AuthenticatedUser, $dataTransporter->limit]);
+        return Apiato::call('User@GetFollowersTask', [$user, $dataTransporter->limit]);
     }
 }
