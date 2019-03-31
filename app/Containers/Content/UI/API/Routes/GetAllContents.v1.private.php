@@ -12,7 +12,8 @@
  *
  * @apiParam           {string} [tag] this and tag_type parameter should be send together
  * @apiParam           {string=subject,content} [tag_type] this and tag parameter should be send together
- *                     
+ * @apiParam           {string} [user_id]
+ *
  * @apiUse             ContentSuccessSingleResponse
  */
 

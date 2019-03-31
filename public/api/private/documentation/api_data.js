@@ -261,6 +261,13 @@ define({ "api": [
             "optional": true,
             "field": "tag_type",
             "description": "<p>this and tag parameter should be send together</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "user_id",
+            "description": ""
           }
         ]
       }
