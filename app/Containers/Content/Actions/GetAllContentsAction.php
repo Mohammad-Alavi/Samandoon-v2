@@ -13,9 +13,10 @@ class GetAllContentsAction extends Action
         $sanitizedData = $transporter->sanitizeInput([
                 'tag',
                 'tag_type',
+                'user_id',
             ]
         );
-        $contents = Apiato::call('Content@GetAllContentsTask', [$sanitizedData], ['addRequestCriteria']);
+        $contents = Apiato::call('Content@GetAllContentsTask', [$sanitizedData]);
 
         return $contents;
     }

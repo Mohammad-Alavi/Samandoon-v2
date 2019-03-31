@@ -4,7 +4,8 @@ namespace App\Containers\Content\Tasks;
 
 use App\Containers\Content\Data\Repositories\ContentRepository;
 use App\Containers\Tag\Models\Tag;
-use App\Ship\Criterias\Eloquent\OrderByFieldCriteria;
+use App\Ship\Criterias\Eloquent\OrderByCreationDateDescendingCriteria;
+use App\Ship\Criterias\Eloquent\ThisUserCriteria;
 use App\Ship\Parents\Tasks\Task;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -34,8 +35,9 @@ class GetAllContentsTask extends Task
         // tag && tagType-> exist || is_null || false
         $tag = array_key_exists('tag', $data) ? $data['tag'] : false;
         $tagType = array_key_exists('tag_type', $data) ? $data['tag_type'] : false;
+        $user_id = array_key_exists('user_id', $data) ? $data['user_id'] : false;
 
-        // if query params exist then try ti find the tag
+        // if query params exist then try to find the tag
         if ($tag && $tagType) {
             $tagInstance = Tag::where([
                 ['name->en', '=', $tag],
@@ -60,7 +62,11 @@ class GetAllContentsTask extends Task
             }
         }
 
-        $this->repository->pushCriteria(new OrderByFieldCriteria('created_at', 'desc'));
+        // if query params user_id exist then return all content of the user
+        if ($user_id) {
+            $this->repository->pushCriteria(new ThisUserCriteria($user_id));
+        }
+        $this->repository->pushCriteria(new OrderByCreationDateDescendingCriteria());
         return $this->repository->paginate();
     }
 }

@@ -33,7 +33,7 @@ class GetAllContentsRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+         'user_id',
     ];
 
     /**
