@@ -60,4 +60,10 @@ return [
         'redirect'      => env('AUTH_GOOGLE_CLIENT_REDIRECT'),
     ],
 
+    /*
+     * Add the Firebase API key
+     */
+    'fcm' => [
+        'key' => env('FCM_SERVER_KEY', 'Your FCM server key')
+    ]
 ];
