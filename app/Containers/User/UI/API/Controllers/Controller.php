@@ -4,6 +4,8 @@ namespace App\Containers\User\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Content\UI\API\Transformers\ContentTransformer;
+use App\Containers\FCM\UI\API\Requests\FCMTokenRequest;
+use App\Containers\FCM\UI\API\Transformers\UserFCMTokenTransformer;
 use App\Containers\User\Exceptions\NoReasonFailureException;
 use App\Containers\User\UI\API\Requests\CreateAdminRequest;
 use App\Containers\User\UI\API\Requests\DeleteUserRequest;
@@ -21,7 +23,7 @@ use App\Containers\User\UI\API\Requests\SearchUserRequest;
 use App\Containers\User\UI\API\Requests\UnfollowRequest;
 use App\Containers\User\UI\API\Requests\UnlikeRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
-use App\Containers\User\UI\API\Transformers\LikeTransformer;
+use App\Containers\User\UI\API\Transformers\FCMTokenTransformer;
 use App\Containers\User\UI\API\Transformers\UserPrivateProfileTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Controllers\ApiController;
@@ -48,7 +50,6 @@ class Controller extends ApiController
         }
     }
 
-
     /**
      * @param LoginRequest $request
      *
@@ -61,7 +62,11 @@ class Controller extends ApiController
         return $data;
     }
 
-
+    /**
+     * @param CreateAdminRequest $request
+     *
+     * @return array
+     */
     public function createAdmin(CreateAdminRequest $request)
     {
         $admin = Apiato::call('User@CreateAdminByEmailAndPasswordSubAction', [new DataTransporter($request)]);
@@ -69,7 +74,11 @@ class Controller extends ApiController
         return $this->transform($admin, UserTransformer::class);
     }
 
-
+    /**
+     * @param UpdateUserRequest $request
+     *
+     * @return array
+     */
     public function updateUser(UpdateUserRequest $request)
     {
         $user = Apiato::call('User@UpdateUserAction', [new DataTransporter($request)]);
@@ -77,7 +86,11 @@ class Controller extends ApiController
         return $this->transform($user, UserPrivateProfileTransformer::class);
     }
 
-
+    /**
+     * @param DeleteUserRequest $request
+     *
+     * @return JsonResponse
+     */
     public function deleteUser(DeleteUserRequest $request)
     {
         Apiato::call('User@DeleteUserAction', [new DataTransporter($request)]);
@@ -85,7 +98,11 @@ class Controller extends ApiController
         return $this->noContent();
     }
 
-
+    /**
+     * @param GetAllUsersRequest $request
+     *
+     * @return array
+     */
     public function getAllUsers(GetAllUsersRequest $request)
     {
         $users = Apiato::call('User@GetAllUsersAction');
@@ -93,7 +110,11 @@ class Controller extends ApiController
         return $this->transform($users, UserTransformer::class);
     }
 
-
+    /**
+     * @param GetAllUsersRequest $request
+     *
+     * @return array
+     */
     public function getAllClients(GetAllUsersRequest $request)
     {
         $users = Apiato::call('User@GetAllClientsAction');
@@ -101,7 +122,11 @@ class Controller extends ApiController
         return $this->transform($users, UserTransformer::class);
     }
 
-
+    /**
+     * @param GetAllUsersRequest $request
+     *
+     * @return array
+     */
     public function getAllAdmins(GetAllUsersRequest $request)
     {
         $users = Apiato::call('User@GetAllAdminsAction');
@@ -109,7 +134,11 @@ class Controller extends ApiController
         return $this->transform($users, UserTransformer::class);
     }
 
-
+    /**
+     * @param FindUserByIdRequest $request
+     *
+     * @return array
+     */
     public function findUserById(FindUserByIdRequest $request)
     {
         $user = Apiato::call('User@FindUserByIdAction', [new DataTransporter($request)]);
@@ -117,7 +146,11 @@ class Controller extends ApiController
         return $this->transform($user, UserTransformer::class);
     }
 
-
+    /**
+     * @param GetAuthenticatedUserRequest $request
+     *
+     * @return array
+     */
     public function getAuthenticatedUser(GetAuthenticatedUserRequest $request)
     {
         $user = Apiato::call('User@GetAuthenticatedUserSubAction');
@@ -215,10 +248,27 @@ class Controller extends ApiController
         return $this->transform($feed, ContentTransformer::class);
     }
 
+    /**
+     * @param SearchUserRequest $request
+     *
+     * @return array
+     */
     public function searchUser(SearchUserRequest $request)
     {
         $content = Apiato::call('User@SearchUserAction', [new DataTransporter($request)]);
 
         return $this->transform($content, UserTransformer::class);
+    }
+
+    /**
+     * @param FCMTokenRequest $request
+     *
+     * @return array
+     */
+    public function storeUserFCMToken(FCMTokenRequest $request)
+    {
+        $fcm = Apiato::call('User@StoreUserFCMTokenAction', [new DataTransporter($request)]);
+        $fcmTransformer = new FCMTokenTransformer();
+        return $fcmTransformer->transform($fcm);
     }
 }
