@@ -8,6 +8,7 @@ class FCMToken extends Model
 {
     protected $fillable = [
         'user_id',
+        'user_access_token',
         'android_fcm_token',
         'apns_id',
     ];

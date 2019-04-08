@@ -2,52 +2,62 @@
 
 namespace App\Containers\User\Tasks;
 
+use App\Containers\User\Data\Repositories\FCMTokenRepository;
 use App\Containers\User\Models\FCMToken;
+use App\Ship\Criterias\Eloquent\ThisUserCriteria;
 use App\Ship\Exceptions\CreateResourceFailedException;
+use App\Ship\Parents\Models\Model;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
 class StoreUserFCMTokenTask extends Task
 {
-    protected $userFcmToken;
+    /** @var FCMTokenRepository $repository */
+    protected $repository;
 
-    public function __construct(FCMToken $userFcmToken)
+    /**
+     * StoreUserFCMTokenTask constructor.
+     *
+     * @param FCMTokenRepository $repository
+     */
+    public function __construct(FCMTokenRepository $repository)
     {
-        return $this->userFcmToken = $userFcmToken;
+        return $this->repository = $repository;
     }
 
-    public function run($data, $userId)
+    /**
+     * @param array $data
+     *
+     * @return FCMToken|Model
+     */
+    public function run(array $data)
     {
+        $FCMTokenData = null;
         try {
             if (array_key_exists('device_type', $data) && $data['device_type'] == 'ios') {
+                // Retrieve FCMToken or create it with the user_id, user_access_token, and apns_id attributes...
                 /** @var FCMToken $FCMTokenData */
-                $FCMTokenData = FCMToken::firstOrCreate([
-                    'apns_id' => $data['token'],
-                ], [
-                    'user_id' => $userId,
+                $FCMTokenData =  $this->repository->firstOrCreate([
+                    'user_id' => $data['user_id'],
+                    'user_access_token' => $data['user_token'],
                     'apns_id' => $data['token'],
                 ]);
             }
-            else {
-                $FCMTokenData = FCMToken::firstOrCreate([
-                    'android_fcm_token' => $data['token'],
-                ], [
-                    'user_id' => $userId,
+//            dd($data);
+
+            if (array_key_exists('device_type', $data) && $data['device_type'] == 'android') {
+                // Retrieve FCMToken or create it with the user_id, user_access_token, and android_fcm_token attributes...
+                /** @var FCMToken $FCMTokenData */
+                $FCMTokenData = $this->repository->firstOrCreate([
+                    'user_id' => $data['user_id'],
+                    'user_access_token' => $data['user_token'],
                     'android_fcm_token' => $data['token'],
                 ]);
             }
-
-            if (strlen($FCMTokenData->android_fcm_token[0]) > 1) {
-                $FCMTokenData->android_fcm_token = $FCMTokenData->android_fcm_token[0];
-            }
-
-            if (strlen($FCMTokenData->apns_id[0]) > 1) {
-                $FCMTokenData->apns_id = $FCMTokenData->apns_id[0];
-            }
-
-            return $FCMTokenData;
         } catch (Exception $exception) {
-            throw new CreateResourceFailedException('Failed to store new Token with error: ' . $exception->getMessage());
+            throw new CreateResourceFailedException('Failed to store new Token with error: ' . $exception->getMessage() . ' | On Line: ' . $exception->getLine());
         }
+
+        return $FCMTokenData;
     }
 }

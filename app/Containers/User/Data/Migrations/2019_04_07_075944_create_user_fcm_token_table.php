@@ -13,6 +13,7 @@ class CreateUserFcmTokenTable extends Migration
         Schema::create('user_fcm_token', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('user_access_token');
             $table->string('android_fcm_token', 512)->nullable();
             $table->string('apns_id', 512)->nullable();
             $table->timestamps();

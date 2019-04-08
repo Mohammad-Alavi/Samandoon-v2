@@ -16,8 +16,16 @@ class StoreUserFCMTokenAction extends Action
      */
     public function run(DataTransporter $transporter)
     {
-        $userId = Auth::id();
-        $result = Apiato::call('User@StoreUserFCMTokenTask', [$transporter, $userId]);
+        $data = $transporter->sanitizeInput([
+            'device_type',
+            'token'
+        ]);
+
+        // add some data
+        $data['user_id'] = Auth::id();
+        $data['user_token'] = Auth::user()->token()->id;
+
+        $result = Apiato::call('User@StoreUserFCMTokenTask', [$data]);
         return $result;
     }
 }

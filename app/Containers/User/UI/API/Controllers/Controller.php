@@ -4,11 +4,10 @@ namespace App\Containers\User\UI\API\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Content\UI\API\Transformers\ContentTransformer;
-use App\Containers\FCM\UI\API\Requests\FCMTokenRequest;
-use App\Containers\FCM\UI\API\Transformers\UserFCMTokenTransformer;
 use App\Containers\User\Exceptions\NoReasonFailureException;
 use App\Containers\User\UI\API\Requests\CreateAdminRequest;
 use App\Containers\User\UI\API\Requests\DeleteUserRequest;
+use App\Containers\User\UI\API\Requests\FCMTokenRequest;
 use App\Containers\User\UI\API\Requests\FindUserByIdRequest;
 use App\Containers\User\UI\API\Requests\FollowRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
