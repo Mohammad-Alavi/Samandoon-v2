@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b40e1ecd35335b307600a31633884844",
+    "content-hash": "1c32cc4207853a9097f9168b8abec1de",
     "packages": [
         {
             "name": "apiato/containers-installer",
@@ -267,6 +267,58 @@
                 "webprofiler"
             ],
             "time": "2019-02-04T10:23:43+00:00"
+        },
+        {
+            "name": "benwilkins/laravel-fcm-notification",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/benwilkins/laravel-fcm-notification.git",
+                "reference": "5c16cd266a6feab1fabf2e20a793c3d5704a5272"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/benwilkins/laravel-fcm-notification/zipball/5c16cd266a6feab1fabf2e20a793c3d5704a5272",
+                "reference": "5c16cd266a6feab1fabf2e20a793c3d5704a5272",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "illuminate/config": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/notifications": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/queue": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/support": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Benwilkins\\FCM\\FcmNotificationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Benwilkins\\FCM\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Wilkins",
+                    "email": "bentwilkins@gmail.com"
+                }
+            ],
+            "description": "Laravel FCM (Firebase Cloud Messaging) Notification Channel",
+            "time": "2019-03-05T15:12:54+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -7693,7 +7745,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "benwilkins/laravel-fcm-notification": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

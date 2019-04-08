@@ -151,6 +151,8 @@ return [
         Spatie\Tags\TagsServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
+        Benwilkins\FCM\FcmNotificationServiceProvider::class,
+
         /*
          * Application Service Providers...
          *
