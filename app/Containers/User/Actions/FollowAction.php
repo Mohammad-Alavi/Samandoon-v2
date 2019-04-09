@@ -4,6 +4,7 @@ namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\User\Models\User;
+use App\Containers\User\Notifications\UserFollowedNotification;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
 use Illuminate\Validation\UnauthorizedException;
@@ -26,6 +27,11 @@ class FollowAction extends Action
         // throw if user is trying to follow itself
         throw_if($targetUser->id == $AuthenticatedUser->id, UnauthorizedException::class, 'User cannot follow itself');
 
-        return Apiato::call('User@FollowTask', [$AuthenticatedUser, $targetUser]);
+        $result = Apiato::call('User@FollowTask', [$AuthenticatedUser, $targetUser]);
+
+        // send notification
+        $targetUser->notifyNow(new UserFollowedNotification($AuthenticatedUser), ['fcm', 'database']);
+
+        return $result;
     }
 }
