@@ -57,7 +57,7 @@ class DeleteUserRequest extends Request
     public function authorize()
     {
         return $this->check([
-            'hasAccess|isOwner',
+            'hasAccess', 'isOwner'
         ]);
     }
 }
