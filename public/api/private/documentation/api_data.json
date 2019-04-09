@@ -623,6 +623,44 @@
     "groupTitle": "Localization"
   },
   {
+    "group": "NotificationCenter",
+    "name": "getNotifications",
+    "type": "GET",
+    "url": "/v1/user/notifications",
+    "title": "Get user notifications",
+    "description": "<p>Get user notifications</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "none"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "parameters",
+            "description": "<p>here..</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/NotificationCenter/UI/API/Routes/GetNotifications.v1.private.php",
+    "groupTitle": "NotificationCenter"
+  },
+  {
     "group": "OAuth2",
     "name": "ClientAdminWebAppLoginProxy",
     "type": "post",
@@ -1712,6 +1750,55 @@
     },
     "filename": "app/Containers/Transaction/UI/API/Routes/GetAllTransactions.v1.private.php",
     "groupTitle": "Transaction"
+  },
+  {
+    "group": "User",
+    "name": "StoreUserFCMToken",
+    "type": "POST",
+    "url": "/v1/user/fcm/token",
+    "title": "Store FCM token",
+    "description": "<p>Store user's android/ios FCM token on the server</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "allowedValues": [
+              "android",
+              "ios"
+            ],
+            "optional": false,
+            "field": "device_type",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"user_id\": \"3mjzyg5dp5a0vwp6\",\n    \"android_fcm_token\": \"123456\",\n    \"apns_id\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/Containers/User/UI/API/Routes/StoreUserFCMToken.v1.private.php",
+    "groupTitle": "User"
   },
   {
     "group": "Users",
