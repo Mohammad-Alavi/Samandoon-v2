@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Containers\User\UI\API\Requests;
+namespace App\Containers\FCM\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class FCMTokenRequest.
+ * Class StoreUserFCMTokenRequest.
  */
-class FCMTokenRequest extends Request
+class StoreUserFCMTokenRequest extends Request
 {
+
     /**
      * The assigned Transporter for this Request
      *
      * @var string
      */
-    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
+    protected $transporter = \App\Containers\FCM\Data\Transporters\StoreUserFCMTokenRequestTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
