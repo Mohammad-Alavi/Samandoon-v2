@@ -19,23 +19,7 @@ class UserFollowedNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['fcm', 'database'];
-    }
-
-    public function toFcm($notifiable)
-    {
-        $message = new FcmMessage();
-        $message->content([
-            'title' => 'سمندون',
-            'body' => '[' . $notifiable->nick_name . ']' . ' شما را دنبال کرد',
-            'sound' => 'default', // Optional
-            'icon' => '', // Optional
-            'click_action' => '' // Optional
-        ])->data([
-            'param1' => 'baz' // Optional
-        ])->priority(FcmMessage::PRIORITY_HIGH); // Optional - Default is 'normal'.
-
-        return $message;
+        return ['database'];
     }
 
     public function toDatabase($notifiable)
