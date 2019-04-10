@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c32cc4207853a9097f9168b8abec1de",
+    "content-hash": "82a0fda31836f9bf7a83e72b79b6564f",
     "packages": [
         {
             "name": "apiato/containers-installer",
@@ -269,42 +269,36 @@
             "time": "2019-02-04T10:23:43+00:00"
         },
         {
-            "name": "benwilkins/laravel-fcm-notification",
-            "version": "dev-master",
+            "name": "brozot/laravel-fcm",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/benwilkins/laravel-fcm-notification.git",
-                "reference": "5c16cd266a6feab1fabf2e20a793c3d5704a5272"
+                "url": "https://github.com/brozot/Laravel-FCM.git",
+                "reference": "20f2881071cfe7c424f528171c794353d0e5394f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/benwilkins/laravel-fcm-notification/zipball/5c16cd266a6feab1fabf2e20a793c3d5704a5272",
-                "reference": "5c16cd266a6feab1fabf2e20a793c3d5704a5272",
+                "url": "https://api.github.com/repos/brozot/Laravel-FCM/zipball/20f2881071cfe7c424f528171c794353d0e5394f",
+                "reference": "20f2881071cfe7c424f528171c794353d0e5394f",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^6.2",
-                "illuminate/config": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
-                "illuminate/notifications": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
-                "illuminate/queue": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
-                "illuminate/support": "5.3.*|5.4.*|5.5.*|5.5.*|5.6.*|5.7.*|5.8.*",
-                "php": ">=5.6.4"
+                "guzzlehttp/guzzle": "~6.0",
+                "illuminate/support": "5.*",
+                "monolog/monolog": "^1.19",
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~6.0"
+                "laravel/laravel": "5.2.*",
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.7.*",
+                "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Benwilkins\\FCM\\FcmNotificationServiceProvider"
-                    ]
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Benwilkins\\FCM\\": "src"
+                    "LaravelFCM\\": "src/",
+                    "LaravelFCM\\Mocks\\": "tests/mocks"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -313,12 +307,21 @@
             ],
             "authors": [
                 {
-                    "name": "Ben Wilkins",
-                    "email": "bentwilkins@gmail.com"
+                    "name": "Nicolas Brosy",
+                    "email": "nicolas.brosy@gmail.com"
                 }
             ],
-            "description": "Laravel FCM (Firebase Cloud Messaging) Notification Channel",
-            "time": "2019-03-05T15:12:54+00:00"
+            "description": "Laravel / Lumen package for Firebase Cloud Messaging ",
+            "keywords": [
+                "FCM",
+                "Firebase Cloud Messaging",
+                "firebase",
+                "laravel",
+                "lumen",
+                "notification",
+                "push"
+            ],
+            "time": "2017-08-28T19:19:39+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -7745,9 +7748,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "benwilkins/laravel-fcm-notification": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

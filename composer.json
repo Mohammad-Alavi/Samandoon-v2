@@ -32,7 +32,7 @@
     "ext-openssl": "*",
     "ext-pdo": "*",
     "ext-tokenizer": "*",
-    "benwilkins/laravel-fcm-notification": "dev-master",
+    "brozot/laravel-fcm": "^1.2",
     "doctrine/dbal": "~2.3",
     "fideloper/proxy": "~4.0",
     "laravel/framework": "5.6.*",
