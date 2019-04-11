@@ -44,15 +44,15 @@ class Image extends Model implements HasMedia
      */
     protected $resourceKey = 'images';
 
-    public function registerMediaConversions(Media $media = null)
-    {
+//    public function registerMediaConversions(Media $media = null)
+//    {
 //        $this->addMediaConversion('thumb')
 //            ->width((int)config('user-container.avatar.thumb.width'))
 //            ->height((int)'user-container.avatar.thumb.height')
 //            ->keepOriginalImageFormat()
 //            ->nonQueued()
 //            ->performOnCollections('image');
-    }
+//    }
 
     public function registerMediaCollections()
     {

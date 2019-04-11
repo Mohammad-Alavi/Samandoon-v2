@@ -18,7 +18,7 @@ class StoreUserFCMTokenAction extends Action
     {
         $data = $transporter->sanitizeInput([
             'device_type',
-            'token'
+            'token',
         ]);
 
         // add some data

@@ -30,7 +30,7 @@ class CreateImageTask extends Task
                     ->toMediaCollection('image');
             }
         } catch (Exception $exception) {
-            throw new CreateResourceFailedException();
+            throw new CreateResourceFailedException($exception->getMessage());
         }
 
         return $image;
