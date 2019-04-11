@@ -48,7 +48,6 @@ class UserTransformer extends Transformer
             'gender' => $user->gender,
             'birth' => $user->birth,
             'points' => $user->points,
-            'unread_notification_count' => $user->unreadNotifications()->count(),
             'is_subscription_expired' => $user->is_subscription_expired,
             'subscription_expired_at' => $user->subscription_expired_at,
             'images' => [

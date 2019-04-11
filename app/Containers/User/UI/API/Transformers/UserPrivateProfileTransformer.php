@@ -34,6 +34,7 @@ class UserPrivateProfileTransformer extends Transformer {
         $response = [
             'user' => $userTransformer->transform($user),
             'private_phone' => $user->phone,
+            'unread_notification_count' => $user->unreadNotifications()->count(),
 
             //            'settings' => $settings,
             //            'stats'    => $stats,
