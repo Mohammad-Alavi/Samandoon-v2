@@ -39,7 +39,7 @@ class LikeCommentTask extends Task
         // only send notification if someone beside the owner liked the resource
         if ($is_new_like && $user->id != $comment->user->id) {
             // send/save notification to database and send to FCM
-            $comment->user->notifyNow(new CommentLikedNotification($user), [FCMChannel::class, 'database']);
+            $comment->user->notifyNow(new CommentLikedNotification($user, $comment), [FCMChannel::class, 'database']);
         }
         return $comment->refresh();
     }
