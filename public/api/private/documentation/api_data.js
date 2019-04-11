@@ -878,6 +878,30 @@ define({ "api": [
         "name": "Authenticated User"
       }
     ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "allowedValues": [
+              "\"android\"",
+              "\"ios\""
+            ],
+            "optional": false,
+            "field": "device_type",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "token",
+            "description": ""
+          }
+        ]
+      }
+    },
     "success": {
       "examples": [
         {
@@ -1797,7 +1821,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "app/Containers/User/UI/API/Routes/StoreUserFCMToken.v1.private.php",
+    "filename": "app/Containers/FCM/UI/API/Routes/StoreUserFCMToken.v1.private.php",
     "groupTitle": "User"
   },
   {
