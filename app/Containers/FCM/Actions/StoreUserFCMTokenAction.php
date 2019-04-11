@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\User\Actions;
+namespace App\Containers\FCM\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Actions\Action;
@@ -25,7 +25,7 @@ class StoreUserFCMTokenAction extends Action
         $data['user_id'] = Auth::id();
         $data['user_token'] = Auth::user()->token()->id;
 
-        $result = Apiato::call('User@StoreUserFCMTokenTask', [$data]);
+        $result = Apiato::call('FCM@StoreUserFCMTokenTask', [$data]);
         return $result;
     }
 }

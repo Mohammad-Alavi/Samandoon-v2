@@ -2,9 +2,8 @@
 
 namespace App\Containers\User\Tasks;
 
-use App\Containers\User\Data\Repositories\FCMTokenRepository;
-use App\Containers\User\Models\FCMToken;
-use App\Ship\Criterias\Eloquent\ThisUserCriteria;
+use App\Containers\FCM\Data\Repositories\FCMTokenRepository;
+use App\Containers\FCM\Models\FCMToken;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Models\Model;
 use App\Ship\Parents\Tasks\Task;
@@ -37,7 +36,7 @@ class StoreUserFCMTokenTask extends Task
             if (array_key_exists('device_type', $data) && $data['device_type'] == 'ios') {
                 // Retrieve FCMToken or create it with the user_id, user_access_token, and apns_id attributes...
                 /** @var FCMToken $FCMTokenData */
-                $FCMTokenData =  $this->repository->firstOrCreate([
+                $FCMTokenData = $this->repository->firstOrCreate([
                     'user_id' => $data['user_id'],
                     'user_access_token' => $data['user_token'],
                     'apns_id' => $data['token'],

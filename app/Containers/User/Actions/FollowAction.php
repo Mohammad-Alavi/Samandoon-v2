@@ -3,6 +3,7 @@
 namespace App\Containers\User\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\FCM\Notifications\FCMChannel;
 use App\Containers\User\Models\User;
 use App\Containers\User\Notifications\UserFollowedNotification;
 use App\Ship\Parents\Actions\Action;
@@ -29,8 +30,8 @@ class FollowAction extends Action
 
         $result = Apiato::call('User@FollowTask', [$AuthenticatedUser, $targetUser]);
 
-        // send notification
-        $targetUser->notifyNow(new UserFollowedNotification($AuthenticatedUser), ['fcm', 'database']);
+        // send/save notification to database and send to FCM
+        $targetUser->notifyNow(new UserFollowedNotification($AuthenticatedUser), [FCMChannel::class, 'database']);
 
         return $result;
     }

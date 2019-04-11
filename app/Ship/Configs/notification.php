@@ -1,5 +1,7 @@
 <?php
 
+use App\Containers\FCM\Notifications\FCMChannel;
+
 return [
 
     /*
@@ -12,6 +14,7 @@ return [
      */
     'channels' => [
         'database',
+        FCMChannel::class,
 //        'mail',
     ]
 

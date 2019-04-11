@@ -1,27 +1,22 @@
 <?php
 
-namespace App\Containers\Comment\Data\Criterias;
+namespace App\Containers\Content\Data\Criterias;
 
 use App\Ship\Parents\Criterias\Criteria;
-use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
 
-class ThisContentCriteria extends Criteria
+class ThisFCMTokensCriteria extends Criteria
 {
-
-    /**
-     * @var int
-     */
-    private $contentId;
+    private $tokens;
 
     /**
      * ThisUserCriteria constructor.
      *
-     * @param $userId
+     * @param array $tokens
      */
-    public function __construct($contentId)
+    public function __construct(array $tokens)
     {
-        $this->contentId = $contentId;
+        $this->tokens = $tokens;
     }
 
     /**
@@ -32,7 +27,6 @@ class ThisContentCriteria extends Criteria
      */
     public function apply($model, PrettusRepositoryInterface $repository)
     {
-        return $model->where('content_id', '=', $this->contentId);
+        return $model->whereIn('android_fcm_token', '=', $this->tokens)->orWhereIn('apns_id', '=', $this->tokens);
     }
-
 }

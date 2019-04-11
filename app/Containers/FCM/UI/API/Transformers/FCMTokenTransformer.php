@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\User\UI\API\Transformers;
+namespace App\Containers\FCM\UI\API\Transformers;
 
 use Vinkla\Hashids\Facades\Hashids;
 

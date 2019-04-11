@@ -258,16 +258,4 @@ class Controller extends ApiController
 
         return $this->transform($content, UserTransformer::class);
     }
-
-    /**
-     * @param FCMTokenRequest $request
-     *
-     * @return array
-     */
-    public function storeUserFCMToken(FCMTokenRequest $request)
-    {
-        $fcm = Apiato::call('User@StoreUserFCMTokenAction', [new DataTransporter($request)]);
-        $fcmTransformer = new FCMTokenTransformer();
-        return $fcmTransformer->transform($fcm);
-    }
 }

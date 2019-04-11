@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\User\Models;
+namespace App\Containers\FCM\Models;
 
 use App\Ship\Parents\Models\Model;
 
