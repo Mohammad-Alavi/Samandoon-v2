@@ -5,6 +5,7 @@ namespace App\Containers\Repost\UI\API\Transformers;
 use App\Containers\Content\Models\Content;
 use App\Containers\Content\Tasks\FindContentByIdTask;
 use App\Containers\Repost\Models\Repost;
+use App\Containers\Subject\UI\API\Transformers\SubjectTransformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
 use App\Ship\Parents\Exceptions\Exception;
 use App\Ship\Parents\Transformers\Transformer;
@@ -39,7 +40,9 @@ class RepostTransformer extends Transformer
      */
     public function transform(Repost $entity)
     {
-        $userTransform = new UserTransformer();
+        $userTransformer = new UserTransformer();
+        $subjectTransformer = new SubjectTransformer();
+
         /** @var FindContentByIdTask $findContentByIdTask */
         $findContentByIdTask = App::make(FindContentByIdTask::class);
         /** @var Content $referenced_content */
@@ -52,7 +55,8 @@ class RepostTransformer extends Transformer
                 'content_id' => Hashids::encode($entity->content_id),
                 'referenced_content_id' => Hashids::encode($entity->referenced_content_id),
                 'referenced_content_article_text' => $referenced_content->article->text,
-                'referenced_content_user' => $userTransform->transform($referenced_content->user),
+                'referenced_content_subject' => $subjectTransformer->transform($referenced_content->subject),
+                'referenced_content_user' => $userTransformer->transform($referenced_content->user),
                 'referenced_content_created_at' => $referenced_content->created_at,
                 'referenced_content_updated_at' => $referenced_content->updated_at,
             ];
@@ -64,6 +68,7 @@ class RepostTransformer extends Transformer
                     'content_id' => Hashids::encode($entity->content_id),
                     'referenced_content_id' => null,
                     'referenced_content_article_text' => null,
+                    'referenced_content_subject' => null,
                     'referenced_content_user' => null,
                     'referenced_content_created_at' => null,
                     'referenced_content_updated_at' => null,
