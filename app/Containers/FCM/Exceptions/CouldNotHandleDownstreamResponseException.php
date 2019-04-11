@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Containers\User\Exceptions;
+namespace App\Containers\FCM\Exceptions;
 
 use App\Ship\Parents\Exceptions\Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class CouldNotHandleDownstreamResponse extends Exception {
+class CouldNotHandleDownstreamResponseException extends Exception {
 
     /**
      * @var int
