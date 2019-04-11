@@ -126,17 +126,6 @@ class User extends UserModel implements HasMedia
     }
 
     /**
-     * Route notifications for the FCM channel.
-     *
-     * @param  \Illuminate\Notifications\Notification  $notification
-     * @return string
-     */
-    public function routeNotificationForFcm($notification)
-    {
-        return FCMToken::where('user_id', $this->id)->first()->android_fcm_token;
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function transactions()
