@@ -12,7 +12,7 @@ class GetNotificationsAction extends Action
     public function run(DataTransporter $transporter)
     {
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
-        $notifications = Apiato::call('NotificationCenter@GetNotificationsTask', [$transporter->limit, $user]);
+        $notifications = Apiato::call('NotificationCenter@GetNotificationsTask', [$user]);
         return $notifications;
     }
 }

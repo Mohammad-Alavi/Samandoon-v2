@@ -9,7 +9,7 @@ class GetNotificationsTask extends Task
 {
     public function run($limit, User $user)
     {
-        $unreadNotifications = $user->unreadNotifications()->paginate($limit ? $limit : 20);
+        $unreadNotifications = $user->unreadNotifications()->paginate(100);
         $user->notifications->markAsRead();
         return $unreadNotifications;
     }
