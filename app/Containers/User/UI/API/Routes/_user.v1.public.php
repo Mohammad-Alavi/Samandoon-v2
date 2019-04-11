@@ -20,6 +20,7 @@ HTTP/1.1 200 OK
     "gender": null,
     "birth": null,
     "points": 0,
+    "unread_notification_count": 2,
     "is_subscription_expired": true,
     "subscription_expired_at": {
         "date": "2019-03-22 16:03:23.000000",
