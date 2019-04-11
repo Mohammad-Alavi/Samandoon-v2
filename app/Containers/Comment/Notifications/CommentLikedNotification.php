@@ -17,15 +17,18 @@ use LaravelFCM\Message\PayloadNotificationBuilder;
 class CommentLikedNotification extends Notification
 {
     protected $doer;
+    protected $comment;
 
     /**
      * UserFollowedNotification constructor.
      *
      * @param $doer
+     * @param $comment
      */
-    public function __construct($doer)
+    public function __construct($doer, $comment)
     {
         $this->doer = $doer;
+        $this->comment = $comment;
     }
 
     /**
@@ -39,7 +42,8 @@ class CommentLikedNotification extends Notification
 
         // create notification payload
         $notificationBuilder = new PayloadNotificationBuilder('سمندون');
-        $notificationBuilder->setBody('[' . $this->doer->nick_name . ']' . ' نظر شما را پسندید')
+        $notificationBuilder->setBody('[' . $this->doer->nick_name . ']' . ' نظر شما را پسندید: ' . '"' . $this->comment->body . '"')
+//        $notificationBuilder->setBody('[' . $this->doer->nick_name . ']' . ' نظر شما را پسندید')
             ->setSound('default');
 
         // create data payload
@@ -75,8 +79,8 @@ class CommentLikedNotification extends Notification
         return [
             'doer_id' => $this->doer->id,
             'doer_name' => $this->doer->nick_name,
-            'object_id' => $notifiable->id,
-            'object_text' => $notifiable->nick_name,
+            'object_id' => $this->comment->id,
+            'object_text' => $this->comment->body,
         ];
     }
 }
