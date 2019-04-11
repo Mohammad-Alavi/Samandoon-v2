@@ -74,6 +74,8 @@ class CreateContentAction extends Action
     /**
      * @param DataTransporter $transporter
      *
+     * @param                 $authenticatedUser
+     *
      * @throws Throwable
      */
     private function createContentAndItsAddOns(DataTransporter $transporter, $authenticatedUser)

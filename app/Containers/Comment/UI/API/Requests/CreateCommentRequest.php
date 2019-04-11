@@ -54,7 +54,7 @@ class CreateCommentRequest extends Request
     {
         return [
              'body' => 'required|max:2200',
-             'content_id' => 'required',
+             'content_id' => 'required|exists:contents,id',
              'parent_id' => 'exists:comments,id',
             // '{user-input}' => 'required|max:255',
         ];

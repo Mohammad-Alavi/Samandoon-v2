@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\User\Tasks;
+namespace App\Containers\FCM\Tasks;
 
 use App\Containers\FCM\Data\Repositories\FCMTokenRepository;
 use App\Containers\FCM\Models\FCMToken;

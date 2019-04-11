@@ -2,6 +2,7 @@
 
 namespace App\Containers\Subject\Data\Seeders;
 
+use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Seeders\Seeder;
 use Carbon\Carbon;
 use DB;
@@ -17,7 +18,7 @@ class SubjectSeeder extends Seeder
             array_push($subjectArray, [
                 'id' => $iterator + 1,
                 'name' => json_encode([
-                    'en' => $value,
+                    'en' => ArabicToPersianStringConverter::Convert($value),
                 ]),
                 'order_column' => $iterator + 1,
                 'slug' => json_encode([
