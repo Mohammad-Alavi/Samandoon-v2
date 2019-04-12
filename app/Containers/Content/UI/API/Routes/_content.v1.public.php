@@ -41,6 +41,21 @@ HTTP/1.1 200 OK
         "content_id": "qmv7dk48x5b690wx",
         "referenced_content_id": "qnwmkv5704blag6r",
         "referenced_content_article_text": "عن #میخورم برات یه #دنیا ولی! #نرینی_برام به مولا!",
+        "referenced_content_subject": {
+            "object": "Subject",
+            "id": "qnwmkv5704blag6r",
+            "subject": "علمی",
+            "color": "#FF0000",
+            "created_at": {
+            "date": "2019-04-11 18:28:39.000000",
+            "timezone_type": 3,
+            "timezone": "Asia\/Tehran"
+            },
+            "updated_at": {
+            "date": "2019-04-11 18:28:39.000000",
+            "timezone_type": 3,
+            "timezone": "Asia\/Tehran"
+        }
         "referenced_content_user": {
                 "object": "User",
           "id": "qmv7dk48x5b690wx",
