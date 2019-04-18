@@ -5,6 +5,7 @@ namespace App\Containers\User\UI\API\Transformers;
 use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
 use App\Containers\User\Models\User as User;
 use App\Ship\Parents\Transformers\Transformer;
+use League\Fractal\Resource\Collection;
 
 class UserTransformer extends Transformer
 {
@@ -87,20 +88,12 @@ class UserTransformer extends Transformer
 
     /**
      * @param string $phone
+     *
+     * @return mixed
      */
     private function obscurePhone(string $phone)
     {
         return substr_replace($phone, '***', 7, 3);
-    }
-
-    /**
-     * @param User $user
-     *
-     * @return \League\Fractal\Resource\Collection
-     */
-    public function includeRoles(User $user)
-    {
-        return $this->collection($user->roles, new RoleTransformer());
     }
 
     private function prepareSubjectCount(array $subjectCategoryCount)
@@ -115,5 +108,15 @@ class UserTransformer extends Transformer
             array_push($subjectsAndCounts, $temp);
         }
         return $subjectsAndCounts;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return Collection
+     */
+    public function includeRoles(User $user)
+    {
+        return $this->collection($user->roles, new RoleTransformer());
     }
 }
