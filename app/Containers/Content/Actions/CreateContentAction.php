@@ -2,9 +2,12 @@
 
 namespace App\Containers\Content\Actions;
 
+use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Authentication\Tasks\GetAuthenticatedUserTask;
 use App\Containers\Content\Models\Content;
+use App\Containers\Content\Notifications\RepostNotification;
 use App\Containers\Content\Tasks\CreateContentTask;
+use App\Containers\FCM\Notifications\FCMChannel;
 use App\Containers\User\Models\User;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Actions\Action;
@@ -68,7 +71,30 @@ class CreateContentAction extends Action
         }
         DB::commit();
 
+        // send repost notification to the reposted user if this post is a repost
+        if ($this->content->repost != null) {
+            /** @var Content $referenced_content */
+            $referenced_content = Apiato::call('Content@FindContentByIdTask', [$this->content->repost->referenced_content_id]);
+            /** @var User $targetUser */
+            $targetUser = $referenced_content->user;
+            // only send notification if someone beside the owner reposted the resource
+            if ($this->authenticatedUser->id != $targetUser->id) {
+                // send/save notification to database and send to FCM
+                $targetUser->notifyNow(new RepostNotification($this->content->user, $referenced_content), [FCMChannel::class, 'database']);
+            }
+        };
         return $this->content;
+    }
+
+    private function getAuthenticatedUser()
+    {
+        /** @var GetAuthenticatedUserTask $getAuthenticatedUserTask */
+        $getAuthenticatedUserTask = App::make(GetAuthenticatedUserTask::class);
+        // Get the current user
+        /** @var User $authenticatedUser */
+        $authenticatedUser = $getAuthenticatedUserTask->run();
+
+        return $authenticatedUser;
     }
 
     /**
@@ -96,16 +122,5 @@ class CreateContentAction extends Action
         $addonDataArray = $this->extractAndValidateAddOnSubAction->run($transporter, $addonNames, config('samandoon.action_to_perform_on_addon.create'));
         // CREATE ADD-ONS
         $this->CRUDAddOnsSubAction->run($addonNames, $this->content, config('samandoon.action_to_perform_on_addon.create'), $addonDataArray);
-    }
-
-    private function getAuthenticatedUser()
-    {
-        /** @var GetAuthenticatedUserTask $getAuthenticatedUserTask */
-        $getAuthenticatedUserTask = App::make(GetAuthenticatedUserTask::class);
-        // Get the current user
-        /** @var User $authenticatedUser */
-        $authenticatedUser = $getAuthenticatedUserTask->run();
-
-        return $authenticatedUser;
     }
 }
