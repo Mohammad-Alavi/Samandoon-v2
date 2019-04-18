@@ -38,6 +38,7 @@
     "laravel/framework": "5.6.*",
     "laravel/tinker": "~1.0",
     "overtrue/laravel-follow": "^1.1",
+    "shweshi/opengraph": "^1.0",
     "spatie/laravel-medialibrary": "^7.0.0",
     "spatie/laravel-tags": "2.0.1",
     "teamtnt/laravel-scout-tntsearch-driver": "^7.0",
