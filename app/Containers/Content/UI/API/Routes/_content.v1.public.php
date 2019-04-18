@@ -114,7 +114,6 @@ HTTP/1.1 200 OK
             "object": "Link",
         "id": "qmv7dk48x5b690wx",
         "link_url": "https:\/\/stackoverflow.com",
-        "content_id": "qmv7dk48x5b690wx",
         "created_at": {
                 "date": "2019-03-30 03:26:24.000000",
           "timezone_type": 3,
