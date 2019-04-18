@@ -152,6 +152,7 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
+        shweshi\OpenGraph\Providers\OpenGraphProvider::class,
 
         /*
          * Application Service Providers...
@@ -211,6 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
+        'OpenGraph' => shweshi\OpenGraph\Facades\OpenGraphFacade::class,
         // NOTE: all packages aliases must be registered inside their containers service providers
     ],
 
