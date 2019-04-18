@@ -621,7 +621,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"type\": \"article\",\n    \"url\": \"https:\\/\\/www.isna.ir\\/news\\/98012812505\\/حقوق-پارسالی-نگیرید\",\n    \"title\": \"حقوق پارسالی نگیرید!\",\n    \"description\": \"با اعلام صریح رییس سازمان برنامه و بودجه، درباره تامین و تخصیص منابع برای پرداخت حقوق کارکنان و بازنشستگان، تمامی آن‌ها از افزایش ۴۰۰ هزار تومانی در فروردین‌ماه برخوردار می‌شوند.\",\n    \"image\": \"https:\\/\\/cdn.isna.ir\\/d\\/2018\\/10\\/30\\/4\\/57771868.jpg\",\n    \"site_name\": \"ایسنا\",\n    \"locale\": \"fa_IR\"\n}",
           "type": "json"
         }
       ]
@@ -672,32 +672,19 @@ define({ "api": [
     "name": "getNotifications",
     "type": "GET",
     "url": "/v1/user/notifications",
-    "title": "Get user notifications",
-    "description": "<p>Get user notifications</p>",
+    "title": "Get User Notifications",
+    "description": "<p>Get the current user notifications</p>",
     "version": "1.0.0",
     "permission": [
       {
-        "name": "none"
+        "name": "Authenticated"
       }
     ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "parameters",
-            "description": "<p>here..</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  // Insert the response of the request here...\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"id\": \"507e3f86-b0ee-40b2-b6b2-6d9be648429a\",\n      \"type\": \"App\\\\Containers\\\\Content\\\\Notifications\\\\RepostNotification\",\n      \"user\": {\n        \"object\": \"User\",\n        \"id\": \"qmv7dk48x5b690wx\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"nick_name\": \"محمد علوی ایرانسل\",\n        \"description\": \"من یه گوگول مگول ام\",\n        \"email\": null,\n        \"username\": null,\n        \"public_phone\": \"+989391***907\",\n        \"is_phone_confirmed\": true,\n        \"is_email_confirmed\": false,\n        \"gender\": \"male\",\n        \"birth\": {\n            \"date\": \"2014-10-20 00:00:00.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"points\": 0,\n        \"is_subscription_expired\": true,\n        \"subscription_expired_at\": {\n            \"date\": \"2019-04-18 04:25:41.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"images\": {\n            \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/2\\/2bc7be5602b3719147ad7f4f2c0ee587.png\",\n          \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/2\\/conversions\\/2bc7be5602b3719147ad7f4f2c0ee587-thumb.png\"\n        },\n        \"stats\": {\n            \"followings_count\": 1,\n          \"followers_count\": 0,\n          \"content_count\": 12,\n          \"followed_by_me\": false,\n          \"following_me\": true\n        },\n        \"social_activity_tendency\": {\n            \"subject_count\": [\n            {\n                \"subject\": \"علمی\",\n              \"count\": 12,\n              \"color\": \"#FF0000\"\n            }\n          ]\n        },\n        \"created_at\": {\n            \"date\": \"2019-04-18 04:26:06.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n            \"date\": \"2019-04-18 04:36:30.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"readable_created_at\": \"47 minutes ago\",\n        \"readable_updated_at\": \"37 minutes ago\"\n      },\n      \"object_id\": \"qmv7dk48x5b690wx\",\n      \"object_text\": \"عن #میخورم برات یه #دنیا ولی! #نرینی_برام به مولا!\",\n      \"read_at\": {\n        \"date\": \"2019-04-18 04:53:57.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"created_at\": {\n        \"date\": \"2019-04-18 04:53:53.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-04-18 04:53:57.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"id\": \"911da676-aad4-412b-82ca-ec8ccbad128a\",\n      \"type\": \"App\\\\Containers\\\\Content\\\\Notifications\\\\RepostNotification\",\n      \"user\": {\n        \"object\": \"User\",\n        \"id\": \"qmv7dk48x5b690wx\",\n        \"first_name\": null,\n        \"last_name\": null,\n        \"nick_name\": \"محمد علوی ایرانسل\",\n        \"description\": \"من یه گوگول مگول ام\",\n        \"email\": null,\n        \"username\": null,\n        \"public_phone\": \"+989391***907\",\n        \"is_phone_confirmed\": true,\n        \"is_email_confirmed\": false,\n        \"gender\": \"male\",\n        \"birth\": {\n            \"date\": \"2014-10-20 00:00:00.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"points\": 0,\n        \"is_subscription_expired\": true,\n        \"subscription_expired_at\": {\n            \"date\": \"2019-04-18 04:25:41.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"images\": {\n            \"avatar\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/2\\/2bc7be5602b3719147ad7f4f2c0ee587.png\",\n          \"avatar_thumb\": \"http:\\/\\/api.samandoon.local\\/v1\\/storage\\/2\\/conversions\\/2bc7be5602b3719147ad7f4f2c0ee587-thumb.png\"\n        },\n        \"stats\": {\n            \"followings_count\": 1,\n          \"followers_count\": 0,\n          \"content_count\": 12,\n          \"followed_by_me\": false,\n          \"following_me\": true\n        },\n        \"social_activity_tendency\": {\n            \"subject_count\": [\n            {\n                \"subject\": \"علمی\",\n              \"count\": 12,\n              \"color\": \"#FF0000\"\n            }\n          ]\n        },\n        \"created_at\": {\n            \"date\": \"2019-04-18 04:26:06.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"updated_at\": {\n            \"date\": \"2019-04-18 04:36:30.000000\",\n          \"timezone_type\": 3,\n          \"timezone\": \"Asia\\/Tehran\"\n        },\n        \"readable_created_at\": \"47 minutes ago\",\n        \"readable_updated_at\": \"37 minutes ago\"\n      },\n      \"object_id\": \"qmv7dk48x5b690wx\",\n      \"object_text\": \"عن #میخورم برات یه #دنیا ولی! #نرینی_برام به مولا!\",\n      \"read_at\": {\n        \"date\": \"2019-04-18 04:51:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"created_at\": {\n        \"date\": \"2019-04-18 04:50:41.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-04-18 04:51:20.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"total\": 2,\n      \"per_page\": 100,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
           "type": "json"
         }
       ]

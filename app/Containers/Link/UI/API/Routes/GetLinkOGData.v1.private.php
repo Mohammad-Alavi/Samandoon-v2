@@ -16,7 +16,13 @@
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK
 {
-  // Insert the response of the request here...
+    "type": "article",
+    "url": "https:\/\/www.isna.ir\/news\/98012812505\/حقوق-پارسالی-نگیرید",
+    "title": "حقوق پارسالی نگیرید!",
+    "description": "با اعلام صریح رییس سازمان برنامه و بودجه، درباره تامین و تخصیص منابع برای پرداخت حقوق کارکنان و بازنشستگان، تمامی آن‌ها از افزایش ۴۰۰ هزار تومانی در فروردین‌ماه برخوردار می‌شوند.",
+    "image": "https:\/\/cdn.isna.ir\/d\/2018\/10\/30\/4\/57771868.jpg",
+    "site_name": "ایسنا",
+    "locale": "fa_IR"
 }
  */
 
