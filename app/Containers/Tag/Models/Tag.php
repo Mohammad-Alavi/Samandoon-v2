@@ -4,12 +4,28 @@ namespace App\Containers\Tag\Models;
 
 use Apiato\Core\Traits\HashIdTrait;
 use Apiato\Core\Traits\HasResourceKeyTrait;
+use Laravel\Scout\Searchable;
 use \Spatie\Tags\Tag as SpatieTag;
 
 class Tag extends SpatieTag
 {
     use HashIdTrait;
     use HasResourceKeyTrait;
+    use Searchable;
+
+    public $asYouType = true;
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' => $this->id,
+            'name' => $this->name,
+        ];
+
+        // Customize array...
+
+        return $array;
+    }
 
     protected $fillable = [
 
