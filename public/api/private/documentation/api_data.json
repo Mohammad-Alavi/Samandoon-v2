@@ -1415,6 +1415,31 @@
   },
   {
     "group": "Search",
+    "name": "searchTag",
+    "type": "GET",
+    "url": "/v1/search/tag?q=ووته&tag_type=content",
+    "title": "Search Tag",
+    "description": "<p>Search the Tags and return the resault | Allowed Tag Types: content, subject</p>",
+    "version": "1.0.0",
+    "permission": [
+      {
+        "name": "Authenticated"
+      }
+    ],
+    "filename": "app/Containers/Tag/UI/API/Routes/SearchTag.v1.private.php",
+    "groupTitle": "Search",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\": [\n    {\n        \"object\": \"Tag\",\n      \"id\": \"bml0wd39b5pkznag\",\n      \"name\": \"نرینی_برام\",\n      \"type\": \"content\",\n      \"created_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"object\": \"Tag\",\n      \"id\": \"eq6am74064z0vpbn\",\n      \"name\": \"محیط زیست\",\n      \"type\": \"subject\",\n      \"created_at\": {\n        \"date\": \"2019-02-25 09:09:52.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-25 09:09:52.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"object\": \"Tag\",\n      \"id\": \"qnwmkv5704blag6r\",\n      \"name\": \"میخورم\",\n      \"type\": \"content\",\n      \"created_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"object\": \"Tag\",\n      \"id\": \"qmv7dk48x5b690wx\",\n      \"name\": \"برات\",\n      \"type\": \"content\",\n      \"created_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-25 09:09:51.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"object\": \"Tag\",\n      \"id\": \"lnmojg5bv4ew80ra\",\n      \"name\": \"دنیا\",\n      \"type\": \"content\",\n      \"created_at\": {\n        \"date\": \"2019-02-26 15:07:57.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-26 15:07:57.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    },\n    {\n        \"object\": \"Tag\",\n      \"id\": \"dqb9073ap3ekzgrm\",\n      \"name\": \"به\",\n      \"type\": \"content\",\n      \"created_at\": {\n        \"date\": \"2019-02-25 09:36:04.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      },\n      \"updated_at\": {\n        \"date\": \"2019-02-25 09:36:04.000000\",\n        \"timezone_type\": 3,\n        \"timezone\": \"Asia\\/Tehran\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"include\": [],\n    \"custom\": [],\n    \"pagination\": {\n        \"total\": 6,\n      \"count\": 6,\n      \"per_page\": 15,\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"links\": []\n    }\n  }\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "group": "Search",
     "name": "searchUser",
     "type": "GET",
     "url": "/v1/search/user?q=همزا",
