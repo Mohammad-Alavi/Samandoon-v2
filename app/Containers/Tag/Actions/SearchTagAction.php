@@ -17,9 +17,9 @@ class SearchTagAction extends Action
     {
         $sanitizedData = $transporter->sanitizeInput([
             'q',
+            'tag_type',
         ]);
 
         return Apiato::call('Tag@SearchTagTask', [$sanitizedData, $transporter->limit]);
-
     }
 }

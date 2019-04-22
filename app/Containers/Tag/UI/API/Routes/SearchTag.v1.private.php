@@ -4,7 +4,7 @@
  * @apiGroup           Tag
  * @apiName            searchTag
  *
- * @api                {GET} /v1/search/tag?q=ووته Search Tag
+ * @api                {GET} /v1/search/tag?q=ووته&tag_type=content Search Tag
  * @apiDescription     Search the Tags and return the resault
  *
  * @apiVersion         1.0.0

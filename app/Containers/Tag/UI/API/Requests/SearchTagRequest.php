@@ -24,7 +24,7 @@ class SearchTagRequest extends Request
      */
     protected $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles' => '',
     ];
 
     /**
@@ -52,7 +52,10 @@ class SearchTagRequest extends Request
     public function rules()
     {
         return [
-             'q' => 'required',
+            'q' => 'required',
+            'tag_type' => 'required|in:' .
+                config('samandoon.tag_type.content') . ',' .
+                config('samandoon.tag_type.subject'),
             // '{user-input}' => 'required|max:255',
         ];
     }

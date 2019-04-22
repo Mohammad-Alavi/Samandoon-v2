@@ -16,7 +16,7 @@ class SearchTagTask extends Task
     public function run($data, $limit = 10)
     {
         /** @var Collection $result */
-        $result = Tag::Search($data['q'])->paginate($limit);
+        $result = Tag::Search($data['q'])->where('type', $data['tag_type'])->paginate($limit);
         return $result;
     }
 }
