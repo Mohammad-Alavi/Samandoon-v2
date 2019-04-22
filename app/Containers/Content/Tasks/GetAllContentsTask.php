@@ -39,7 +39,7 @@ class GetAllContentsTask extends Task
 
         // if query params exist then try to find the tag
         if ($tag && $tagType) {
-            $tagInstance = Tag::findFromString($tag, $tagType)->first();
+            $tagInstance = Tag::findFromString($tag, $tagType);
 
             // if tag exist then apply query scope
             if ($tagInstance != null) {
