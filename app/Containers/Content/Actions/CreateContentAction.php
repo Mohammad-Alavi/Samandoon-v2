@@ -67,7 +67,7 @@ class CreateContentAction extends Action
             $this->createContentAndItsAddOns($transporter, $this->authenticatedUser);
         } catch (Throwable $exception) {
             DB::rollBack();
-            throw new CreateResourceFailedException($exception->getMessage(), null, null, $exception->getCode());
+            throw new CreateResourceFailedException($exception->getMessage());
         }
         DB::commit();
 
