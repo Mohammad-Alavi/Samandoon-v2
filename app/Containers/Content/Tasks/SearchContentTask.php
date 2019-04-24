@@ -5,7 +5,7 @@ namespace App\Containers\Content\Tasks;
 use App\Containers\Article\Models\Article;
 use App\Ship\Helpers\ArabicToPersianStringConverter;
 use App\Ship\Parents\Tasks\Task;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchContentTask extends Task
 {
@@ -13,12 +13,12 @@ class SearchContentTask extends Task
      * @param     $data
      * @param int $limit
      *
-     * @return Collection
+     * @return LengthAwarePaginator
      */
     public function run($data, $limit = 10)
     {
-        /** @var Collection $result */
-        $result = Article::Search(ArabicToPersianStringConverter::Convert($data['q']))->paginate($limit)->load('content');
+        /** @var LengthAwarePaginator $result */
+        $result = Article::search(ArabicToPersianStringConverter::Convert($data['q']))->paginate($limit);
         return $result;
     }
 }
